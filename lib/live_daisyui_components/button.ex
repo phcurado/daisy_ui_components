@@ -39,7 +39,7 @@ defmodule LiveDaisyuiComponents.Button do
         add_class_from_bool(assigns[:glass], "btn-glass"),
         add_class_from_bool(assigns[:loading], "loading"),
         add_class_from_bool(assigns[:wide], "btn-wide"),
-        add_class_from_bool(assigns[:block], "btn-wide"),
+        add_class_from_bool(assigns[:block], "btn-block"),
         add_class_from_bool(assigns[:no_animation], "no-animation"),
         add_class_from_size(assigns[:size], "btn"),
         add_class_from_shape(assigns[:shape])
