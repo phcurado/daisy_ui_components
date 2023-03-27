@@ -16,7 +16,7 @@ defmodule LiveDaisyuiComponents.TextInputTest do
       """)
 
     assert text_input =~
-             ~s(<input type="text" placeholder="text input placeholder" class="input">)
+             ~s(<input type="text" class="input" placeholder="text input placeholder">)
 
     text_input =
       rendered_to_string(~H"""

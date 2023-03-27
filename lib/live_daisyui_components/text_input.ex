@@ -2,7 +2,7 @@ defmodule LiveDaisyuiComponents.TextInput do
   @moduledoc """
   TextInput component
 
-  https://daisyui.com/components/input/
+  https://daisyui.com/components/input
 
 
   """
@@ -10,7 +10,6 @@ defmodule LiveDaisyuiComponents.TextInput do
   use LiveDaisyuiComponents.Component
 
   attr :color, :string, values: colors()
-  attr :placeholder, :string
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
@@ -19,7 +18,6 @@ defmodule LiveDaisyuiComponents.TextInput do
   def text_input(assigns) do
     assigns =
       assigns
-      |> assign_new(:placeholder, fn -> nil end)
       |> join_classes_with_rest([
         "input",
         add_class_from_color(assigns[:color], "input"),
@@ -29,7 +27,7 @@ defmodule LiveDaisyuiComponents.TextInput do
       ])
 
     ~H"""
-    <input type="text" placeholder={@placeholder} {@rest} />
+    <input type="text" {@rest} />
     """
   end
 end
