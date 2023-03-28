@@ -2,7 +2,7 @@ defmodule LiveDaisyuiComponents.Alert do
   @moduledoc """
   Alert component
 
-  https://daisyui.com/components/alert/
+  https://daisyui.com/components/alert
 
 
   """

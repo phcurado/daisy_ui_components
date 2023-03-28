@@ -21,7 +21,7 @@ end
 1. Main DaisyUI components
   - ~~[Alert](https://daisyui.com/components/alert)~~
   - [Artboard](https://daisyui.com/components/artboard)
-  - [Avatar](https://daisyui.com/components/avatar)
+  - ~~[Avatar](https://daisyui.com/components/avatar)~~
   - [Badge](https://daisyui.com/components/badge)
   - [Bottom navigation](https://daisyui.com/components/botton-navigation)
   - [Breadcrumbs](https://daisyui.com/components/breadcrumbs)
