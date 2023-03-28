@@ -41,7 +41,7 @@ defmodule LiveDaisyuiComponents.Avatar do
     """
   end
 
-  defp add_online_or_offline_class(_online = true, _offline), do: "online"
-  defp add_online_or_offline_class(_online, _offline = true), do: "offline"
+  defp add_online_or_offline_class(true = _online, _offline), do: "online"
+  defp add_online_or_offline_class(_online, true = _offline), do: "offline"
   defp add_online_or_offline_class(_online, _offline), do: nil
 end

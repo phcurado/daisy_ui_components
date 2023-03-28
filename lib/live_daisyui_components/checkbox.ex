@@ -2,7 +2,7 @@ defmodule LiveDaisyuiComponents.Checkbox do
   @moduledoc """
   Checkbox component
 
-  https://daisyui.com/components/checkbox/
+  https://daisyui.com/components/checkbox
 
 
   """

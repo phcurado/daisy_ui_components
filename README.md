@@ -57,7 +57,7 @@ end
   - [Radio](https://daisyui.com/components/radio)
   - [Range slider](https://daisyui.com/components/range)
   - [Rating](https://daisyui.com/components/rating)
-  - [Select](https://daisyui.com/components/select)
+  - ~~[Select](https://daisyui.com/components/select)~~
   - [Stack](https://daisyui.com/components/stack)
   - [Stat](https://daisyui.com/components/stat)
   - [Steps](https://daisyui.com/components/steps)
