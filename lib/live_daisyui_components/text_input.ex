@@ -13,7 +13,7 @@ defmodule LiveDaisyuiComponents.TextInput do
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(name value)
 
   def text_input(assigns) do
     assigns =

@@ -24,12 +24,14 @@ defmodule LiveDaisyuiComponents.Utils do
   end
 
   def join_classes_with_rest(%{rest: rest} = assigns, classes) when is_list(classes) do
-    classes = classes ++ [rest[:class]]
-    classes = join_classes(classes)
-
+    classes = join_classes(classes, rest[:class])
     rest = Map.put(rest, :class, classes)
 
     %{assigns | rest: rest}
+  end
+
+  def join_classes(class_1, class_2) do
+    resolve_classes(class_1) ++ resolve_classes(class_2)
   end
 
   def join_classes(classes) when is_list(classes) do
@@ -38,6 +40,9 @@ defmodule LiveDaisyuiComponents.Utils do
     |> Enum.join(" ")
     |> String.trim()
   end
+
+  defp resolve_classes(classes) when is_list(classes), do: classes
+  defp resolve_classes(classes), do: [classes]
 
   def render?(opts) when is_list(opts) do
     Enum.any?(opts, &render?/1)

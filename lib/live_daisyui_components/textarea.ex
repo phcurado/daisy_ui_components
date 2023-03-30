@@ -13,7 +13,8 @@ defmodule LiveDaisyuiComponents.Textarea do
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(name)
+  slot :inner_block
 
   def textarea(assigns) do
     assigns =
@@ -27,7 +28,7 @@ defmodule LiveDaisyuiComponents.Textarea do
       ])
 
     ~H"""
-    <textarea {@rest} />
+    <textarea {@rest}><%= render_slot(@inner_block) %></textarea>
     """
   end
 end

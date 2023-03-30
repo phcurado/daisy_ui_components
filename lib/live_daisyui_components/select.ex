@@ -13,7 +13,7 @@ defmodule LiveDaisyuiComponents.Select do
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(name multiple)
   slot :option
 
   def select(assigns) do
