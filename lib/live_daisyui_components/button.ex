@@ -9,6 +9,16 @@ defmodule LiveDaisyuiComponents.Button do
 
   use LiveDaisyuiComponents.Component
 
+  @doc """
+  Renders a button.
+
+  ## Examples
+
+      <.button>Send!</.button>
+      <.button phx-click="go" class="ml-2">Send!</.button>
+  """
+  attr :type, :string, default: nil
+  attr :class, :string, default: nil
   attr :color, :string, values: colors()
   attr :ghost, :boolean, default: false
   attr :link, :boolean, default: false
@@ -23,13 +33,12 @@ defmodule LiveDaisyuiComponents.Button do
   attr :block, :boolean, default: false
   attr :shape, :string, values: ~w(circle square)
   attr :label, :string, default: nil
-  attr :rest, :global
-  slot :inner_block
+  attr :rest, :global, include: ~w(form name value)
+  slot :inner_block, required: true
 
   def button(assigns) do
-    assigns =
-      join_classes_with_rest(assigns, [
-        "btn",
+    assigns = assign(assigns, :class,
+      ["btn",
         add_class_from_color(assigns[:color], "btn"),
         add_class_from_bool(assigns[:ghost], "btn-ghost"),
         add_class_from_bool(assigns[:link], "btn-link"),
@@ -42,16 +51,14 @@ defmodule LiveDaisyuiComponents.Button do
         add_class_from_bool(assigns[:block], "btn-block"),
         add_class_from_bool(assigns[:no_animation], "no-animation"),
         add_class_from_size(assigns[:size], "btn"),
-        add_class_from_shape(assigns[:shape])
-      ])
+        add_class_from_shape(assigns[:shape]),
+        assigns.class
+      ]
+    )
 
     ~H"""
-    <button {@rest}>
-      <%= if @label do %>
-        <%= @label %>
-      <% else %>
-        <%= render_slot(@inner_block) %>
-      <% end %>
+    <button class={@class} {@rest}>
+      <%= render_slot(@inner_block) %>
     </button>
     """
   end

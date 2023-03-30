@@ -10,21 +10,13 @@ defmodule LiveDaisyuiComponents.ButtonTest do
   test "button" do
     assigns = %{}
 
-    btn =
-      rendered_to_string(~H"""
-      <.button label="button label" />
-      """)
-
-    assert btn =~ ~s(<button class="btn">)
-    assert btn =~ ~s(button label)
-
-    btn_slot =
+    button =
       rendered_to_string(~H"""
       <.button>button slot</.button>
       """)
 
-    assert btn_slot =~ ~s(<button class="btn">)
-    assert btn_slot =~ ~s(button slot)
+    assert button =~ ~s(<button class="btn">)
+    assert button =~ ~s(button slot)
   end
 
   test "button colors" do
@@ -32,7 +24,7 @@ defmodule LiveDaisyuiComponents.ButtonTest do
       assigns = %{color: color}
 
       assert rendered_to_string(~H"""
-             <.button color={@color} label="button label" />
+             <.button color={@color}>My button</.button>
              """) =~ ~s(<button class="btn btn-#{color}">)
     end
   end
@@ -42,7 +34,7 @@ defmodule LiveDaisyuiComponents.ButtonTest do
       assigns = %{size: size}
 
       assert rendered_to_string(~H"""
-             <.button size={@size} label="button label" />
+             <.button size={@size}>My button</.button>
              """) =~ ~s(<button class="btn btn-#{size}">)
     end
   end
@@ -52,7 +44,7 @@ defmodule LiveDaisyuiComponents.ButtonTest do
       assigns = %{shape: shape}
 
       assert rendered_to_string(~H"""
-             <.button shape={@shape} label="button label" />
+             <.button shape={@shape} {assigns}>My button</.button>
              """) =~ ~s(<button class="btn btn-#{shape}">)
     end
   end
@@ -62,20 +54,20 @@ defmodule LiveDaisyuiComponents.ButtonTest do
       assigns = %{boolean_assign => true}
 
       assert rendered_to_string(~H"""
-             <.button label="button label" {assigns} />
+             <.button {assigns}>My button</.button>
              """) =~ ~s(<button class="btn btn-#{to_string(boolean_assign)}">)
     end
 
     assigns = %{loading: true}
 
     assert rendered_to_string(~H"""
-           <.button label="button label" {assigns} />
+           <.button {assigns}>My button</.button>
            """) =~ ~s(<button class="btn loading">)
 
     assigns = %{no_animation: true}
 
     assert rendered_to_string(~H"""
-           <.button label="button label" {assigns} />
+           <.button {assigns}>My button</.button>
            """) =~ ~s(<button class="btn no-animation">)
   end
 end
