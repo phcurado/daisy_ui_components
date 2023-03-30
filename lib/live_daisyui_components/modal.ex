@@ -8,54 +8,81 @@ defmodule LiveDaisyuiComponents.Modal do
 
   use LiveDaisyuiComponents.Component
 
+  alias Phoenix.LiveView.JS
+
+  @doc """
+  Renders a modal.
+
+  ## Examples
+
+      <.modal id="confirm-modal">
+        This is a modal.
+      </.modal>
+
+  JS commands may be passed to the `:on_cancel` to configure
+  the closing/cancel event, for example:
+
+      <.modal id="confirm" on_cancel={JS.navigate(~p"/posts")}>
+        This is another modal.
+      </.modal>
+
+  Modal with actions:
+
+      <.modal id="confirm">
+        Modal to confirm
+        <:actions>
+          <.button>Confirm</.button>
+        <:actions>
+      </.modal>
+  """
+  attr :id, :string, required: true
+  attr :open, :boolean, default: false
   attr :rest, :global
-  slot :body
+  attr :on_cancel, JS, default: %JS{}
   slot :actions, doc: "the slot for showing modal actions"
   slot :inner_block
 
   def modal(assigns) do
-    assigns = join_classes_with_rest(assigns, ["modal"])
+    assigns = join_classes_with_rest(assigns, ["modal modal-bottom sm:modal-middle"])
 
     ~H"""
-    <div {@rest}>
-      <.modal_body :if={@body != []}>
-        <%= render_slot(@body) %>
-        <.modal_action :for={action <- @actions}>
-          <%= render_slot(action) %>
-        </.modal_action>
-      </.modal_body>
-      <%= render_slot(@inner_block) %>
+    <div
+      id={@id}
+      phx-mounted={@open && show_modal(@id)}
+      phx-remove={hide_modal(@id)}
+      data-cancel={JS.exec(@on_cancel, "phx-remove")}
+      {@rest}
+    >
+      <div
+        class="modal-box relative"
+        phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
+        phx-key="escape"
+        phx-click-away={JS.exec("data-cancel", to: "##{@id}")}
+      >
+        <label
+          phx-click={JS.exec("data-cancel", to: "##{@id}")}
+          class="btn btn-sm btn-circle absolute right-2 top-2"
+        >
+          ✕
+        </label>
+        <%= render_slot(@inner_block) %>
+        <div class="modal-action">
+          <%= for action <- @actions do %>
+            <%= render_slot(action) %>
+          <% end %>
+        </div>
+      </div>
     </div>
     """
   end
 
-  attr :rest, :global
-  slot :inner_block
-  slot :actions, doc: "the slot for showing modal actions"
-
-  def modal_body(assigns) do
-    assigns = join_classes_with_rest(assigns, ["modal-box"])
-
-    ~H"""
-    <div {@rest}>
-      <%= render_slot(@inner_block) %>
-      <.modal_action :for={action <- @actions}>
-        <%= render_slot(action) %>
-      </.modal_action>
-    </div>
-    """
+  def show_modal(js \\ %JS{}, id) when is_binary(id) do
+    js
+    |> JS.add_class("modal-open", to: "##{id}")
   end
 
-  attr :rest, :global
-  slot :inner_block
-
-  def modal_action(assigns) do
-    assigns = join_classes_with_rest(assigns, ["modal-action"])
-
-    ~H"""
-    <div {@rest}>
-      <%= render_slot(@inner_block) %>
-    </div>
-    """
+  def hide_modal(js \\ %JS{}, id) do
+    js
+    |> JS.remove_class("modal-open", to: "##{id}")
   end
 end
