@@ -7,7 +7,7 @@ defmodule LiveDaisyuiComponents.SelectTest do
 
   alias LiveDaisyuiComponents.Utils
 
-  test "simple select" do
+  test "simple select with slot" do
     assigns = %{}
 
     select =
@@ -25,6 +25,20 @@ defmodule LiveDaisyuiComponents.SelectTest do
     assert select =~ ~s(<option>)
     assert select =~ ~s(First option)
     assert select =~ ~s(Second option)
+  end
+
+  test "simple select with options" do
+    assigns = %{}
+
+    select =
+      rendered_to_string(~H"""
+      <.select options={[admin: "admin", "Super Admin": "super_admin"]} value="admin" prompt="select user" />
+      """)
+
+    assert select =~ ~s(<select class="select">)
+    assert select =~ ~s(<option value="">select user</option>)
+    assert select =~ ~s(<option selected value="admin">admin</option>)
+    assert select =~ ~s(<option value="super_admin">Super Admin</option>)
   end
 
   test "select colors" do

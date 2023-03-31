@@ -9,6 +9,7 @@ defmodule LiveDaisyuiComponents.Textarea do
 
   use LiveDaisyuiComponents.Component
 
+  attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
@@ -28,7 +29,13 @@ defmodule LiveDaisyuiComponents.Textarea do
       ])
 
     ~H"""
-    <textarea {@rest}><%= render_slot(@inner_block) %></textarea>
+    <textarea {@rest}>
+    <%= if render?(@inner_block) do %>
+      <%= render_slot(@inner_block) %>
+    <% else %>
+        <%= @value %>
+    <% end %>
+    </textarea>
     """
   end
 end

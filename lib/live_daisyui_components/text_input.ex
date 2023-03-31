@@ -9,6 +9,7 @@ defmodule LiveDaisyuiComponents.TextInput do
 
   use LiveDaisyuiComponents.Component
 
+  attr :type, :string, default: "text"
   attr :color, :string, values: colors()
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
@@ -27,7 +28,7 @@ defmodule LiveDaisyuiComponents.TextInput do
       ])
 
     ~H"""
-    <input type="text" {@rest} />
+    <input type={@type} {@rest} />
     """
   end
 end

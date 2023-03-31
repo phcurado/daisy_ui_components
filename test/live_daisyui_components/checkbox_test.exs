@@ -12,10 +12,10 @@ defmodule LiveDaisyuiComponents.CheckboxTest do
 
     checkbox =
       rendered_to_string(~H"""
-      <.checkbox />
+      <.checkbox value="true" />
       """)
 
-    assert checkbox =~ ~s(<input type="checkbox" class="checkbox">)
+    assert checkbox =~ ~s(<input type="checkbox" value="true" class="checkbox">)
   end
 
   test "checkbox colors" do

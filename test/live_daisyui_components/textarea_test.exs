@@ -7,16 +7,20 @@ defmodule LiveDaisyuiComponents.TextareaTest do
 
   alias LiveDaisyuiComponents.Utils
 
-  test "textarea" do
+  test "simple textarea with slot" do
     assigns = %{}
 
     textarea =
       rendered_to_string(~H"""
-      <.textarea placeholder="textarea placeholder" />
+      <.textarea placeholder="textarea placeholder">
+        This is a textarea
+      </.textarea>
       """)
 
     assert textarea =~
              ~s(<textarea class="textarea" placeholder="textarea placeholder">)
+
+    assert textarea =~ ~s(This is a textarea)
 
     textarea =
       rendered_to_string(~H"""
@@ -25,6 +29,20 @@ defmodule LiveDaisyuiComponents.TextareaTest do
 
     assert textarea =~ ~s(<textarea class="textarea">)
     refute textarea =~ ~s(text input placeholder)
+  end
+
+  test "simple textarea with value" do
+    assigns = %{}
+
+    textarea =
+      rendered_to_string(~H"""
+      <.textarea value="This is a textarea" />
+      """)
+
+    assert textarea =~
+             ~s(<textarea class="textarea">)
+
+    assert textarea =~ ~s(This is a textarea)
   end
 
   test "textarea colors" do

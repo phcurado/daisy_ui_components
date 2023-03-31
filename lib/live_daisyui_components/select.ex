@@ -13,7 +13,14 @@ defmodule LiveDaisyuiComponents.Select do
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(name multiple)
+
+  attr :options, :list,
+    default: [],
+    doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
+
+  attr :value, :any, default: nil
+  attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
+  attr :rest, :global, include: ~w(name value multiple)
   slot :option
 
   def select(assigns) do
@@ -29,9 +36,14 @@ defmodule LiveDaisyuiComponents.Select do
 
     ~H"""
     <select {@rest}>
-      <.option :for={option <- @option} disabled={option[:disabled]} selected={option[:selected]}>
-        <%= render_slot(option) %>
-      </.option>
+      <option :if={@prompt} value=""><%= @prompt %></option>
+      <%= if render?(@option) do %>
+        <.option :for={option <- @option} disabled={option[:disabled]} selected={option[:selected]}>
+          <%= render_slot(option) %>
+        </.option>
+      <% else %>
+        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+      <% end %>
     </select>
     """
   end
