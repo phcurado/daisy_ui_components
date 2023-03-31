@@ -52,12 +52,6 @@ defmodule LiveDaisyuiComponents.Utils do
     !(value in [nil, "", []])
   end
 
-  def add_class_from_size(size, prefix) when size in @sizes, do: "#{prefix}-#{size}"
-  def add_class_from_size(_size, _prefix), do: nil
-
-  def add_class_from_color(color, prefix) when color in @colors, do: "#{prefix}-#{color}"
-  def add_class_from_color(_color, _prefix), do: nil
-
   def add_class_from_bool(true, class), do: class
   def add_class_from_bool(_false, _class), do: nil
 end

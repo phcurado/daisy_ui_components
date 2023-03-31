@@ -37,9 +37,10 @@ defmodule LiveDaisyuiComponents.Button do
   slot :inner_block, required: true
 
   def button(assigns) do
-    assigns = assign(assigns, :class,
-      ["btn",
-        add_class_from_color(assigns[:color], "btn"),
+    assigns =
+      assign(assigns, :class, [
+        "btn",
+        btn_color(assigns[:color]),
         add_class_from_bool(assigns[:ghost], "btn-ghost"),
         add_class_from_bool(assigns[:link], "btn-link"),
         add_class_from_bool(assigns[:outline], "btn-outline"),
@@ -50,11 +51,10 @@ defmodule LiveDaisyuiComponents.Button do
         add_class_from_bool(assigns[:wide], "btn-wide"),
         add_class_from_bool(assigns[:block], "btn-block"),
         add_class_from_bool(assigns[:no_animation], "no-animation"),
-        add_class_from_size(assigns[:size], "btn"),
-        add_class_from_shape(assigns[:shape]),
+        btn_size(assigns[:size]),
+        btn_shape(assigns[:shape]),
         assigns.class
-      ]
-    )
+      ])
 
     ~H"""
     <button class={@class} {@rest}>
@@ -63,7 +63,25 @@ defmodule LiveDaisyuiComponents.Button do
     """
   end
 
-  defp add_class_from_shape("circle"), do: "btn-circle"
-  defp add_class_from_shape("square"), do: "btn-square"
-  defp add_class_from_shape(nil), do: nil
+  # Color
+  defp btn_color("primary"), do: "btn-primary"
+  defp btn_color("secondary"), do: "btn-secondary"
+  defp btn_color("accent"), do: "btn-accent"
+  defp btn_color("info"), do: "btn-info"
+  defp btn_color("success"), do: "btn-success"
+  defp btn_color("warning"), do: "btn-warning"
+  defp btn_color("error"), do: "btn-error"
+  defp btn_color(_color), do: nil
+
+  # Size
+  defp btn_size("xs"), do: "btn-xs"
+  defp btn_size("sm"), do: "btn-sm"
+  defp btn_size("md"), do: "btn-md"
+  defp btn_size("lg"), do: "btn-lg"
+  defp btn_size(_size), do: nil
+
+  # Shape
+  defp btn_shape("circle"), do: "btn-circle"
+  defp btn_shape("square"), do: "btn-square"
+  defp btn_shape(nil), do: nil
 end

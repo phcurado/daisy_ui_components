@@ -32,7 +32,11 @@ defmodule LiveDaisyuiComponents.SelectTest do
 
     select =
       rendered_to_string(~H"""
-      <.select options={[admin: "admin", "Super Admin": "super_admin"]} value="admin" prompt="select user" />
+      <.select
+        options={[admin: "admin", "Super Admin": "super_admin"]}
+        value="admin"
+        prompt="select user"
+      />
       """)
 
     assert select =~ ~s(<select class="select">)

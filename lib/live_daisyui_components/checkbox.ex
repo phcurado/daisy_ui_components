@@ -20,12 +20,29 @@ defmodule LiveDaisyuiComponents.Checkbox do
       assigns
       |> join_classes_with_rest([
         "checkbox",
-        add_class_from_color(assigns[:color], "checkbox"),
-        add_class_from_size(assigns[:size], "checkbox")
+        checkbox_color(assigns[:color]),
+        checkbox_size(assigns[:size])
       ])
 
     ~H"""
     <input type="checkbox" checked={@checked} value={@value} {@rest} />
     """
   end
+
+  # Color
+  defp checkbox_color("primary"), do: "checkbox-primary"
+  defp checkbox_color("secondary"), do: "checkbox-secondary"
+  defp checkbox_color("accent"), do: "checkbox-accent"
+  defp checkbox_color("info"), do: "checkbox-info"
+  defp checkbox_color("success"), do: "checkbox-success"
+  defp checkbox_color("warning"), do: "checkbox-warning"
+  defp checkbox_color("error"), do: "checkbox-error"
+  defp checkbox_color(_color), do: nil
+
+  # Size
+  defp checkbox_size("xs"), do: "checkbox-xs"
+  defp checkbox_size("sm"), do: "checkbox-sm"
+  defp checkbox_size("md"), do: "checkbox-md"
+  defp checkbox_size("lg"), do: "checkbox-lg"
+  defp checkbox_size(_size), do: nil
 end

@@ -19,7 +19,7 @@ defmodule LiveDaisyuiComponents.Alert do
     assigns =
       join_classes_with_rest(assigns, [
         "alert",
-        add_class_from_color(assigns[:color], "alert"),
+        alert_color(assigns[:color]),
         "shadow-lg"
       ])
       |> assign_new(:color, fn -> nil end)
@@ -143,4 +143,11 @@ defmodule LiveDaisyuiComponents.Alert do
     </svg>
     """
   end
+
+  # Color
+  defp alert_color("info"), do: "alert-info"
+  defp alert_color("success"), do: "alert-success"
+  defp alert_color("warning"), do: "alert-warning"
+  defp alert_color("error"), do: "alert-error"
+  defp alert_color(_color), do: nil
 end

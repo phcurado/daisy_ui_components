@@ -22,10 +22,10 @@ defmodule LiveDaisyuiComponents.Textarea do
       assigns
       |> join_classes_with_rest([
         "textarea",
-        add_class_from_color(assigns[:color], "textarea"),
         add_class_from_bool(assigns[:bordered], "textarea-bordered"),
         add_class_from_bool(assigns[:ghost], "textarea-ghost"),
-        add_class_from_size(assigns[:size], "textarea")
+        textarea_color(assigns[:color]),
+        textarea_size(assigns[:size])
       ])
 
     ~H"""
@@ -38,4 +38,21 @@ defmodule LiveDaisyuiComponents.Textarea do
     </textarea>
     """
   end
+
+  # Color
+  defp textarea_color("primary"), do: "textarea-primary"
+  defp textarea_color("secondary"), do: "textarea-secondary"
+  defp textarea_color("accent"), do: "textarea-accent"
+  defp textarea_color("info"), do: "textarea-info"
+  defp textarea_color("success"), do: "textarea-success"
+  defp textarea_color("warning"), do: "textarea-warning"
+  defp textarea_color("error"), do: "textarea-error"
+  defp textarea_color(_color), do: nil
+
+  # Size
+  defp textarea_size("xs"), do: "textarea-xs"
+  defp textarea_size("sm"), do: "textarea-sm"
+  defp textarea_size("md"), do: "textarea-md"
+  defp textarea_size("lg"), do: "textarea-lg"
+  defp textarea_size(_size), do: nil
 end
