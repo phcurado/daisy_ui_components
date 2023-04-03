@@ -1,6 +1,7 @@
 defmodule LiveDaisyuiComponents.Icon do
   @moduledoc """
   Renders hero icons
+  Code extracted from [Phoenix Core Components](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
   use LiveDaisyuiComponents.Component

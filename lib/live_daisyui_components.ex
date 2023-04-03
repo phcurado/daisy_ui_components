@@ -10,11 +10,15 @@ defmodule LiveDaisyuiComponents do
       import LiveDaisyuiComponents.Button
       import LiveDaisyuiComponents.Card
       import LiveDaisyuiComponents.Checkbox
+      import LiveDaisyuiComponents.Drawer
+      import LiveDaisyuiComponents.Form
+      import LiveDaisyuiComponents.Icon
+      import LiveDaisyuiComponents.Input
       import LiveDaisyuiComponents.Modal
+      import LiveDaisyuiComponents.Select
       import LiveDaisyuiComponents.Table
       import LiveDaisyuiComponents.TextInput
       import LiveDaisyuiComponents.Textarea
-      import LiveDaisyuiComponents.Select
     end
   end
 end
