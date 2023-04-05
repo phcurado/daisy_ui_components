@@ -33,7 +33,7 @@ defmodule LiveDaisyuiComponents.Alert do
       id="disconnected"
       kind={:error}
       direction={@direction}
-      title="We can't find the internet"
+      title={translate("We can't find the internet")}
       phx-disconnected={show("#disconnected")}
       phx-connected={hide("#disconnected")}
       hidden

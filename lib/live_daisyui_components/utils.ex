@@ -54,4 +54,20 @@ defmodule LiveDaisyuiComponents.Utils do
 
   def add_class_from_bool(true, class), do: class
   def add_class_from_bool(_false, _class), do: nil
+
+  def translate({msg, _opts} = params) do
+    if translate_function = Application.get_env(:live_daisyui_components, :translate_function) do
+      translate_function.(params)
+    else
+      msg
+    end
+  end
+
+  def translate(msg) do
+    if translate_function = Application.get_env(:live_daisyui_components, :translate_function) do
+      translate_function.({msg, []})
+    else
+      msg
+    end
+  end
 end

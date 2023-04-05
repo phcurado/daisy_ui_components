@@ -64,7 +64,7 @@ defmodule LiveDaisyuiComponents.Form do
   def form_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
+    |> assign(:errors, Enum.map(field.errors, &translate(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> add_attr_input_type()
@@ -128,13 +128,5 @@ defmodule LiveDaisyuiComponents.Form do
       <%= render_slot(@inner_block) %>
     </p>
     """
-  end
-
-  def translate_error({msg, _opts} = params) do
-    if translate_function = Application.get_env(:live_daisyui_components, :translate_function) do
-      translate_function.(params)
-    else
-      msg
-    end
   end
 end
