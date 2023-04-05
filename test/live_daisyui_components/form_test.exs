@@ -41,6 +41,6 @@ defmodule LiveDaisyuiComponents.FormTest do
     assert form_input =~ ~s(<label class="label" for="1">)
 
     assert form_input =~
-             ~s(<input type="checkbox" class="checkbox text-xs" disabled for="some-input" id="1" name="input[name]">)
+             ~s(<input type="checkbox" value="false" class="checkbox text-xs" disabled for="some-input" id="1" name="input[name]">)
   end
 end

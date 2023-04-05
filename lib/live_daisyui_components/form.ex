@@ -49,6 +49,7 @@ defmodule LiveDaisyuiComponents.Form do
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
+  attr :class, :string, default: nil
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
@@ -79,9 +80,10 @@ defmodule LiveDaisyuiComponents.Form do
       </.label>
       <.input
         id={@id}
+        class={@class}
         type={@type}
         name={@name}
-        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+        value={@value}
         {@rest}
       />
       <.error :for={msg <- @errors}><%= msg %></.error>
@@ -92,7 +94,7 @@ defmodule LiveDaisyuiComponents.Form do
   defp add_attr_input_type(%{type: "checkbox", value: value} = assigns) do
     assigns
     |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
-    |> assign(:value, fn -> "true" end)
+    |> assign(:value, "true")
     |> move_attr_to_rest(:checked)
     |> add_default_input_assigns()
   end
@@ -103,7 +105,11 @@ defmodule LiveDaisyuiComponents.Form do
     |> add_default_input_assigns()
   end
 
-  defp add_attr_input_type(assigns), do: add_default_input_assigns(assigns)
+  defp add_attr_input_type(%{type: type, value: value} = assigns) do
+    assigns
+    |> assign(:value, Phoenix.HTML.Form.normalize_value(type, value))
+    |> add_default_input_assigns()
+  end
 
   defp add_default_input_assigns(assigns) do
     assigns
@@ -111,8 +117,6 @@ defmodule LiveDaisyuiComponents.Form do
     |> move_attr_to_rest(:color)
     |> assign_new(:bordered, fn -> assigns[:bordered] == nil && true end)
     |> move_attr_to_rest(:bordered)
-    |> assign_new(:class, fn -> assigns[:class] == nil && "w-full" end)
-    |> move_attr_to_rest(:class)
   end
 
   @doc """
