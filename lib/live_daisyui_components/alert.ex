@@ -31,12 +31,12 @@ defmodule LiveDaisyuiComponents.Alert do
     <.flash kind={:error} direction={@direction} title="Error!" flash={@flash} />
     <.flash
       id="disconnected"
+      class="hidden"
       kind={:error}
       direction={@direction}
       title={translate("We can't find the internet")}
       phx-disconnected={show("#disconnected")}
       phx-connected={hide("#disconnected")}
-      hidden
     >
       Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
     </.flash>
@@ -55,6 +55,7 @@ defmodule LiveDaisyuiComponents.Alert do
   attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
   attr :title, :string, default: nil
   attr :kind, :atom, values: [:info, :error], doc: "used for styling and flash lookup"
+  attr :class, :string, default: nil
 
   attr :direction, :atom,
     values: [:top_left, :top_right, :bottom_left, :bottom_right],
@@ -78,7 +79,8 @@ defmodule LiveDaisyuiComponents.Alert do
         @direction == :top_left && "fixed top-2 left-2",
         @direction == :top_right && "fixed top-2 right-2",
         @direction == :bottom_left && "fixed bottom-2 left-2",
-        @direction == :bottom_right && "fixed bottom-2 right-2"
+        @direction == :bottom_right && "fixed bottom-2 right-2",
+        @class
       ]}
       {@rest}
     >
@@ -135,7 +137,7 @@ defmodule LiveDaisyuiComponents.Alert do
   defp alert_color(_color), do: nil
 
   def show(js \\ %JS{}, selector) do
-    JS.show(js,
+    JS.remove_class(js, "hidden",
       to: selector,
       transition:
         {"transition-all transform ease-out duration-300",
@@ -145,7 +147,7 @@ defmodule LiveDaisyuiComponents.Alert do
   end
 
   def hide(js \\ %JS{}, selector) do
-    JS.hide(js,
+    JS.add_class(js, "hidden",
       to: selector,
       time: 200,
       transition:
