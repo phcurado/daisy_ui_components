@@ -15,34 +15,33 @@ defmodule LiveDaisyuiComponents.Drawer do
 
   attr :id, :string, required: true
   attr :current_item_title, :string, default: nil
-  slot :item, required: true do
-    attr :title, :string, required: true
-  end
+  slot :drawer_content
   slot :inner_block, required: true
 
   def drawer(assigns) do
     ~H"""
     <div class="drawer drawer-mobile">
       <.input id={@id} type="checkbox" class="drawer-toggle" />
-
-      <div class="drawer-content flex flex-col items-center justify-center">
-        <%= render_slot(@inner_block) %>
-        <label
-          for={@id}
-          class="btn btn-square btn-ghost btn-sm lg:hidden fixed left-0 top-0"
-        >
-          <.icon name="hero-bars-2" />
+      <div class="drawer-content flex flex-col">
+        <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
+          <.icon name="hero-bars-3-center-left" class="h-5 w-5"/>
         </label>
+        <%= render_slot(@inner_block) %>
       </div>
+      <%= render_slot(@drawer_content) %>
+    </div>
+    """
+  end
 
-      <div class="drawer-side">
-        <label for={@id} class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 bg-base-300 text-base-content">
-          <li :for={item <- @item} class={"#{@current_item_title == item[:title] && "bg-primary"}"}>
-            <%= render_slot(item) %>
-          </li>
-        </ul>
-      </div>
+  attr :drawer_id, :string, required: true
+  attr :class, :any, default: nil
+
+  slot :inner_block, required: true
+  def drawer_side(assigns) do
+    ~H"""
+    <div class={join_classes("drawer-side", @class)}>
+      <label for={@drawer_id} class="drawer-overlay"></label>
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
