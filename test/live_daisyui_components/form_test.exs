@@ -10,9 +10,7 @@ defmodule LiveDaisyuiComponents.FormTest do
 
     label =
       rendered_to_string(~H"""
-      <.label class="text-xs" for="some-input" disabled>
-        My label
-      </.label>
+      <.label class="text-xs" for="some-input" disabled label="My label" />
       """)
 
     assert label =~
@@ -37,10 +35,10 @@ defmodule LiveDaisyuiComponents.FormTest do
       />
       """)
 
-    assert form_input =~ ~s(<div class="form-control w-full" phx-feedback-for="input[name]">)
-    assert form_input =~ ~s(<label class="label" for="1">)
+    assert form_input =~ ~s(<div class="form-control" phx-feedback-for="input[name]">)
+    assert form_input =~ ~s(<label class="label cursor-pointer" for="1">)
 
     assert form_input =~
-             ~s(<input type="checkbox" value="false" class="checkbox text-xs" disabled for="some-input" id="1" name="input[name]">)
+             ~s(<input type="checkbox" value="true" class="checkbox text-xs" disabled for="some-input" id="1" name="input[name]">)
   end
 end

@@ -65,7 +65,14 @@ defmodule LiveDaisyuiComponents.Alert do
 
   slot :inner_block, doc: "the optional inner block that renders the flash message"
 
-  def flash(assigns) do
+  def flash(%{kind: kind} = assigns) do
+    assigns = assign_new(assigns, :color, fn ->
+      case kind do
+        :error ->  "error"
+        :info -> "success"
+      end
+    end)
+
     ~H"""
     <.alert
       :if={msg = render_slot(@inner_block) || Phoenix.Flash.get(@flash, @kind)}
@@ -73,7 +80,7 @@ defmodule LiveDaisyuiComponents.Alert do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       title={@title}
-      color={@kind == :error && "error"}
+      color={@color}
       class={[
         "w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
         @direction == :top_left && "fixed top-2 left-2",

@@ -25,6 +25,8 @@ defmodule LiveDaisyuiComponents.Input do
     values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
 
+  attr :bordered, :boolean, default: false
+
   attr :rest, :global,
     include:
       ~w(name value checked prompt options multiple autocomplete cols disabled form list max maxlength min minlength
@@ -40,20 +42,22 @@ defmodule LiveDaisyuiComponents.Input do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <.select id={@id} {@rest} />
+    <.select id={@id} bordered={@bordered} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </.select>
     """
   end
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <.textarea id={@id} {@rest} />
+    <.textarea id={@id} bordered={@bordered} {@rest} />
     """
   end
 
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <.text_input id={@id} type={@type} {@rest} />
+    <.text_input id={@id} type={@type} bordered={@bordered} {@rest} />
     """
   end
 end

@@ -7,36 +7,17 @@ defmodule LiveDaisyuiComponents.SelectTest do
 
   alias LiveDaisyuiComponents.Utils
 
-  test "simple select with slot" do
-    assigns = %{}
-
-    select =
-      rendered_to_string(~H"""
-      <.select>
-        <:option disabled selected>Select your option</:option>
-        <:option>First option</:option>
-        <:option>Second option</:option>
-      </.select>
-      """)
-
-    assert select =~ ~s(<select class="select">)
-    assert select =~ ~s(<option disabled selected>)
-    assert select =~ ~s(Select your option)
-    assert select =~ ~s(<option>)
-    assert select =~ ~s(First option)
-    assert select =~ ~s(Second option)
-  end
-
   test "simple select with options" do
     assigns = %{}
 
     select =
       rendered_to_string(~H"""
-      <.select
-        options={[admin: "admin", "Super Admin": "super_admin"]}
-        value="admin"
-        prompt="select user"
-      />
+      <.select>
+        <option value="">select user</option>
+        <option selected value="admin">admin</option>
+        <option value="admin">admin</option>
+        <option value="super_admin">Super Admin</option>
+      </.select>
       """)
 
     assert select =~ ~s(<select class="select">)

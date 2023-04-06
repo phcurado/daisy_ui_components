@@ -13,13 +13,16 @@ defmodule LiveDaisyuiComponents.Form do
   """
   attr :class, :any, default: nil
   attr :for, :string, default: nil
+  attr :type, :string, default: "label", values: ~w(label span)
   attr :rest, :global
-  slot :inner_block, required: true
+  attr :label, :string, required: true
+  slot :inner_block
 
   def label(assigns) do
     ~H"""
     <label class={join_classes("label", @class)} for={@for} {@rest}>
-      <span class="label-text"><%= render_slot(@inner_block) %></span>
+      <span class="label-text"><%= @label %></span>
+      <%= render_slot(@inner_block) %>
     </label>
     """
   end
@@ -50,6 +53,7 @@ defmodule LiveDaisyuiComponents.Form do
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
   attr :class, :string, default: nil
+  attr :bordered, :boolean, default: true
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
@@ -68,22 +72,68 @@ defmodule LiveDaisyuiComponents.Form do
     |> assign(:errors, Enum.map(field.errors, &translate(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
-    |> add_attr_input_type()
     |> form_input()
+  end
+
+  def form_input(%{type: "checkbox", value: value} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
+      |> add_default_input_assigns()
+
+    ~H"""
+    <div class="form-control" phx-feedback-for={@name}>
+      <label class="label cursor-pointer" for={@id}>
+        <span class="label-text mr-2"><%= @label %></span>
+        <.input
+          id={@id}
+          type="checkbox"
+          name={@name}
+          value="true"
+          checked={@checked}
+          class={@class}
+          {@rest}
+        />
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </label>
+    </div>
+    """
+  end
+
+  def form_input(%{type: "select"} = assigns) do
+    assigns = add_default_input_assigns(assigns)
+
+    ~H"""
+    <div class="form-control w-full" phx-feedback-for={@name}>
+      <.label for={@id} label={@label} />
+      <.input
+        id={@id}
+        type="select"
+        name={@name}
+        multiple={@multiple}
+        class={@class}
+        bordered={@bordered}
+        {@rest}
+      >
+        <option :if={@prompt} value=""><%= @prompt %></option>
+        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+      </.input>
+      <.error :for={msg <- @errors}><%= msg %></.error>
+    </div>
+    """
   end
 
   def form_input(assigns) do
     ~H"""
     <div class="form-control w-full" phx-feedback-for={@name}>
-      <.label for={@id}>
-        <%= @label %>
-      </.label>
+      <.label for={@id} label={@label} />
       <.input
         id={@id}
         class={@class}
         type={@type}
         name={@name}
-        value={@value}
+        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+        bordered={@bordered}
         {@rest}
       />
       <.error :for={msg <- @errors}><%= msg %></.error>
@@ -91,32 +141,10 @@ defmodule LiveDaisyuiComponents.Form do
     """
   end
 
-  defp add_attr_input_type(%{type: "checkbox", value: value} = assigns) do
-    assigns
-    |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
-    |> assign(:value, "true")
-    |> move_attr_to_rest(:checked)
-    |> add_default_input_assigns()
-  end
-
-  defp add_attr_input_type(%{type: "select"} = assigns) do
-    assigns
-    |> move_attr_to_rest(:multiple)
-    |> add_default_input_assigns()
-  end
-
-  defp add_attr_input_type(%{type: type, value: value} = assigns) do
-    assigns
-    |> assign(:value, Phoenix.HTML.Form.normalize_value(type, value))
-    |> add_default_input_assigns()
-  end
-
   defp add_default_input_assigns(assigns) do
     assigns
     |> assign_new(:color, fn -> assigns.errors != [] && "error" end)
     |> move_attr_to_rest(:color)
-    |> assign_new(:bordered, fn -> assigns[:bordered] == nil && true end)
-    |> move_attr_to_rest(:bordered)
   end
 
   @doc """
