@@ -110,23 +110,19 @@ defmodule LiveDaisyuiComponents.CoreComponents do
           <.th><span class="sr-only">Actions</span></.th>
         </.tr>
       </.thead>
-      <.tbody
-        id={@id}
-        phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}
-      >
+      <.tbody id={@id} phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}>
         <.tr :for={row <- @rows} id={@row_id && @row_id.(row)}>
           <.td
             :for={col <- @col}
             phx-click={@row_click && @row_click.(row)}
             class={[@row_click && "hover:cursor-pointer"]}
           >
-                <%= render_slot(col, @row_item.(row)) %>
+            <%= render_slot(col, @row_item.(row)) %>
           </.td>
           <.td :if={@action != []}>
-              <span
-                :for={action <- @action}>
-                <%= render_slot(action, @row_item.(row)) %>
-              </span>
+            <span :for={action <- @action}>
+              <%= render_slot(action, @row_item.(row)) %>
+            </span>
           </.td>
         </.tr>
       </.tbody>
@@ -174,10 +170,7 @@ defmodule LiveDaisyuiComponents.CoreComponents do
   def back(assigns) do
     ~H"""
     <div class="mt-16">
-      <.link
-        navigate={@navigate}
-        class="text-sm font-semibold leading-6"
-      >
+      <.link navigate={@navigate} class="text-sm font-semibold leading-6">
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
         <%= render_slot(@inner_block) %>
       </.link>

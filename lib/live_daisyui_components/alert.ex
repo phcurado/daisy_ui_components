@@ -21,6 +21,7 @@ defmodule LiveDaisyuiComponents.Alert do
       <.flash_group flash={@flash} />
   """
   attr :flash, :map, required: true, doc: "the map of flash messages"
+
   attr :direction, :atom,
     values: [:top_left, :top_right, :bottom_left, :bottom_right],
     default: :top_right
@@ -66,12 +67,13 @@ defmodule LiveDaisyuiComponents.Alert do
   slot :inner_block, doc: "the optional inner block that renders the flash message"
 
   def flash(%{kind: kind} = assigns) do
-    assigns = assign_new(assigns, :color, fn ->
-      case kind do
-        :error ->  "error"
-        :info -> "success"
-      end
-    end)
+    assigns =
+      assign_new(assigns, :color, fn ->
+        case kind do
+          :error -> "error"
+          :info -> "success"
+        end
+      end)
 
     ~H"""
     <.alert

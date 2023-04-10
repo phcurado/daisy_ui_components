@@ -12,7 +12,6 @@ defmodule LiveDaisyuiComponents.Drawer do
   import LiveDaisyuiComponents.Icon
   import LiveDaisyuiComponents.Input
 
-
   attr :id, :string, required: true
   attr :current_item_title, :string, default: nil
   slot :drawer_content
@@ -24,7 +23,7 @@ defmodule LiveDaisyuiComponents.Drawer do
       <.input id={@id} type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
-          <.icon name="hero-bars-3-center-left" class="h-5 w-5"/>
+          <.icon name="hero-bars-3-center-left" class="h-5 w-5" />
         </label>
         <%= render_slot(@inner_block) %>
       </div>
@@ -37,6 +36,7 @@ defmodule LiveDaisyuiComponents.Drawer do
   attr :class, :any, default: nil
 
   slot :inner_block, required: true
+
   def drawer_side(assigns) do
     ~H"""
     <div class={join_classes("drawer-side", @class)}>
