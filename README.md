@@ -25,7 +25,7 @@ end
   - [Badge](https://daisyui.com/components/badge)
   - [Bottom navigation](https://daisyui.com/components/botton-navigation)
   - [Breadcrumbs](https://daisyui.com/components/breadcrumbs)
-  - [Button group](https://daisyui.com/components/button-group)
+  - ~~[Button group](https://daisyui.com/components/button-group)~~
   - ~~[Button](https://daisyui.com/components/button)~~
   - ~~[Card](https://daisyui.com/components/card)~~
   - [Carousel](https://daisyui.com/components/carousel)

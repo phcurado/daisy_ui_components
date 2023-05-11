@@ -4,9 +4,11 @@ defmodule LiveDaisyuiComponents.Utils do
   """
 
   @colors ~w(primary secondary accent info success warning error)
+  @directions ~w(horizontal vertical)
   @sizes ~w(xs sm md lg)
 
   def colors, do: @colors
+  def directions, do: @directions
   def sizes, do: @sizes
 
   def move_attr_to_rest(assigns, props) when is_list(props) do
