@@ -30,7 +30,7 @@ defmodule LiveDaisyuiComponents.Pagination do
 
   def pagination(assigns) do
     ~H"""
-    <.button_group {@rest}>
+    <.button_group :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
           class={@button_class}
