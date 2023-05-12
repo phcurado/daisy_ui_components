@@ -51,7 +51,7 @@ end
   - [Window mockup](https://daisyui.com/components/mockup-window)
   - ~~[Modal](https://daisyui.com/components/modal)~~
   - [Navbar](https://daisyui.com/components/navbar)
-  - [Pagination](https://daisyui.com/components/pagination)
+  - ~~[[Pagination](https://daisyui.com/components/pagination)~~[
   - [Progress](https://daisyui.com/components/progress)
   - [Radial progress](https://daisyui.com/components/radial-progress)
   - [Radio](https://daisyui.com/components/radio)
