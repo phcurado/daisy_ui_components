@@ -35,5 +35,6 @@ defmodule LiveDaisyuiComponents.PaginationTest do
     assert [1, 2, 3, 4, 5, "...", 10] == calculate_display_btn(4, 10, 100)
     assert [1, "...", 4, 5, 6, "...", 10] == calculate_display_btn(5, 10, 100)
     assert [1, "...", 6, 7, 8, 9, 10] == calculate_display_btn(7, 10, 100)
+    assert [1, "...", 6, 7, 8, 9, 10] == calculate_display_btn(9, 10, 100)
   end
 end

@@ -59,7 +59,8 @@ defmodule LiveDaisyuiComponents.Pagination do
         Enum.map(1..5, & &1) ++ ["...", max_blocks]
 
       max_blocks - page <= 3 ->
-        [1, "...", page - 1] ++ Enum.map(page..max_blocks, & &1)
+        start_max_block_4 = max_blocks - 4
+        [1, "..."] ++ Enum.map(start_max_block_4..max_blocks, & &1)
 
       true ->
         [1, "...", page - 1, page, page + 1, "...", max_blocks]
