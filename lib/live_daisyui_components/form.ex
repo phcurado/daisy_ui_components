@@ -15,13 +15,13 @@ defmodule LiveDaisyuiComponents.Form do
   attr :for, :string, default: nil
   attr :type, :string, default: "label", values: ~w(label span)
   attr :rest, :global
-  attr :label, :string, required: true
+  attr :label, :string, default: nil
   slot :inner_block
 
   def label(assigns) do
     ~H"""
     <label class={join_classes("label", @class)} for={@for} {@rest}>
-      <span class="label-text"><%= @label %></span>
+      <span :if={@label} class="label-text"><%= @label %></span>
       <%= render_slot(@inner_block) %>
     </label>
     """
@@ -83,7 +83,7 @@ defmodule LiveDaisyuiComponents.Form do
 
     ~H"""
     <div class="form-control" phx-feedback-for={@name}>
-      <label class="label cursor-pointer" for={@id}>
+      <.label class="cursor-pointer" for={@id}>
         <span class="label-text mr-2"><%= @label %></span>
         <.input
           id={@id}
@@ -95,7 +95,7 @@ defmodule LiveDaisyuiComponents.Form do
           {@rest}
         />
         <.error :for={msg <- @errors}><%= msg %></.error>
-      </label>
+      </.label>
     </div>
     """
   end
@@ -105,7 +105,7 @@ defmodule LiveDaisyuiComponents.Form do
 
     ~H"""
     <div class="form-control w-full" phx-feedback-for={@name}>
-      <.label for={@id} label={@label} />
+      <.label :if={@label} for={@id} label={@label} />
       <.input
         id={@id}
         type="select"
@@ -126,7 +126,7 @@ defmodule LiveDaisyuiComponents.Form do
   def form_input(assigns) do
     ~H"""
     <div class="form-control w-full" phx-feedback-for={@name}>
-      <.label for={@id} label={@label} />
+      <.label :if={@label} for={@id} label={@label} />
       <.input
         id={@id}
         class={@class}
