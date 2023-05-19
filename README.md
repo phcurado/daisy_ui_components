@@ -67,7 +67,7 @@ end
   - ~~[Textarea](https://daisyui.com/components/textarea)~~
   - [Toast](https://daisyui.com/components/toast)
   - [Toggle](https://daisyui.com/components/toggle)
-  - [Tooltip](https://daisyui.com/components/tooltip)
+  - ~~[Tooltip](https://daisyui.com/components/tooltip)~~
 
 2. Extras
   - Phoenix Core components replacement
