@@ -3,6 +3,8 @@ defmodule LiveDaisyuiComponents.Utils do
   Utils function for components
   """
 
+  alias Phoenix.LiveView.JS
+
   @colors ~w(primary secondary accent info success warning error)
   @directions ~w(horizontal vertical)
   @sizes ~w(xs sm md lg)
@@ -71,5 +73,26 @@ defmodule LiveDaisyuiComponents.Utils do
     else
       msg
     end
+  end
+
+  def show(js \\ %JS{}, selector) do
+    JS.remove_class(js, "hidden",
+      to: selector,
+      transition:
+        {"transition-all transform ease-out duration-300",
+         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+         "opacity-100 translate-y-0 sm:scale-100"}
+    )
+  end
+
+  def hide(js \\ %JS{}, selector) do
+    JS.add_class(js, "hidden",
+      to: selector,
+      time: 200,
+      transition:
+        {"transition-all transform ease-in duration-200",
+         "opacity-100 translate-y-0 sm:scale-100",
+         "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"}
+    )
   end
 end
