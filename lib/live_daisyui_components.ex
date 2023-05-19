@@ -21,6 +21,7 @@ defmodule LiveDaisyuiComponents do
       import LiveDaisyuiComponents.Table
       import LiveDaisyuiComponents.TextInput
       import LiveDaisyuiComponents.Textarea
+      import LiveDaisyuiComponents.Tooltip
     end
   end
 end
