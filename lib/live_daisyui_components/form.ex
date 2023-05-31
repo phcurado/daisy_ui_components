@@ -84,6 +84,7 @@ defmodule LiveDaisyuiComponents.Form do
     ~H"""
     <div class="form-control" phx-feedback-for={@name}>
       <.label class="cursor-pointer" for={@id}>
+        <input type="hidden" name={@name} value="false" />
         <span class="label-text mr-2"><%= @label %></span>
         <.input
           id={@id}
