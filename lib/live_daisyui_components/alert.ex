@@ -120,13 +120,11 @@ defmodule LiveDaisyuiComponents.Alert do
 
     ~H"""
     <div {@rest}>
+      <.icon :if={@icon} name={get_icon(@color)} />
       <div>
-        <.icon :if={@icon} name={get_icon(@color)} />
-        <div>
-          <h3 :if={@title} class="font-bold"><%= @title %></h3>
-          <p if={@label} class="text-xs"><%= @label %></p>
-          <%= render_slot(@inner_block) %>
-        </div>
+        <h3 :if={@title} class="font-bold"><%= @title %></h3>
+        <p if={@label} class="text-xs"><%= @label %></p>
+        <%= render_slot(@inner_block) %>
       </div>
     </div>
     """
