@@ -7,6 +7,7 @@ defmodule LiveDaisyuiComponents do
     quote do
       import LiveDaisyuiComponents.Alert
       import LiveDaisyuiComponents.Avatar
+      import LiveDaisyuiComponents.Badge
       import LiveDaisyuiComponents.Button
       import LiveDaisyuiComponents.ButtonGroup
       import LiveDaisyuiComponents.Card
@@ -15,6 +16,7 @@ defmodule LiveDaisyuiComponents do
       import LiveDaisyuiComponents.Form
       import LiveDaisyuiComponents.Icon
       import LiveDaisyuiComponents.Input
+      import LiveDaisyuiComponents.Join
       import LiveDaisyuiComponents.Modal
       import LiveDaisyuiComponents.Pagination
       import LiveDaisyuiComponents.Select

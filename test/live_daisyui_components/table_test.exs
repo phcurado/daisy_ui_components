@@ -13,14 +13,14 @@ defmodule LiveDaisyuiComponents.TableTest do
       <.table class="test-table" />
       """)
 
-    assert table =~ ~s(<table class="table w-full test-table">)
+    assert table =~ ~s(<table class="table test-table">)
 
     table =
       rendered_to_string(~H"""
       <.table zebra class="test-table" />
       """)
 
-    assert table =~ ~s(<table class="table w-full table-zebra test-table">)
+    assert table =~ ~s(<table class="table table-zebra test-table">)
   end
 
   test "tr" do

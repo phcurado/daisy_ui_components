@@ -13,13 +13,14 @@ defmodule LiveDaisyuiComponents.Drawer do
   import LiveDaisyuiComponents.Input
 
   attr :id, :string, required: true
+  attr :class, :any, default: nil
   attr :current_item_title, :string, default: nil
   slot :drawer_content
   slot :inner_block, required: true
 
   def drawer(assigns) do
     ~H"""
-    <div class="drawer drawer-mobile">
+    <div class={join_classes("drawer", @class)}>
       <.input id={@id} type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">

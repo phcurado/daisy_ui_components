@@ -10,16 +10,16 @@ defmodule LiveDaisyuiComponents.Table do
   use LiveDaisyuiComponents.Component
 
   attr :zebra, :boolean, default: false
-  attr :padding, :string, values: ~w(normal compact)
+  attr :size, :string, values: sizes()
   attr :rest, :global
   slot :inner_block
 
   def table(assigns) do
     assigns =
       join_classes_with_rest(assigns, [
-        "table w-full",
+        "table",
         add_class_from_bool(assigns[:zebra], "table-zebra"),
-        add_class_from_padding(assigns[:padding])
+        table_size(assigns[:size])
       ])
 
     ~H"""
@@ -94,7 +94,10 @@ defmodule LiveDaisyuiComponents.Table do
     """
   end
 
-  defp add_class_from_padding("normal"), do: "table-normal"
-  defp add_class_from_padding("compact"), do: "table-compact"
-  defp add_class_from_padding(nil), do: nil
+  # Size
+  defp table_size("xs"), do: "table-xs"
+  defp table_size("sm"), do: "table-sm"
+  defp table_size("md"), do: "table-md"
+  defp table_size("lg"), do: "table-lg"
+  defp table_size(_size), do: nil
 end

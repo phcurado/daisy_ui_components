@@ -19,7 +19,7 @@ defmodule LiveDaisyuiComponents.Button do
   """
   attr :type, :string, default: nil
   attr :class, :string, default: nil
-  attr :color, :string, values: colors()
+  attr :color, :string, values: colors() ++ ["neutral"]
   attr :ghost, :boolean, default: false
   attr :link, :boolean, default: false
   attr :outline, :boolean, default: false
@@ -64,6 +64,7 @@ defmodule LiveDaisyuiComponents.Button do
   end
 
   # Color
+  defp btn_color("neutral"), do: "btn-neutral"
   defp btn_color("primary"), do: "btn-primary"
   defp btn_color("secondary"), do: "btn-secondary"
   defp btn_color("accent"), do: "btn-accent"

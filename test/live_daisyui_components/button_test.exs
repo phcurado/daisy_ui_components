@@ -20,7 +20,7 @@ defmodule LiveDaisyuiComponents.ButtonTest do
   end
 
   test "button colors" do
-    for color <- Utils.colors() do
+    for color <- Utils.colors() ++ ["neutral"] do
       assigns = %{color: color}
 
       assert rendered_to_string(~H"""

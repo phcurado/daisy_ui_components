@@ -22,7 +22,7 @@ end
   - ~~[Alert](https://daisyui.com/components/alert)~~
   - [Artboard](https://daisyui.com/components/artboard)
   - ~~[Avatar](https://daisyui.com/components/avatar)~~
-  - [Badge](https://daisyui.com/components/badge)
+  - ~~[Badge](https://daisyui.com/components/badge)~~
   - [Bottom navigation](https://daisyui.com/components/botton-navigation)
   - [Breadcrumbs](https://daisyui.com/components/breadcrumbs)
   - ~~[Button group](https://daisyui.com/components/button-group)~~
@@ -38,6 +38,7 @@ end
   - [Dropdown](https://daisyui.com/components/dropdown)
   - [File input](https://daisyui.com/components/file-input)
   - [Footer](https://daisyui.com/components/footer)
+  - ~~[Join](https://daisyui.com/components/join)~~
   - [Hero](https://daisyui.com/components/hero)
   - [Indicator](https://daisyui.com/components/indicator)
   - [Input group](https://daisyui.com/components/input-group)
