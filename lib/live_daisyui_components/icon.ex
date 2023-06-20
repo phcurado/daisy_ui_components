@@ -10,7 +10,7 @@ defmodule LiveDaisyuiComponents.Icon do
   Renders a [Hero Icon](https://heroicons.com).
 
   Hero icons come in three styles – outline, solid, and mini.
-  By default, the outline style is used, but solid an mini may
+  By default, the outline style is used, but solid and mini may
   be applied by using the `-solid` and `-mini` suffix.
 
   You can customize the size and colors of the icons by setting

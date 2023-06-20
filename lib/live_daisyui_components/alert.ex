@@ -31,15 +31,27 @@ defmodule LiveDaisyuiComponents.Alert do
     <.flash kind={:info} direction={@direction} title="Success!" flash={@flash} />
     <.flash kind={:error} direction={@direction} title="Error!" flash={@flash} />
     <.flash
-      id="disconnected"
+      id="client-error"
       class="hidden"
       kind={:error}
       direction={@direction}
       title={translate("We can't find the internet")}
-      phx-disconnected={show("#disconnected")}
-      phx-connected={hide("#disconnected")}
+      phx-disconnected={show(".phx-client-error #client-error")}
+      phx-connected={hide("#client-error")}
     >
       Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+    </.flash>
+
+    <.flash
+      id="server-error"
+      class="hidden"
+      kind={:error}
+      title="Something went wrong!"
+      phx-disconnected={show(".phx-server-error #server-error")}
+      phx-connected={hide("#server-error")}
+    >
+      Hang in there while we get back on track
+      <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
     </.flash>
     """
   end

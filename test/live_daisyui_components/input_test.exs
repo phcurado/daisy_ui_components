@@ -52,7 +52,7 @@ defmodule LiveDaisyuiComponents.InputTest do
       """)
 
     assert text_input =~
-             ~s(<input type="text" class="input input-primary input-xs" value="text input">)
+             ~s(<input type="text" value="text input" class="input input-primary input-xs">)
   end
 
   test "generic input" do
@@ -64,6 +64,6 @@ defmodule LiveDaisyuiComponents.InputTest do
       """)
 
     assert text_input =~
-             ~s(<input type="password" class="input input-primary input-xs" value="my password">)
+             ~s(<input type="password" value="my password" class="input input-primary input-xs">)
   end
 end
