@@ -2,7 +2,7 @@
 
 DaisyUI + Liveview
 
-Experimental project using `liveview 0.18`.
+This project is still experimental, expect breaking changes in future.
 
 ## Installation
 
@@ -15,6 +15,52 @@ def deps do
   ]
 end
 ```
+
+Add through `npm` the daisy UI package inside your phoenix application:
+
+```
+cd assets
+npm i -D daisyui@latest
+```
+
+On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
+
+```javascript
+module.exports = {
+  content: [
+    //...
+    "../deps/live_daisyui_components/**/*.*ex" // <- reference Live Daisy UI Components as content path
+  ],
+  //...
+  plugins: [
+    //...
+    require("daisyui")  <- // add daisyUI plugin
+    //...
+  ]
+}
+```
+
+And now this library is ready. To have the components available under liveview, import the components on the web folder
+
+```elixir
+defp html_helpers do
+  quote do
+    use LiveDaisyuiComponents
+    # HTML escaping functionality
+    import Phoenix.HTML
+    # Core UI components from Live DaisyUI
+    import LiveDaisyuiComponents.CoreComponents
+
+    # import YourProjectWeb.CoreComponents
+    # Importing CoreComponents from your project is no longer necessary since 
+    # LiveDaisyuiComponents.CoreComponents offers a drop in replacement
+    # If you still want to use your own core components, remember to delete the default components generated from phoenix in this file
+    # ...
+  end
+end
+```
+
+Check the [Core Components](./lib/live_daisyui_components/core_components.ex) implementation for replacing the default phoenix core components. The components have the same logic from Phoenix default generator, but now using DaisyUI styles. Some function names were changed to avoid conflicts with the naming convention from DaisyUI components, for example `table/1` was renamed to `simple_table/1` so we can use our own [table](./lib/live_daisyui_components/table.ex) component without conflicts.
 
 ## Roadmap
 

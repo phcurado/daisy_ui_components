@@ -14,8 +14,7 @@ defmodule LiveDaisyuiComponents.Drawer do
 
   attr :id, :string, required: true
   attr :class, :any, default: nil
-  attr :current_item_title, :string, default: nil
-  slot :drawer_content
+  slot :page_content
   slot :inner_block, required: true
 
   def drawer(assigns) do
@@ -26,9 +25,9 @@ defmodule LiveDaisyuiComponents.Drawer do
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
           <.icon name="hero-bars-3-center-left" class="h-5 w-5" />
         </label>
-        <%= render_slot(@inner_block) %>
+        <%= render_slot(@page_content) %>
       </div>
-      <%= render_slot(@drawer_content) %>
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
