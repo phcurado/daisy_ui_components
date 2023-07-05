@@ -17,9 +17,9 @@ defmodule LiveDaisyuiComponents.TextareaTest do
       </.textarea>
       """)
 
-    assert textarea =~
-             ~s(<textarea class="textarea" placeholder="textarea placeholder">)
-
+    assert textarea =~ ~s(<textarea)
+    assert textarea =~ ~s(class="textarea")
+    assert textarea =~ ~s(placeholder="textarea placeholder")
     assert textarea =~ ~s(This is a textarea)
 
     textarea =

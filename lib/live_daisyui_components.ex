@@ -20,6 +20,7 @@ defmodule LiveDaisyuiComponents do
       import LiveDaisyuiComponents.Modal
       import LiveDaisyuiComponents.Pagination
       import LiveDaisyuiComponents.Select
+      import LiveDaisyuiComponents.Stat
       import LiveDaisyuiComponents.Table
       import LiveDaisyuiComponents.TextInput
       import LiveDaisyuiComponents.Textarea

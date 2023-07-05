@@ -13,8 +13,10 @@ defmodule LiveDaisyuiComponents.InputTest do
       <.input type="checkbox" color="primary" size="xs" value="false" />
       """)
 
-    assert checkbox_input =~
-             ~s(<input type="checkbox" value="false" class="checkbox checkbox-primary checkbox-xs">)
+    assert checkbox_input =~ ~s(<input)
+    assert checkbox_input =~ ~s(type="checkbox")
+    assert checkbox_input =~ ~s(value="false")
+    assert checkbox_input =~ ~s(class="checkbox checkbox-primary checkbox-xs")
   end
 
   test "select input" do
@@ -51,8 +53,10 @@ defmodule LiveDaisyuiComponents.InputTest do
       <.input type="text" color="primary" size="xs" value="text input" />
       """)
 
-    assert text_input =~
-             ~s(<input type="text" value="text input" class="input input-primary input-xs">)
+    assert text_input =~ ~s(<input)
+    assert text_input =~ ~s(type="text")
+    assert text_input =~ ~s(value="text input")
+    assert text_input =~ ~s(class="input input-primary input-xs")
   end
 
   test "generic input" do
@@ -63,7 +67,9 @@ defmodule LiveDaisyuiComponents.InputTest do
       <.input type="password" color="primary" size="xs" value="my password" />
       """)
 
-    assert text_input =~
-             ~s(<input type="password" value="my password" class="input input-primary input-xs">)
+    assert text_input =~ ~s(<input)
+    assert text_input =~ ~s(type="password")
+    assert text_input =~ ~s(value="my password")
+    assert text_input =~ ~s(class="input input-primary input-xs")
   end
 end

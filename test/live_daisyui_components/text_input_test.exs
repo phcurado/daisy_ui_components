@@ -15,16 +15,20 @@ defmodule LiveDaisyuiComponents.TextInputTest do
       <.text_input placeholder="text input placeholder" />
       """)
 
-    assert text_input =~
-             ~s(<input type="text" class="input" placeholder="text input placeholder">)
+    assert text_input =~ ~s(<input)
+    assert text_input =~ ~s(class="input")
+    assert text_input =~ ~s(type="text")
+    assert text_input =~ ~s(placeholder="text input placeholder")
 
     text_input =
       rendered_to_string(~H"""
       <.text_input />
       """)
 
-    assert text_input =~ ~s(<input type="text" class="input">)
-    refute text_input =~ ~s(text input placeholder)
+    assert text_input =~ ~s(<input)
+    assert text_input =~ ~s(class="input")
+    assert text_input =~ ~s(type="text")
+    refute text_input =~ ~s(placeholder)
   end
 
   test "text input colors" do

@@ -106,7 +106,7 @@ Check the [Core Components](./lib/live_daisyui_components/core_components.ex) im
   - [Rating](https://daisyui.com/components/rating)
   - ~~[Select](https://daisyui.com/components/select)~~
   - [Stack](https://daisyui.com/components/stack)
-  - [Stat](https://daisyui.com/components/stat)
+  - ~~[Stat](https://daisyui.com/components/stat)~~
   - [Steps](https://daisyui.com/components/steps)
   - [Swap](https://daisyui.com/components/swap)
   - [Tabs](https://daisyui.com/components/tab)
