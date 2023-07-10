@@ -17,7 +17,6 @@ defmodule LiveDaisyuiComponents.Button do
       <.button>Send!</.button>
       <.button phx-click="go" class="ml-2">Send!</.button>
   """
-  attr :type, :string, default: nil
   attr :class, :string, default: nil
   attr :color, :string, values: colors() ++ ["neutral"]
   attr :ghost, :boolean, default: false
