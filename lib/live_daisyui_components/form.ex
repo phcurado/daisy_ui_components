@@ -75,10 +75,12 @@ defmodule LiveDaisyuiComponents.Form do
     |> form_input()
   end
 
-  def form_input(%{type: "checkbox", value: value} = assigns) do
+  def form_input(%{type: "checkbox"} = assigns) do
     assigns =
       assigns
-      |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
+      |> assign_new(:checked, fn ->
+        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
+      end)
       |> add_default_input_assigns()
 
     ~H"""

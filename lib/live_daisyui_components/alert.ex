@@ -21,6 +21,7 @@ defmodule LiveDaisyuiComponents.Alert do
       <.flash_group flash={@flash} />
   """
   attr :flash, :map, required: true, doc: "the map of flash messages"
+  attr :id, :string, default: "flash-group", doc: "the optional id of flash container"
 
   attr :direction, :atom,
     values: [:top_left, :top_right, :bottom_left, :bottom_right],
@@ -28,31 +29,33 @@ defmodule LiveDaisyuiComponents.Alert do
 
   def flash_group(assigns) do
     ~H"""
-    <.flash kind={:info} direction={@direction} title="Success!" flash={@flash} />
-    <.flash kind={:error} direction={@direction} title="Error!" flash={@flash} />
-    <.flash
-      id="client-error"
-      class="hidden"
-      kind={:error}
-      direction={@direction}
-      title={translate("We can't find the internet")}
-      phx-disconnected={show(".phx-client-error #client-error")}
-      phx-connected={hide("#client-error")}
-    >
-      Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
-    </.flash>
+    <div id={@id}>
+      <.flash kind={:info} direction={@direction} title="Success!" flash={@flash} />
+      <.flash kind={:error} direction={@direction} title="Error!" flash={@flash} />
+      <.flash
+        id="client-error"
+        class="hidden"
+        kind={:error}
+        direction={@direction}
+        title={translate("We can't find the internet")}
+        phx-disconnected={show(".phx-client-error #client-error")}
+        phx-connected={hide("#client-error")}
+      >
+        Attempting to reconnect <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
 
-    <.flash
-      id="server-error"
-      class="hidden"
-      kind={:error}
-      title="Something went wrong!"
-      phx-disconnected={show(".phx-server-error #server-error")}
-      phx-connected={hide("#server-error")}
-    >
-      Hang in there while we get back on track
-      <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
-    </.flash>
+      <.flash
+        id="server-error"
+        class="hidden"
+        kind={:error}
+        title="Something went wrong!"
+        phx-disconnected={show(".phx-server-error #server-error")}
+        phx-connected={hide("#server-error")}
+      >
+        Hang in there while we get back on track
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
+    </div>
     """
   end
 
@@ -64,7 +67,7 @@ defmodule LiveDaisyuiComponents.Alert do
       <.flash kind={:info} flash={@flash} />
       <.flash kind={:info} phx-mounted={show("#flash")}>Welcome Back!</.flash>
   """
-  attr :id, :string, default: "flash", doc: "the optional id of flash container"
+  attr :id, :string, default: nil, doc: "the optional id of flash container"
   attr :flash, :map, default: %{}, doc: "the map of flash messages to display"
   attr :title, :string, default: nil
   attr :kind, :atom, values: [:info, :error], doc: "used for styling and flash lookup"
@@ -80,12 +83,14 @@ defmodule LiveDaisyuiComponents.Alert do
 
   def flash(%{kind: kind} = assigns) do
     assigns =
-      assign_new(assigns, :color, fn ->
+      assigns
+      |> assign_new(:color, fn ->
         case kind do
           :error -> "error"
           :info -> "success"
         end
       end)
+      |> assign_new(:id, fn -> "flash-#{assigns.kind}" end)
 
     ~H"""
     <.alert

@@ -5,7 +5,7 @@ defmodule LiveDaisyuiComponents.CoreComponents do
   The components were modified to fit DaisyUI components
   """
 
-  use Phoenix.Component
+  use LiveDaisyuiComponents.Component
 
   import LiveDaisyuiComponents.Icon
   import LiveDaisyuiComponents.Table
@@ -107,7 +107,9 @@ defmodule LiveDaisyuiComponents.CoreComponents do
       <.thead>
         <.tr>
           <.th :for={col <- @col}><%= col[:label] %></.th>
-          <.th><span class="sr-only">Actions</span></.th>
+          <.th>
+            <span class="sr-only"><span class="sr-only"><%= translate("Actions") %></span></span>
+          </.th>
         </.tr>
       </.thead>
       <.tbody id={@id} phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}>

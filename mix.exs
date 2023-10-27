@@ -37,7 +37,7 @@ defmodule LiveDaisyuiComponents.MixProject do
 
   defp deps do
     [
-      {:phoenix_live_view, "~> 0.18"},
+      {:phoenix_live_view, "~> 0.18 or ~> 0.19"},
       {:jason, "~> 1.4", only: [:dev, :test]},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},

@@ -63,7 +63,7 @@ jobs:
         run: mix test
 
       - name: Run dialyzer
-        run: mix dialyzer
+        run: mix dialyzer --format github
         if: ${{ matrix.lint }}
 
       - name: Run Coveralls
