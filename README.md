@@ -60,7 +60,7 @@ defp html_helpers do
 end
 ```
 
-Check the [Core Components](./lib/live_daisyui_components/core_components.ex) implementation for replacing the default phoenix core components. The components have the same logic from Phoenix default generator, but now using DaisyUI styles. Some function names were changed to avoid conflicts with the naming convention from DaisyUI components, for example `table/1` was renamed to `simple_table/1` so we can use our own [table](./lib/live_daisyui_components/table.ex) component without conflicts.
+Check the [Core Components](./lib/live_daisyui_components/core_components.ex) implementation for replacing the default phoenix core components. The components have the same logic from Phoenix default generator, but now using DaisyUI styles.
 
 ## Roadmap
 

@@ -28,7 +28,10 @@ defmodule LiveDaisyuiComponents.Utils do
   end
 
   def join_classes_with_rest(%{rest: rest} = assigns, classes) when is_list(classes) do
-    classes = join_classes(classes, rest[:class])
+    classes =
+      join_classes(classes, rest[:class])
+      |> parse_classes()
+
     rest = Map.put(rest, :class, classes)
 
     %{assigns | rest: rest}
@@ -46,7 +49,18 @@ defmodule LiveDaisyuiComponents.Utils do
   end
 
   defp resolve_classes(classes) when is_list(classes), do: classes
+  defp resolve_classes(nil), do: []
   defp resolve_classes(classes), do: [classes]
+
+  defp parse_classes(classes) when is_list(classes) do
+    filtered_classes = Enum.filter(classes, &(&1 != nil))
+
+    if Enum.empty?(filtered_classes) do
+      nil
+    else
+      filtered_classes
+    end
+  end
 
   def render?(opts) when is_list(opts) do
     Enum.any?(opts, &render?/1)

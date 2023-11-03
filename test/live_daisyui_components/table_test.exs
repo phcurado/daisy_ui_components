@@ -23,6 +23,27 @@ defmodule LiveDaisyuiComponents.TableTest do
     assert table =~ ~s(<table class="table table-zebra test-table">)
   end
 
+  test "table with declared rows" do
+    assigns = %{}
+
+    table =
+      rendered_to_string(~H"""
+      <.table id="user" rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}>
+        <:col :let={user} label="id"><%= user.id %></:col>
+        <:col :let={user} label="username"><%= user.username %></:col>
+      </.table>
+      """)
+
+    assert table =~ ~s(<table class="table">)
+    assert table =~ ~s(<tbody id="user">)
+    assert table =~ ~s(<tr)
+    assert table =~ ~s(<td)
+    assert table =~ ~s(12345)
+    assert table =~ ~s(12346)
+    assert table =~ ~s(John)
+    assert table =~ ~s(Doe)
+  end
+
   test "tr" do
     assigns = %{}
 
