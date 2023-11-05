@@ -18,6 +18,7 @@ defmodule LiveDaisyuiComponents do
       import LiveDaisyuiComponents.Input
       import LiveDaisyuiComponents.Join
       import LiveDaisyuiComponents.Modal
+      import LiveDaisyuiComponents.Navbar
       import LiveDaisyuiComponents.Pagination
       import LiveDaisyuiComponents.Select
       import LiveDaisyuiComponents.Stat
