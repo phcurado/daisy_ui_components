@@ -53,7 +53,8 @@ defmodule LiveDaisyuiComponents.Modal do
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
     >
-      <div
+      <.focus_wrap
+        id={"#{@id}-container"}
         class="modal-box relative"
         phx-window-keydown={JS.exec("data-cancel", to: "##{@id}")}
         phx-key="escape"
@@ -65,13 +66,15 @@ defmodule LiveDaisyuiComponents.Modal do
         >
           ✕
         </label>
-        <%= render_slot(@inner_block) %>
+        <div id={"#{@id}-content"}>
+          <%= render_slot(@inner_block) %>
+        </div>
         <div class="modal-action">
           <%= for action <- @actions do %>
             <%= render_slot(action) %>
           <% end %>
         </div>
-      </div>
+      </.focus_wrap>
     </div>
     """
   end
@@ -79,10 +82,12 @@ defmodule LiveDaisyuiComponents.Modal do
   def show_modal(js \\ %JS{}, id) when is_binary(id) do
     js
     |> JS.add_class("modal-open", to: "##{id}")
+    |> JS.focus_first(to: "##{id}-content")
   end
 
   def hide_modal(js \\ %JS{}, id) do
     js
     |> JS.remove_class("modal-open", to: "##{id}")
+    |> JS.pop_focus()
   end
 end

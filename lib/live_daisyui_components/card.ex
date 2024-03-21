@@ -63,6 +63,7 @@ defmodule LiveDaisyuiComponents.Card do
   end
 
   attr :rest, :global
+  slot :inner_block
 
   def card_actions(assigns) do
     assigns = join_classes_with_rest(assigns, ["card-actions"])
