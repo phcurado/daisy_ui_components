@@ -9,7 +9,7 @@
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
 [![License](https://img.shields.io/hexpm/l/daisy_ui_components.svg)](https://hex.pm/packages/daisy_ui_components)
 
-This project brings [Daisy UI](https://daisyui.com/) componets into your Phoenix LiveView project. 
+This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project. 
 
 This project is still experimental, expect breaking changes in future.
 
