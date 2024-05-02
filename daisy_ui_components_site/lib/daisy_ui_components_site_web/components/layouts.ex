@@ -1,14 +1,14 @@
-defmodule DaisyUiComponentsSiteWeb.Layouts do
+defmodule DaisyUIComponentsSiteWeb.Layouts do
   @moduledoc """
   This module holds different layouts used by your application.
 
   See the `layouts` directory for all templates available.
   The "root" layout is a skeleton rendered as part of the
   application router. The "app" layout is set as the default
-  layout on both `use DaisyUiComponentsSiteWeb, :controller` and
-  `use DaisyUiComponentsSiteWeb, :live_view`.
+  layout on both `use DaisyUIComponentsSiteWeb, :controller` and
+  `use DaisyUIComponentsSiteWeb, :live_view`.
   """
-  use DaisyUiComponentsSiteWeb, :html
+  use DaisyUIComponentsSiteWeb, :html
 
   embed_templates "layouts/*"
 end

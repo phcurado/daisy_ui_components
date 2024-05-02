@@ -6,7 +6,7 @@ import Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :daisy_ui_components_site, DaisyUiComponentsSiteWeb.Endpoint,
+config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -17,7 +17,8 @@ config :daisy_ui_components_site, DaisyUiComponentsSiteWeb.Endpoint,
   watchers: [
     esbuild:
       {Esbuild, :install_and_run, [:daisy_ui_components_site, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:daisy_ui_components_site, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:daisy_ui_components_site, ~w(--watch)]},
+    storybook_tailwind: {Tailwind, :install_and_run, [:storybook, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -44,12 +45,13 @@ config :daisy_ui_components_site, DaisyUiComponentsSiteWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :daisy_ui_components_site, DaisyUiComponentsSiteWeb.Endpoint,
+config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/daisy_ui_components_site_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/daisy_ui_components_site_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"storybook/.*(exs)$"
     ]
   ]
 

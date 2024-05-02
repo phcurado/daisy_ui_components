@@ -1,12 +1,12 @@
-defmodule DaisyUiComponentsSiteWeb do
+defmodule DaisyUIComponentsSiteWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use DaisyUiComponentsSiteWeb, :controller
-      use DaisyUiComponentsSiteWeb, :html
+      use DaisyUIComponentsSiteWeb, :controller
+      use DaisyUIComponentsSiteWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,10 +40,10 @@ defmodule DaisyUiComponentsSiteWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: DaisyUiComponentsSiteWeb.Layouts]
+        layouts: [html: DaisyUIComponentsSiteWeb.Layouts]
 
       import Plug.Conn
-      import DaisyUiComponentsSiteWeb.Gettext
+      import DaisyUIComponentsSiteWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,7 +52,7 @@ defmodule DaisyUiComponentsSiteWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {DaisyUiComponentsSiteWeb.Layouts, :app}
+        layout: {DaisyUIComponentsSiteWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -84,8 +84,8 @@ defmodule DaisyUiComponentsSiteWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import DaisyUiComponentsSiteWeb.CoreComponents
-      import DaisyUiComponentsSiteWeb.Gettext
+      import DaisyUIComponentsSiteWeb.CoreComponents
+      import DaisyUIComponentsSiteWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -98,9 +98,9 @@ defmodule DaisyUiComponentsSiteWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: DaisyUiComponentsSiteWeb.Endpoint,
-        router: DaisyUiComponentsSiteWeb.Router,
-        statics: DaisyUiComponentsSiteWeb.static_paths()
+        endpoint: DaisyUIComponentsSiteWeb.Endpoint,
+        router: DaisyUIComponentsSiteWeb.Router,
+        statics: DaisyUIComponentsSiteWeb.static_paths()
     end
   end
 

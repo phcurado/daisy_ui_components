@@ -1,4 +1,4 @@
-defmodule DaisyUiComponentsSite.MixProject do
+defmodule DaisyUIComponentsSite.MixProject do
   use Mix.Project
 
   def project do
@@ -18,7 +18,7 @@ defmodule DaisyUiComponentsSite.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {DaisyUiComponentsSite.Application, []},
+      mod: {DaisyUIComponentsSite.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -40,6 +40,13 @@ defmodule DaisyUiComponentsSite.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
+      # {:heroicons,
+      #  github: "tailwindlabs/heroicons",
+      #  tag: "v2.1.1",
+      #  sparse: "optimized",
+      #  app: false,
+      #  compile: false,
+      #  depth: 1, override: true},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
@@ -60,11 +67,16 @@ defmodule DaisyUiComponentsSite.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.setup": [
+        "tailwind.install --if-missing",
+        "esbuild.install --if-missing",
+        "cmd npm install --prefix assets"
+      ],
       "assets.build": ["tailwind daisy_ui_components_site", "esbuild daisy_ui_components_site"],
       "assets.deploy": [
         "tailwind daisy_ui_components_site --minify",
         "esbuild daisy_ui_components_site --minify",
+        "tailwind storybook --minify",
         "phx.digest"
       ]
     ]

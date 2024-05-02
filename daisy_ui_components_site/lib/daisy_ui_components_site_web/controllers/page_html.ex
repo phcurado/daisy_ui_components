@@ -1,10 +1,10 @@
-defmodule DaisyUiComponentsSiteWeb.PageHTML do
+defmodule DaisyUIComponentsSiteWeb.PageHTML do
   @moduledoc """
   This module contains pages rendered by PageController.
 
   See the `page_html` directory for all templates available.
   """
-  use DaisyUiComponentsSiteWeb, :html
+  use DaisyUIComponentsSiteWeb, :html
 
   embed_templates "page_html/*"
 end

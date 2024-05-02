@@ -1,4 +1,4 @@
-# DaisyUiComponentsSite
+# DaisyUIComponentsSite
 
 To start your Phoenix server:
 

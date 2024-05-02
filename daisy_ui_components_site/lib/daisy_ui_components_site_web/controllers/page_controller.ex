@@ -1,5 +1,5 @@
-defmodule DaisyUiComponentsSiteWeb.PageController do
-  use DaisyUiComponentsSiteWeb, :controller
+defmodule DaisyUIComponentsSiteWeb.PageController do
+  use DaisyUIComponentsSiteWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

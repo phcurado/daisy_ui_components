@@ -1,5 +1,5 @@
-defmodule DaisyUiComponentsSiteWeb.PageControllerTest do
-  use DaisyUiComponentsSiteWeb.ConnCase
+defmodule DaisyUIComponentsSiteWeb.PageControllerTest do
+  use DaisyUIComponentsSiteWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

@@ -1,11 +1,12 @@
-defmodule DaisyUiComponentsSiteWeb.Router do
-  use DaisyUiComponentsSiteWeb, :router
+defmodule DaisyUIComponentsSiteWeb.Router do
+  use DaisyUIComponentsSiteWeb, :router
+  import PhoenixStorybook.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {DaisyUiComponentsSiteWeb.Layouts, :root}
+    plug :put_root_layout, html: {DaisyUIComponentsSiteWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +15,19 @@ defmodule DaisyUiComponentsSiteWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DaisyUiComponentsSiteWeb do
+  scope "/" do
+    storybook_assets()
+  end
+
+  scope "/", DaisyUIComponentsSiteWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+    live_storybook("/storybook", backend_module: DaisyUIComponentsSiteWeb.Storybook)
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", DaisyUiComponentsSiteWeb do
+  # scope "/api", DaisyUIComponentsSiteWeb do
   #   pipe_through :api
   # end
 
@@ -37,7 +43,7 @@ defmodule DaisyUiComponentsSiteWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: DaisyUiComponentsSiteWeb.Telemetry
+      live_dashboard "/dashboard", metrics: DaisyUIComponentsSiteWeb.Telemetry
     end
   end
 end

@@ -11,14 +11,14 @@ config :daisy_ui_components_site,
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :daisy_ui_components_site, DaisyUiComponentsSiteWeb.Endpoint,
+config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: DaisyUiComponentsSiteWeb.ErrorHTML, json: DaisyUiComponentsSiteWeb.ErrorJSON],
+    formats: [html: DaisyUIComponentsSiteWeb.ErrorHTML, json: DaisyUIComponentsSiteWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: DaisyUiComponentsSite.PubSub,
+  pubsub_server: DaisyUIComponentsSite.PubSub,
   live_view: [signing_salt: "8YGUJnQL"]
 
 # Configure esbuild (the version is required)
@@ -26,7 +26,7 @@ config :esbuild,
   version: "0.17.11",
   daisy_ui_components_site: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js js/storybook.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -39,6 +39,14 @@ config :tailwind,
       --config=tailwind.config.js
       --input=css/app.css
       --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  storybook: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/storybook.css
+      --output=../priv/static/assets/storybook.css
     ),
     cd: Path.expand("../assets", __DIR__)
   ]

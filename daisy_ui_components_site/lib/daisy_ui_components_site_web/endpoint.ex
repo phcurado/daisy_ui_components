@@ -1,4 +1,4 @@
-defmodule DaisyUiComponentsSiteWeb.Endpoint do
+defmodule DaisyUIComponentsSiteWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :daisy_ui_components_site
 
   # The session will be stored in the cookie and signed,
@@ -23,7 +23,7 @@ defmodule DaisyUiComponentsSiteWeb.Endpoint do
     at: "/",
     from: :daisy_ui_components_site,
     gzip: false,
-    only: DaisyUiComponentsSiteWeb.static_paths()
+    only: DaisyUIComponentsSiteWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -48,5 +48,5 @@ defmodule DaisyUiComponentsSiteWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug DaisyUiComponentsSiteWeb.Router
+  plug DaisyUIComponentsSiteWeb.Router
 end

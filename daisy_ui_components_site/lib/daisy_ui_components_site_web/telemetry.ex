@@ -1,4 +1,4 @@
-defmodule DaisyUiComponentsSiteWeb.Telemetry do
+defmodule DaisyUIComponentsSiteWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -63,7 +63,7 @@ defmodule DaisyUiComponentsSiteWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {DaisyUiComponentsSiteWeb, :count_users, []}
+      # {DaisyUIComponentsSiteWeb, :count_users, []}
     ]
   end
 end

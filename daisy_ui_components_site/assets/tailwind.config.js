@@ -6,10 +6,12 @@ const fs = require("fs")
 const path = require("path")
 
 module.exports = {
+  important: ".daisy-ui-components-site-web",
   content: [
     "./js/**/*.js",
     "../lib/daisy_ui_components_site_web.ex",
-    "../lib/daisy_ui_components_site_web/**/*.*ex"
+    "../lib/daisy_ui_components_site_web/**/*.*ex",
+    "../deps/daisy_ui_components/**/*.*ex"
   ],
   theme: {
     extend: {
@@ -20,6 +22,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/forms"),
+    require("daisyui"),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //
