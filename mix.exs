@@ -1,22 +1,22 @@
-defmodule LiveDaisyuiComponents.MixProject do
+defmodule DaisyUIComponents.MixProject do
   use Mix.Project
 
-  @source_url "https://github.com/phcurado/live_daisyui_components"
+  @source_url "https://github.com/phcurado/daisy_ui_components"
   @version "0.1.0"
 
   def project do
     [
-      app: :live_daisyui_components,
+      app: :daisy_ui_components,
       version: @version,
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       # Hex
-      description: "DaisyUI wrapper for LiveView",
+      description: "DaisyUI component library for LiveView",
       source_url: @source_url,
       package: package(),
       # Docs
-      name: "LiveDaisyUIComponents",
+      name: "DaisyUIComponents",
       docs: docs(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -57,10 +57,36 @@ defmodule LiveDaisyuiComponents.MixProject do
 
   defp docs do
     [
-      main: "LiveDaisyUIComponents",
+      main: "DaisyUIComponents",
       source_ref: "v#{@version}",
-      canonical: "https://hexdocs.pm/live_daisyui_components",
-      source_url: @source_url
+      canonical: "https://hexdocs.pm/daisy_ui_components",
+      source_url: @source_url,
+      groups_for_modules: [
+        Types: [
+          DaisyUIComponents.Alert,
+          DaisyUIComponents.Avatar,
+          DaisyUIComponents.Badge,
+          DaisyUIComponents.ButtonGroup,
+          DaisyUIComponents.Button,
+          DaisyUIComponents.Card,
+          DaisyUIComponents.Checkbox,
+          DaisyUIComponents.CoreComponents,
+          DaisyUIComponents.Drawer,
+          DaisyUIComponents.Form,
+          DaisyUIComponents.Icon,
+          DaisyUIComponents.Input,
+          DaisyUIComponents.Join,
+          DaisyUIComponents.Modal,
+          DaisyUIComponents.Navbar,
+          DaisyUIComponents.Pagination,
+          DaisyUIComponents.Select,
+          DaisyUIComponents.Stat,
+          DaisyUIComponents.Table,
+          DaisyUIComponents.TextInput,
+          DaisyUIComponents.Textarea,
+          DaisyUIComponents.Tooltip
+        ]
+      ]
     ]
   end
 end
