@@ -1,3 +1,5 @@
+document.documentElement.dataset.theme = 'light';
+
 // If your components require any hooks or custom uploaders, or if your pages
 // require connect parameters, uncomment the following lines and declare them as
 // such:
