@@ -54,6 +54,7 @@ COPY assets/package.json assets/package-lock.json ./assets/
 RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 
 COPY assets assets
+COPY storybook storybook
 
 # compile assets
 RUN mix assets.deploy
