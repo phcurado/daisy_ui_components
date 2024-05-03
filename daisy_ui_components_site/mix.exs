@@ -40,13 +40,13 @@ defmodule DaisyUIComponentsSite.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
-      # {:heroicons,
-      #  github: "tailwindlabs/heroicons",
-      #  tag: "v2.1.1",
-      #  sparse: "optimized",
-      #  app: false,
-      #  compile: false,
-      #  depth: 1, override: true},
+      {:heroicons,
+       github: "tailwindlabs/heroicons",
+       tag: "v2.1.1",
+       sparse: "optimized",
+       app: false,
+       compile: false,
+       depth: 1, override: true},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
@@ -55,6 +55,7 @@ defmodule DaisyUIComponentsSite.MixProject do
       {:bandit, "~> 1.2"},
       {:phoenix_storybook, "~> 0.6.0"},
       {:daisy_ui_components, "~> 0.1.0"}
+      # {:daisy_ui_components, path: "../"}
     ]
   end
 

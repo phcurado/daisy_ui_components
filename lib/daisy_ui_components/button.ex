@@ -31,7 +31,6 @@ defmodule DaisyUIComponents.Button do
   attr :wide, :boolean, default: false
   attr :block, :boolean, default: false
   attr :shape, :string, values: ~w(circle square)
-  attr :label, :string, default: nil
   attr :rest, :global, include: ~w(form name value)
   slot :inner_block, required: true
 
