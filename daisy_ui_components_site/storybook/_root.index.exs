@@ -9,7 +9,7 @@ defmodule Storybook.Root do
 
   def entry("welcome") do
     [
-      name: "Welcome Page",
+      name: "Welcome",
       icon: {:fa, "hand-wave", :thin}
     ]
   end

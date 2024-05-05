@@ -84,7 +84,10 @@ defmodule DaisyUIComponentsSiteWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import DaisyUIComponentsSiteWeb.CoreComponents
+
+      use DaisyUIComponents
+      import DaisyUIComponents.CoreComponents
+
       import DaisyUIComponentsSiteWeb.Gettext
 
       # Shortcut for generating JS commands
