@@ -9,7 +9,7 @@
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
 [![License](https://img.shields.io/hexpm/l/daisy_ui_components.svg)](https://hex.pm/packages/daisy_ui_components)
 
-This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project. 
+This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project.
 
 This project is still experimental, expect breaking changes in future.
 
@@ -50,6 +50,12 @@ module.exports = {
 }
 ```
 
+Add error translation function to your app's config.exs file. This function is used to translate ecto changeset errors
+
+```elixir
+config :daisy_ui_components, translate_function: &MyAppWeb.CoreComponents.translate_error/1
+```
+
 And now this library is ready. To have the components available under liveview, import the components on the web folder
 
 ```elixir
@@ -62,7 +68,7 @@ defp html_helpers do
     import DaisyUIComponents.CoreComponents
 
     # import YourProjectWeb.CoreComponents
-    # Importing CoreComponents from your project is no longer necessary since 
+    # Importing CoreComponents from your project is no longer necessary since
     # DaisyUIComponents.CoreComponents offers a drop in replacement
     # If you still want to use your own core components, remember to delete the default components generated from phoenix in this file
     # ...
@@ -74,7 +80,7 @@ Check the [Core Components](./lib/daisy_ui_components/core_components.ex) implem
 
 ## Components
 
-List of available components. 
+List of available components.
 
 - [Alert](https://daisyui.com/components/alert) ✅
 - [Artboard](https://daisyui.com/components/artboard) ❌
