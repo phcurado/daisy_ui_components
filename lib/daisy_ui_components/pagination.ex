@@ -26,6 +26,7 @@ defmodule DaisyUIComponents.Pagination do
   attr :total_entries, :integer, default: 100
   attr :button_class, :string, default: nil
   attr :target, :string, default: nil
+  attr :page_click_event, :string, default: "page_click"
   attr :rest, :global
 
   def pagination(assigns) do
@@ -34,7 +35,7 @@ defmodule DaisyUIComponents.Pagination do
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
           class={@button_class}
-          phx-click={JS.push("page_click", value: %{page: block})}
+          phx-click={JS.push(@page_click_event, value: %{page: block})}
           phx-target={@target}
           active={block == @page}
           disabled={block == "..."}
