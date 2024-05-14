@@ -67,5 +67,8 @@ module.exports = {
         }
       }, {values})
     })
-  ]
+  ],
+  daisyui: {
+    logs: false
+  }
 }

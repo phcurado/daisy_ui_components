@@ -119,7 +119,7 @@ defmodule DaisyUIComponents.Alert do
     """
   end
 
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :color, :string, values: ~w(info success warning error)
   attr :rest, :global
   slot :inner_block
