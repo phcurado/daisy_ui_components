@@ -18,10 +18,8 @@ defmodule Storybook.MyPage do
   # This is a dummy fonction that you should replace with your own HEEx content.
   def render(assigns = %{tab: :welcome}) do
     markdown =
-      Path.wildcard(Path.expand("../../README.md", __DIR__))
+      Path.wildcard(Path.expand("../README.md", __DIR__))
       |> File.read!()
-      |> String.split("<!-- MDOC -->")
-      |> Enum.fetch!(1)
 
     {:ok, html_guide, _} = Earmark.as_html(markdown)
     assigns = assigns |> assign(:install_content, html_guide)
@@ -35,8 +33,6 @@ defmodule Storybook.MyPage do
         >Phoenix Storybook</a>.
         Explore this library by navigating in the sidebar menu.
       </p>
-
-      <h2>Installation</h2>
 
       <%= Phoenix.HTML.raw(@install_content) %>
 
