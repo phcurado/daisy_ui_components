@@ -1,6 +1,7 @@
 defmodule Storybook.Examples.CoreComponents do
   use PhoenixStorybook.Story, :example
-  import DaisyUIComponentsSiteWeb.CoreComponents
+  use DaisyUIComponents
+  import DaisyUIComponents.CoreComponents
 
   alias Phoenix.LiveView.JS
 
@@ -58,8 +59,8 @@ defmodule Storybook.Examples.CoreComponents do
         as={:user}
         phx-submit={JS.push("save_user") |> hide_modal("new-user-modal")}
       >
-        <.input field={f[:first_name]} label="First name" />
-        <.input field={f[:last_name]} label="Last name" />
+        <.form_input field={f[:first_name]} label="First name" />
+        <.form_input field={f[:last_name]} label="Last name" />
         <:actions>
           <.button>Save user</.button>
         </:actions>

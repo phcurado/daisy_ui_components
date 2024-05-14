@@ -3,7 +3,7 @@ defmodule Storybook.MyPage do
   # documentation.
   use PhoenixStorybook.Story, :page
 
-  def doc, do: "Your very first steps into using Phoenix Storybook"
+  def doc, do: "DaisyUI + Phoenix LiveView"
 
   # Declare an optional tab-based navigation in your page:
   def navigation do
@@ -17,25 +17,28 @@ defmodule Storybook.MyPage do
 
   # This is a dummy fonction that you should replace with your own HEEx content.
   def render(assigns = %{tab: :welcome}) do
+    markdown =
+      Path.wildcard(Path.expand("../../README.md", __DIR__))
+      |> File.read!()
+      |> String.split("<!-- MDOC -->")
+      |> Enum.fetch!(1)
+
+    {:ok, html_guide, _} = Earmark.as_html(markdown)
+    assigns = assigns |> assign(:install_content, html_guide)
+
     ~H"""
     <div class="psb-welcome-page">
       <p>
-        We generated your storybook with an example of a page and a component.
-        Explore the generated <code class="psb-inline">*.story.exs</code>
-        files in your <code class="inline">/storybook</code>
-        directory. When you're ready to add your own, just drop your new story & index files into the same directory and refresh your storybook.
+        This storybook was was generated with <a
+          class="link"
+          href="https://github.com/phenixdigital/phoenix_storybook"
+        >Phoenix Storybook</a>.
+        Explore this library by navigating in the sidebar menu.
       </p>
 
-      <p>
-        Here are a few docs you might be interested in:
-      </p>
+      <h2>Installation</h2>
 
-      <.description_list items={[
-        {"Create a new Story", doc_link("Story")},
-        {"Display components using Variations", doc_link("Stories.Variation")},
-        {"Group components using VariationGroups", doc_link("Stories.VariationGroup")},
-        {"Organize the sidebar with Index files", doc_link("Index")}
-      ]} />
+      <%= Phoenix.HTML.raw(@install_content) %>
 
       <p>
         This should be enough to get you started, but you can use the tabs in the upper-right corner of this page to <strong>check out advanced usage guides</strong>.
@@ -65,36 +68,5 @@ defmodule Storybook.MyPage do
       <%= Phoenix.HTML.raw(@guide_content) %>
     </div>
     """
-  end
-
-  defp description_list(assigns) do
-    ~H"""
-    <div class="psb-w-full md:psb-px-8">
-      <div class="md:psb-border-t psb-border-gray-200 psb-px-4 psb-py-5 sm:psb-p-0 md:psb-my-6 psb-w-full">
-        <dl class="sm:psb-divide-y sm:psb-divide-gray-200">
-          <%= for {dt, link} <- @items do %>
-            <div class="psb-py-4 sm:psb-grid sm:psb-grid-cols-3 sm:psb-gap-4 sm:psb-py-5 sm:psb-px-6 psb-max-w-full">
-              <dt class="psb-text-base psb-font-medium psb-text-indigo-700">
-                <%= dt %>
-              </dt>
-              <dd class="psb-mt-1 psb-text-base psb-text-slate-400 sm:psb-col-span-2 sm:psb-mt-0 psb-group psb-cursor-pointer psb-max-w-full">
-                <a
-                  class="group-hover:psb-text-indigo-700 psb-max-w-full psb-inline-block psb-truncate"
-                  href={link}
-                  target="_blank"
-                >
-                  <%= link %>
-                </a>
-              </dd>
-            </div>
-          <% end %>
-        </dl>
-      </div>
-    </div>
-    """
-  end
-
-  defp doc_link(page) do
-    "https://hexdocs.pm/phoenix_storybook/PhoenixStorybook.#{page}.html"
   end
 end

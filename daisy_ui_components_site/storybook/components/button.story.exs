@@ -5,6 +5,11 @@ defmodule Storybook.Components.Button do
 
   def function, do: &DaisyUIComponents.Button.button/1
 
+  def imports,
+    do: [
+      {DaisyUIComponents.Icon, [icon: 1]}
+    ]
+
   def variations do
     [
       %Variation{
@@ -115,9 +120,32 @@ defmodule Storybook.Components.Button do
       %Variation{
         id: :button_loading_with_a_spinner,
         attributes: %{
-          loading: true
+          shape: "square"
         },
-        slots: ["Button"]
+        slots: [
+          """
+          <span class="loading loading-spinner"></span>
+          """
+        ]
+      },
+      %Variation{
+        id: :button_loading_with_spinner_and_text,
+        attributes: %{
+          shape: "square"
+        },
+        slots: [
+          """
+          <span class="loading loading-spinner"></span>
+          """,
+          "loading"
+        ]
+      },
+      %Variation{
+        id: :button_without_click_animation,
+        attributes: %{
+          class: "no-animation"
+        },
+        slots: ["I don't have click animation"]
       }
     ]
   end

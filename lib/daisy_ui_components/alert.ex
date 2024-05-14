@@ -110,6 +110,7 @@ defmodule DaisyUIComponents.Alert do
       ]}
       {@rest}
     >
+      <.icon name={get_icon(@color)} />
       <%= msg %>
       <button type="button" class="group absolute top-1 right-1 p-2" aria-label="close">
         <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
@@ -118,31 +119,28 @@ defmodule DaisyUIComponents.Alert do
     """
   end
 
+  attr :class, :any, default: nil
   attr :color, :string, values: ~w(info success warning error)
-  attr :icon, :boolean, default: true
-  attr :title, :string, default: nil
-  attr :label, :string, default: nil
   attr :rest, :global
   slot :inner_block
 
   def alert(assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        "alert",
-        alert_color(assigns[:color]),
-        "shadow-lg",
-        "items-start"
-      ])
-      |> assign_new(:color, fn -> nil end)
+      assign(
+        assigns,
+        :class,
+        join_classes(
+          [
+            "alert",
+            alert_color(assigns[:color])
+          ],
+          assigns.class
+        )
+      )
 
     ~H"""
-    <div {@rest}>
-      <.icon :if={@icon} name={get_icon(@color)} />
-      <div>
-        <h3 :if={@title} class="font-bold"><%= @title %></h3>
-        <p if={@label} class="text-xs"><%= @label %></p>
-        <%= render_slot(@inner_block) %>
-      </div>
+    <div class={@class}>
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
