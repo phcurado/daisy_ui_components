@@ -18,7 +18,7 @@ defmodule Storybook.MyPage do
   # This is a dummy fonction that you should replace with your own HEEx content.
   def render(assigns = %{tab: :welcome}) do
     markdown =
-      Path.wildcard(Path.expand("../README.md", __DIR__))
+      Application.app_dir(:daisy_ui_components_site, "priv/static/README.md")
       |> File.read!()
 
     {:ok, html_guide, _} = Earmark.as_html(markdown)

@@ -49,6 +49,9 @@ COPY priv priv
 
 COPY lib lib
 
+# Copying readme for the documentation
+COPY README.md README.md
+
 # build assets
 COPY assets/package.json assets/package-lock.json ./assets/
 RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
