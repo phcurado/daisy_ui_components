@@ -134,6 +134,7 @@ defmodule DaisyUIComponents.Modal do
 
   attr :modal_id, :string, required: true
   attr :class, :string, default: nil
+  attr :content_class, :string, default: nil
   attr :closable, :boolean, default: true
   attr :rest, :global
   slot :inner_block
@@ -155,7 +156,7 @@ defmodule DaisyUIComponents.Modal do
       >
         ✕
       </label>
-      <div id={"#{@modal_id}-content"}>
+      <div id={"#{@modal_id}-content"} , class={@content_class}>
         <%= render_slot(@inner_block) %>
       </div>
 
