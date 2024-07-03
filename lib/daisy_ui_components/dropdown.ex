@@ -28,27 +28,29 @@ defmodule DaisyUIComponents.Dropdown do
   attr :end, :boolean, default: nil
   attr :left, :boolean, default: nil
   attr :right, :boolean, default: nil
+  attr :hover, :boolean, default: nil
+  attr :open, :boolean, default: nil
   attr :rest, :global
   slot :inner_block, required: true
 
-  def button_group(assigns) do
+  def dropdown(assigns) do
     assigns =
       assign(assigns, :class, [
         "dropdown",
         add_class_from_bool(assigns.top, "dropdown-top"),
         add_class_from_bool(assigns.bottom, "dropdown-bottom"),
+        add_class_from_bool(assigns.end, "dropdown-end"),
+        add_class_from_bool(assigns.left, "dropdown-left"),
+        add_class_from_bool(assigns.right, "dropdown-right"),
+        add_class_from_bool(assigns.hover, "dropdown-hover"),
+        add_class_from_bool(assigns.open, "dropdown-open"),
         assigns.class
       ])
 
     ~H"""
-    <div class={@class} {@rest}>
+    <details class={@class} {@rest}>
       <%= render_slot(@inner_block) %>
-    </div>
+    </details>
     """
   end
-
-  # Direction
-  defp btn_group_direction("vertical"), do: "btn-group-vertical"
-  defp btn_group_direction("horizontal"), do: "btn-group-horizontal"
-  defp btn_group_direction(_direction), do: nil
 end
