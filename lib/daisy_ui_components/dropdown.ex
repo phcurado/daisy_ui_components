@@ -48,9 +48,9 @@ defmodule DaisyUIComponents.Dropdown do
       ])
 
     ~H"""
-    <details class={@class} {@rest}>
+    <div class={@class} {@rest}>
       <%= render_slot(@inner_block) %>
-    </details>
+    </div>
     """
   end
 end

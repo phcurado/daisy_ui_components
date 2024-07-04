@@ -13,7 +13,7 @@ defmodule DaisyUIComponents.DropdownTest do
       <.dropdown>dropdown slot</.dropdown>
       """)
 
-    assert dropdown =~ ~s(<details class="dropdown">)
+    assert dropdown =~ ~s(<div class="dropdown">)
     assert dropdown =~ ~s(dropdown slot)
   end
 
@@ -23,7 +23,7 @@ defmodule DaisyUIComponents.DropdownTest do
 
       assert rendered_to_string(~H"""
              <.dropdown {@rest}>My dropdown</.dropdown>
-             """) =~ ~s(<details class="dropdown dropdown-#{modifier}">)
+             """) =~ ~s(<div class="dropdown dropdown-#{modifier}">)
     end
   end
 end
