@@ -16,6 +16,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Card
       import DaisyUIComponents.Checkbox
       import DaisyUIComponents.Drawer
+      import DaisyUIComponents.Dropdown
       import DaisyUIComponents.Form
       import DaisyUIComponents.Icon
       import DaisyUIComponents.Input
