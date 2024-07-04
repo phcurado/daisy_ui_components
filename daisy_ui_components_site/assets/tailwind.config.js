@@ -11,6 +11,7 @@ module.exports = {
     "./js/**/*.js",
     "../lib/daisy_ui_components_site_web.ex",
     "../lib/daisy_ui_components_site_web/**/*.*ex",
+    "../storybook/**/*.*exs",
     "../deps/daisy_ui_components/**/*.*ex"
   ],
   plugins: [
