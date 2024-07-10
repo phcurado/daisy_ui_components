@@ -16,7 +16,6 @@ defmodule DaisyUIComponents.Breadcrumbs do
   slot :item do
     attr :icon, :string
     attr :path, :string
-    attr :text, :string
   end
 
   slot :inner_block
@@ -56,7 +55,7 @@ defmodule DaisyUIComponents.Breadcrumbs do
 
   defp render_icon(assigns) do
     ~H"""
-    <.icon :if={@icon} name={@icon} />
+    <.icon :if={@icon} name={@icon} class="w-4 h-4 mr-2" />
     """
   end
 end
