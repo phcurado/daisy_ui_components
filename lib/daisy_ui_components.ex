@@ -11,6 +11,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Alert
       import DaisyUIComponents.Avatar
       import DaisyUIComponents.Badge
+      import DaisyUIComponents.Breadcrumbs
       import DaisyUIComponents.Button
       import DaisyUIComponents.ButtonGroup
       import DaisyUIComponents.Card
