@@ -34,7 +34,7 @@ defmodule DaisyUIComponents.BreadcrumbsTest do
     assert breadcrumbs =~ ~s(<div class="breadcrumbs text-sm">)
     assert breadcrumbs =~ ~s(<ul>)
     assert breadcrumbs =~ ~s(home)
-    assert breadcrumbs =~ ~s(<span class="hero-settings-icon")
+    assert breadcrumbs =~ ~s(<span class="hero-settings-icon w-4 h-4 mr-2")
     assert breadcrumbs =~ ~s(<a href="/some-path")
     assert breadcrumbs =~ ~s(<a href="/settings-path")
   end
