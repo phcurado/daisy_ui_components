@@ -78,6 +78,52 @@ defmodule Storybook.Components.Table do
           </:col>
           """
         ]
+      },
+      %Variation{
+        id: :zebra,
+        attributes: %{
+          zebra: true,
+          rows: get_users()
+        },
+        slots: [
+          """
+          <:col :let={user} label="Id">
+            <%= user.id %>
+          </:col>
+          <:col :let={user} label="name">
+            <%= user.name %>
+          </:col>
+          <:col :let={user} label="Job">
+            <%= user.job %>
+          </:col>
+          <:col :let={user} label="Favourite Color">
+            <%= user.favourite_color %>
+          </:col>
+          """
+        ]
+      },
+      %Variation{
+        id: :table_xs,
+        attributes: %{
+          size: "xs",
+          rows: get_users()
+        },
+        slots: [
+          """
+          <:col :let={user} label="Id">
+            <%= user.id %>
+          </:col>
+          <:col :let={user} label="name">
+            <%= user.name %>
+          </:col>
+          <:col :let={user} label="Job">
+            <%= user.job %>
+          </:col>
+          <:col :let={user} label="Favourite Color">
+            <%= user.favourite_color %>
+          </:col>
+          """
+        ]
       }
     ]
   end
