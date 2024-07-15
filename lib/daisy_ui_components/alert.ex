@@ -20,8 +20,8 @@ defmodule DaisyUIComponents.Alert do
 
       <.flash_group flash={@flash} />
   """
-  attr :flash, :map, required: true, doc: "the map of flash messages"
   attr :id, :string, default: "flash-group", doc: "the optional id of flash container"
+  attr :flash, :map, required: true, doc: "the map of flash messages"
 
   attr :direction, :atom,
     values: [:top_left, :top_right, :bottom_left, :bottom_right],
@@ -98,7 +98,6 @@ defmodule DaisyUIComponents.Alert do
       id={@id}
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
-      title={@title}
       color={@color}
       class={[
         "w-80 sm:w-96 z-50 rounded-lg p-3 ring-1",
@@ -110,8 +109,15 @@ defmodule DaisyUIComponents.Alert do
       ]}
       {@rest}
     >
-      <.icon name={get_icon(@color)} />
-      <%= msg %>
+      <div :if={@title} class="flex items-center">
+        <.icon class="mr-2" name={get_icon(@color)} />
+        <div class="flex flex-col">
+          <h3 class="font-bold"><%= @title %></h3>
+          <span class="text-xs"><%= msg %></span>
+        </div>
+      </div>
+      <.icon :if={!@title} class="mr-2" name={get_icon(@color)} />
+      <span :if={!@title}><%= msg %></span>
       <button type="button" class="group absolute top-1 right-1 p-2" aria-label="close">
         <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
       </button>
@@ -119,6 +125,7 @@ defmodule DaisyUIComponents.Alert do
     """
   end
 
+  attr :id, :string, default: nil, doc: "the optional id of alert container"
   attr :class, :any, default: nil
   attr :color, :string, values: ~w(info success warning error)
   attr :rest, :global
@@ -139,7 +146,7 @@ defmodule DaisyUIComponents.Alert do
       )
 
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class} {@rest}>
       <%= render_slot(@inner_block) %>
     </div>
     """
