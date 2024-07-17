@@ -1,9 +1,12 @@
 defmodule Storybook.CoreComponents.Flash do
   use PhoenixStorybook.Story, :component
-  alias DaisyUIComponentsSiteWeb.CoreComponents
 
-  def function, do: &CoreComponents.flash/1
-  def imports, do: [{CoreComponents, [button: 1, show: 1]}]
+  alias DaisyUIComponents.Alert
+  alias DaisyUIComponents.Button
+  alias DaisyUIComponents.Utils
+
+  def function, do: &Alert.flash/1
+  def imports, do: [{Button, [button: 1]}, {Utils, [show: 1]}]
 
   def template do
     """
@@ -20,7 +23,7 @@ defmodule Storybook.CoreComponents.Flash do
         id: :info_no_title,
         attributes: %{
           kind: :info,
-          hidden: true
+          class: "hidden"
         },
         slots: ["Info message"]
       },
@@ -28,19 +31,10 @@ defmodule Storybook.CoreComponents.Flash do
         id: :error_with_title,
         attributes: %{
           kind: :error,
-          hidden: true,
+          class: "hidden",
           title: "Flash title"
         },
         slots: ["Error message"]
-      },
-      %Variation{
-        id: :no_close_button,
-        attributes: %{
-          kind: :info,
-          hidden: true,
-          close: false
-        },
-        slots: ["Info message"]
       }
     ]
   end
