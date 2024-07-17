@@ -36,8 +36,8 @@ defmodule DaisyUIComponents.Form do
 
   ## Examples
 
-      <.input field={@form[:email]} type="email" />
-      <.input name="my-input" errors={["oh no!"]} />
+      <.form_input field={@form[:email]} type="email" />
+      <.form_input name="my-input" errors={["oh no!"]} />
   """
   attr :id, :any, default: nil
   attr :name, :any

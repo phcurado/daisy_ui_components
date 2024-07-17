@@ -1,9 +1,11 @@
 defmodule Storybook.CoreComponents.Header do
   use PhoenixStorybook.Story, :component
-  alias DaisyUIComponentsSiteWeb.CoreComponents
+
+  alias DaisyUIComponents.Button
+  alias DaisyUIComponents.CoreComponents
 
   def function, do: &CoreComponents.header/1
-  def imports, do: [{CoreComponents, button: 1}]
+  def imports, do: [{Button, button: 1}]
 
   def variations do
     [
