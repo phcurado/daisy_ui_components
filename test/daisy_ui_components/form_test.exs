@@ -1,5 +1,6 @@
 defmodule DaisyUIComponents.FormTest do
   use ExUnit.Case
+  use AssertHTML
 
   import Phoenix.Component
   import Phoenix.LiveViewTest
@@ -35,10 +36,17 @@ defmodule DaisyUIComponents.FormTest do
       />
       """)
 
-    assert form_input =~ ~s(<div class="form-control" phx-feedback-for="input[name]">)
-    assert form_input =~ ~s(<label class="label cursor-pointer" for="1">)
+    assert_html form_input, "div", class: "form-control", "phx-feedback-for": "input[name]" do
+      assert_html "label", class: "label cursor-pointer", for: "1"
 
-    assert form_input =~
-             ~s(<input type="checkbox" value="true" class="checkbox text-xs" disabled for="some-input" id="1" name="input[name]">)
+      assert_html "input[type='checkbox']",
+        type: "checkbox",
+        value: "true",
+        class: "checkbox text-xs",
+        for: "some-input",
+        id: "1",
+        name: "input[name]",
+        disabled: true
+    end
   end
 end
