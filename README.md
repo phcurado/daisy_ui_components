@@ -108,6 +108,7 @@ List of available components.
 - [Text Input](https://daisyui.com/components/input) ✅
 - [Kbd](https://daisyui.com/components/kbd) ❌
 - [Link](https://daisyui.com/components/link) ❌
+- [Loading](https://daisyui.com/components/loading/) ✅
 - [Mask](https://daisyui.com/components/mask) ❌
 - [Menu](https://daisyui.com/components/menu) ❌
 - [Code mockup](https://daisyui.com/components/mockup-code) ❌
