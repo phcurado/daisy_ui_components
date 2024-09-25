@@ -2,8 +2,6 @@ defmodule DaisyUIComponents.Loading do
   use DaisyUIComponents.Component
 
   attr :class, :string, default: nil
-  attr :id, :string, required: true
-  attr :loading, :boolean, default: false
   attr :shape, :string, required: true, values: ~w(spinner dots ring ball bars infinity)
   attr :color, :string, values: colors() ++ ["neutral"]
   attr :size, :string, values: sizes()
@@ -19,9 +17,7 @@ defmodule DaisyUIComponents.Loading do
       ])
 
     ~H"""
-    <%= if @loading == true do %>
-      <span id={@id} class={@class}></span>
-    <% end %>
+    <span id={@id} class={@class}></span>
     """
   end
 

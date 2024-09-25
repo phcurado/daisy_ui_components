@@ -7,11 +7,12 @@ defmodule Storybook.Components.Loading do
   def variations do
     [
       %Variation{
-        id: :default,
+        id: :dots_warning_large,
         attributes: %{
           loading: true,
           shape: "dots",
-          color: "warning"
+          color: "warning",
+          size: "lg"
         }
       }
     ]
