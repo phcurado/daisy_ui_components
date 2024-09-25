@@ -1,6 +1,21 @@
 defmodule DaisyUIComponents.Loading do
+  @moduledoc """
+  Loading component
+
+  https://daisyui.com/loading/
+
+
+  """
   use DaisyUIComponents.Component
 
+  @doc """
+  Renders a loading.
+
+  ## Examples
+
+      <.loading></.loading>
+      <.loading phx-click="go" shape="infinity" color="warning" size="lg" ></.loading>
+  """
   attr :class, :string, default: nil
   attr :shape, :string, required: true, values: ~w(spinner dots ring ball bars infinity)
   attr :color, :string, values: colors() ++ ["neutral"]
