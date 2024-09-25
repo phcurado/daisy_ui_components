@@ -5,6 +5,7 @@ defmodule DaisyUIComponents.Loading do
   attr :shape, :string, required: true, values: ~w(spinner dots ring ball bars infinity)
   attr :color, :string, values: colors() ++ ["neutral"]
   attr :size, :string, values: sizes()
+  attr :rest, :global, include: ~w(id)
 
   def loading(assigns) do
     assigns =
@@ -17,7 +18,7 @@ defmodule DaisyUIComponents.Loading do
       ])
 
     ~H"""
-    <span id={@id} class={@class}></span>
+    <span class={@class} {@rest}></span>
     """
   end
 
