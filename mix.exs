@@ -85,7 +85,8 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Table,
           DaisyUIComponents.TextInput,
           DaisyUIComponents.Textarea,
-          DaisyUIComponents.Tooltip
+          DaisyUIComponents.Tooltip,
+          DaisyUIComponents.Loading
         ]
       ]
     ]
