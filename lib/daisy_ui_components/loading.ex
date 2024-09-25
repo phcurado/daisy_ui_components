@@ -2,7 +2,7 @@ defmodule DaisyUIComponents.Loading do
   @moduledoc """
   Loading component
 
-  https://daisyui.com/loading/
+  https://daisyui.com/components/loading/
 
 
   """
