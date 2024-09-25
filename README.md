@@ -1,6 +1,5 @@
 # DaisyUI Components
 
-
 <img src="daisyui-logomark-1024-1024.png" alt="Daisy UI Logo" width="150">
 
 [![CI](https://github.com/phcurado/daisy_ui_components/workflows/ci/badge.svg?branch=main)](https://github.com/phcurado/daisy_ui_components/actions?query=branch%3Amain+workflow%3Aci)
@@ -14,6 +13,7 @@ This project brings [Daisy UI](https://daisyui.com/) components into your Phoeni
 This project is still experimental, expect breaking changes in future.
 
 ## Installation
+
 <!-- MDOC -->
 
 Reference this repository on your `mix.exs` file to start using.
@@ -87,7 +87,7 @@ List of available components.
 - [Avatar](https://daisyui.com/components/avatar) ✅
 - [Badge](https://daisyui.com/components/badge) ✅
 - [Bottom navigation](https://daisyui.com/components/botton-navigation) ❌
-- [Breadcrumbs](https://daisyui.com/components/breadcrumbs) ❌
+- [Breadcrumbs](https://daisyui.com/components/breadcrumbs) ✅
 - [Button group](https://daisyui.com/components/button-group) ✅
 - [Button](https://daisyui.com/components/button) ✅
 - [Card](https://daisyui.com/components/card) ✅
