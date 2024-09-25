@@ -10,7 +10,7 @@ defmodule Storybook.Components.Loading do
         id: :default,
         attributes: %{
           loading: true,
-          shape: "bars",
+          shape: "dots",
           color: "warning"
         }
       }
