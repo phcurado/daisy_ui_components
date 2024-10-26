@@ -10,7 +10,7 @@ defmodule DaisyUIComponents.Breadcrumbs do
 
   import DaisyUIComponents.Icon
 
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :rest, :global
 
   slot :item do
@@ -22,7 +22,7 @@ defmodule DaisyUIComponents.Breadcrumbs do
 
   def breadcrumbs(assigns) do
     ~H"""
-    <div class={["breadcrumbs", @class]} {@rest}>
+    <div class={join_classes("breadcrumbs", @class)} {@rest}>
       <ul :if={render?(@item)}>
         <%= for item <- @item do %>
           <li>
