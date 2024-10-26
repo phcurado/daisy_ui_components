@@ -131,7 +131,7 @@ List of available components.
 - [Table](https://daisyui.com/components/table) ✅
 - [Textarea](https://daisyui.com/components/textarea) ✅
 - [Toast](https://daisyui.com/components/toast) ❌
-- [Toggle](https://daisyui.com/components/toggle) ❌
+- [Toggle](https://daisyui.com/components/toggle) ✅
 - [Tooltip](https://daisyui.com/components/tooltip) ✅
 
 ✅: Implemented

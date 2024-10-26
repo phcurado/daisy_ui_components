@@ -30,6 +30,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Table
       import DaisyUIComponents.TextInput
       import DaisyUIComponents.Textarea
+      import DaisyUIComponents.Toggle
       import DaisyUIComponents.Tooltip
       import DaisyUIComponents.Loading
     end
