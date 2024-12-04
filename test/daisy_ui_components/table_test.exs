@@ -29,8 +29,8 @@ defmodule DaisyUIComponents.TableTest do
     table =
       rendered_to_string(~H"""
       <.table id="user" rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}>
-        <:col :let={user} label="id"><%= user.id %></:col>
-        <:col :let={user} label="username"><%= user.username %></:col>
+        <:col :let={user} label="id">{user.id}</:col>
+        <:col :let={user} label="username">{user.username}</:col>
       </.table>
       """)
 

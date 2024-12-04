@@ -23,7 +23,7 @@ defmodule DaisyUIComponents.Avatar do
 
     ~H"""
     <div {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
@@ -36,7 +36,7 @@ defmodule DaisyUIComponents.Avatar do
 
     ~H"""
     <div {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end

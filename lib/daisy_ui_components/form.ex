@@ -21,8 +21,8 @@ defmodule DaisyUIComponents.Form do
   def label(assigns) do
     ~H"""
     <label class={join_classes("label", @class)} for={@for} {@rest}>
-      <span :if={@label} class="label-text"><%= @label %></span>
-      <%= render_slot(@inner_block) %>
+      <span :if={@label} class="label-text">{@label}</span>
+      {render_slot(@inner_block)}
     </label>
     """
   end
@@ -67,9 +67,11 @@ defmodule DaisyUIComponents.Form do
   slot :inner_block
 
   def form_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
+
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, Enum.map(field.errors, &translate(&1)))
+    |> assign(:errors, Enum.map(errors, &translate(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> form_input()
@@ -84,10 +86,10 @@ defmodule DaisyUIComponents.Form do
       |> add_default_input_assigns()
 
     ~H"""
-    <div class="form-control" phx-feedback-for={@name}>
+    <div class="form-control">
       <.label class="cursor-pointer" for={@id}>
         <input type="hidden" name={@name} value="false" />
-        <span class="label-text mr-2"><%= @label %></span>
+        <span class="label-text mr-2">{@label}</span>
         <.input
           id={@id}
           type="checkbox"
@@ -97,7 +99,7 @@ defmodule DaisyUIComponents.Form do
           class={@class}
           {@rest}
         />
-        <.error :for={msg <- @errors}><%= msg %></.error>
+        <.error :for={msg <- @errors}>{msg}</.error>
       </.label>
     </div>
     """
@@ -107,7 +109,7 @@ defmodule DaisyUIComponents.Form do
     assigns = add_default_input_assigns(assigns)
 
     ~H"""
-    <div class="form-control w-full" phx-feedback-for={@name}>
+    <div class="form-control w-full">
       <.label :if={@label} for={@id} label={@label} />
       <.input
         id={@id}
@@ -118,17 +120,17 @@ defmodule DaisyUIComponents.Form do
         bordered={@bordered}
         {@rest}
       >
-        <option :if={@prompt} value=""><%= @prompt %></option>
-        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+        <option :if={@prompt} value="">{@prompt}</option>
+        {Phoenix.HTML.Form.options_for_select(@options, @value)}
       </.input>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
 
   def form_input(assigns) do
     ~H"""
-    <div class="form-control w-full" phx-feedback-for={@name}>
+    <div class="form-control w-full">
       <.label :if={@label} for={@id} label={@label} />
       <.input
         id={@id}
@@ -139,7 +141,7 @@ defmodule DaisyUIComponents.Form do
         bordered={@bordered}
         {@rest}
       />
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
   end
@@ -158,9 +160,9 @@ defmodule DaisyUIComponents.Form do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-error phx-no-feedback:hidden">
+    <p class="mt-3 flex gap-3 text-sm leading-6 text-error">
       <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </p>
     """
   end

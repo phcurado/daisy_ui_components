@@ -25,9 +25,9 @@ defmodule DaisyUIComponents.Drawer do
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
           <.icon name="hero-bars-3-center-left" class="h-5 w-5" />
         </label>
-        <%= render_slot(@page_content) %>
+        {render_slot(@page_content)}
       </div>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
@@ -41,7 +41,7 @@ defmodule DaisyUIComponents.Drawer do
     ~H"""
     <div class={join_classes("drawer-side", @class)}>
       <label for={@drawer_id} class="drawer-overlay"></label>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end

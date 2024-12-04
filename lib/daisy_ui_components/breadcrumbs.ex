@@ -28,27 +28,27 @@ defmodule DaisyUIComponents.Breadcrumbs do
           <li>
             <.render_link path={item[:path]}>
               <.render_icon icon={item[:icon]} />
-              <%= render_slot(item) %>
+              {render_slot(item)}
             </.render_link>
           </li>
         <% end %>
       </ul>
 
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
 
   defp render_link(%{path: nil} = assigns) do
     ~H"""
-    <%= render_slot(@inner_block) %>
+    {render_slot(@inner_block)}
     """
   end
 
   defp render_link(assigns) do
     ~H"""
     <.link :if={@path} navigate={@path}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </.link>
     """
   end

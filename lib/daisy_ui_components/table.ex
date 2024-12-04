@@ -74,9 +74,9 @@ defmodule DaisyUIComponents.Table do
       <table {@rest}>
         <.thead>
           <.tr>
-            <.th :for={col <- @col}><%= col[:label] %></.th>
+            <.th :for={col <- @col}>{col[:label]}</.th>
             <.th :if={@action != []}>
-              <span class="sr-only"><span class="sr-only"><%= translate("Actions") %></span></span>
+              <span class="sr-only"><span class="sr-only">{translate("Actions")}</span></span>
             </.th>
           </.tr>
         </.thead>
@@ -87,11 +87,11 @@ defmodule DaisyUIComponents.Table do
               phx-click={@row_click && @row_click.(row)}
               class={[@row_click && "hover:cursor-pointer"]}
             >
-              <%= render_slot(col, @row_item.(row)) %>
+              {render_slot(col, @row_item.(row))}
             </.td>
             <.td :if={@action != []}>
               <span :for={action <- @action}>
-                <%= render_slot(action, @row_item.(row)) %>
+                {render_slot(action, @row_item.(row))}
               </span>
             </.td>
           </.tr>
@@ -112,7 +112,7 @@ defmodule DaisyUIComponents.Table do
     ~H"""
     <div class="overflow-x-auto">
       <table {@rest}>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </table>
     </div>
     """
@@ -132,7 +132,7 @@ defmodule DaisyUIComponents.Table do
 
     ~H"""
     <tr {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </tr>
     """
   end
@@ -143,7 +143,7 @@ defmodule DaisyUIComponents.Table do
   def td(assigns) do
     ~H"""
     <td {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </td>
     """
   end
@@ -154,7 +154,7 @@ defmodule DaisyUIComponents.Table do
   def th(assigns) do
     ~H"""
     <th {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </th>
     """
   end
@@ -165,7 +165,7 @@ defmodule DaisyUIComponents.Table do
   def thead(assigns) do
     ~H"""
     <thead {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </thead>
     """
   end
@@ -176,7 +176,7 @@ defmodule DaisyUIComponents.Table do
   def tbody(assigns) do
     ~H"""
     <tbody {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </tbody>
     """
   end

@@ -13,6 +13,7 @@ module.exports = {
     "../lib/daisy_ui_components_site_web/**/*.*ex",
     "../storybook/**/*.*exs",
     "../deps/daisy_ui_components/**/*.*ex",
+    "../../**/*.*ex",
   ],
   plugins: [
     require("@tailwindcss/forms"),
@@ -22,12 +23,6 @@ module.exports = {
     //
     //     <div class="phx-click-loading:animate-ping">
     //
-    plugin(({ addVariant }) =>
-      addVariant("phx-no-feedback", [
-        ".phx-no-feedback&",
-        ".phx-no-feedback &",
-      ]),
-    ),
     plugin(({ addVariant }) =>
       addVariant("phx-click-loading", [
         ".phx-click-loading&",

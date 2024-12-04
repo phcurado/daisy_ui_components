@@ -67,11 +67,11 @@ defmodule DaisyUIComponents.Modal do
           ✕
         </label>
         <div id={"#{@id}-content"}>
-          <%= render_slot(@inner_block) %>
+          {render_slot(@inner_block)}
         </div>
         <div class="modal-action">
           <%= for action <- @actions do %>
-            <%= render_slot(action) %>
+            {render_slot(action)}
           <% end %>
         </div>
       </.focus_wrap>
@@ -127,7 +127,7 @@ defmodule DaisyUIComponents.Modal do
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </dialog>
     """
   end
@@ -157,11 +157,11 @@ defmodule DaisyUIComponents.Modal do
         ✕
       </label>
       <div id={"#{@modal_id}-content"} , class={@content_class}>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </div>
 
       <.modal_action :for={action <- @actions}>
-        <%= render_slot(action) %>
+        {render_slot(action)}
       </.modal_action>
     </.focus_wrap>
     """
@@ -173,7 +173,7 @@ defmodule DaisyUIComponents.Modal do
   def modal_action(assigns) do
     ~H"""
     <div class={["modal-action", @class]}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end

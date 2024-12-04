@@ -43,7 +43,7 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "select"} = assigns) do
     ~H"""
     <.select id={@id} bordered={@bordered} {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </.select>
     """
   end

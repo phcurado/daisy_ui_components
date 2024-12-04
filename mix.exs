@@ -37,7 +37,7 @@ defmodule DaisyUIComponents.MixProject do
 
   defp deps do
     [
-      {:phoenix_live_view, "~> 0.20.14"},
+      {:phoenix_live_view, "~> 1.0"},
       {:jason, "~> 1.4", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
