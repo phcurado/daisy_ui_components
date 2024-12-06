@@ -26,7 +26,7 @@ defmodule DaisyUIComponents.Card do
 
     ~H"""
     <div {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
@@ -39,7 +39,7 @@ defmodule DaisyUIComponents.Card do
 
     ~H"""
     <div {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
@@ -54,9 +54,9 @@ defmodule DaisyUIComponents.Card do
     ~H"""
     <h2 {@rest}>
       <%= if render?(@label) do %>
-        <%= @label %>
+        {@label}
       <% else %>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       <% end %>
     </h2>
     """
@@ -70,7 +70,7 @@ defmodule DaisyUIComponents.Card do
 
     ~H"""
     <div {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end

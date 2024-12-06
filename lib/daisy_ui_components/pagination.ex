@@ -40,7 +40,7 @@ defmodule DaisyUIComponents.Pagination do
           active={block == @page}
           disabled={block == "..."}
         >
-          <%= block %>
+          {block}
         </.button>
       <% end %>
     </.button_group>

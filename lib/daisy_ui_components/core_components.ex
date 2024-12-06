@@ -37,9 +37,9 @@ defmodule DaisyUIComponents.CoreComponents do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
       <div class="mt-10 space-y-8">
-        <%= render_slot(@inner_block, f) %>
+        {render_slot(@inner_block, f)}
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          <%= render_slot(action, f) %>
+          {render_slot(action, f)}
         </div>
       </div>
     </.form>
@@ -60,13 +60,13 @@ defmodule DaisyUIComponents.CoreComponents do
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
       <div>
         <h1 class="text-lg font-semibold leading-8">
-          <%= render_slot(@inner_block) %>
+          {render_slot(@inner_block)}
         </h1>
         <p :if={@subtitle != []} class="mt-2 text-sm leading-6">
-          <%= render_slot(@subtitle) %>
+          {render_slot(@subtitle)}
         </p>
       </div>
-      <div class="flex-none"><%= render_slot(@actions) %></div>
+      <div class="flex-none">{render_slot(@actions)}</div>
     </header>
     """
   end
@@ -106,9 +106,9 @@ defmodule DaisyUIComponents.CoreComponents do
     <.table>
       <.thead>
         <.tr>
-          <.th :for={col <- @col}><%= col[:label] %></.th>
+          <.th :for={col <- @col}>{col[:label]}</.th>
           <.th>
-            <span class="sr-only"><span class="sr-only"><%= translate("Actions") %></span></span>
+            <span class="sr-only"><span class="sr-only">{translate("Actions")}</span></span>
           </.th>
         </.tr>
       </.thead>
@@ -119,11 +119,11 @@ defmodule DaisyUIComponents.CoreComponents do
             phx-click={@row_click && @row_click.(row)}
             class={[@row_click && "hover:cursor-pointer"]}
           >
-            <%= render_slot(col, @row_item.(row)) %>
+            {render_slot(col, @row_item.(row))}
           </.td>
           <.td :if={@action != []}>
             <span :for={action <- @action}>
-              <%= render_slot(action, @row_item.(row)) %>
+              {render_slot(action, @row_item.(row))}
             </span>
           </.td>
         </.tr>
@@ -151,8 +151,8 @@ defmodule DaisyUIComponents.CoreComponents do
     <div class="mt-14">
       <dl class="-my-4 divide-y">
         <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none"><%= item.title %></dt>
-          <dd><%= render_slot(item) %></dd>
+          <dt class="w-1/4 flex-none">{item.title}</dt>
+          <dd>{render_slot(item)}</dd>
         </div>
       </dl>
     </div>
@@ -174,7 +174,7 @@ defmodule DaisyUIComponents.CoreComponents do
     <div class="mt-16">
       <.link navigate={@navigate} class="text-sm font-semibold leading-6">
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </.link>
     </div>
     """

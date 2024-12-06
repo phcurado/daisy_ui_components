@@ -36,7 +36,7 @@ defmodule DaisyUIComponents.FormTest do
       />
       """)
 
-    assert_html form_input, "div", class: "form-control", "phx-feedback-for": "input[name]" do
+    assert_html form_input, "div", class: "form-control" do
       assert_html "label", class: "label cursor-pointer", for: "1"
 
       assert_html "input[type='checkbox']",

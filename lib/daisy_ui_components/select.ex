@@ -30,7 +30,7 @@ defmodule DaisyUIComponents.Select do
 
     ~H"""
     <select {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </select>
     """
   end

@@ -112,12 +112,12 @@ defmodule DaisyUIComponents.Alert do
       <div :if={@title} class="flex items-center">
         <.icon class="mr-2" name={get_icon(@color)} />
         <div class="flex flex-col">
-          <h3 class="font-bold"><%= @title %></h3>
-          <span class="text-xs"><%= msg %></span>
+          <h3 class="font-bold">{@title}</h3>
+          <span class="text-xs">{msg}</span>
         </div>
       </div>
       <.icon :if={!@title} class="mr-2" name={get_icon(@color)} />
-      <span :if={!@title}><%= msg %></span>
+      <span :if={!@title}>{msg}</span>
       <button type="button" class="group absolute top-1 right-1 p-2" aria-label="close">
         <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
       </button>
@@ -147,7 +147,7 @@ defmodule DaisyUIComponents.Alert do
 
     ~H"""
     <div id={@id} class={@class} {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end

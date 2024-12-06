@@ -28,7 +28,7 @@ defmodule DaisyUIComponents.Tooltip do
 
     ~H"""
     <div {@rest} data-tip={@text}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </div>
     """
   end
