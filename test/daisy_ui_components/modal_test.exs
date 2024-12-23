@@ -48,9 +48,9 @@ defmodule DaisyUIComponents.ModalTest do
       modal =
         rendered_to_string(~H"""
         <.dialog_modal id="confirm" class="w-full">
-          <.modal_box modal_id="confirm" class="w-11/12 max-w-5xl">
+          <:modal_box class="w-11/12 max-w-5xl">
             my dialog modal
-          </.modal_box>
+          </:modal_box>
         </.dialog_modal>
         """)
 
@@ -67,18 +67,18 @@ defmodule DaisyUIComponents.ModalTest do
       modal =
         rendered_to_string(~H"""
         <.dialog_modal id="confirm">
-          <.modal_box modal_id="confirm">
+          <:modal_box>
             my dialog modal
             <.modal_action class="w-10/12">
               Action from component
             </.modal_action>
-            <:actions>
+            <.modal_action>
               First Action
-            </:actions>
-            <:actions>
+            </.modal_action>
+            <.modal_action>
               Second Action
-            </:actions>
-          </.modal_box>
+            </.modal_action>
+          </:modal_box>
         </.dialog_modal>
         """)
 

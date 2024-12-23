@@ -99,15 +99,15 @@ defmodule DaisyUIComponents.Modal do
         </.modal_box>
       </.modal>
 
-  dialog with actions:
+  dialog with slots and actions:
 
       <.dialog_modal id="confirm">
-        <.modal_box>
+        <:modal_box class="w-11/12 max-w-5xl">
           Modal to confirm
-        </.modal_box>
-        <:actions>
-          <.button>Confirm</.button>
-        <:actions>
+          <:actions>
+            <.button>Confirm</.button>
+          <:actions>
+        </:modal_box>
       </.dialog_modal>
   """
   attr :id, :string, required: true
@@ -115,6 +115,13 @@ defmodule DaisyUIComponents.Modal do
   attr :open, :boolean, default: false
   attr :rest, :global
   attr :on_cancel, JS, default: %JS{}
+
+  slot :modal_box, doc: "the slot for compacting the modal body" do
+    attr :class, :string
+    attr :content_class, :string
+    attr :closable, :boolean
+  end
+
   slot :inner_block
 
   def dialog_modal(assigns) do
@@ -127,6 +134,16 @@ defmodule DaisyUIComponents.Modal do
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
     >
+      <.modal_box
+        :for={modal_box <- @modal_box}
+        class={modal_box[:class]}
+        content_class={modal_box[:content_class]}
+        closable={Map.get(modal_box, :closable, true)}
+        modal_id={@id}
+      >
+        {render_slot(modal_box)}
+      </.modal_box>
+
       {render_slot(@inner_block)}
     </dialog>
     """
@@ -180,13 +197,13 @@ defmodule DaisyUIComponents.Modal do
 
   def show_modal(js \\ %JS{}, id) when is_binary(id) do
     js
-    |> JS.add_class("modal-open", to: "##{id}")
+    |> JS.set_attribute({"open", "true"}, to: "##{id}")
     |> JS.focus_first(to: "##{id}-content")
   end
 
   def hide_modal(js \\ %JS{}, id) do
     js
-    |> JS.remove_class("modal-open", to: "##{id}")
+    |> JS.remove_attribute("open", to: "##{id}")
     |> JS.pop_focus()
   end
 end
