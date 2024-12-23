@@ -113,13 +113,15 @@ defmodule DaisyUIComponents.Modal do
   attr :id, :string, required: true
   attr :class, :string, default: nil
   attr :open, :boolean, default: false
+  attr :closeable, :boolean, default: true
+  attr :close_on_click_away, :boolean, default: false
+
   attr :rest, :global
   attr :on_cancel, JS, default: %JS{}
 
   slot :modal_box, doc: "the slot for compacting the modal body" do
     attr :class, :string
     attr :content_class, :string
-    attr :closable, :boolean
   end
 
   slot :inner_block
@@ -138,7 +140,8 @@ defmodule DaisyUIComponents.Modal do
         :for={modal_box <- @modal_box}
         class={modal_box[:class]}
         content_class={modal_box[:content_class]}
-        closable={Map.get(modal_box, :closable, true)}
+        closeable={@closeable}
+        close_on_click_away={@close_on_click_away}
         modal_id={@id}
       >
         {render_slot(modal_box)}
@@ -152,7 +155,8 @@ defmodule DaisyUIComponents.Modal do
   attr :modal_id, :string, required: true
   attr :class, :string, default: nil
   attr :content_class, :string, default: nil
-  attr :closable, :boolean, default: true
+  attr :closeable, :boolean, default: true
+  attr :close_on_click_away, :boolean, default: false
   attr :rest, :global
   slot :inner_block
   slot :actions, doc: "the slot for showing modal actions"
@@ -164,16 +168,17 @@ defmodule DaisyUIComponents.Modal do
       class={["modal-box", @class]}
       phx-window-keydown={JS.exec("data-cancel", to: "##{@modal_id}")}
       phx-key="escape"
-      phx-click-away={JS.exec("data-cancel", to: "##{@modal_id}")}
+      phx-click-away={@close_on_click_away && JS.exec("data-cancel", to: "##{@modal_id}")}
     >
-      <label
-        :if={@closable}
-        phx-click={JS.exec("data-cancel", to: "##{@modal_id}")}
-        class="btn btn-sm btn-circle absolute right-2 top-2"
-      >
-        ✕
-      </label>
-      <div id={"#{@modal_id}-content"} , class={@content_class}>
+      <form :if={@closeable} method="dialog">
+        <button
+          phx-click={JS.exec("data-cancel", to: "##{@modal_id}")}
+          class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+        >
+          ✕
+        </button>
+      </form>
+      <div id={"#{@modal_id}-content"} class={@content_class}>
         {render_slot(@inner_block)}
       </div>
 
