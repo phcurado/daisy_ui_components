@@ -30,8 +30,8 @@ defmodule DaisyUIComponents.Badge do
       assign(assigns, :class, [
         "badge",
         badge_color(assigns[:color]),
-        add_class_from_bool(assigns[:ghost], "badge-ghost"),
-        add_class_from_bool(assigns[:outline], "badge-outline"),
+        maybe_add_class(assigns[:ghost], "badge-ghost"),
+        maybe_add_class(assigns[:outline], "badge-outline"),
         badge_size(assigns[:size]),
         assigns.class
       ])

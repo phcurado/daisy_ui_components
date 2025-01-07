@@ -22,8 +22,8 @@ defmodule DaisyUIComponents.TextInput do
       |> join_classes_with_rest([
         "input",
         input_color(assigns[:color]),
-        add_class_from_bool(assigns[:bordered], "input-bordered"),
-        add_class_from_bool(assigns[:ghost], "input-ghost"),
+        maybe_add_class(assigns[:bordered], "input-bordered"),
+        maybe_add_class(assigns[:ghost], "input-ghost"),
         input_size(assigns[:size])
       ])
 

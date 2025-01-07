@@ -21,7 +21,7 @@ defmodule DaisyUIComponents.Tooltip do
       assigns
       |> join_classes_with_rest([
         "tooltip",
-        add_class_from_bool(assigns[:open], "tooltip-open"),
+        maybe_add_class(assigns[:open], "tooltip-open"),
         tooltip_color(assigns[:color]),
         tooltip_direction(assigns[:direction])
       ])

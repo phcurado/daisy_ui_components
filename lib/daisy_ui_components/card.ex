@@ -19,8 +19,8 @@ defmodule DaisyUIComponents.Card do
     assigns =
       join_classes_with_rest(assigns, [
         "card",
-        add_class_from_bool(assigns[:bordered], "card-bordered"),
-        add_class_from_bool(assigns[:side], "card-side"),
+        maybe_add_class(assigns[:bordered], "card-bordered"),
+        maybe_add_class(assigns[:side], "card-side"),
         add_class_from_padding(assigns[:padding])
       ])
 

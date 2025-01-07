@@ -60,7 +60,7 @@ defmodule DaisyUIComponents.Table do
     assigns =
       join_classes_with_rest(assigns, [
         "table",
-        add_class_from_bool(assigns[:zebra], "table-zebra"),
+        maybe_add_class(assigns[:zebra], "table-zebra"),
         table_size(assigns[:size])
       ])
 
@@ -105,7 +105,7 @@ defmodule DaisyUIComponents.Table do
     assigns =
       join_classes_with_rest(assigns, [
         "table",
-        add_class_from_bool(assigns[:zebra], "table-zebra"),
+        maybe_add_class(assigns[:zebra], "table-zebra"),
         table_size(assigns[:size])
       ])
 
@@ -126,8 +126,8 @@ defmodule DaisyUIComponents.Table do
   def tr(assigns) do
     assigns =
       join_classes_with_rest(assigns, [
-        add_class_from_bool(assigns[:active], "active"),
-        add_class_from_bool(assigns[:hover], "hover")
+        maybe_add_class(assigns[:active], "active"),
+        maybe_add_class(assigns[:hover], "hover")
       ])
 
     ~H"""

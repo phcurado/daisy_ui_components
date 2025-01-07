@@ -126,7 +126,7 @@ List of available components.
 - [Progress](https://daisyui.com/components/progress) ❌
 - [Radial progress](https://daisyui.com/components/radial-progress) ❌
 - [Radio](https://daisyui.com/components/radio) ❌
-- [Range slider](https://daisyui.com/components/range) ❌
+- [Range slider](https://daisyui.com/components/range) ✅
 - [Rating](https://daisyui.com/components/rating) ❌
 - [Select](https://daisyui.com/components/select) ✅
 - [Stack](https://daisyui.com/components/stack) ❌

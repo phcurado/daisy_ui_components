@@ -22,8 +22,8 @@ defmodule DaisyUIComponents.Textarea do
       assigns
       |> join_classes_with_rest([
         "textarea",
-        add_class_from_bool(assigns[:bordered], "textarea-bordered"),
-        add_class_from_bool(assigns[:ghost], "textarea-ghost"),
+        maybe_add_class(assigns[:bordered], "textarea-bordered"),
+        maybe_add_class(assigns[:ghost], "textarea-ghost"),
         textarea_color(assigns[:color]),
         textarea_size(assigns[:size])
       ])

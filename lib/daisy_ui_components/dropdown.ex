@@ -37,13 +37,13 @@ defmodule DaisyUIComponents.Dropdown do
     assigns =
       assign(assigns, :class, [
         "dropdown",
-        add_class_from_bool(assigns.top, "dropdown-top"),
-        add_class_from_bool(assigns.bottom, "dropdown-bottom"),
-        add_class_from_bool(assigns.end, "dropdown-end"),
-        add_class_from_bool(assigns.left, "dropdown-left"),
-        add_class_from_bool(assigns.right, "dropdown-right"),
-        add_class_from_bool(assigns.hover, "dropdown-hover"),
-        add_class_from_bool(assigns.open, "dropdown-open"),
+        maybe_add_class(assigns.top, "dropdown-top"),
+        maybe_add_class(assigns.bottom, "dropdown-bottom"),
+        maybe_add_class(assigns.end, "dropdown-end"),
+        maybe_add_class(assigns.left, "dropdown-left"),
+        maybe_add_class(assigns.right, "dropdown-right"),
+        maybe_add_class(assigns.hover, "dropdown-hover"),
+        maybe_add_class(assigns.open, "dropdown-open"),
         assigns.class
       ])
 

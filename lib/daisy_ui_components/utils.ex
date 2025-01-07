@@ -11,6 +11,20 @@ defmodule DaisyUIComponents.Utils do
   def directions, do: @directions
   def sizes, do: @sizes
 
+  @spec classes(list() | nil | binary() | any()) :: binary()
+  def classes(classes) when is_list(classes) do
+    Enum.reduce(classes, [], fn class, acc ->
+      [classes(class) | acc]
+    end)
+    |> Enum.reverse()
+    |> Enum.reject(&(!&1))
+    |> Enum.join(" ")
+  end
+
+  def classes(nil), do: nil
+  def classes(class) when is_binary(class), do: String.trim(class)
+  def classes(class), do: to_string(class)
+
   def move_attr_to_rest(assigns, props) when is_list(props) do
     Enum.reduce(props, assigns, fn prop, acc ->
       move_attr_to_rest(acc, prop)
@@ -68,8 +82,8 @@ defmodule DaisyUIComponents.Utils do
     !(value in [nil, "", []])
   end
 
-  def add_class_from_bool(true, class), do: class
-  def add_class_from_bool(_false, _class), do: nil
+  def maybe_add_class(true, class), do: class
+  def maybe_add_class(_false, _class), do: nil
 
   def translate({msg, _opts} = params) do
     if translate_function = Application.get_env(:daisy_ui_components, :translate_function) do

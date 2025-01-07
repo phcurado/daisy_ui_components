@@ -6,6 +6,7 @@ defmodule DaisyUIComponents.Input do
   use DaisyUIComponents.Component
 
   import DaisyUIComponents.Checkbox
+  import DaisyUIComponents.Range
   import DaisyUIComponents.Select
   import DaisyUIComponents.Textarea
   import DaisyUIComponents.TextInput
@@ -51,6 +52,12 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "textarea"} = assigns) do
     ~H"""
     <.textarea id={@id} bordered={@bordered} {@rest} />
+    """
+  end
+
+  def input(%{type: "range"} = assigns) do
+    ~H"""
+    <.range id={@id} {@rest} />
     """
   end
 

@@ -22,8 +22,8 @@ defmodule DaisyUIComponents.Select do
       assigns
       |> join_classes_with_rest([
         "select",
-        add_class_from_bool(assigns[:bordered], "select-bordered"),
-        add_class_from_bool(assigns[:ghost], "select-ghost"),
+        maybe_add_class(assigns[:bordered], "select-bordered"),
+        maybe_add_class(assigns[:ghost], "select-ghost"),
         select_color(assigns[:color]),
         select_size(assigns[:size])
       ])
