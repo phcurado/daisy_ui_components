@@ -1,6 +1,7 @@
 defmodule Storybook.Examples.CoreComponents do
   use PhoenixStorybook.Story, :example
   use DaisyUIComponents
+
   import DaisyUIComponents.CoreComponents
 
   alias Phoenix.LiveView.JS
@@ -39,13 +40,13 @@ defmodule Storybook.Examples.CoreComponents do
     </.header>
     <.table id="user-table" rows={@users}>
       <:col :let={user} label="Id">
-        <%= user.id %>
+        {user.id}
       </:col>
       <:col :let={user} label="First name">
-        <%= user.first_name %>
+        {user.first_name}
       </:col>
       <:col :let={user} label="Last name">
-        <%= user.last_name %>
+        {user.last_name}
       </:col>
     </.table>
     <.modal id="new-user-modal">

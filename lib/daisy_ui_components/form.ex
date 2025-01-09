@@ -118,11 +118,11 @@ defmodule DaisyUIComponents.Form do
         multiple={@multiple}
         class={@class}
         bordered={@bordered}
+        prompt={@prompt}
+        options={@options}
+        value={@value}
         {@rest}
-      >
-        <option :if={@prompt} value="">{@prompt}</option>
-        {Phoenix.HTML.Form.options_for_select(@options, @value)}
-      </.input>
+      />
       <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """

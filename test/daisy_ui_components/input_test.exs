@@ -24,9 +24,7 @@ defmodule DaisyUIComponents.InputTest do
 
     select_input =
       rendered_to_string(~H"""
-      <.input type="select" color="primary" size="xs">
-        <option selected value="admin">admin</option>
-      </.input>
+      <.input type="select" color="primary" size="xs" options={[admin: "admin"]} value="admin" />
       """)
 
     assert select_input =~ ~s(<select class="select select-primary select-xs">)

@@ -10,6 +10,7 @@ defmodule DaisyUIComponents.Range do
   use DaisyUIComponents.Component
 
   attr :class, :any, default: nil
+  attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :size, :string, values: sizes()
   attr :min, :integer, default: nil
@@ -20,8 +21,8 @@ defmodule DaisyUIComponents.Range do
   def range(assigns) do
     assigns =
       assigns
-      |> assign(:color_class, range_color(assigns[:color]))
-      |> assign(:size_class, range_size(assigns[:size]))
+      |> assign_new(:color_class, fn -> range_color(assigns[:color]) end)
+      |> assign_new(:size_class, fn -> range_size(assigns[:size]) end)
 
     ~H"""
     <input
@@ -30,6 +31,7 @@ defmodule DaisyUIComponents.Range do
       min={@min}
       max={@max}
       step={@step}
+      value={@value}
       {@rest}
     />
     """

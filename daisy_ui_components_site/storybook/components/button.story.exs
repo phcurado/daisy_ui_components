@@ -130,9 +130,6 @@ defmodule Storybook.Components.Button do
       },
       %Variation{
         id: :button_loading_with_spinner_and_text,
-        attributes: %{
-          shape: "square"
-        },
         slots: [
           """
           <span class="loading loading-spinner"></span>
