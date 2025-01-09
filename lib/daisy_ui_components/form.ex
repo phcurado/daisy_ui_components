@@ -129,6 +129,8 @@ defmodule DaisyUIComponents.Form do
   end
 
   def form_input(assigns) do
+    assigns = add_default_input_assigns(assigns)
+
     ~H"""
     <div class="form-control w-full">
       <.label :if={@label} for={@id} label={@label} />
@@ -155,8 +157,23 @@ defmodule DaisyUIComponents.Form do
   @doc """
   Generates a generic error message.
   """
-  attr :show, :boolean, default: false
-  slot :inner_block, required: true
+  attr :field, Phoenix.HTML.FormField,
+    doc: "a form field struct retrieved from the form, for example: @form[:email]"
+
+  slot :inner_block
+
+  def error(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
+
+    assigns =
+      assigns
+      |> assign(:field, nil)
+      |> assign(:errors, Enum.map(errors, &translate(&1)))
+
+    ~H"""
+    <.error :for={msg <- @errors}>{msg}</.error>
+    """
+  end
 
   def error(assigns) do
     ~H"""
