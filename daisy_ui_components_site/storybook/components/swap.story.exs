@@ -1,8 +1,6 @@
 defmodule Storybook.Components.Swap do
   use PhoenixStorybook.Story, :component
 
-  alias DaisyUIComponents.Utils
-
   def function, do: &DaisyUIComponents.Swap.swap/1
 
   def imports, do: []
@@ -73,7 +71,7 @@ defmodule Storybook.Components.Swap do
           <:swap_off type="icon" name="hero-bars-3" />
           """
         ]
-      },
+      }
     ]
   end
 end
