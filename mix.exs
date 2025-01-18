@@ -2,7 +2,7 @@ defmodule DaisyUIComponents.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/phcurado/daisy_ui_components"
-  @version "0.2.0"
+  @version "0.2.1"
 
   def project do
     [
@@ -67,12 +67,13 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Alert,
           DaisyUIComponents.Avatar,
           DaisyUIComponents.Badge,
-          DaisyUIComponents.ButtonGroup,
+          DaisyUIComponents.Breadcrumbs,
           DaisyUIComponents.Button,
+          DaisyUIComponents.ButtonGroup,
           DaisyUIComponents.Card,
           DaisyUIComponents.Checkbox,
-          DaisyUIComponents.CoreComponents,
           DaisyUIComponents.Drawer,
+          DaisyUIComponents.Dropdown,
           DaisyUIComponents.Form,
           DaisyUIComponents.Icon,
           DaisyUIComponents.Input,
@@ -80,11 +81,14 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Modal,
           DaisyUIComponents.Navbar,
           DaisyUIComponents.Pagination,
+          DaisyUIComponents.Range,
           DaisyUIComponents.Select,
           DaisyUIComponents.Stat,
+          DaisyUIComponents.Swap,
           DaisyUIComponents.Table,
           DaisyUIComponents.TextInput,
           DaisyUIComponents.Textarea,
+          DaisyUIComponents.Toggle,
           DaisyUIComponents.Tooltip,
           DaisyUIComponents.Loading
         ]

@@ -28,6 +28,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Range
       import DaisyUIComponents.Select
       import DaisyUIComponents.Stat
+      import DaisyUIComponents.Swap
       import DaisyUIComponents.Table
       import DaisyUIComponents.TextInput
       import DaisyUIComponents.Textarea

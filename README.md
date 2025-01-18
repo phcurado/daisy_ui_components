@@ -132,7 +132,7 @@ List of available components.
 - [Stack](https://daisyui.com/components/stack) ❌
 - [Stat](https://daisyui.com/components/stat) ✅
 - [Steps](https://daisyui.com/components/steps) ❌
-- [Swap](https://daisyui.com/components/swap) ❌
+- [Swap](https://daisyui.com/components/swap) ✅
 - [Tabs](https://daisyui.com/components/tab) ❌
 - [Table](https://daisyui.com/components/table) ✅
 - [Textarea](https://daisyui.com/components/textarea) ✅
