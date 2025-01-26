@@ -64,7 +64,7 @@ And now this library is ready. To have the components available under liveview, 
 defp html_helpers do
   quote do
     # Translation
-    use Gettext, backend: TestPhoenixWeb.Gettext
+    use Gettext, backend: MyAppWeb.Gettext
 
     # Import DaisyUI components into your project
     use DaisyUIComponents
