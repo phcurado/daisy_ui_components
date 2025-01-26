@@ -6,52 +6,16 @@ defmodule DaisyUIComponents.ModalTest do
   import DaisyUIComponents.Modal
 
   describe "modal" do
-    test "simple modal" do
-      assigns = %{}
-
-      modal =
-        rendered_to_string(~H"""
-        <.modal id="confirm" class="w-full">
-          my modal
-        </.modal>
-        """)
-
-      assert modal =~ ~s(class="modal modal-bottom sm:modal-middle w-full")
-      assert modal =~ ~s(my modal)
-    end
-
-    test "modal with actions" do
-      assigns = %{}
-
-      modal =
-        rendered_to_string(~H"""
-        <.modal id="confirm" class="w-full">
-          my modal
-          <:actions>
-            First Action
-          </:actions>
-          <:actions>
-            Second Action
-          </:actions>
-        </.modal>
-        """)
-
-      assert modal =~ ~s(First Action)
-      assert modal =~ ~s(Second Action)
-    end
-  end
-
-  describe "dialog_modal" do
     test "simple dialog modal" do
       assigns = %{}
 
       modal =
         rendered_to_string(~H"""
-        <.dialog_modal id="confirm" class="w-full">
+        <.modal id="confirm" class="w-full">
           <:modal_box class="w-11/12 max-w-5xl">
             my dialog modal
           </:modal_box>
-        </.dialog_modal>
+        </.modal>
         """)
 
       assert modal =~ ~s(<dialog id="confirm")
@@ -66,7 +30,7 @@ defmodule DaisyUIComponents.ModalTest do
 
       modal =
         rendered_to_string(~H"""
-        <.dialog_modal id="confirm">
+        <.modal id="confirm">
           <:modal_box>
             my dialog modal
             <.modal_action class="w-10/12">
@@ -79,7 +43,7 @@ defmodule DaisyUIComponents.ModalTest do
               Second Action
             </.modal_action>
           </:modal_box>
-        </.dialog_modal>
+        </.modal>
         """)
 
       assert modal =~ ~s(class="modal-action w-10/12")

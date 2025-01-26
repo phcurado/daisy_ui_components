@@ -43,12 +43,10 @@ defmodule DaisyUIComponents.Input do
 
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
-    assigns
-    |> assign(field: nil, id: assigns.id || field.id)
-    |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
-    |> assign_new(:value, fn -> field.value end)
-    |> input()
+  def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
+    ~H"""
+    <DaisyUIComponents.Form.form_input {assigns} />
+    """
   end
 
   def input(%{type: "checkbox"} = assigns) do
