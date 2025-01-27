@@ -2,7 +2,7 @@
 
 <img src="daisyui-logomark-1024-1024.png" alt="Daisy UI Logo" width="150">
 
-[![CI](https://github.com/phcurado/daisy_ui_components/workflows/ci/badge.svg?branch=main)](https://github.com/phcurado/daisy_ui_components/actions?query=branch%3Amain+workflow%3Aci)
+[![CI](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml/badge.svg)](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/phcurado/daisy_ui_components/badge.svg?branch=main)](https://coveralls.io/github/phcurado/daisy_ui_components?branch=main)
 [![Hex.pm](https://img.shields.io/hexpm/v/daisy_ui_components)](https://hex.pm/packages/daisy_ui_components)
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
