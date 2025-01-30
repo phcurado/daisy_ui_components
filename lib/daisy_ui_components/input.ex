@@ -38,7 +38,7 @@ defmodule DaisyUIComponents.Input do
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
 
   attr :rest, :global,
-    include: ~w(name autocomplete cols disabled form list max maxlength min minlength
+    include: ~w(label name autocomplete cols disabled form list max maxlength min minlength
                 pattern placeholder readonly required rows size step)
 
   slot :inner_block
