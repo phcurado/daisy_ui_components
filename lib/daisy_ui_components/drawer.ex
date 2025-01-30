@@ -10,7 +10,6 @@ defmodule DaisyUIComponents.Drawer do
   use DaisyUIComponents.Component
 
   import DaisyUIComponents.Icon
-  import DaisyUIComponents.Input
 
   attr :id, :string, required: true
   attr :class, :any, default: nil
@@ -20,7 +19,7 @@ defmodule DaisyUIComponents.Drawer do
   def drawer(assigns) do
     ~H"""
     <div class={join_classes("drawer", @class)}>
-      <.input id={@id} type="checkbox" class="drawer-toggle" />
+      <input id={@id} type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
           <.icon name="hero-bars-3-center-left" class="h-5 w-5" />

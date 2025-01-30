@@ -44,6 +44,7 @@ defmodule DaisyUIComponents.Input do
   slot :inner_block
 
   def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
+    # If form field is sent, this components delegates it's implementation to the form_input component
     ~H"""
     <DaisyUIComponents.Form.form_input {assigns} />
     """
