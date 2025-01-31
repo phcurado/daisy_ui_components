@@ -20,7 +20,7 @@ defmodule DaisyUIComponents.FormTest do
     assert label =~ ~s(My label)
   end
 
-  test "form_input" do
+  test "form_input checkbox" do
     assigns = %{}
 
     form_input =
@@ -47,6 +47,37 @@ defmodule DaisyUIComponents.FormTest do
         id: "1",
         name: "input[name]",
         disabled: true
+    end
+  end
+
+  test "form_input text" do
+    assigns = %{}
+
+    form_input =
+      rendered_to_string(~H"""
+      <.form_input
+        id="1"
+        field={
+          %Phoenix.HTML.FormField{
+            id: "id",
+            field: "name",
+            name: "user[first_name]",
+            value: "Jose",
+            errors: [],
+            form: Phoenix.Component.to_form(%{})
+          }
+        }
+        type="text"
+      />
+      """)
+
+    assert_html form_input, "div", class: "form-control" do
+      assert_html "input[type='text']",
+        type: "text",
+        value: "Jose",
+        class: "input input-bordered",
+        id: "1",
+        name: "user[first_name]"
     end
   end
 end

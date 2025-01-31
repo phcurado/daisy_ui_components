@@ -50,22 +50,24 @@ defmodule Storybook.Examples.CoreComponents do
       </:col>
     </.table>
     <.modal id="new-user-modal">
-      <.header>
-        Create new user
-        <:subtitle>This won't be persisted into DB, memory only</:subtitle>
-      </.header>
-      <.simple_form
-        :let={f}
-        for={%{}}
-        as={:user}
-        phx-submit={JS.push("save_user") |> hide_modal("new-user-modal")}
-      >
-        <.form_input field={f[:first_name]} label="First name" />
-        <.form_input field={f[:last_name]} label="Last name" />
-        <:actions>
-          <.button>Save user</.button>
-        </:actions>
-      </.simple_form>
+      <:modal_box>
+        <.header>
+          Create new user
+          <:subtitle>This won't be persisted into DB, memory only</:subtitle>
+        </.header>
+        <.simple_form
+          :let={f}
+          for={%{}}
+          as={:user}
+          phx-submit={JS.push("save_user") |> hide_modal("new-user-modal")}
+        >
+          <.input field={f[:first_name]} label="First name" />
+          <.input field={f[:last_name]} label="Last name" />
+          <:actions>
+            <.button>Save user</.button>
+          </:actions>
+        </.simple_form>
+      </:modal_box>
     </.modal>
     """
   end
