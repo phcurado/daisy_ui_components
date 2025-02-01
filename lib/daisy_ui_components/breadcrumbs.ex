@@ -22,7 +22,7 @@ defmodule DaisyUIComponents.Breadcrumbs do
 
   def breadcrumbs(assigns) do
     ~H"""
-    <div class={join_classes("breadcrumbs", @class)} {@rest}>
+    <div class={classes(["breadcrumbs", @class])} {@rest}>
       <ul :if={render?(@item)}>
         <%= for item <- @item do %>
           <li>

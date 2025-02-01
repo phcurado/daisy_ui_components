@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Textarea do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :bordered, :boolean, default: false
@@ -19,17 +20,21 @@ defmodule DaisyUIComponents.Textarea do
 
   def textarea(assigns) do
     assigns =
-      assigns
-      |> join_classes_with_rest([
-        "textarea",
-        maybe_add_class(assigns[:bordered], "textarea-bordered"),
-        maybe_add_class(assigns[:ghost], "textarea-ghost"),
-        textarea_color(assigns[:color]),
-        textarea_size(assigns[:size])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "textarea",
+          maybe_add_class(assigns[:bordered], "textarea-bordered"),
+          maybe_add_class(assigns[:ghost], "textarea-ghost"),
+          textarea_color(assigns[:color]),
+          textarea_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <textarea {@rest}>
+    <textarea class={@class} {@rest}>
     <%= if render?(@inner_block) do %>
       <%= render_slot(@inner_block) %>
     <% else %>

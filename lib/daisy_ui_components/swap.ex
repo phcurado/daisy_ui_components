@@ -30,10 +30,10 @@ defmodule DaisyUIComponents.Swap do
   def swap(assigns) do
     assigns =
       assigns
-      |> assign_new(:animation_class, fn -> animation(assigns[:animation]) end)
+      |> assign(:class, classes(["swap", animation(assigns[:animation]), assigns[:class]]))
 
     ~H"""
-    <label class={classes(["swap", @animation_class, @class])} {@rest}>
+    <label class={@class} {@rest}>
       <input class="hidden" type="checkbox" />
       <.swap_mode
         :for={swap_on <- @swap_on}

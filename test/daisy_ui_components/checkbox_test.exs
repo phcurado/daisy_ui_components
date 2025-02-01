@@ -15,7 +15,7 @@ defmodule DaisyUIComponents.CheckboxTest do
       <.checkbox value="true" />
       """)
 
-    assert checkbox =~ ~s(<input type="checkbox" value="true" class="checkbox">)
+    assert checkbox =~ ~s(<input class="checkbox" type="checkbox" value="true">)
   end
 
   test "checkbox colors" do
@@ -24,7 +24,7 @@ defmodule DaisyUIComponents.CheckboxTest do
 
       assert rendered_to_string(~H"""
              <.checkbox color={@color} />
-             """) =~ ~s(<input type="checkbox" class="checkbox checkbox-#{color}">)
+             """) =~ ~s(<input class="checkbox checkbox-#{color}" type="checkbox">)
     end
   end
 
@@ -34,7 +34,7 @@ defmodule DaisyUIComponents.CheckboxTest do
 
       assert rendered_to_string(~H"""
              <.checkbox size={@size} />
-             """) =~ ~s(<input type="checkbox" class="checkbox checkbox-#{size}">)
+             """) =~ ~s(<input class="checkbox checkbox-#{size}" type="checkbox">)
     end
   end
 end

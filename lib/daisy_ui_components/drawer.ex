@@ -18,7 +18,7 @@ defmodule DaisyUIComponents.Drawer do
 
   def drawer(assigns) do
     ~H"""
-    <div class={join_classes("drawer", @class)}>
+    <div class={classes(["drawer", @class])}>
       <input id={@id} type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
@@ -38,7 +38,7 @@ defmodule DaisyUIComponents.Drawer do
 
   def drawer_side(assigns) do
     ~H"""
-    <div class={join_classes("drawer-side", @class)}>
+    <div class={classes(["drawer-side", @class])}>
       <label for={@drawer_id} class="drawer-overlay"></label>
       {render_slot(@inner_block)}
     </div>

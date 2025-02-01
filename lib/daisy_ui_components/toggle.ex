@@ -18,14 +18,12 @@ defmodule DaisyUIComponents.Toggle do
       assign(
         assigns,
         :class,
-        join_classes(
-          [
-            "toggle",
-            toggle_color(assigns[:color]),
-            toggle_size(assigns[:size])
-          ],
+        classes([
+          "toggle",
+          toggle_color(assigns[:color]),
+          toggle_size(assigns[:size]),
           assigns.class
-        )
+        ])
       )
 
     ~H"""

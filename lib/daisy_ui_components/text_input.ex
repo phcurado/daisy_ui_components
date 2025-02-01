@@ -10,6 +10,7 @@ defmodule DaisyUIComponents.TextInput do
   use DaisyUIComponents.Component
 
   attr :type, :string, default: "text"
+  attr :class, :string, default: nil
   attr :color, :string, values: colors()
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
@@ -18,17 +19,21 @@ defmodule DaisyUIComponents.TextInput do
 
   def text_input(assigns) do
     assigns =
-      assigns
-      |> join_classes_with_rest([
-        "input",
-        input_color(assigns[:color]),
-        maybe_add_class(assigns[:bordered], "input-bordered"),
-        maybe_add_class(assigns[:ghost], "input-ghost"),
-        input_size(assigns[:size])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "input",
+          input_color(assigns[:color]),
+          maybe_add_class(assigns[:bordered], "input-bordered"),
+          maybe_add_class(assigns[:ghost], "input-ghost"),
+          input_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <input type={@type} {@rest} />
+    <input type={@type} class={@class} {@rest} />
     """
   end
 

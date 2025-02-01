@@ -37,6 +37,7 @@ defmodule DaisyUIComponents.Table do
     </.table>
   """
   attr :id, :string, default: nil
+  attr :class, :any, default: nil
   attr :rows, :list
   attr :row_id, :any, default: nil, doc: "the function for generating the row id"
   attr :row_click, :any, default: nil, doc: "the function for handling phx-click on each row"
@@ -58,11 +59,16 @@ defmodule DaisyUIComponents.Table do
 
   def table(%{rows: _rows} = assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        "table",
-        maybe_add_class(assigns[:zebra], "table-zebra"),
-        table_size(assigns[:size])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "table",
+          maybe_add_class(assigns[:zebra], "table-zebra"),
+          table_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     assigns =
       with %{rows: %Phoenix.LiveView.LiveStream{}} <- assigns do
@@ -71,7 +77,7 @@ defmodule DaisyUIComponents.Table do
 
     ~H"""
     <div class="overflow-x-auto">
-      <table {@rest}>
+      <table class={@class} {@rest}>
         <.thead>
           <.tr>
             <.th :for={col <- @col}>{col[:label]}</.th>
@@ -103,21 +109,27 @@ defmodule DaisyUIComponents.Table do
 
   def table(assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        "table",
-        maybe_add_class(assigns[:zebra], "table-zebra"),
-        table_size(assigns[:size])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "table",
+          maybe_add_class(assigns[:zebra], "table-zebra"),
+          table_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     ~H"""
     <div class="overflow-x-auto">
-      <table {@rest}>
+      <table class={@class} {@rest}>
         {render_slot(@inner_block)}
       </table>
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :active, :boolean, default: false
   attr :hover, :boolean, default: false
   attr :rest, :global
@@ -125,13 +137,18 @@ defmodule DaisyUIComponents.Table do
 
   def tr(assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        maybe_add_class(assigns[:active], "active"),
-        maybe_add_class(assigns[:hover], "hover")
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          maybe_add_class(assigns[:active], "active"),
+          maybe_add_class(assigns[:hover], "hover"),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <tr {@rest}>
+    <tr class={@class} {@rest}>
       {render_slot(@inner_block)}
     </tr>
     """

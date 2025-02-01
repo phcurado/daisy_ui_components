@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Checkbox do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :checked, :boolean, default: nil, doc: "the checked flag for checkbox inputs"
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
@@ -17,15 +18,19 @@ defmodule DaisyUIComponents.Checkbox do
 
   def checkbox(assigns) do
     assigns =
-      assigns
-      |> join_classes_with_rest([
-        "checkbox",
-        checkbox_color(assigns[:color]),
-        checkbox_size(assigns[:size])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "checkbox",
+          checkbox_color(assigns[:color]),
+          checkbox_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <input type="checkbox" checked={@checked} value={@value} {@rest} />
+    <input class={@class} type="checkbox" checked={@checked} value={@value} {@rest} />
     """
   end
 

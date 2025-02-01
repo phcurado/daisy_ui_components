@@ -29,6 +29,8 @@ defmodule DaisyUIComponents.Input do
     values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
 
+  attr :color, :string, values: colors()
+
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
@@ -72,13 +74,13 @@ defmodule DaisyUIComponents.Input do
       end)
 
     ~H"""
-    <.checkbox id={@id} class={classes(@class)} checked={@checked} value={@value} {@rest} />
+    <.checkbox id={@id} class={@class} color={@color} checked={@checked} value={@value} {@rest} />
     """
   end
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <.select id={@id} class={classes(@class)} bordered={@bordered} multiple={@multiple} {@rest}>
+    <.select id={@id} class={@class} color={@color} bordered={@bordered} multiple={@multiple} {@rest}>
       <option :if={@prompt} value="">{@prompt}</option>
       {Phoenix.HTML.Form.options_for_select(@options, @value)}
     </.select>
@@ -89,8 +91,9 @@ defmodule DaisyUIComponents.Input do
     ~H"""
     <.textarea
       id={@id}
+      class={@class}
+      color={@color}
       bordered={@bordered}
-      class={classes(@class)}
       value={Phoenix.HTML.Form.normalize_value(@type, @value)}
       {@rest}
     />
@@ -101,7 +104,8 @@ defmodule DaisyUIComponents.Input do
     ~H"""
     <.range
       id={@id}
-      class={classes(@class)}
+      class={@class}
+      color={@color}
       value={Phoenix.HTML.Form.normalize_value(@type, @value)}
       {@rest}
     />
@@ -113,8 +117,9 @@ defmodule DaisyUIComponents.Input do
     ~H"""
     <.text_input
       id={@id}
+      class={@class}
+      color={@color}
       bordered={@bordered}
-      class={classes(@class)}
       type={@type}
       value={Phoenix.HTML.Form.normalize_value(@type, @value)}
       {@rest}

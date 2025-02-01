@@ -136,13 +136,11 @@ defmodule DaisyUIComponents.Alert do
       assign(
         assigns,
         :class,
-        join_classes(
-          [
-            "alert",
-            alert_color(assigns[:color])
-          ],
+        classes([
+          "alert",
+          alert_color(assigns[:color]),
           assigns.class
-        )
+        ])
       )
 
     ~H"""

@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Select do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :color, :string, values: colors()
   attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
@@ -20,16 +21,20 @@ defmodule DaisyUIComponents.Select do
   def select(assigns) do
     assigns =
       assigns
-      |> join_classes_with_rest([
-        "select",
-        maybe_add_class(assigns[:bordered], "select-bordered"),
-        maybe_add_class(assigns[:ghost], "select-ghost"),
-        select_color(assigns[:color]),
-        select_size(assigns[:size])
-      ])
+      |> assign(
+        :class,
+        classes([
+          "select",
+          maybe_add_class(assigns[:bordered], "select-bordered"),
+          maybe_add_class(assigns[:ghost], "select-ghost"),
+          select_color(assigns[:color]),
+          select_size(assigns[:size]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <select {@rest}>
+    <select class={@class} {@rest}>
       {render_slot(@inner_block)}
     </select>
     """

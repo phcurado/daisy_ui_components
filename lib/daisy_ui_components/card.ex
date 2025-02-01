@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Card do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :bordered, :boolean, default: false
   attr :side, :boolean, default: false
   attr :padding, :string, values: ~w(normal compact)
@@ -17,42 +18,45 @@ defmodule DaisyUIComponents.Card do
 
   def card(assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        "card",
-        maybe_add_class(assigns[:bordered], "card-bordered"),
-        maybe_add_class(assigns[:side], "card-side"),
-        add_class_from_padding(assigns[:padding])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "card",
+          maybe_add_class(assigns[:bordered], "card-bordered"),
+          maybe_add_class(assigns[:side], "card-side"),
+          add_class_from_padding(assigns[:padding]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <div {@rest}>
+    <div class={@class} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def card_body(assigns) do
-    assigns = join_classes_with_rest(assigns, ["card-body"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["card-body", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :label, :string, default: nil
   attr :rest, :global
   slot :inner_block
 
   def card_title(assigns) do
-    assigns = join_classes_with_rest(assigns, ["card-title"])
-
     ~H"""
-    <h2 {@rest}>
+    <h2 class={classes(["card-title", @class])} {@rest}>
       <%= if render?(@label) do %>
         {@label}
       <% else %>
@@ -62,14 +66,13 @@ defmodule DaisyUIComponents.Card do
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def card_actions(assigns) do
-    assigns = join_classes_with_rest(assigns, ["card-actions"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["card-actions", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

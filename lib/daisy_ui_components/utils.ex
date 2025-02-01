@@ -25,55 +25,6 @@ defmodule DaisyUIComponents.Utils do
   def classes(class) when is_binary(class), do: String.trim(class)
   def classes(class), do: to_string(class)
 
-  def move_attr_to_rest(assigns, props) when is_list(props) do
-    Enum.reduce(props, assigns, fn prop, acc ->
-      move_attr_to_rest(acc, prop)
-    end)
-  end
-
-  def move_attr_to_rest(%{rest: rest} = assigns, prop) do
-    value = Map.get(assigns, prop)
-    rest = Map.put(rest, prop, value)
-
-    {_value, assigns} = Map.pop(assigns, prop)
-    %{assigns | rest: rest}
-  end
-
-  def join_classes_with_rest(%{rest: rest} = assigns, classes) when is_list(classes) do
-    classes =
-      join_classes(classes, rest[:class])
-      |> parse_classes()
-
-    rest = Map.put(rest, :class, classes)
-
-    %{assigns | rest: rest}
-  end
-
-  def join_classes(class_1, class_2) do
-    resolve_classes(class_1) ++ resolve_classes(class_2)
-  end
-
-  def join_classes(classes) when is_list(classes) do
-    classes
-    |> Enum.reject(&(!&1))
-    |> Enum.join(" ")
-    |> String.trim()
-  end
-
-  defp resolve_classes(classes) when is_list(classes), do: classes
-  defp resolve_classes(nil), do: []
-  defp resolve_classes(classes), do: [classes]
-
-  defp parse_classes(classes) when is_list(classes) do
-    filtered_classes = Enum.filter(classes, &(&1 != nil))
-
-    if Enum.empty?(filtered_classes) do
-      nil
-    else
-      filtered_classes
-    end
-  end
-
   def render?(opts) when is_list(opts) do
     Enum.any?(opts, &render?/1)
   end

@@ -9,53 +9,49 @@ defmodule DaisyUIComponents.Navbar do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def navbar(assigns) do
-    assigns = join_classes_with_rest(assigns, ["navbar"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["navbar", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def navbar_start(assigns) do
-    assigns = join_classes_with_rest(assigns, ["navbar-start"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["navbar-start", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def navbar_center(assigns) do
-    assigns = join_classes_with_rest(assigns, ["navbar-center"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["navbar-center", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def navbar_end(assigns) do
-    assigns = join_classes_with_rest(assigns, ["navbar-end"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["navbar-end", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

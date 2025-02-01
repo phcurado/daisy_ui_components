@@ -60,4 +60,16 @@ defmodule DaisyUIComponents.TextInputTest do
              """) =~ ~s(<input type="text" class="input input-#{to_string(boolean_assign)}">)
     end
   end
+
+  test "text input with extra classes" do
+    assigns = %{}
+
+    assert rendered_to_string(~H"""
+           <.text_input class="w-10" />
+           """) =~ ~s(<input type="text" class="input w-10">)
+
+    assert rendered_to_string(~H"""
+           <.text_input class={["h-10", "w-10"]} />
+           """) =~ ~s(<input type="text" class="input h-10 w-10">)
+  end
 end

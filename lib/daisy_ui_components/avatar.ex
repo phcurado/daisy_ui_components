@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Avatar do
 
   use DaisyUIComponents.Component
 
+  attr :class, :any, default: nil
   attr :online, :boolean, default: false
   attr :offline, :boolean, default: false
   attr :rest, :global
@@ -16,26 +17,30 @@ defmodule DaisyUIComponents.Avatar do
 
   def avatar(assigns) do
     assigns =
-      join_classes_with_rest(assigns, [
-        "avatar",
-        add_online_or_offline_class(assigns[:online], assigns[:offline])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "avatar",
+          add_online_or_offline_class(assigns[:online], assigns[:offline]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <div {@rest}>
+    <div class={@class} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def avatar_group(assigns) do
-    assigns = join_classes_with_rest(assigns, ["avatar-group"])
-
     ~H"""
-    <div {@rest}>
+    <div class={classes(["avatar-group", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

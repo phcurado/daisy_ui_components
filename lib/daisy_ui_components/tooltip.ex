@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Tooltip do
 
   use DaisyUIComponents.Component
 
+  attr :class, :string, default: nil
   attr :text, :string, required: true
   attr :color, :string, values: colors()
   attr :direction, :string, values: ["left", "top", "right", "bottom"]
@@ -18,16 +19,20 @@ defmodule DaisyUIComponents.Tooltip do
 
   def tooltip(assigns) do
     assigns =
-      assigns
-      |> join_classes_with_rest([
-        "tooltip",
-        maybe_add_class(assigns[:open], "tooltip-open"),
-        tooltip_color(assigns[:color]),
-        tooltip_direction(assigns[:direction])
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "tooltip",
+          maybe_add_class(assigns[:open], "tooltip-open"),
+          tooltip_color(assigns[:color]),
+          tooltip_direction(assigns[:direction]),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <div {@rest} data-tip={@text}>
+    <div class={@class} data-tip={@text} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

@@ -20,7 +20,7 @@ defmodule DaisyUIComponents.Form do
 
   def label(assigns) do
     ~H"""
-    <label class={join_classes("label", @class)} for={@for} {@rest}>
+    <label class={classes(["label", @class])} for={@for} {@rest}>
       <span :if={@label} class="label-text">{@label}</span>
       {render_slot(@inner_block)}
     </label>
@@ -43,6 +43,8 @@ defmodule DaisyUIComponents.Form do
   attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
+
+  attr :color, :string, values: colors() ++ [nil], default: nil
 
   attr :type, :string,
     default: "text",
@@ -74,6 +76,7 @@ defmodule DaisyUIComponents.Form do
     |> assign(:errors, Enum.map(errors, &translate(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
+    |> assign(:color, fn -> assigns.errors != [] && "error" end)
     |> form_input()
   end
 
@@ -83,7 +86,6 @@ defmodule DaisyUIComponents.Form do
       |> assign_new(:checked, fn ->
         Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
       end)
-      |> add_default_input_assigns()
 
     ~H"""
     <div class="form-control">
@@ -93,6 +95,7 @@ defmodule DaisyUIComponents.Form do
         <.input
           id={@id}
           type="checkbox"
+          color={@color}
           name={@name}
           value="true"
           checked={@checked}
@@ -106,8 +109,6 @@ defmodule DaisyUIComponents.Form do
   end
 
   def form_input(%{type: "select"} = assigns) do
-    assigns = add_default_input_assigns(assigns)
-
     ~H"""
     <div class="form-control w-full">
       <.label :if={@label} for={@id} label={@label} />
@@ -115,6 +116,7 @@ defmodule DaisyUIComponents.Form do
         id={@id}
         type="select"
         name={@name}
+        color={@color}
         multiple={@multiple}
         class={@class}
         bordered={@bordered}
@@ -129,14 +131,13 @@ defmodule DaisyUIComponents.Form do
   end
 
   def form_input(assigns) do
-    assigns = add_default_input_assigns(assigns)
-
     ~H"""
     <div class="form-control w-full">
       <.label :if={@label} for={@id} label={@label} />
       <.input
         id={@id}
         class={@class}
+        color={@color}
         type={@type}
         name={@name}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
@@ -146,12 +147,6 @@ defmodule DaisyUIComponents.Form do
       <.error :for={msg <- @errors}>{msg}</.error>
     </div>
     """
-  end
-
-  defp add_default_input_assigns(assigns) do
-    assigns
-    |> assign_new(:color, fn -> assigns.errors != [] && "error" end)
-    |> move_attr_to_rest(:color)
   end
 
   @doc """
