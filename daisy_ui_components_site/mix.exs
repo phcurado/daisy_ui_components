@@ -55,7 +55,7 @@ defmodule DaisyUIComponentsSite.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:phoenix_storybook, "~> 0.8"},
-      {:daisy_ui_components, "~> 0.2"}
+      {:daisy_ui_components, "~> 0.4"}
       # {:daisy_ui_components, path: "../"}
     ]
   end

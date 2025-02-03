@@ -57,7 +57,13 @@ defmodule Storybook.Components.Modal do
         slots: [
           """
           <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+          <p class="py-4">Press ESC key or click outside to close</p>
+          <.modal_action>
+            <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+              <.button>Close</.button>
+            </form>
+          </.modal_action>
           """
         ]
       },
@@ -67,7 +73,7 @@ defmodule Storybook.Components.Modal do
           """
           <:modal_box class="w-11/12 max-w-5xl">
             <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Click the button below to close</p>
+            <p class="py-4">Press ESC key or click the button below to close</p>
             <.modal_action>
               <form method="dialog">
                 <!-- if there is a button, it will close the modal -->
