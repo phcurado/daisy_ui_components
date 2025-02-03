@@ -34,7 +34,7 @@ defmodule Storybook.MyPage do
         Explore this library by navigating in the sidebar menu.
       </p>
 
-      <%= Phoenix.HTML.raw(@install_content) %>
+      {Phoenix.HTML.raw(@install_content)}
 
       <p>
         This should be enough to get you started, but you can use the tabs in the upper-right corner of this page to <strong>check out advanced usage guides</strong>.
@@ -61,7 +61,7 @@ defmodule Storybook.MyPage do
       </a>
     </p>
     <div class="psb-welcome-page psb-border-t psb-border-gray-200 psb-pt-4">
-      <%= Phoenix.HTML.raw(@guide_content) %>
+      {Phoenix.HTML.raw(@guide_content)}
     </div>
     """
   end

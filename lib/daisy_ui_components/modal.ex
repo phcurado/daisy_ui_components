@@ -16,18 +16,14 @@ defmodule DaisyUIComponents.Modal do
   ## Examples
 
       <.modal id="confirm-modal">
-        <.modal_box>
-          This is a modal
-        </.modal_box>
+        This is a modal
       </.modal>
 
   JS commands may be passed to the `:on_cancel` to configure
   the closing/cancel event, for example:
 
       <.modal id="confirm" on_cancel={JS.navigate(~p"/posts")}>
-        <.modal_box>
-          This is another modal
-        </.modal_box>
+        This is another modal
       </.modal>
 
   dialog with slots and actions:
@@ -35,9 +31,9 @@ defmodule DaisyUIComponents.Modal do
       <.modal id="confirm">
         <:modal_box class="w-11/12 max-w-5xl">
           Modal to confirm
-          <:actions>
+          <.modal_action>
             <.button>Confirm</.button>
-          <:actions>
+          </.modal_action>
         </:modal_box>
       </.modal>
   """
@@ -77,18 +73,24 @@ defmodule DaisyUIComponents.Modal do
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
     >
-      <.modal_box
-        :for={modal_box <- @modal_box}
-        class={modal_box[:class]}
-        content_class={modal_box[:content_class]}
-        closeable={@closeable}
-        close_on_click_away={@close_on_click_away}
-        modal_id={@id}
-      >
-        {render_slot(modal_box)}
-      </.modal_box>
+      <%= if render?(@modal_box) do %>
+        <.modal_box
+          :for={modal_box <- @modal_box}
+          class={modal_box[:class]}
+          content_class={modal_box[:content_class]}
+          closeable={@closeable}
+          close_on_click_away={@close_on_click_away}
+          modal_id={@id}
+        >
+          {render_slot(modal_box)}
+        </.modal_box>
 
-      {render_slot(@inner_block)}
+        {render_slot(@inner_block)}
+      <% else %>
+        <.modal_box closeable={@closeable} close_on_click_away={@close_on_click_away} modal_id={@id}>
+          {render_slot(@inner_block)}
+        </.modal_box>
+      <% end %>
     </dialog>
     """
   end

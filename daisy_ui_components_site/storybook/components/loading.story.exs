@@ -3,7 +3,6 @@ defmodule Storybook.Components.Loading do
 
   alias DaisyUIComponents.Utils
 
-
   def function, do: &DaisyUIComponents.Loading.loading/1
 
   def variations do
@@ -28,11 +27,10 @@ defmodule Storybook.Components.Loading do
             }
           end
       },
-
       %VariationGroup{
         id: :sizes,
         variations:
-          for size <- Utils.sizes()  do
+          for size <- Utils.sizes() do
             %Variation{
               id: String.to_atom(size),
               attributes: %{
@@ -52,7 +50,7 @@ defmodule Storybook.Components.Loading do
               }
             }
           end
-      },
+      }
     ]
   end
 end

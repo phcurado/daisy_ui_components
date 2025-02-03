@@ -27,16 +27,14 @@ defmodule Storybook.Components.Modal do
         id: :default,
         slots: [
           """
-          <:modal_box>
-            <h3 class="text-lg font-bold">Hello!</h3>
-              <p class="py-4">Press ESC key or click the button below to close</p>
-              <div class="modal-action">
-                <form method="dialog">
-                  <!-- if there is a button in form, it will close the modal -->
-                  <.button>Close</.button>
-                </form>
-              </div>
-          </:modal_box>
+          <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <.modal_action>
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <.button>Close</.button>
+              </form>
+            </.modal_action>
           """
         ]
       },
@@ -48,6 +46,18 @@ defmodule Storybook.Components.Modal do
             <form method="dialog" class="modal-backdrop">
               <button>close</button>
             </form>
+          """
+        ]
+      },
+      %Variation{
+        id: :dialog_modal_without_a_close_button_at_corner,
+        attributes: %{
+          closeable: false
+        },
+        slots: [
+          """
+          <h3 class="text-lg font-bold">Hello!</h3>
+          <p class="py-4">Press ESC key or click on ✕ button to close</p>
           """
         ]
       },
@@ -75,16 +85,16 @@ defmodule Storybook.Components.Modal do
         },
         slots: [
           """
-          <.modal_box modal_id="modal-single-responsive" class="w-11/12 max-w-5xl">
+          <:modal_box class="w-11/12 max-w-5xl">
             <h3 class="text-lg font-bold">Hello!</h3>
             <p class="py-4">Press ESC key or click the button below to close</p>
-            <:modal_action>
+            <.modal_action>
               <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
                 <button class="btn">Close</button>
               </form>
-            </:modal_action>
-          </.modal_box>"
+            </.modal_action>
+          </:modal_box>"
           """
         ]
       }

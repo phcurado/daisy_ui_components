@@ -1,4 +1,4 @@
-defmodule Storybook.CoreComponents.Flash do
+defmodule Storybook.Components.Flash do
   use PhoenixStorybook.Story, :component
 
   alias DaisyUIComponents.Alert
