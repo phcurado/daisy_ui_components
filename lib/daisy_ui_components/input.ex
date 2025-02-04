@@ -22,7 +22,7 @@ defmodule DaisyUIComponents.Input do
   attr :id, :any, default: nil
   # attr :name, :any
   attr :label, :string
-  attr :value, :any, default: nil
+  attr :value, :any
 
   attr :type, :string,
     default: "text",
@@ -69,6 +69,7 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "checkbox"} = assigns) do
     assigns =
       assigns
+      |> assign_new(:value, fn -> nil end)
       |> assign_new(:checked, fn ->
         Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
       end)
@@ -79,6 +80,10 @@ defmodule DaisyUIComponents.Input do
   end
 
   def input(%{type: "select"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:value, fn -> nil end)
+
     ~H"""
     <.select id={@id} class={@class} color={@color} bordered={@bordered} multiple={@multiple} {@rest}>
       <option :if={@prompt} value="">{@prompt}</option>
@@ -101,6 +106,10 @@ defmodule DaisyUIComponents.Input do
   end
 
   def input(%{type: "range"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:value, fn -> nil end)
+
     ~H"""
     <.range
       id={@id}
@@ -114,6 +123,10 @@ defmodule DaisyUIComponents.Input do
 
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
+    assigns =
+      assigns
+      |> assign_new(:value, fn -> nil end)
+
     ~H"""
     <.text_input
       id={@id}

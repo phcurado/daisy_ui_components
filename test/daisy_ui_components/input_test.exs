@@ -5,44 +5,95 @@ defmodule DaisyUIComponents.InputTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Input
 
-  test "checkbox input" do
-    assigns = %{}
+  describe "checkbox" do
+    test "checkbox input" do
+      assigns = %{}
 
-    checkbox_input =
-      rendered_to_string(~H"""
-      <.input type="checkbox" size="xs" value="false" />
-      """)
+      checkbox_input =
+        rendered_to_string(~H"""
+        <.input type="checkbox" size="xs" value="false" />
+        """)
 
-    assert checkbox_input =~ ~s(<input)
-    assert checkbox_input =~ ~s(type="checkbox")
-    assert checkbox_input =~ ~s(value="false")
-    assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
+      assert checkbox_input =~ ~s(<input)
+      assert checkbox_input =~ ~s(type="checkbox")
+      assert checkbox_input =~ ~s(value="false")
+      assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
+    end
+
+    test "checkbox input without value" do
+      assigns = %{}
+
+      checkbox_input =
+        rendered_to_string(~H"""
+        <.input type="checkbox" size="xs" />
+        """)
+
+      assert checkbox_input =~ ~s(<input)
+      assert checkbox_input =~ ~s(type="checkbox")
+      refute checkbox_input =~ ~s(value)
+      assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
+    end
+
+    test "checkbox true input in form field when value is true" do
+      assigns =
+        %{form: Phoenix.Component.to_form(%{"checkbox_field" => true})}
+
+      checkbox_input =
+        rendered_to_string(~H"""
+        <.input field={@form[:checkbox_field]} type="checkbox" />
+        """)
+
+      assert checkbox_input =~ ~s(<input)
+      assert checkbox_input =~ ~s(type="checkbox")
+      assert checkbox_input =~ ~s(checked)
+      assert checkbox_input =~ ~s(value="true")
+      assert checkbox_input =~ ~s(class="checkbox")
+    end
+
+    test "checkbox input in form field when value is false" do
+      assigns =
+        %{form: Phoenix.Component.to_form(%{"checkbox_field" => false})}
+
+      checkbox_input =
+        rendered_to_string(~H"""
+        <.input field={@form[:checkbox_field]} type="checkbox" />
+        """)
+
+      assert checkbox_input =~ ~s(<input)
+      assert checkbox_input =~ ~s(type="checkbox")
+      refute checkbox_input =~ ~s(checked)
+      assert checkbox_input =~ ~s(value="true")
+      assert checkbox_input =~ ~s(class="checkbox")
+    end
   end
 
-  test "checkbox input without value" do
-    assigns = %{}
+  describe "select input in form field" do
+    test "select input" do
+      assigns = %{}
 
-    checkbox_input =
-      rendered_to_string(~H"""
-      <.input type="checkbox" size="xs" />
-      """)
+      select_input =
+        rendered_to_string(~H"""
+        <.input type="select" color="primary" size="xs" options={[admin: "admin"]} value="admin" />
+        """)
 
-    assert checkbox_input =~ ~s(<input)
-    assert checkbox_input =~ ~s(type="checkbox")
-    refute checkbox_input =~ ~s(value)
-    assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
-  end
+      assert select_input =~ ~s(<select class="select select-primary select-xs">)
+      assert select_input =~ ~s(<option selected value="admin">admin</option>)
+    end
 
-  test "select input" do
-    assigns = %{}
+    test "select input in form field" do
+      assigns =
+        %{form: Phoenix.Component.to_form(%{"page_size" => 10}), page_options: [10, 20, 30]}
 
-    select_input =
-      rendered_to_string(~H"""
-      <.input type="select" color="primary" size="xs" options={[admin: "admin"]} value="admin" />
-      """)
+      select_input =
+        rendered_to_string(~H"""
+        <.input field={@form[:page_size]} type="select" options={@page_options} />
+        """)
 
-    assert select_input =~ ~s(<select class="select select-primary select-xs">)
-    assert select_input =~ ~s(<option selected value="admin">admin</option>)
+      assert select_input =~
+               ~s(<select class="select select-bordered" id="page_size" name="page_size">)
+
+      assert select_input =~ ~s(<option selected value="10">10</option>)
+    end
   end
 
   test "textarea input" do
