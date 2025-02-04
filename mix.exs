@@ -2,7 +2,7 @@ defmodule DaisyUIComponents.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/phcurado/daisy_ui_components"
-  @version "0.4.0"
+  @version "0.4.1"
 
   def project do
     [
