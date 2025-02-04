@@ -28,24 +28,29 @@ defmodule Storybook.Components.Modal do
         slots: [
           """
           <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
-            <.modal_action>
-              <form method="dialog">
-                <!-- if there is a button in form, it will close the modal -->
-                <.button>Close</.button>
-              </form>
-            </.modal_action>
+          <p class="py-4">Press ESC key or click the button below to close</p>
+          <.modal_action>
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <.button>Close</.button>
+            </form>
+          </.modal_action>
           """
         ]
       },
       %Variation{
         id: :closes_when_click_outside,
         slots: [
-          "<:modal_box>Press ESC key or click outside to close</:modal_box>",
           """
-            <form method="dialog" class="modal-backdrop">
-              <button>close</button>
-            </form>
+          <:modal_box>
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+          </:modal_box>
+          """,
+          """
+          <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+          </form>
           """
         ]
       },
@@ -80,7 +85,7 @@ defmodule Storybook.Components.Modal do
                 <.button>Close</.button>
               </form>
             </.modal_action>
-          </:modal_box>"
+          </:modal_box>
           """
         ]
       },
@@ -100,7 +105,7 @@ defmodule Storybook.Components.Modal do
                 <button class="btn">Close</button>
               </form>
             </.modal_action>
-          </:modal_box>"
+          </:modal_box>
           """
         ]
       }

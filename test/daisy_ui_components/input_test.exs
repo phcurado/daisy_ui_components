@@ -10,13 +10,27 @@ defmodule DaisyUIComponents.InputTest do
 
     checkbox_input =
       rendered_to_string(~H"""
-      <.input type="checkbox" color="primary" size="xs" value="false" />
+      <.input type="checkbox" size="xs" value="false" />
       """)
 
     assert checkbox_input =~ ~s(<input)
     assert checkbox_input =~ ~s(type="checkbox")
     assert checkbox_input =~ ~s(value="false")
-    assert checkbox_input =~ ~s(class="checkbox checkbox-primary checkbox-xs")
+    assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
+  end
+
+  test "checkbox input without value" do
+    assigns = %{}
+
+    checkbox_input =
+      rendered_to_string(~H"""
+      <.input type="checkbox" size="xs" />
+      """)
+
+    assert checkbox_input =~ ~s(<input)
+    assert checkbox_input =~ ~s(type="checkbox")
+    refute checkbox_input =~ ~s(value)
+    assert checkbox_input =~ ~s(class="checkbox checkbox-xs")
   end
 
   test "select input" do

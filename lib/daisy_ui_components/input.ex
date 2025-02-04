@@ -22,14 +22,14 @@ defmodule DaisyUIComponents.Input do
   attr :id, :any, default: nil
   # attr :name, :any
   attr :label, :string
-  attr :value, :any
+  attr :value, :any, default: nil
 
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week)
 
-  attr :color, :string, values: colors()
+  attr :color, :string, values: [nil] ++ colors(), default: nil
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
