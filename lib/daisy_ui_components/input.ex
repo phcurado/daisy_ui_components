@@ -20,7 +20,7 @@ defmodule DaisyUIComponents.Input do
       <.input name="my-input" type="checkbox" value="false" />
   """
   attr :id, :any, default: nil
-  # attr :name, :any
+  attr :name, :any
   attr :label, :string
   attr :value, :any
 
@@ -43,7 +43,7 @@ defmodule DaisyUIComponents.Input do
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
 
   attr :rest, :global,
-    include: ~w(name autocomplete cols disabled form list max maxlength min minlength
+    include: ~w(autocomplete cols disabled form list max maxlength min minlength
                 pattern placeholder readonly required rows size step)
 
   slot :inner_block
@@ -70,22 +70,40 @@ defmodule DaisyUIComponents.Input do
     assigns =
       assigns
       |> assign_new(:value, fn -> nil end)
+      |> assign_new(:name, fn -> nil end)
       |> assign_new(:checked, fn ->
         Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
       end)
 
     ~H"""
-    <.checkbox id={@id} class={@class} color={@color} checked={@checked} value={@value} {@rest} />
+    <.checkbox
+      id={@id}
+      name={@name}
+      class={@class}
+      color={@color}
+      checked={@checked}
+      value={@value}
+      {@rest}
+    />
     """
   end
 
   def input(%{type: "select"} = assigns) do
     assigns =
       assigns
+      |> assign_new(:name, fn -> nil end)
       |> assign_new(:value, fn -> nil end)
 
     ~H"""
-    <.select id={@id} class={@class} color={@color} bordered={@bordered} multiple={@multiple} {@rest}>
+    <.select
+      id={@id}
+      name={@name}
+      class={@class}
+      color={@color}
+      bordered={@bordered}
+      multiple={@multiple}
+      {@rest}
+    >
       <option :if={@prompt} value="">{@prompt}</option>
       {Phoenix.HTML.Form.options_for_select(@options, @value)}
     </.select>
@@ -93,9 +111,14 @@ defmodule DaisyUIComponents.Input do
   end
 
   def input(%{type: "textarea"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:name, fn -> nil end)
+
     ~H"""
     <.textarea
       id={@id}
+      name={@name}
       class={@class}
       color={@color}
       bordered={@bordered}
@@ -113,6 +136,7 @@ defmodule DaisyUIComponents.Input do
     ~H"""
     <.range
       id={@id}
+      name={@name}
       class={@class}
       color={@color}
       value={Phoenix.HTML.Form.normalize_value(@type, @value)}
@@ -125,11 +149,13 @@ defmodule DaisyUIComponents.Input do
   def input(assigns) do
     assigns =
       assigns
+      |> assign_new(:name, fn -> nil end)
       |> assign_new(:value, fn -> nil end)
 
     ~H"""
     <.text_input
       id={@id}
+      name={@name}
       class={@class}
       color={@color}
       bordered={@bordered}
