@@ -1,12 +1,12 @@
 # DaisyUI Components
 
-<img src="daisyui-logomark-1024-1024.png" alt="Daisy UI Logo" width="150">
-
 [![CI](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml/badge.svg)](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/phcurado/daisy_ui_components/badge.svg?branch=main)](https://coveralls.io/github/phcurado/daisy_ui_components?branch=main)
 [![Hex.pm](https://img.shields.io/hexpm/v/daisy_ui_components)](https://hex.pm/packages/daisy_ui_components)
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
 [![License](https://img.shields.io/hexpm/l/daisy_ui_components.svg)](https://hex.pm/packages/daisy_ui_components)
+
+---
 
 This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project.
 
@@ -21,7 +21,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.4"}
+    {:daisy_ui_components, "~> 0.5"}
   ]
 end
 ```
@@ -85,9 +85,9 @@ end
 Finally, in order to not conflict with some of the DaisyUI default styles, remove the `bg-white` class in your `root.html.heex` file.
 
 ```heex
-# Change from this
+## Change from this
 <body class="bg-white">
-# to this
+## to this
 <body>
 ```
 

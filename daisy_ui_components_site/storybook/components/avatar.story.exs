@@ -1,7 +1,6 @@
 defmodule Storybook.Components.Avatar do
   use PhoenixStorybook.Story, :component
 
-  alias DaisyUIComponents.Utils
   alias DaisyUIComponents.Avatar
 
   def function, do: &Avatar.avatar/1
