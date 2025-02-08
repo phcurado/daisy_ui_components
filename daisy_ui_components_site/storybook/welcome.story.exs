@@ -18,9 +18,10 @@ defmodule Storybook.MyPage do
   end
 
   defp render_markdown() do
-    path = Path.expand("../guides/install.md", __DIR__)
-    guide = Path.basename(path)
-    markdown = File.read!(path)
+    markdown =
+      Application.app_dir(:daisy_ui_components_site, "priv/static/install.md")
+      |> File.read!()
+
     {:ok, html_guide, _} = Earmark.as_html(markdown)
     html_guide
   end

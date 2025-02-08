@@ -4,6 +4,6 @@ defmodule Storybook.Examples.Root do
 
   use PhoenixStorybook.Index
 
-  def folder_icon, do: {:local, "hero-numbered-list", "psb-w-4 psb-h-4"}
+  def folder_icon, do: {:local, "hero-list-bullet", "psb-w-4 psb-h-4"}
   def folder_name, do: "Examples"
 end
