@@ -5,6 +5,7 @@ defmodule DaisyUIComponents.Component do
     quote do
       use Phoenix.Component
       import DaisyUIComponents.Utils
+      import DaisyUIComponents.JSHelpers
     end
   end
 end

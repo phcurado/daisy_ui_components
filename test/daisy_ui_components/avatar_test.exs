@@ -53,4 +53,17 @@ defmodule DaisyUIComponents.AvatarTest do
       assert avatar =~ ~s(<div class="avatar online">)
     end
   end
+
+  test "avatar placeholder" do
+    assigns = %{}
+
+    avatar =
+      rendered_to_string(~H"""
+      <.avatar placeholder>
+        avatar
+      </.avatar>
+      """)
+
+    assert avatar =~ ~s(<div class="avatar placeholder">)
+  end
 end

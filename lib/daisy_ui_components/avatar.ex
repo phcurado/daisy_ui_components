@@ -3,13 +3,12 @@ defmodule DaisyUIComponents.Avatar do
   Avatar component
 
   https://daisyui.com/components/avatar
-
-
   """
 
   use DaisyUIComponents.Component
 
   attr :class, :any, default: nil
+  attr :placeholder, :boolean, default: false
   attr :online, :boolean, default: false
   attr :offline, :boolean, default: false
   attr :rest, :global
@@ -23,6 +22,7 @@ defmodule DaisyUIComponents.Avatar do
         classes([
           "avatar",
           add_online_or_offline_class(assigns[:online], assigns[:offline]),
+          maybe_add_class(assigns.placeholder, "placeholder"),
           assigns.class
         ])
       )

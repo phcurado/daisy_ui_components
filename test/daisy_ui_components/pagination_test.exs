@@ -13,7 +13,7 @@ defmodule DaisyUIComponents.PaginationTest do
       <.pagination />
       """)
 
-    assert pagination =~ ~s(<div class="btn-group">)
+    assert pagination =~ ~s(<div class="join">)
     assert pagination =~ ~s(<button class="btn")
     assert pagination =~ ~s(<button class="btn btn-active")
     assert pagination =~ ~s(<button class="btn btn-disabled")

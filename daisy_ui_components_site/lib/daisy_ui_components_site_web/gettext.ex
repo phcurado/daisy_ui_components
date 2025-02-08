@@ -20,5 +20,5 @@ defmodule DaisyUIComponentsSiteWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :daisy_ui_components_site
+  use Gettext.Backend, otp_app: :daisy_ui_components_site
 end

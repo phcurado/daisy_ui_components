@@ -10,18 +10,20 @@ defmodule DaisyUIComponents do
     quote do
       import DaisyUIComponents.Alert
       import DaisyUIComponents.Avatar
+      import DaisyUIComponents.Back
       import DaisyUIComponents.Badge
       import DaisyUIComponents.Breadcrumbs
       import DaisyUIComponents.Button
-      import DaisyUIComponents.ButtonGroup
       import DaisyUIComponents.Card
       import DaisyUIComponents.Checkbox
       import DaisyUIComponents.Drawer
       import DaisyUIComponents.Dropdown
       import DaisyUIComponents.Form
+      import DaisyUIComponents.Header
       import DaisyUIComponents.Icon
       import DaisyUIComponents.Input
       import DaisyUIComponents.Join
+      import DaisyUIComponents.List
       import DaisyUIComponents.Modal
       import DaisyUIComponents.Navbar
       import DaisyUIComponents.Pagination

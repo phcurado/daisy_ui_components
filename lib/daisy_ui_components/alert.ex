@@ -9,6 +9,7 @@ defmodule DaisyUIComponents.Alert do
 
   use DaisyUIComponents.Component
 
+  import DaisyUIComponents.JSHelpers
   import DaisyUIComponents.Icon
 
   alias Phoenix.LiveView.JS

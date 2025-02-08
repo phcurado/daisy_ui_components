@@ -1,3 +1,5 @@
+This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project.
+
 ## Installation
 
 Reference this repository on your `mix.exs` file to start using.
@@ -5,7 +7,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.1"}
+    {:daisy_ui_components, "~> 0.4"}
   ]
 end
 ```
@@ -28,6 +30,8 @@ module.exports = {
   //...
   plugins: [
     //...
+    // comment the tailwind form to not conflict with DaisyUI
+    // require("@tailwindcss/forms"),
     require("daisyui")  <- // add daisyUI plugin
     //...
   ]
@@ -45,12 +49,16 @@ And now this library is ready. To have the components available under liveview, 
 ```elixir
 defp html_helpers do
   quote do
-    use DaisyUIComponents
+    # Translation
+    use Gettext, backend: MyAppWeb.Gettext
+
     # HTML escaping functionality
     import Phoenix.HTML
-    # Core UI components from Live DaisyUI
-    import DaisyUIComponents.CoreComponents
 
+    # Import DaisyUI components into your project
+    use DaisyUIComponents
+
+    # Comment your own CoreComponents to not conflict with the defaults of this library.
     # import YourProjectWeb.CoreComponents
     # Importing CoreComponents from your project is no longer necessary since
     # DaisyUIComponents.CoreComponents offers a drop in replacement
@@ -60,14 +68,30 @@ defp html_helpers do
 end
 ```
 
+Finally, in order to not conflict with some of the DaisyUI default styles, remove the `bg-white` class in your `root.html.heex` file.
+
+```heex
+# Change from this
+<body class="bg-white">
+# to this
+<body>
+```
+
+## Core Components
+
+This library aims to integrate seamlessly with Phoenix generators. For this reason you don't need the components inside the `CoreComponents` after adding `use DaisyUIComponents` into your web file.
+All the components should be compatible, styled with DaisyUI.
+
+If you encounter any compatibility issues, feel free to open an `issue` or submit a `pull request`, and I'll take a look.
+
+## Liveview 1.0
+
+This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/main/CHANGELOG.md#backwards-incompatible-changes-for-10).
+
 and that's it! You can use the components in your application
 
-```elixir
-def button_primary(assigns) do
-  ~H"""
-  <.button color="primary">
-    Button with primary color
-  </.button>
-  """
-end
+```heex
+<.button color="primary">
+  Button with primary color
+</.button>
 ```

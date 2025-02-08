@@ -43,7 +43,9 @@ defmodule DaisyUIComponentsSiteWeb do
         layouts: [html: DaisyUIComponentsSiteWeb.Layouts]
 
       import Plug.Conn
-      import DaisyUIComponentsSiteWeb.Gettext
+
+      use Gettext,
+        backend: DaisyUIComponentsSiteWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -81,14 +83,14 @@ defmodule DaisyUIComponentsSiteWeb do
 
   defp html_helpers do
     quote do
+      use Gettext,
+        backend: DaisyUIComponentsSiteWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
 
       use DaisyUIComponents
-      import DaisyUIComponents.CoreComponents
-
-      import DaisyUIComponentsSiteWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

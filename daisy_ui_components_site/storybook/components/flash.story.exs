@@ -3,10 +3,10 @@ defmodule Storybook.Components.Flash do
 
   alias DaisyUIComponents.Alert
   alias DaisyUIComponents.Button
-  alias DaisyUIComponents.Utils
+  alias DaisyUIComponents.JSHelpers
 
   def function, do: &Alert.flash/1
-  def imports, do: [{Button, [button: 1]}, {Utils, [show: 1]}]
+  def imports, do: [{Button, [button: 1]}, {JSHelpers, [show: 1]}]
 
   def template do
     """

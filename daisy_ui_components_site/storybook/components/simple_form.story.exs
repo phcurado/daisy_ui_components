@@ -2,10 +2,10 @@ defmodule Storybook.Components.Form do
   use PhoenixStorybook.Story, :component
 
   alias DaisyUIComponents.Input
-  alias DaisyUIComponents.CoreComponents
+  alias DaisyUIComponents.Form
 
   def function, do: &Input.input/1
-  def imports, do: [{CoreComponents, [simple_form: 1]}]
+  def imports, do: [{Form, [simple_form: 1]}]
 
   def template do
     """

@@ -10,7 +10,7 @@ defmodule DaisyUIComponents.Pagination do
   use DaisyUIComponents.Component
 
   import DaisyUIComponents.Button
-  import DaisyUIComponents.ButtonGroup
+  import DaisyUIComponents.Join
 
   alias Phoenix.LiveView.JS
 
@@ -31,7 +31,7 @@ defmodule DaisyUIComponents.Pagination do
 
   def pagination(assigns) do
     ~H"""
-    <.button_group :if={@total_entries > 0} {@rest}>
+    <.join :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
           class={@button_class}
@@ -43,7 +43,7 @@ defmodule DaisyUIComponents.Pagination do
           {block}
         </.button>
       <% end %>
-    </.button_group>
+    </.join>
     """
   end
 

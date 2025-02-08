@@ -17,7 +17,9 @@ defmodule DaisyUIComponentsSiteWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import DaisyUIComponentsSiteWeb.Gettext
+
+  use Gettext,
+    backend: DaisyUIComponentsSiteWeb.Gettext
 
   @doc """
   Renders a modal.

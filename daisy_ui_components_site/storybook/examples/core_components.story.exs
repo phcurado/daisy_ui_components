@@ -1,8 +1,7 @@
 defmodule Storybook.Examples.CoreComponents do
   use PhoenixStorybook.Story, :example
-  use DaisyUIComponents
 
-  import DaisyUIComponents.CoreComponents
+  use DaisyUIComponents
 
   alias Phoenix.LiveView.JS
 
