@@ -3,43 +3,67 @@ defmodule DaisyUIComponents.Drawer do
   Drawer component
 
   https://daisyui.com/components/drawer
-
-
   """
 
   use DaisyUIComponents.Component
 
-  import DaisyUIComponents.Icon
-
-  attr :id, :string, required: true
+  attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
   attr :class, :any, default: nil
-  slot :page_content
-  slot :inner_block, required: true
+  attr :rest, :global
+
+  slot :drawer_content do
+    attr :class, :any
+  end
+
+  slot :drawer_side do
+    attr :class, :any
+  end
+
+  slot :inner_block
 
   def drawer(assigns) do
     ~H"""
-    <div class={classes(["drawer", @class])}>
-      <input id={@id} type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col">
-        <label for={@id} class="btn btn-ghost lg:hidden justify-start ">
-          <.icon name="hero-bars-3-center-left" class="h-5 w-5" />
-        </label>
-        {render_slot(@page_content)}
-      </div>
+    <div class={classes(["drawer", @class])} {@rest}>
+      <input id={@selector_id} type="checkbox" class="drawer-toggle" />
+      {render_slot(@inner_block)}
+      <.drawer_content
+        :for={drawer_content <- @drawer_content}
+        class={Map.get(drawer_content, :class)}
+      >
+        {render_slot(drawer_content)}
+      </.drawer_content>
+      <.drawer_side
+        :for={drawer_side <- @drawer_side}
+        class={Map.get(drawer_side, :class)}
+        selector_id={@selector_id}
+      >
+        {render_slot(drawer_side)}
+      </.drawer_side>
+    </div>
+    """
+  end
+
+  attr :class, :any, default: nil
+  attr :rest, :global
+  slot :inner_block
+
+  def drawer_content(assigns) do
+    ~H"""
+    <div class={classes(["drawer-content", @class])} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
   end
 
-  attr :drawer_id, :string, required: true
   attr :class, :any, default: nil
-
-  slot :inner_block, required: true
+  attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
+  attr :rest, :global
+  slot :inner_block
 
   def drawer_side(assigns) do
     ~H"""
-    <div class={classes(["drawer-side", @class])}>
-      <label for={@drawer_id} class="drawer-overlay"></label>
+    <div class={classes(["drawer-side", @class])} {@rest}>
+      <label for={@selector_id} aria-label="close sidebar" class="drawer-overlay"></label>
       {render_slot(@inner_block)}
     </div>
     """
