@@ -21,7 +21,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.5"}
+    {:daisy_ui_components, "~> 0.6"}
   ]
 end
 ```
@@ -114,13 +114,7 @@ In your `mix.exs` file, add the npm command in your assets setup:
 - "esbuild.install --if-missing"
 + "esbuild.install --if-missing",
 + "cmd npm install --prefix assets"
-],
-"assets.deploy": [
-    "tailwind my_project --minify",
-    "esbuild my_project --minify",
-+   "npm --prefix ./assets ci --progress=false --no-audit --loglevel=error",
-    "phx.digest"
-],
+]
 ```
 
 and if you are deploying the application with `Docker`, run the npm scripts there too:
@@ -130,6 +124,13 @@ and if you are deploying the application with `Docker`, run the npm scripts ther
 -RUN apt-get update -y && apt-get install -y build-essential git \
 +RUN apt-get update -y && apt-get install -y build-essential git npm \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
+
+# ...
+RUN mix deps.compile
+
+# build assets
++COPY assets/package.json assets/package-lock.json ./assets/
++RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 ```
 
 ## Components

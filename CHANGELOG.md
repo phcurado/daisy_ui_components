@@ -1,11 +1,16 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
 ## [Unreleased]
+
+[0.6.0] - 2025-02-09
 
 ### Added
 
 - Drawer Storybook
 - Navbar Storybook
+- Badge Storybook
 - Card `image-full` property
 
 ### Changed
