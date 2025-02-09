@@ -2,7 +2,7 @@ defmodule DaisyUIComponents.Utils do
   @moduledoc false
 
   @colors ~w(primary secondary accent info success warning error)
-  @directions ~w(horizontal vertical)
+  @directions ~w(top bottom left right)
   @sizes ~w(xs sm md lg)
 
   def colors, do: @colors

@@ -6,8 +6,6 @@ defmodule DaisyUIComponents.JoinTest do
   import DaisyUIComponents.Button
   import DaisyUIComponents.Join
 
-  alias DaisyUIComponents.Utils
-
   test "join" do
     assigns = %{}
 
@@ -25,7 +23,7 @@ defmodule DaisyUIComponents.JoinTest do
   end
 
   test "Join direction" do
-    for direction <- Utils.directions() do
+    for direction <- ["horizontal", "vertical"] do
       assigns = %{direction: direction}
 
       assert rendered_to_string(~H"""

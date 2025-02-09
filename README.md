@@ -28,7 +28,7 @@ end
 
 Add through `npm` the daisy UI package inside your phoenix application:
 
-```
+```bash
 cd assets
 npm i -D daisyui@latest
 ```
@@ -102,61 +102,143 @@ If you encounter any compatibility issues, feel free to open an `issue` or submi
 
 This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/main/CHANGELOG.md#backwards-incompatible-changes-for-10).
 
+## NPM setup
+
+Since DaisyUI requires `npm` to install, it's also necessary to configure in your project the asset pipeline to use the npm commands.
+
+In your `mix.exs` file, add the npm command in your assets setup:
+
+```diff
+"assets.setup": [
+  "tailwind.install --if-missing",
+- "esbuild.install --if-missing"
++ "esbuild.install --if-missing",
++ "cmd npm install --prefix assets"
+],
+"assets.deploy": [
+    "tailwind my_project --minify",
+    "esbuild my_project --minify",
++   "npm --prefix ./assets ci --progress=false --no-audit --loglevel=error",
+    "phx.digest"
+],
+```
+
+and if you are deploying the application with `Docker`, run the npm scripts there too:
+
+```diff
+# install build dependencies
+-RUN apt-get update -y && apt-get install -y build-essential git \
++RUN apt-get update -y && apt-get install -y build-essential git npm \
+    && apt-get clean && rm -f /var/lib/apt/lists/*_*
+```
+
 ## Components
 
 List of available components.
-| Component | Status |
-| ------------- | ------------- |
-| [Alert](https://daisyui.com/components/alert) | ✅ |
-| [Artboard](https://daisyui.com/components/artboard) |❌ |
-| [Avatar](https://daisyui.com/components/avatar) | ✅ |
-| [Badge](https://daisyui.com/components/badge) | ✅ |
-| [Bottom navigation](https://daisyui.com/components/botton-navigation) | ❌ |
-| [Breadcrumbs](https://daisyui.com/components/breadcrumbs) | ✅ |
-| [Button](https://daisyui.com/components/button) | ✅ |
-| [Card](https://daisyui.com/components/card) | ✅ |
-| [Carousel](https://daisyui.com/components/carousel) | ❌ |
-| [Chat bubble](https://daisyui.com/components/chat) | ❌ |
-| [Checkbox](https://daisyui.com/components/checkbox) | ✅ |
-| [Collapse](https://daisyui.com/components/collapse) | ❌ |
-| [Countdown](https://daisyui.com/components/countdown) | ❌ |
-| [Divider](https://daisyui.com/components/divider) | ❌ |
-| [Drawer](https://daisyui.com/components/drawer) | ❌ |
-| [Dropdown](https://daisyui.com/components/dropdown) | ❌ |
-| [File input](https://daisyui.com/components/file-input) | ❌ |
-| [Footer](https://daisyui.com/components/footer) | ❌ |
-| [Join](https://daisyui.com/components/join) | ✅ |
-| [Hero](https://daisyui.com/components/hero) | ❌ |
-| [Indicator](https://daisyui.com/components/indicator) | ❌ |
-| [Input group](https://daisyui.com/components/input-group) | ❌ |
-| [Text Input](https://daisyui.com/components/input) | ✅ |
-| [Kbd](https://daisyui.com/components/kbd) | ❌ |
-| [Link](https://daisyui.com/components/link) | ❌ |
-| [Loading](https://daisyui.com/components/loading/) | ✅ |
-| [Mask](https://daisyui.com/components/mask) | ❌ |
-| [Menu](https://daisyui.com/components/menu) | ❌ |
-| [Code mockup](https://daisyui.com/components/mockup-code) | ❌ |
-| [Phone mockup](https://daisyui.com/components/mockup-phone) | ❌ |
-| [Window mockup](https://daisyui.com/components/mockup-window) | ❌ |
-| [Modal](https://daisyui.com/components/modal) | ✅ |
-| [Navbar](https://daisyui.com/components/navbar) | ✅ |
-| [Pagination](https://daisyui.com/components/pagination) | ✅ |
-| [Progress](https://daisyui.com/components/progress) | ❌ |
-| [Radial progress](https://daisyui.com/components/radial-progress) | ❌ |
-| [Radio](https://daisyui.com/components/radio) | ❌ |
-| [Range slider](https://daisyui.com/components/range) | ✅ |
-| [Rating](https://daisyui.com/components/rating) | ❌ |
-| [Select](https://daisyui.com/components/select) | ✅ |
-| [Stack](https://daisyui.com/components/stack) | ❌ |
-| [Stat](https://daisyui.com/components/stat) | ✅ |
-| [Steps](https://daisyui.com/components/steps) | ❌ |
-| [Swap](https://daisyui.com/components/swap) |✅
-| [Tabs](https://daisyui.com/components/tab) | ❌ |
-| [Table](https://daisyui.com/components/table) | ✅ |
-| [Textarea](https://daisyui.com/components/textarea) | ✅ |
-| [Toast](https://daisyui.com/components/toast) | ❌ |
-| [Toggle](https://daisyui.com/components/toggle) | ✅ |
-| [Tooltip](https://daisyui.com/components/tooltip) | ✅ |
 
-✅: Implementd
-❌: To be implemened
+### Actions
+
+| Component                                                            | Status | Storybook |
+| -------------------------------------------------------------------- | ------ | --------- |
+| [Button](https://daisyui.com/components/button)                      | ✅     | ✅        |
+| [Dropdown](https://daisyui.com/components/dropdown)                  | ✅     | ✅        |
+| [Modal](https://daisyui.com/components/modal)                        | ✅     | ✅        |
+| [Swap](https://daisyui.com/components/swap)                          | ✅     | ✅        |
+| [Theme Controller](https://daisyui.com/components/theme-controller/) | ❌     | ❌        |
+
+### Data Display
+
+| Component                                             | Status | Storybook |
+| ----------------------------------------------------- | ------ | --------- |
+| [Accordion](https://daisyui.com/components/accordion) | ❌     | ❌        |
+| [Avatar](https://daisyui.com/components/avatar)       | ✅     | ✅        |
+| [Badge](https://daisyui.com/components/badge)         | ✅     | ❌        |
+| [Card](https://daisyui.com/components/card)           | ✅     | ❌        |
+| [Carousel](https://daisyui.com/components/carousel)   | ❌     | ❌        |
+| [Chat bubble](https://daisyui.com/components/chat)    | ❌     | ❌        |
+| [Collapse](https://daisyui.com/components/collapse)   | ❌     | ❌        |
+| [Countdown](https://daisyui.com/components/countdown) | ❌     | ❌        |
+| [Diff](https://daisyui.com/components/diff/)          | ❌     | ❌        |
+| [Kbd](https://daisyui.com/components/kbd)             | ❌     | ❌        |
+| [Stat](https://daisyui.com/components/stat)           | ✅     | ❌        |
+| [Table](https://daisyui.com/components/table)         | ✅     | ✅        |
+| [Timeline](https://daisyui.com/components/timeline/)  | ❌     | ❌        |
+
+### Navigation
+
+| Component                                                              | Status | Storybook |
+| ---------------------------------------------------------------------- | ------ | --------- |
+| [Breadcrumbs](https://daisyui.com/components/breadcrumbs)              | ✅     | ✅        |
+| [Bottom navigation](https://daisyui.com/components/bottom-navigation/) | ❌     | ❌        |
+| [Link](https://daisyui.com/components/link)                            | ❌     | ❌        |
+| [Menu](https://daisyui.com/components/menu)                            | ❌     | ❌        |
+| [Navbar](https://daisyui.com/components/navbar)                        | ✅     | ❌        |
+| [Pagination](https://daisyui.com/components/pagination)                | ✅     | ❌        |
+| [Steps](https://daisyui.com/components/steps)                          | ❌     | ❌        |
+| [Tabs](https://daisyui.com/components/tab)                             | ❌     | ❌        |
+
+### Feedback
+
+| Component                                                         | Status | Storybook |
+| ----------------------------------------------------------------- | ------ | --------- |
+| [Alert](https://daisyui.com/components/alert)                     | ✅     | ✅        |
+| [Loading](https://daisyui.com/components/loading/)                | ✅     | ✅        |
+| [Progress](https://daisyui.com/components/progress)               | ❌     | ❌        |
+| [Radial progress](https://daisyui.com/components/radial-progress) | ❌     | ❌        |
+| [Skeleton](https://daisyui.com/components/skeleton/)              | ❌     | ❌        |
+| [Toast](https://daisyui.com/components/toast)                     | ❌     | ❌        |
+| [Tooltip](https://daisyui.com/components/tooltip)                 | ✅     | ❌        |
+
+### Data Input
+
+| Component                                               | Status | Storybook |
+| ------------------------------------------------------- | ------ | --------- |
+| [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ❌        |
+| [File input](https://daisyui.com/components/file-input) | ❌     | ❌        |
+| [Radio](https://daisyui.com/components/radio)           | ❌     | ❌        |
+| [Range](https://daisyui.com/components/range)           | ✅     | ✅        |
+| [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
+| [Select](https://daisyui.com/components/select)         | ✅     | ❌        |
+| [Text Input](https://daisyui.com/components/input)      | ✅     | ✅        |
+| [Textarea](https://daisyui.com/components/textarea)     | ✅     | ❌        |
+| [Toggle](https://daisyui.com/components/toggle)         | ✅     | ✅        |
+
+### Layout
+
+| Component                                             | Status | Storybook |
+| ----------------------------------------------------- | ------ | --------- |
+| [Artboard](https://daisyui.com/components/artboard)   | ❌     | ❌        |
+| [Divider](https://daisyui.com/components/divider)     | ❌     | ❌        |
+| [Drawer](https://daisyui.com/components/drawer)       | ✅     | ✅        |
+| [Footer](https://daisyui.com/components/footer)       | ❌     | ❌        |
+| [Hero](https://daisyui.com/components/hero)           | ❌     | ❌        |
+| [Indicator](https://daisyui.com/components/indicator) | ❌     | ❌        |
+| [Join](https://daisyui.com/components/join)           | ✅     | ❌        |
+| [Mask](https://daisyui.com/components/mask)           | ❌     | ❌        |
+| [Stack](https://daisyui.com/components/stack)         | ❌     | ❌        |
+
+### Mockup
+
+| Component                                                 | Status | Storybook |
+| --------------------------------------------------------- | ------ | --------- |
+| [Browser](https://daisyui.com/components/mockup-browser/) | ❌     | ❌        |
+| [Code](https://daisyui.com/components/mockup-code)        | ❌     | ❌        |
+| [Phone](https://daisyui.com/components/mockup-phone)      | ❌     | ❌        |
+| [Window](https://daisyui.com/components/mockup-window)    | ❌     | ❌        |
+
+### Phoenix Core Components
+
+| Component   | Status | Storybook |
+| ----------- | ------ | --------- |
+| Flash       | ✅     | ✅        |
+| Header      | ✅     | ✅        |
+| List        | ✅     | ✅        |
+| Simple Form | ✅     | ✅        |
+| Input       | ✅     | ❌        |
+| Table       | ✅     | ✅        |
+
+## Roadmap
+
+- Implement all components
+- Document all components in Storybook
+- Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace.

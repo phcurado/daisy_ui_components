@@ -24,7 +24,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_aligns_to_end,
         attributes: %{
-          end: true
+          align_end: true
         },
         slots: [
           """
@@ -41,7 +41,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_top,
         attributes: %{
-          top: true
+          direction: "top"
         },
         slots: [
           """
@@ -58,8 +58,8 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_top_aligns_to_end,
         attributes: %{
-          top: true,
-          end: true
+          align_end: true,
+          direction: "top"
         },
         slots: [
           """
@@ -76,7 +76,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_bottom,
         attributes: %{
-          bottom: true
+          direction: "bottom"
         },
         slots: [
           """
@@ -93,8 +93,8 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_bottom_aligns_to_end,
         attributes: %{
-          bottom: true,
-          end: true
+          direction: "bottom",
+          align_end: true,
         },
         slots: [
           """
@@ -111,7 +111,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_left,
         attributes: %{
-          left: true
+          direction: "left",
         },
         slots: [
           """
@@ -128,8 +128,8 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_left_aligns_to_end,
         attributes: %{
-          left: true,
-          end: true
+          direction: "left",
+          align_end: true,
         },
         slots: [
           """
@@ -146,7 +146,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_right,
         attributes: %{
-          right: true
+          direction: "right",
         },
         slots: [
           """
@@ -163,8 +163,8 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_right_aligns_to_end,
         attributes: %{
-          right: true,
-          end: true
+          direction: "right",
+          align_end: true,
         },
         slots: [
           """

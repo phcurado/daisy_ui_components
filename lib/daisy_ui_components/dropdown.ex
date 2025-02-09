@@ -3,14 +3,12 @@ defmodule DaisyUIComponents.Dropdown do
   Dropdown component
 
   https://daisyui.com/components/dropdown/
-
-
   """
 
   use DaisyUIComponents.Component
 
   @doc """
-  Renders a button group.
+  Renders a  dropdown
 
   ## Examples
 
@@ -23,11 +21,8 @@ defmodule DaisyUIComponents.Dropdown do
       </.dropdown>
   """
   attr :class, :string, default: nil
-  attr :top, :boolean, default: nil
-  attr :bottom, :boolean, default: nil
-  attr :end, :boolean, default: nil
-  attr :left, :boolean, default: nil
-  attr :right, :boolean, default: nil
+  attr :direction, :string, values: directions()
+  attr :align_end, :boolean, default: nil
   attr :hover, :boolean, default: nil
   attr :open, :boolean, default: nil
   attr :rest, :global
@@ -37,11 +32,8 @@ defmodule DaisyUIComponents.Dropdown do
     assigns =
       assign(assigns, :class, [
         "dropdown",
-        maybe_add_class(assigns.top, "dropdown-top"),
-        maybe_add_class(assigns.bottom, "dropdown-bottom"),
-        maybe_add_class(assigns.end, "dropdown-end"),
-        maybe_add_class(assigns.left, "dropdown-left"),
-        maybe_add_class(assigns.right, "dropdown-right"),
+        dropdown_direction(assigns[:direction]),
+        maybe_add_class(assigns[:align_end], "dropdown-end"),
         maybe_add_class(assigns.hover, "dropdown-hover"),
         maybe_add_class(assigns.open, "dropdown-open"),
         assigns.class
@@ -53,4 +45,11 @@ defmodule DaisyUIComponents.Dropdown do
     </div>
     """
   end
+
+  # Direction
+  defp dropdown_direction("top"), do: "dropdown-top"
+  defp dropdown_direction("bottom"), do: "dropdown-bottom"
+  defp dropdown_direction("left"), do: "dropdown-left"
+  defp dropdown_direction("right"), do: "dropdown-right"
+  defp dropdown_direction(nil), do: nil
 end

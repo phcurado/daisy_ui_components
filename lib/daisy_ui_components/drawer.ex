@@ -9,6 +9,8 @@ defmodule DaisyUIComponents.Drawer do
 
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
   attr :class, :any, default: nil
+  attr :open, :boolean, default: nil, doc: "Forces the drawer to be open"
+  attr :end, :boolean, default: nil, doc: "Puts drawer to the right"
   attr :rest, :global
 
   slot :drawer_content do
@@ -22,8 +24,20 @@ defmodule DaisyUIComponents.Drawer do
   slot :inner_block
 
   def drawer(assigns) do
+    assigns =
+      assigns
+      |> assign(
+        :class,
+        classes([
+          "drawer",
+          maybe_add_class(assigns[:open], "drawer-open"),
+          maybe_add_class(assigns[:end], "drawer-end"),
+          assigns.class
+        ])
+      )
+
     ~H"""
-    <div class={classes(["drawer", @class])} {@rest}>
+    <div class={@class} {@rest}>
       <input id={@selector_id} type="checkbox" class="drawer-toggle" />
       {render_slot(@inner_block)}
       <.drawer_content

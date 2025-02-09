@@ -5,8 +5,6 @@ defmodule DaisyUIComponents.StatTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Stat
 
-  alias DaisyUIComponents.Utils
-
   test "stats" do
     assigns = %{}
 
@@ -32,7 +30,7 @@ defmodule DaisyUIComponents.StatTest do
   end
 
   test "stats direction" do
-    for direction <- Utils.directions() do
+    for direction <- ["horizontal", "vertical"] do
       assigns = %{direction: direction}
 
       assert rendered_to_string(~H"""

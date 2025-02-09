@@ -3,7 +3,6 @@ defmodule DaisyUIComponents.Breadcrumbs do
   Stat component
 
   https://daisyui.com/components/stat
-
   """
 
   use DaisyUIComponents.Component

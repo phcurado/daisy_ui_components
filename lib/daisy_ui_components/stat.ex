@@ -10,7 +10,7 @@ defmodule DaisyUIComponents.Stat do
   use DaisyUIComponents.Component
 
   attr :class, :string, default: nil
-  attr :direction, :string, values: directions()
+  attr :direction, :string, values: ["horizontal", "vertical"]
   attr :rest, :global
   slot :inner_block
 

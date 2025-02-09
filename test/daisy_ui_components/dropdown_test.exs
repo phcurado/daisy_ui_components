@@ -5,6 +5,8 @@ defmodule DaisyUIComponents.DropdownTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Dropdown
 
+  alias DaisyUIComponents.Utils
+
   test "dropdown" do
     assigns = %{}
 
@@ -17,13 +19,21 @@ defmodule DaisyUIComponents.DropdownTest do
     assert dropdown =~ ~s(dropdown slot)
   end
 
-  test "dropdown modifiers" do
-    for modifier <- [:top, :bottom, :end, :left, :right] do
-      assigns = %{rest: %{modifier => true}}
+  test "dropdown directions" do
+    for direction <- Utils.directions() do
+      assigns = %{direction: direction}
 
       assert rendered_to_string(~H"""
-             <.dropdown {@rest}>My dropdown</.dropdown>
-             """) =~ ~s(<div class="dropdown dropdown-#{modifier}">)
+             <.dropdown direction={@direction}>My dropdown</.dropdown>
+             """) =~ ~s(<div class="dropdown dropdown-#{direction}">)
     end
+  end
+
+  test "dropdown boolean attributes" do
+    assigns = %{}
+
+    assert rendered_to_string(~H"""
+           <.dropdown open hover align_end>My dropdown</.dropdown>
+           """) =~ ~s(<div class="dropdown dropdown-end dropdown-hover dropdown-open">)
   end
 end

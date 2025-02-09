@@ -5,7 +5,7 @@ defmodule Storybook.Components.Table do
 
   def imports,
     do: [
-      {DaisyUIComponents.Table, [thead: 1, tr: 1, th: 1, tbody: 1, td: 1]}
+      {Table, [thead: 1, tr: 1, th: 1, tbody: 1, td: 1]}
     ]
 
   def function, do: &Table.table/1

@@ -3,14 +3,14 @@ defmodule DaisyUIComponents.Card do
   Card component
 
   https://daisyui.com/components/card/
-
-
   """
 
   use DaisyUIComponents.Component
 
+  # TODO: more bool classes to add
   attr :class, :any, default: nil
   attr :bordered, :boolean, default: false
+  attr :compact, :boolean, default: nil
   attr :side, :boolean, default: false
   attr :padding, :string, values: ~w(normal compact)
   attr :rest, :global
@@ -24,6 +24,7 @@ defmodule DaisyUIComponents.Card do
         classes([
           "card",
           maybe_add_class(assigns[:bordered], "card-bordered"),
+          maybe_add_class(assigns[:compact], "card-compact"),
           maybe_add_class(assigns[:side], "card-side"),
           add_class_from_padding(assigns[:padding]),
           assigns.class
