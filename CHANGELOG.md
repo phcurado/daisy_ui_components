@@ -6,6 +6,7 @@
 
 - Drawer Storybook
 - Navbar Storybook
+- Card `image-full` property
 
 ### Changed
 
