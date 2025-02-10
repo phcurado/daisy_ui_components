@@ -79,7 +79,6 @@ defmodule DaisyUIComponentsSite.MixProject do
         "tailwind daisy_ui_components_site --minify",
         "esbuild daisy_ui_components_site --minify",
         "tailwind storybook --minify",
-        "npm --prefix ./assets ci --progress=false --no-audit --loglevel=error",
         "phx.digest"
       ]
     ]

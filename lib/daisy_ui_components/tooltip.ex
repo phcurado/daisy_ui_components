@@ -12,7 +12,7 @@ defmodule DaisyUIComponents.Tooltip do
   attr :class, :string, default: nil
   attr :text, :string, required: true
   attr :color, :string, values: colors()
-  attr :direction, :string, values: ["left", "top", "right", "bottom"]
+  attr :direction, :string, values: directions()
   attr :open, :boolean, default: false
   attr :rest, :global
   slot :inner_block

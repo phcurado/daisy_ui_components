@@ -13,6 +13,7 @@ module.exports = {
     "../lib/daisy_ui_components_site_web/**/*.*ex",
     "../storybook/**/*.*exs",
     "../deps/daisy_ui_components/**/*.*ex",
+    // "../../**/*.*ex",
   ],
   plugins: [
     require("daisyui"),

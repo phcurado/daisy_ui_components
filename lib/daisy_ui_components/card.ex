@@ -7,34 +7,66 @@ defmodule DaisyUIComponents.Card do
 
   use DaisyUIComponents.Component
 
+  @modifiers ~w(side image_full)
+  @paddings ~w(normal compact)
+  @placements ~w(top bottom)
+
+  def modifiers, do: @modifiers
+  def paddings, do: @paddings
+  def placements, do: @placements
+
   attr :class, :any, default: nil
+  attr :placement, :string, values: @placements
   attr :bordered, :boolean, default: false
-  attr :compact, :boolean, default: nil
-  attr :image_full, :boolean, default: nil
-  attr :side, :boolean, default: false
-  attr :padding, :string, values: ~w(normal compact)
+  attr :modifier, :string, values: @modifiers
+  attr :padding, :string, values: @paddings
   attr :rest, :global
+
+  slot :card_title do
+    attr :class, :any
+  end
+
+  slot :card_body do
+    attr :class, :any
+
+    slot :card_actions
+  end
+
   slot :inner_block
 
   def card(assigns) do
     assigns =
-      assign(
-        assigns,
+      assigns
+      |> assign(
         :class,
         classes([
           "card",
           maybe_add_class(assigns[:bordered], "card-bordered"),
-          maybe_add_class(assigns[:compact], "card-compact"),
-          maybe_add_class(assigns[:side], "card-side"),
-          maybe_add_class(assigns[:image_full], "image-full"),
-          add_class_from_padding(assigns[:padding]),
+          card_modifier(assigns[:modifier]),
+          card_padding(assigns[:padding]),
           assigns.class
         ])
       )
+      |> assign_new(:placement, fn -> nil end)
 
     ~H"""
     <div class={@class} {@rest}>
-      {render_slot(@inner_block)}
+      <%= if @placement in [nil, "top"] do %>
+        {render_slot(@inner_block)}
+      <% end %>
+      <.card_body :for={card_body <- @card_body} class={Map.get(card_body, :class)}>
+        <.card_title :for={card_title <- @card_title} class={Map.get(card_title, :class)}>
+          {render_slot(card_title)}
+        </.card_title>
+        {render_slot(card_body)}
+        <.card_actions :for={card_actions <- @card_actions} class={Map.get(card_actions, :class)}>
+          {render_slot(card_actions)}
+        </.card_actions>
+      </.card_body>
+
+      <%= if @placement == "bottom" do %>
+        {render_slot(@inner_block)}
+      <% end %>
     </div>
     """
   end
@@ -80,7 +112,13 @@ defmodule DaisyUIComponents.Card do
     """
   end
 
-  defp add_class_from_padding("normal"), do: "card-normal"
-  defp add_class_from_padding("compact"), do: "card-compact"
-  defp add_class_from_padding(nil), do: nil
+  # Padding
+  defp card_padding("normal"), do: "card-normal"
+  defp card_padding("compact"), do: "card-compact"
+  defp card_padding(nil), do: nil
+
+  # Modifier
+  defp card_modifier("side"), do: "card-side"
+  defp card_modifier("image_full"), do: "image-full"
+  defp card_modifier(nil), do: nil
 end

@@ -5,6 +5,8 @@ defmodule DaisyUIComponents.CardTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Card
 
+  alias DaisyUIComponents.Card
+
   describe "card" do
     test "card" do
       assigns = %{}
@@ -20,24 +22,56 @@ defmodule DaisyUIComponents.CardTest do
       assert card =~ ~s(my card)
     end
 
-    test "card side" do
+    test "card with all slots" do
       assigns = %{}
 
       card =
         rendered_to_string(~H"""
-        <.card side></.card>
+        <.card>
+          <:card_title class="title">
+            Card Title
+          </:card_title>
+          <:card_body class="body">
+            Card Body
+          </:card_body>
+          <:card_actions class="actions">
+            <button>action</button>
+          </:card_actions>
+        </.card>
         """)
 
-      assert card =~ ~s(<div class="card card-side">)
+      assert card =~ ~s(<div class="card">)
+      assert card =~ ~s(Card Title)
+      assert card =~ ~s(<div class="card-body body">)
+      assert card =~ ~s(Card Body)
+      assert card =~ ~s(<div class="card-actions actions">)
+      assert card =~ ~s(button>action</button>)
     end
 
-    test "card padding" do
-      for padding <- ~w(normal compact) do
+    test "card paddings" do
+      for padding <- Card.paddings() do
         assigns = %{padding: padding}
 
         assert rendered_to_string(~H"""
                <.card padding={@padding} />
                """) =~ ~s(<div class="card card-#{padding}">)
+      end
+    end
+
+    test "card modifiers" do
+      for modifier <- Card.modifiers() do
+        assigns = %{modifier: modifier}
+
+        modifier_class =
+          if modifier == "image_full" do
+            "image-full"
+          else
+            "card-#{modifier}"
+          end
+
+        assert rendered_to_string(~H"""
+               <.card modifier={@modifier} />
+               """) =~ ~s(<div class="card #{modifier_class}">)
       end
     end
   end

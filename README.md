@@ -153,7 +153,7 @@ List of available components.
 | ----------------------------------------------------- | ------ | --------- |
 | [Accordion](https://daisyui.com/components/accordion) | ❌     | ❌        |
 | [Avatar](https://daisyui.com/components/avatar)       | ✅     | ✅        |
-| [Badge](https://daisyui.com/components/badge)         | ✅     | ❌        |
+| [Badge](https://daisyui.com/components/badge)         | ✅     | ✅        |
 | [Card](https://daisyui.com/components/card)           | ✅     | ❌        |
 | [Carousel](https://daisyui.com/components/carousel)   | ❌     | ❌        |
 | [Chat bubble](https://daisyui.com/components/chat)    | ❌     | ❌        |
