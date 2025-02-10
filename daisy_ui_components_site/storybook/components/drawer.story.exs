@@ -2,8 +2,11 @@ defmodule Storybook.Components.Drawer do
   use PhoenixStorybook.Story, :component
 
   alias DaisyUIComponents.Drawer
+  alias DaisyUIComponents.Menu
 
   def function, do: &Drawer.drawer/1
+
+  def imports, do: [{Menu, menu: 1}]
 
   def variations do
     [
@@ -13,7 +16,6 @@ defmodule Storybook.Components.Drawer do
           class: "z-10",
           selector_id: "my-drawer"
         },
-        # TODO: add the menu component when ready
         slots: [
           """
           <:drawer_content>
@@ -23,11 +25,11 @@ defmodule Storybook.Components.Drawer do
           """,
           """
           <:drawer_side>
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+            <.menu class="bg-base-200 text-base-content min-h-full w-80 p-4">
               <!-- Sidebar content here -->
-              <li><a>Sidebar Item 1</a></li>
-              <li><a>Sidebar Item 2</a></li>
-            </ul>
+              <:item><a>Sidebar Item 1</a></:item>
+              <:item><a>Sidebar Item 2</a></:item>
+            </.menu>
           </:drawer_side>
           """
         ]
@@ -49,11 +51,11 @@ defmodule Storybook.Components.Drawer do
           """,
           """
           <:drawer_side class="h-full absolute">
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+            <.menu class="bg-base-200 text-base-content min-h-full w-80 p-4">
               <!-- Sidebar content here -->
-              <li><a>Sidebar Item 1</a></li>
-              <li><a>Sidebar Item 2</a></li>
-            </ul>
+              <:item><a>Sidebar Item 1</a></:item>
+              <:item><a>Sidebar Item 2</a></:item>
+            </.menu>
           </:drawer_side>
           """
         ]
@@ -74,11 +76,11 @@ defmodule Storybook.Components.Drawer do
           """,
           """
           <:drawer_side>
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+            <.menu class="bg-base-200 text-base-content min-h-full w-80 p-4">
               <!-- Sidebar content here -->
-              <li><a>Sidebar Item 1</a></li>
-              <li><a>Sidebar Item 2</a></li>
-            </ul>
+              <:item><a>Sidebar Item 1</a></:item>
+              <:item><a>Sidebar Item 2</a></:item>
+            </.menu>
           </:drawer_side>
           """
         ]

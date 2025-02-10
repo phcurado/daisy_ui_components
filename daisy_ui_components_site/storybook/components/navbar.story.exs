@@ -7,6 +7,7 @@ defmodule Storybook.Components.Navbar do
   alias DaisyUIComponents.Dropdown
   alias DaisyUIComponents.Icon
   alias DaisyUIComponents.Input
+  alias DaisyUIComponents.Menu
   alias DaisyUIComponents.Navbar
 
   def function, do: &Navbar.navbar/1
@@ -18,7 +19,8 @@ defmodule Storybook.Components.Navbar do
       {Card, [card: 1, card_body: 1, card_actions: 1]},
       {Dropdown, [dropdown: 1]},
       {Icon, [icon: 1]},
-      {Input, [input: 1]}
+      {Input, [input: 1]},
+      {Menu, menu: 1}
     ]
 
   def variations do
@@ -75,7 +77,6 @@ defmodule Storybook.Components.Navbar do
           """
         ]
       },
-      # TODO: add the menu component when ready
       %Variation{
         id: :navbar_with_menu_and_submenu,
         attributes: %{
@@ -87,18 +88,18 @@ defmodule Storybook.Components.Navbar do
             <a class="btn btn-ghost text-xl">daisyUI</a>
           </div>
           <div class="flex-none">
-            <ul class="menu menu-horizontal px-1">
-              <li><a>Link</a></li>
-              <li>
+            <.menu direction="horizontal" class="px-1">
+              <:item><a>link</a></:item>
+              <:item>
                 <details>
-                  <summary>Parent</summary>
+                  <summary>parent</summary>
                   <ul class="bg-base-100 rounded-t-none p-2">
-                    <li><a>Link 1</a></li>
-                    <li><a>Link 2</a></li>
+                    <li><a>link 1</a></li>
+                    <li><a>link 2</a></li>
                   </ul>
                 </details>
-              </li>
-            </ul>
+              </:item>
+            </.menu>
           </div>
           """
         ]
@@ -117,7 +118,7 @@ defmodule Storybook.Components.Navbar do
             <div class="form-control">
               <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
             </div>
-            <.dropdown end>
+            <.dropdown align_end>
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                   <img
@@ -125,18 +126,16 @@ defmodule Storybook.Components.Navbar do
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
               </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li>
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <:item>
                   <a class="justify-between">
                     Profile
                     <.badge>New</.badge>
                   </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-              </ul>
+                </:item>
+                <:item><a>Settings</a></:item>
+                <:item><a>Logout</a></:item>
+              </.menu>
             </.dropdown>
           </div>
           """
@@ -153,24 +152,24 @@ defmodule Storybook.Components.Navbar do
             <a class="btn btn-ghost text-xl">daisyUI</a>
           </div>
           <div class="flex-none">
-            <.dropdown end>
+            <.dropdown align_end>
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <div class="indicator">
                   <.icon name="hero-shopping-cart" />
                   <.badge size="sm" class="indicator-item">8</.badge>
                 </div>
               </div>
-              <.card compact class="dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                <.card_body>
+              <.card padding="compact" class="dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
+                <:card_body>
                   <span class="text-lg font-bold">8 Items</span>
                   <span class="text-info">Subtotal: $999</span>
-                  <.card_actions>
-                    <.button color="primary" block>View cart</.button>
-                  </.card_actions>
-                </.card_body>
+                </:card_body>
+                <:card_actions>
+                  <.button color="primary" block>View cart</.button>
+                </:card_actions>
               </.card>
             </.dropdown>
-            <.dropdown end>
+            <.dropdown align_end>
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                   <img
@@ -178,18 +177,16 @@ defmodule Storybook.Components.Navbar do
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
               </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li>
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <:item>
                   <a class="justify-between">
                     Profile
-                    <span class="badge">New</span>
+                    <.badge>New</.badge>
                   </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-              </ul>
+                </:item>
+                <:item><a>Settings</a></:item>
+                <:item><a>Logout</a></:item>
+              </.menu>
             </.dropdown>
           </div>
           """
@@ -207,13 +204,11 @@ defmodule Storybook.Components.Navbar do
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <.icon name="hero-bars-3-bottom-right" />
               </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><a>Homepage</a></li>
-                <li><a>Portfolio</a></li>
-                <li><a>About</a></li>
-              </ul>
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <:item><a>Homepage</a></:item>
+                <:item><a>Portfolio</a></:item>
+                <:item><a>About</a></:item>
+              </.menu>
             </.dropdown>
           </:navbar_start>
           <:navbar_center>
@@ -245,36 +240,34 @@ defmodule Storybook.Components.Navbar do
               <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                 <.icon name="hero-bars-3-bottom-right" />
               </div>
-              <ul
-                tabindex="0"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><a>Item 1</a></li>
-                <li>
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <:item><a>Item 1</a></:item>
+                <:item>
                   <a>Parent</a>
                   <ul class="p-2">
                     <li><a>Submenu 1</a></li>
                     <li><a>Submenu 2</a></li>
                   </ul>
-                </li>
-                <li><a>Item 3</a></li>
-              </ul>
+                </:item>
+                <:item><a>Item 3</a></:item>
+              </.menu>
             </.dropdown>
             <a class="btn btn-ghost text-xl">daisyUI</a>
           </:navbar_start>
           <:navbar_center class="hidden lg:flex">
-            <ul class="menu menu-horizontal px-1">
-              <li><a>Item 1</a></li>
-              <li>
+            <.menu direction="horizontal" class="px-1">
+              <:item><a>Item 1</a></:item>
+              <:item>
                 <details>
                   <summary>Parent</summary>
-                  <ul class="p-2">
+                  <ul class="p-2 bg-base-100 w-40">
                     <li><a>Submenu 1</a></li>
                     <li><a>Submenu 2</a></li>
                   </ul>
                 </details>
-              </li>
-              <li><a>Item 3</a></li>
-            </ul>
+              </:item>
+              <:item><a>Item 3</a></:item>
+            </.menu>
           </:navbar_center>
           <:navbar_end>
             <a class="btn">Button</a>

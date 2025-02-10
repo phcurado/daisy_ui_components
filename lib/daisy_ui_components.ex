@@ -23,7 +23,10 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Icon
       import DaisyUIComponents.Input
       import DaisyUIComponents.Join
+      import DaisyUIComponents.JSHelpers
       import DaisyUIComponents.List
+      import DaisyUIComponents.Loading
+      import DaisyUIComponents.Menu
       import DaisyUIComponents.Modal
       import DaisyUIComponents.Navbar
       import DaisyUIComponents.Pagination
@@ -36,7 +39,6 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Textarea
       import DaisyUIComponents.Toggle
       import DaisyUIComponents.Tooltip
-      import DaisyUIComponents.Loading
     end
   end
 end

@@ -1,9 +1,13 @@
 defmodule Storybook.Components.Dropdown do
   use PhoenixStorybook.Story, :component
 
+  alias DaisyUIComponents.Card
   alias DaisyUIComponents.Dropdown
+  alias DaisyUIComponents.Menu
 
   def function, do: &Dropdown.dropdown/1
+
+  def imports, do: [{Menu, menu: 1}, {Card, card: 1}]
 
   def variations do
     [
@@ -14,10 +18,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">open or close</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -31,10 +35,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -48,10 +52,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -66,10 +70,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -83,10 +87,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -94,34 +98,34 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_bottom_aligns_to_end,
         attributes: %{
           direction: "bottom",
-          align_end: true,
+          align_end: true
         },
         slots: [
           """
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
       %Variation{
         id: :dropdown_left,
         attributes: %{
-          direction: "left",
+          direction: "left"
         },
         slots: [
           """
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -129,34 +133,34 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_left_aligns_to_end,
         attributes: %{
           direction: "left",
-          align_end: true,
+          align_end: true
         },
         slots: [
           """
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
       %Variation{
         id: :dropdown_right,
         attributes: %{
-          direction: "right",
+          direction: "right"
         },
         slots: [
           """
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -164,17 +168,17 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_right_aligns_to_end,
         attributes: %{
           direction: "right",
-          align_end: true,
+          align_end: true
         },
         slots: [
           """
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -188,10 +192,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -205,10 +209,10 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" class="btn m-1">Click</div>
           """,
           """
-          <ul tabindex="0" class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <.menu tabindex="0" class="dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <:item><a>Item 1</a></:item>
+            <:item><a>Item 2</a></:item>
+          </.menu>
           """
         ]
       },
@@ -219,14 +223,14 @@ defmodule Storybook.Components.Dropdown do
           <div tabindex="0" role="button" class="btn m-1">Click</div>
           """,
           """
-          <div
-            tabindex="0"
-            class="dropdown-content card card-compact bg-primary text-primary-content z-[1] w-64 p-2 shadow">
-            <div class="card-body">
-              <h3 class="card-title">Card title!</h3>
+          <.card tabindex="0" padding="compact" class="dropdown-content bg-primary text-primary-content z-[1] w-64 p-2 shadow">
+            <:card_title>
+              Card title!
+            </:card_title>
+            <:card_body>
               <p>you can use any element as a dropdown.</p>
-            </div>
-          </div>
+            </:card_body>
+          </.card>
           """
         ]
       }

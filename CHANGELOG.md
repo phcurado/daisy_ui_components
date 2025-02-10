@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Card storybook
+- Menu component
+- Menu storybook
+
+### Changed
+
 - Card slots: `title`, `body` and `actions`
 - Card modifier with `side` and `image_full` properties
 

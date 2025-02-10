@@ -66,18 +66,22 @@ defmodule DaisyUIComponents.MixProject do
         Types: [
           DaisyUIComponents.Alert,
           DaisyUIComponents.Avatar,
+          DaisyUIComponents.Back,
           DaisyUIComponents.Badge,
           DaisyUIComponents.Breadcrumbs,
           DaisyUIComponents.Button,
-          DaisyUIComponents.ButtonGroup,
           DaisyUIComponents.Card,
           DaisyUIComponents.Checkbox,
           DaisyUIComponents.Drawer,
           DaisyUIComponents.Dropdown,
           DaisyUIComponents.Form,
+          DaisyUIComponents.Header,
           DaisyUIComponents.Icon,
           DaisyUIComponents.Input,
           DaisyUIComponents.Join,
+          DaisyUIComponents.List,
+          DaisyUIComponents.Loading,
+          DaisyUIComponents.Menu,
           DaisyUIComponents.Modal,
           DaisyUIComponents.Navbar,
           DaisyUIComponents.Pagination,
@@ -89,8 +93,7 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.TextInput,
           DaisyUIComponents.Textarea,
           DaisyUIComponents.Toggle,
-          DaisyUIComponents.Tooltip,
-          DaisyUIComponents.Loading
+          DaisyUIComponents.Tooltip
         ]
       ]
     ]

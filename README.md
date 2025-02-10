@@ -154,7 +154,7 @@ List of available components.
 | [Accordion](https://daisyui.com/components/accordion) | ❌     | ❌        |
 | [Avatar](https://daisyui.com/components/avatar)       | ✅     | ✅        |
 | [Badge](https://daisyui.com/components/badge)         | ✅     | ✅        |
-| [Card](https://daisyui.com/components/card)           | ✅     | ❌        |
+| [Card](https://daisyui.com/components/card)           | ✅     | ✅        |
 | [Carousel](https://daisyui.com/components/carousel)   | ❌     | ❌        |
 | [Chat bubble](https://daisyui.com/components/chat)    | ❌     | ❌        |
 | [Collapse](https://daisyui.com/components/collapse)   | ❌     | ❌        |
@@ -172,8 +172,8 @@ List of available components.
 | [Breadcrumbs](https://daisyui.com/components/breadcrumbs)              | ✅     | ✅        |
 | [Bottom navigation](https://daisyui.com/components/bottom-navigation/) | ❌     | ❌        |
 | [Link](https://daisyui.com/components/link)                            | ❌     | ❌        |
-| [Menu](https://daisyui.com/components/menu)                            | ❌     | ❌        |
-| [Navbar](https://daisyui.com/components/navbar)                        | ✅     | ❌        |
+| [Menu](https://daisyui.com/components/menu)                            | ✅     | ✅        |
+| [Navbar](https://daisyui.com/components/navbar)                        | ✅     | ✅        |
 | [Pagination](https://daisyui.com/components/pagination)                | ✅     | ❌        |
 | [Steps](https://daisyui.com/components/steps)                          | ❌     | ❌        |
 | [Tabs](https://daisyui.com/components/tab)                             | ❌     | ❌        |
