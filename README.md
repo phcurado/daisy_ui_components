@@ -174,7 +174,7 @@ List of available components.
 | [Link](https://daisyui.com/components/link)                            | ❌     | ❌        |
 | [Menu](https://daisyui.com/components/menu)                            | ✅     | ✅        |
 | [Navbar](https://daisyui.com/components/navbar)                        | ✅     | ✅        |
-| [Pagination](https://daisyui.com/components/pagination)                | ✅     | ❌        |
+| [Pagination](https://daisyui.com/components/pagination)                | ✅     | ✅        |
 | [Steps](https://daisyui.com/components/steps)                          | ❌     | ❌        |
 | [Tabs](https://daisyui.com/components/tab)                             | ❌     | ❌        |
 
@@ -196,7 +196,7 @@ List of available components.
 | ------------------------------------------------------- | ------ | --------- |
 | [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ❌        |
 | [File input](https://daisyui.com/components/file-input) | ❌     | ❌        |
-| [Radio](https://daisyui.com/components/radio)           | ❌     | ❌        |
+| [Radio](https://daisyui.com/components/radio)           | ✅     | ❌        |
 | [Range](https://daisyui.com/components/range)           | ✅     | ✅        |
 | [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
 | [Select](https://daisyui.com/components/select)         | ✅     | ❌        |

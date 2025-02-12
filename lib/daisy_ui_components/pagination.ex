@@ -32,6 +32,7 @@ defmodule DaisyUIComponents.Pagination do
 
   def pagination(assigns) do
     assigns = assign_new(assigns, :size, fn -> nil end)
+
     ~H"""
     <.join :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
