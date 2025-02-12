@@ -31,17 +31,13 @@ defmodule DaisyUIComponents.Pagination do
   attr :rest, :global
 
   def pagination(assigns) do
-    assigns =
-      assign(assigns, :button_class, [
-        btn_size(assigns[:size]),
-        assigns.button_class
-      ])
-
+    assigns = assign_new(assigns, :size, fn -> nil end)
     ~H"""
     <.join :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
           class={@button_class}
+          size={@size}
           phx-click={JS.push(@page_click_event, value: %{page: block})}
           phx-target={@target}
           active={block == @page}
@@ -74,10 +70,4 @@ defmodule DaisyUIComponents.Pagination do
         [1, "...", page - 1, page, page + 1, "...", max_blocks]
     end
   end
-
-  defp btn_size("xs"), do: "btn-xs"
-  defp btn_size("sm"), do: "btn-sm"
-  defp btn_size("md"), do: "btn-md"
-  defp btn_size("lg"), do: "btn-lg"
-  defp btn_size(_size), do: nil
 end

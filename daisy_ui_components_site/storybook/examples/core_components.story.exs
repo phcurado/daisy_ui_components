@@ -6,7 +6,7 @@ defmodule Storybook.Examples.CoreComponents do
   alias Phoenix.LiveView.JS
 
   def doc do
-    "An example of what you can achieve with Phoenix core components."
+    "An example of what you can achieve with DaisyUI Core Components."
   end
 
   defstruct [:id, :first_name, :last_name]
