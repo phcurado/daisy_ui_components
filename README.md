@@ -201,7 +201,7 @@ List of available components.
 | [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
 | [Select](https://daisyui.com/components/select)         | ✅     | ❌        |
 | [Text Input](https://daisyui.com/components/input)      | ✅     | ✅        |
-| [Textarea](https://daisyui.com/components/textarea)     | ✅     | ❌        |
+| [Textarea](https://daisyui.com/components/textarea)     | ✅     | ✅        |
 | [Toggle](https://daisyui.com/components/toggle)         | ✅     | ✅        |
 
 ### Layout
@@ -235,7 +235,7 @@ List of available components.
 | Header      | ✅     | ✅        |
 | List        | ✅     | ✅        |
 | Simple Form | ✅     | ✅        |
-| Input       | ✅     | ❌        |
+| Input       | ✅     | ✅        |
 | Table       | ✅     | ✅        |
 
 ## Roadmap

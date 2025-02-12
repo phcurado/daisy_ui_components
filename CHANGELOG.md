@@ -9,11 +9,16 @@ All notable changes to this project will be documented in this file.
 - Card storybook
 - Menu component
 - Menu storybook
+- Input storybook
+- Textarea storybook
+- Radio component
+- Pagination storybook
 
 ### Changed
 
 - Card slots: `title`, `body` and `actions`
 - Card modifier with `side` and `image_full` properties
+- Pagination size attr
 
 ## [0.6.0] - 2025-02-09
 

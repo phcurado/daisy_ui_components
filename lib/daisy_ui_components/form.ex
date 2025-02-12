@@ -145,6 +145,34 @@ defmodule DaisyUIComponents.Form do
     """
   end
 
+  def form_input(%{type: "radio"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:checked, fn ->
+        Phoenix.HTML.Form.normalize_value("radio", assigns[:value])
+      end)
+
+    ~H"""
+    <div class="form-control">
+      <.label class="cursor-pointer" for={@id}>
+        <input type="hidden" name={@name} value="false" />
+        <span class="label-text mr-2">{@label}</span>
+        <.input
+          id={@id}
+          type="radio"
+          color={@color}
+          name={@name}
+          value="true"
+          checked={@checked}
+          class={@class}
+          {@rest}
+        />
+        <.error :for={msg <- @errors}>{msg}</.error>
+      </.label>
+    </div>
+    """
+  end
+
   def form_input(%{type: "select"} = assigns) do
     ~H"""
     <div class="form-control w-full">

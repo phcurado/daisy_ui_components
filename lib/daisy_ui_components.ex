@@ -30,6 +30,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Modal
       import DaisyUIComponents.Navbar
       import DaisyUIComponents.Pagination
+      import DaisyUIComponents.Radio
       import DaisyUIComponents.Range
       import DaisyUIComponents.Select
       import DaisyUIComponents.Stat

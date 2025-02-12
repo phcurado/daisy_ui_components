@@ -6,6 +6,7 @@ defmodule DaisyUIComponents.Input do
   use DaisyUIComponents.Component
 
   import DaisyUIComponents.Checkbox
+  import DaisyUIComponents.Radio
   import DaisyUIComponents.Range
   import DaisyUIComponents.Select
   import DaisyUIComponents.Textarea
@@ -88,6 +89,28 @@ defmodule DaisyUIComponents.Input do
     """
   end
 
+  def input(%{type: "radio"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:value, fn -> nil end)
+      |> assign_new(:name, fn -> nil end)
+      |> assign_new(:checked, fn ->
+        Phoenix.HTML.Form.normalize_value("radio", assigns[:value])
+      end)
+
+    ~H"""
+    <.radio
+      id={@id}
+      name={@name}
+      class={@class}
+      color={@color}
+      checked={@checked}
+      value={@value}
+      {@rest}
+    />
+    """
+  end
+
   def input(%{type: "select"} = assigns) do
     assigns =
       assigns
@@ -114,6 +137,7 @@ defmodule DaisyUIComponents.Input do
     assigns =
       assigns
       |> assign_new(:name, fn -> nil end)
+      |> assign_new(:value, fn -> nil end)
 
     ~H"""
     <.textarea
@@ -131,6 +155,7 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "range"} = assigns) do
     assigns =
       assigns
+      |> assign_new(:name, fn -> nil end)
       |> assign_new(:value, fn -> nil end)
 
     ~H"""

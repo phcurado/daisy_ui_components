@@ -9,8 +9,12 @@ defmodule DaisyUIComponents.Stat do
 
   use DaisyUIComponents.Component
 
+  @directions ~w(horizontal vertical)
+
+  def directions, do: @directions
+
   attr :class, :string, default: nil
-  attr :direction, :string, values: ["horizontal", "vertical"]
+  attr :direction, :string, values: @directions
   attr :rest, :global
   slot :inner_block
 

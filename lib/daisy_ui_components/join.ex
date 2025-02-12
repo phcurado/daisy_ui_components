@@ -9,6 +9,10 @@ defmodule DaisyUIComponents.Join do
 
   use DaisyUIComponents.Component
 
+  @directions ~w(horizontal vertical)
+
+  def directions, do: @directions
+
   @doc """
   Join elements
 
@@ -21,7 +25,7 @@ defmodule DaisyUIComponents.Join do
       </.join>
   """
   attr :class, :string, default: nil
-  attr :direction, :string, values: ["horizontal", "vertical"]
+  attr :direction, :string, values: @directions
   attr :rest, :global
   slot :inner_block, required: true
 

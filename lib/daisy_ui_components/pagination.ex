@@ -25,11 +25,18 @@ defmodule DaisyUIComponents.Pagination do
   attr :page_size, :integer, default: 10
   attr :total_entries, :integer, default: 100
   attr :button_class, :string, default: nil
+  attr :size, :string, values: sizes()
   attr :target, :string, default: nil
   attr :page_click_event, :string, default: "page_click"
   attr :rest, :global
 
   def pagination(assigns) do
+    assigns =
+      assign(assigns, :button_class, [
+        btn_size(assigns[:size]),
+        assigns.button_class
+      ])
+
     ~H"""
     <.join :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
@@ -67,4 +74,10 @@ defmodule DaisyUIComponents.Pagination do
         [1, "...", page - 1, page, page + 1, "...", max_blocks]
     end
   end
+
+  defp btn_size("xs"), do: "btn-xs"
+  defp btn_size("sm"), do: "btn-sm"
+  defp btn_size("md"), do: "btn-md"
+  defp btn_size("lg"), do: "btn-lg"
+  defp btn_size(_size), do: nil
 end

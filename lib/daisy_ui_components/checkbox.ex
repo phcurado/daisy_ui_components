@@ -3,8 +3,6 @@ defmodule DaisyUIComponents.Checkbox do
   Checkbox component
 
   https://daisyui.com/components/checkbox
-
-
   """
 
   use DaisyUIComponents.Component

@@ -67,6 +67,68 @@ defmodule DaisyUIComponents.InputTest do
     end
   end
 
+  describe "radio" do
+    test "radio input" do
+      assigns = %{}
+
+      radio_input =
+        rendered_to_string(~H"""
+        <.input type="radio" size="xs" value="false" />
+        """)
+
+      assert radio_input =~ ~s(<input)
+      assert radio_input =~ ~s(type="radio")
+      assert radio_input =~ ~s(value="false")
+      assert radio_input =~ ~s(class="radio radio-xs")
+    end
+
+    test "radio input without value" do
+      assigns = %{}
+
+      radio_input =
+        rendered_to_string(~H"""
+        <.input type="radio" size="xs" />
+        """)
+
+      assert radio_input =~ ~s(<input)
+      assert radio_input =~ ~s(type="radio")
+      refute radio_input =~ ~s(value)
+      assert radio_input =~ ~s(class="radio radio-xs")
+    end
+
+    test "radio true input in form field when value is true" do
+      assigns =
+        %{form: Phoenix.Component.to_form(%{"radio_field" => true})}
+
+      radio_input =
+        rendered_to_string(~H"""
+        <.input field={@form[:radio_field]} type="radio" />
+        """)
+
+      assert radio_input =~ ~s(<input)
+      assert radio_input =~ ~s(type="radio")
+      assert radio_input =~ ~s(checked)
+      assert radio_input =~ ~s(value="true")
+      assert radio_input =~ ~s(class="radio")
+    end
+
+    test "radio input in form field when value is false" do
+      assigns =
+        %{form: Phoenix.Component.to_form(%{"radio_field" => false})}
+
+      radio_input =
+        rendered_to_string(~H"""
+        <.input field={@form[:radio_field]} type="radio" />
+        """)
+
+      assert radio_input =~ ~s(<input)
+      assert radio_input =~ ~s(type="radio")
+      refute radio_input =~ ~s(checked)
+      assert radio_input =~ ~s(value="true")
+      assert radio_input =~ ~s(class="radio")
+    end
+  end
+
   describe "select input in form field" do
     test "select input" do
       assigns = %{}
