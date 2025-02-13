@@ -63,7 +63,7 @@ defmodule DaisyUIComponents.MixProject do
       canonical: "https://hexdocs.pm/daisy_ui_components",
       source_url: @source_url,
       groups_for_modules: [
-        Types: [
+        Components: [
           DaisyUIComponents.Alert,
           DaisyUIComponents.Avatar,
           DaisyUIComponents.Back,
@@ -85,6 +85,7 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Modal,
           DaisyUIComponents.Navbar,
           DaisyUIComponents.Pagination,
+          DaisyUIComponents.Radio,
           DaisyUIComponents.Range,
           DaisyUIComponents.Select,
           DaisyUIComponents.Stat,

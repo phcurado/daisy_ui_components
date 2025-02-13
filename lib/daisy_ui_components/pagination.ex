@@ -37,7 +37,7 @@ defmodule DaisyUIComponents.Pagination do
     <.join :if={@total_entries > 0} {@rest}>
       <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
-          class={@button_class}
+          class={["join-item", @button_class]}
           size={@size}
           phx-click={JS.push(@page_click_event, value: %{page: block})}
           phx-target={@target}

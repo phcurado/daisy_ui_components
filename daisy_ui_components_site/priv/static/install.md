@@ -1,5 +1,3 @@
-This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project.
-
 ## Installation
 
 Reference this repository on your `mix.exs` file to start using.

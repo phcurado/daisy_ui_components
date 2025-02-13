@@ -17,7 +17,7 @@ defmodule DaisyUIComponents.Button do
       <.button>Send!</.button>
       <.button phx-click="go" class="ml-2">Send!</.button>
   """
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :color, :string, values: colors() ++ ["neutral"]
   attr :ghost, :boolean, default: false
   attr :link, :boolean, default: false
@@ -36,23 +36,27 @@ defmodule DaisyUIComponents.Button do
 
   def button(assigns) do
     assigns =
-      assign(assigns, :class, [
-        "btn",
-        btn_color(assigns[:color]),
-        maybe_add_class(assigns[:ghost], "btn-ghost"),
-        maybe_add_class(assigns[:link], "btn-link"),
-        maybe_add_class(assigns[:outline], "btn-outline"),
-        maybe_add_class(assigns[:active], "btn-active"),
-        maybe_add_class(assigns[:disabled], "btn-disabled"),
-        maybe_add_class(assigns[:glass], "btn-glass"),
-        maybe_add_class(assigns[:loading], "loading"),
-        maybe_add_class(assigns[:wide], "btn-wide"),
-        maybe_add_class(assigns[:block], "btn-block"),
-        maybe_add_class(assigns[:no_animation], "no-animation"),
-        btn_size(assigns[:size]),
-        btn_shape(assigns[:shape]),
-        assigns.class
-      ])
+      assign(
+        assigns,
+        :class,
+        classes([
+          "btn",
+          btn_color(assigns[:color]),
+          maybe_add_class(assigns[:ghost], "btn-ghost"),
+          maybe_add_class(assigns[:link], "btn-link"),
+          maybe_add_class(assigns[:outline], "btn-outline"),
+          maybe_add_class(assigns[:active], "btn-active"),
+          maybe_add_class(assigns[:disabled], "btn-disabled"),
+          maybe_add_class(assigns[:glass], "btn-glass"),
+          maybe_add_class(assigns[:loading], "loading"),
+          maybe_add_class(assigns[:wide], "btn-wide"),
+          maybe_add_class(assigns[:block], "btn-block"),
+          maybe_add_class(assigns[:no_animation], "no-animation"),
+          btn_size(assigns[:size]),
+          btn_shape(assigns[:shape]),
+          assigns.class
+        ])
+      )
 
     ~H"""
     <button class={@class} {@rest}>

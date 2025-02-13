@@ -1,4 +1,4 @@
-# DaisyUI Components
+# 🌻 DaisyUI Components
 
 [![CI](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml/badge.svg)](https://github.com/phcurado/daisy_ui_components/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/phcurado/daisy_ui_components/badge.svg?branch=main)](https://coveralls.io/github/phcurado/daisy_ui_components?branch=main)
@@ -6,13 +6,17 @@
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
 [![License](https://img.shields.io/hexpm/l/daisy_ui_components.svg)](https://hex.pm/packages/daisy_ui_components)
 
+📚 [Storybook](https://daisy-ui-components-site.fly.dev/storybook/welcome)
+
 ---
 
-This project brings [Daisy UI](https://daisyui.com/) components into your Phoenix LiveView project.
+<a href='https://ko-fi.com/R5R11AIF9P' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-This project is still experimental, expect breaking changes in future.
+This project brings [DaisyUI](https://daisyui.com/) components into your [Phoenix](https://www.phoenixframework.org) project.
 
-## Installation
+![Phoenix DaisyUI Image](demo.png)
+
+## 📦 Installation
 
 <!-- MDOC -->
 
@@ -91,18 +95,18 @@ Finally, in order to not conflict with some of the DaisyUI default styles, remov
 <body>
 ```
 
-## Core Components
+## ⭐ Core Components
 
 This library aims to integrate seamlessly with Phoenix generators. For this reason you don't need the components inside the `CoreComponents` after adding `use DaisyUIComponents` into your web file.
 All the components should be compatible, styled with DaisyUI.
 
 If you encounter any compatibility issues, feel free to open an `issue` or submit a `pull request`, and I'll take a look.
 
-## Liveview 1.0
+## 🤖 Liveview 1.0
 
-This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/main/CHANGELOG.md#backwards-incompatible-changes-for-10).
+This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/v1.0/CHANGELOG.md).
 
-## NPM setup
+## 📦 NPM setup
 
 Since DaisyUI requires `npm` to install, it's also necessary to configure in your project the asset pipeline to use the npm commands.
 
@@ -133,7 +137,7 @@ RUN mix deps.compile
 +RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 ```
 
-## Components
+## ⚡️ Components
 
 List of available components.
 
@@ -194,12 +198,12 @@ List of available components.
 
 | Component                                               | Status | Storybook |
 | ------------------------------------------------------- | ------ | --------- |
-| [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ❌        |
+| [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ✅        |
 | [File input](https://daisyui.com/components/file-input) | ❌     | ❌        |
-| [Radio](https://daisyui.com/components/radio)           | ✅     | ❌        |
+| [Radio](https://daisyui.com/components/radio)           | ✅     | ✅        |
 | [Range](https://daisyui.com/components/range)           | ✅     | ✅        |
 | [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
-| [Select](https://daisyui.com/components/select)         | ✅     | ❌        |
+| [Select](https://daisyui.com/components/select)         | ✅     | ✅        |
 | [Text Input](https://daisyui.com/components/input)      | ✅     | ✅        |
 | [Textarea](https://daisyui.com/components/textarea)     | ✅     | ✅        |
 | [Toggle](https://daisyui.com/components/toggle)         | ✅     | ✅        |
@@ -238,7 +242,7 @@ List of available components.
 | Input       | ✅     | ✅        |
 | Table       | ✅     | ✅        |
 
-## Roadmap
+## 🗺️ Roadmap
 
 - Implement all components
 - Document all components in Storybook
