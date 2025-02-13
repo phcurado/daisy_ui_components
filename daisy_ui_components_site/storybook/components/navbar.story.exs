@@ -118,7 +118,7 @@ defmodule Storybook.Components.Navbar do
             <div class="form-control">
               <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
             </div>
-            <.dropdown align_end>
+            <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                   <img
@@ -152,7 +152,7 @@ defmodule Storybook.Components.Navbar do
             <a class="btn btn-ghost text-xl">daisyUI</a>
           </div>
           <div class="flex-none">
-            <.dropdown align_end>
+            <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <div class="indicator">
                   <.icon name="hero-shopping-cart" />
@@ -169,7 +169,7 @@ defmodule Storybook.Components.Navbar do
                 </:card_actions>
               </.card>
             </.dropdown>
-            <.dropdown align_end>
+            <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                   <img

@@ -28,7 +28,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_aligns_to_end,
         attributes: %{
-          align_end: true
+          align: "end"
         },
         slots: [
           """
@@ -62,7 +62,7 @@ defmodule Storybook.Components.Dropdown do
       %Variation{
         id: :dropdown_top_aligns_to_end,
         attributes: %{
-          align_end: true,
+          align: "end",
           direction: "top"
         },
         slots: [
@@ -98,7 +98,7 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_bottom_aligns_to_end,
         attributes: %{
           direction: "bottom",
-          align_end: true
+          align: "end"
         },
         slots: [
           """
@@ -133,7 +133,7 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_left_aligns_to_end,
         attributes: %{
           direction: "left",
-          align_end: true
+          align: "end"
         },
         slots: [
           """
@@ -168,7 +168,7 @@ defmodule Storybook.Components.Dropdown do
         id: :dropdown_right_aligns_to_end,
         attributes: %{
           direction: "right",
-          align_end: true
+          align: "end"
         },
         slots: [
           """

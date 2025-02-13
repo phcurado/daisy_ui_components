@@ -33,7 +33,7 @@ defmodule DaisyUIComponents.DropdownTest do
     assigns = %{}
 
     assert rendered_to_string(~H"""
-           <.dropdown open hover align_end>My dropdown</.dropdown>
+           <.dropdown open hover align="end">My dropdown</.dropdown>
            """) =~ ~s(<div class="dropdown dropdown-end dropdown-hover dropdown-open">)
   end
 end

@@ -22,7 +22,7 @@ defmodule DaisyUIComponents.Dropdown do
   """
   attr :class, :string, default: nil
   attr :direction, :string, values: directions()
-  attr :align_end, :boolean, default: nil
+  attr :align, :string, values: ["end"]
   attr :hover, :boolean, default: nil
   attr :open, :boolean, default: nil
   attr :rest, :global
@@ -33,7 +33,7 @@ defmodule DaisyUIComponents.Dropdown do
       assign(assigns, :class, [
         "dropdown",
         dropdown_direction(assigns[:direction]),
-        maybe_add_class(assigns[:align_end], "dropdown-end"),
+        dropdown_align(assigns[:align]),
         maybe_add_class(assigns.hover, "dropdown-hover"),
         maybe_add_class(assigns.open, "dropdown-open"),
         assigns.class
@@ -52,4 +52,8 @@ defmodule DaisyUIComponents.Dropdown do
   defp dropdown_direction("left"), do: "dropdown-left"
   defp dropdown_direction("right"), do: "dropdown-right"
   defp dropdown_direction(nil), do: nil
+
+  # Align
+  defp dropdown_align("end"), do: "dropdown-end"
+  defp dropdown_align(nil), do: nil
 end

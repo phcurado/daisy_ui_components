@@ -57,7 +57,7 @@ defmodule Storybook.Welcome do
             <div class="form-control">
               <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
             </div>
-            <.dropdown align_end>
+            <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                   <img
