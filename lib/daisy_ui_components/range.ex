@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Range do
   Select component
 
   https://daisyui.com/components/range
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :value, :any, default: nil

@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Tooltip do
   Tooltip component
 
   https://daisyui.com/components/tooltip
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :string, default: nil
   attr :text, :string, required: true

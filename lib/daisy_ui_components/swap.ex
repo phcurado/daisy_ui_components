@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Swap do
   https://daisyui.com/components/swap
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Icon
 

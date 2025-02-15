@@ -7,7 +7,7 @@ defmodule DaisyUIComponents.Join do
 
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

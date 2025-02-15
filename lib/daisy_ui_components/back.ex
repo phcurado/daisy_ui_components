@@ -3,7 +3,7 @@ defmodule DaisyUIComponents.Back do
   This component was extracted from the original [Phoenix CoreComponents](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Icon
 

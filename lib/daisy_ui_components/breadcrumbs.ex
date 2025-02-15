@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Breadcrumbs do
   https://daisyui.com/components/stat
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Icon
 

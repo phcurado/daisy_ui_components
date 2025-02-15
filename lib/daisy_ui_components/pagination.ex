@@ -7,12 +7,10 @@ defmodule DaisyUIComponents.Pagination do
 
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Button
   import DaisyUIComponents.Join
-
-  alias Phoenix.LiveView.JS
 
   @doc """
   Renders a button group.

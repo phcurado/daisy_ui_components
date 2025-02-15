@@ -3,7 +3,7 @@ defmodule DaisyUIComponents.Input do
   Generic Input component
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Checkbox
   import DaisyUIComponents.Radio

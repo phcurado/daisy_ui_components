@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Checkbox do
   https://daisyui.com/components/checkbox
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :checked, :boolean, default: nil, doc: "the checked flag for checkbox inputs"

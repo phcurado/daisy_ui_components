@@ -7,7 +7,7 @@ defmodule DaisyUIComponents.TextInput do
 
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :type, :string, default: "text"
   attr :class, :string, default: nil

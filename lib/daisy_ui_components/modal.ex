@@ -3,12 +3,9 @@ defmodule DaisyUIComponents.Modal do
   Modal component
 
   https://daisyui.com/components/modal/
-
   """
 
-  use DaisyUIComponents.Component
-
-  alias Phoenix.LiveView.JS
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a dialog modal.

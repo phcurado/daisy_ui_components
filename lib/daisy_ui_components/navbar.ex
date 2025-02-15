@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Navbar do
   https://daisyui.com/components/navbar/
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :rest, :global

@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Stat do
   https://daisyui.com/components/stat
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

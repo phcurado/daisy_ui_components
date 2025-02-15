@@ -7,12 +7,10 @@ defmodule DaisyUIComponents.Alert do
 
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.JSHelpers
   import DaisyUIComponents.Icon
-
-  alias Phoenix.LiveView.JS
 
   @doc """
   Shows the flash group with standard titles and content.

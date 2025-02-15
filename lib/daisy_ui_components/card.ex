@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Card do
   https://daisyui.com/components/card/
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @modifiers ~w(side image_full)
   @paddings ~w(normal compact)

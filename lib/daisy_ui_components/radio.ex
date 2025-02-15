@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Radio do
   https://daisyui.com/components/radio
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :checked, :boolean, default: nil, doc: "the checked flag for radio inputs"

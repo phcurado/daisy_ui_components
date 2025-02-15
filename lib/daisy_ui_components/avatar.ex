@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Avatar do
   https://daisyui.com/components/avatar
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :placeholder, :boolean, default: false

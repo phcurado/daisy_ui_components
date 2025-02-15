@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Badge do
   Badge component
 
   https://daisyui.com/components/badge/
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a badge.

@@ -4,7 +4,7 @@ defmodule DaisyUIComponents.Icon do
   Code extracted from [Phoenix Core Components](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a [Hero Icon](https://heroicons.com).

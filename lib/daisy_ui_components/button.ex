@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Button do
   Button component
 
   https://daisyui.com/components/button/
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a button.

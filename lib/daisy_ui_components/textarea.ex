@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Textarea do
   Textarea component
 
   https://daisyui.com/components/textarea
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :value, :any, default: nil

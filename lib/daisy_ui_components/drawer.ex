@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Drawer do
   https://daisyui.com/components/drawer
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
   attr :class, :any, default: nil

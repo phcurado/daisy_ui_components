@@ -5,6 +5,6 @@ defmodule DaisyUIComponentsSiteWeb.Storybook do
     # assets path are remote path, not local file-system paths
     css_path: "/assets/storybook.css",
     js_path: "/assets/storybook.js",
-    title: "DaisyUI",
+    title: "Phoenix + DaisyUI",
     sandbox_class: "daisy-ui-components-site-web"
 end

@@ -6,7 +6,7 @@ defmodule DaisyUIComponents.Toggle do
 
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :color, :string, values: colors()

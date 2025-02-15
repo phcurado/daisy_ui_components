@@ -3,11 +3,9 @@ defmodule DaisyUIComponents.Table do
   Table component
 
   https://daisyui.com/components/table/
-
-
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc ~S"""
   Renders a table with generic styling.

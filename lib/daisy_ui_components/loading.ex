@@ -3,10 +3,8 @@ defmodule DaisyUIComponents.Loading do
   Loading component
 
   https://daisyui.com/components/loading/
-
-
   """
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a loading.

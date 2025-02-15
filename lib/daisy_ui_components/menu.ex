@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Menu do
   https://daisyui.com/components/menu
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

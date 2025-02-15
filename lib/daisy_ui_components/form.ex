@@ -3,7 +3,7 @@ defmodule DaisyUIComponents.Form do
   Form component helpers
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   import DaisyUIComponents.Icon
   import DaisyUIComponents.Input

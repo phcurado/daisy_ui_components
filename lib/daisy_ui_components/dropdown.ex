@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Dropdown do
   https://daisyui.com/components/dropdown/
   """
 
-  use DaisyUIComponents.Component
+  use DaisyUIComponents, :component
 
   @doc """
   Renders a  dropdown
