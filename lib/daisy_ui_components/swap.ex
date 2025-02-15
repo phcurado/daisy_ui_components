@@ -27,8 +27,6 @@ defmodule DaisyUIComponents.Swap do
     attr :name, :string, required: true
   end
 
-  slot :inner_block
-
   def swap(assigns) do
     assigns =
       assigns
@@ -36,11 +34,7 @@ defmodule DaisyUIComponents.Swap do
 
     ~H"""
     <label class={@class} {@rest}>
-      <%= if render?(@inner_block) do %>
-        {render_slot(@inner_block)}
-      <% else %>
-        <input class="hidden" type="checkbox" />
-      <% end %>
+      <input type="checkbox" />
       <.swap_mode
         :for={swap_on <- @swap_on}
         type={Map.get(swap_on, :type, "label")}

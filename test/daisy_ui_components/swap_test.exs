@@ -15,6 +15,7 @@ defmodule DaisyUIComponents.SwapTest do
 
     assert swap =~ ~s(<label)
     assert swap =~ ~s(class="swap")
+    assert swap =~ ~s(<input type="checkbox">)
   end
 
   test "swap animations" do
