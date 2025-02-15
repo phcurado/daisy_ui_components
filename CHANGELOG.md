@@ -2,13 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.7.3] - 2025-02-15
 
 ### Changed
 
 - Fix swap component input checkbox
 
-## [0.7] - 2025-02-13
+## [0.7.0] - 2025-02-13
 
 ### Added
 
