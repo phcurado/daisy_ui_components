@@ -165,7 +165,7 @@ List of available components.
 | [Countdown](https://daisyui.com/components/countdown) | ❌     | ❌        |
 | [Diff](https://daisyui.com/components/diff/)          | ❌     | ❌        |
 | [Kbd](https://daisyui.com/components/kbd)             | ❌     | ❌        |
-| [Stat](https://daisyui.com/components/stat)           | ✅     | ❌        |
+| [Stat](https://daisyui.com/components/stat)           | ✅     | ✅        |
 | [Table](https://daisyui.com/components/table)         | ✅     | ✅        |
 | [Timeline](https://daisyui.com/components/timeline/)  | ❌     | ❌        |
 
@@ -192,7 +192,7 @@ List of available components.
 | [Radial progress](https://daisyui.com/components/radial-progress) | ❌     | ❌        |
 | [Skeleton](https://daisyui.com/components/skeleton/)              | ❌     | ❌        |
 | [Toast](https://daisyui.com/components/toast)                     | ❌     | ❌        |
-| [Tooltip](https://daisyui.com/components/tooltip)                 | ✅     | ❌        |
+| [Tooltip](https://daisyui.com/components/tooltip)                 | ✅     | ✅        |
 
 ### Data Input
 

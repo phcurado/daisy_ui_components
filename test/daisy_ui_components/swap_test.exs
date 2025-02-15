@@ -59,4 +59,21 @@ defmodule DaisyUIComponents.SwapTest do
     assert swap =~ ~s(<span class="hero-plus swap-on">)
     assert swap =~ ~s(<span class="hero-minus swap-off">)
   end
+
+  test "swap controller slot" do
+    assigns = %{}
+
+    swap =
+      rendered_to_string(~H"""
+      <.swap>
+        <:controller>
+          <input type="checkbox" class="theme-controller" value="synthwave" />
+        </:controller>
+      </.swap>
+      """)
+
+    assert swap =~ ~s(<label)
+    assert swap =~ ~s(class="swap")
+    assert swap =~ ~s(<input type="checkbox" class="theme-controller" value="synthwave">)
+  end
 end

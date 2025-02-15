@@ -47,14 +47,15 @@ defmodule Storybook.Welcome do
           <div class="flex-1">
             <a class="btn btn-ghost text-xl">Phoenix + DaisyUI</a>
           </div>
-
           <div class="flex-none gap-2">
             <.swap animation="rotate">
-              <input type="checkbox" class="theme-controller" value="synthwave" />
+              <:controller>
+                <input type="checkbox" class="theme-controller" value="synthwave" />
+              </:controller>
               <:swap_on type="icon" name="hero-sun" />
               <:swap_off type="icon" name="hero-moon" />
             </.swap>
-            <div class="form-control">
+            <div class="hidden md:block form-control">
               <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
             </div>
             <.dropdown align="end">
@@ -83,7 +84,7 @@ defmodule Storybook.Welcome do
             </.dropdown>
           </div>
         </.navbar>
-        <div class="px-10">
+        <div class="px-2 md:px-10">
           <.breadcrumbs class="py-5">
             <:item icon="hero-home" path="#">
               Home
@@ -179,9 +180,6 @@ defmodule Storybook.Welcome do
             </.simple_form>
           </:modal_box>
         </.modal>
-        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
-          Open drawer
-        </label>
       </:drawer_content>
       <:drawer_side class="h-full absolute border-r">
         <.menu class="bg-base-100 text-base-content min-h-full w-80 p-4">

@@ -9,6 +9,26 @@ defmodule DaisyUIComponents.Swap do
 
   import DaisyUIComponents.Icon
 
+  @doc ~S"""
+  Render a Swap component
+
+  ## Examples 
+
+      <.swap >
+        <:swap_on name="ON" />
+        <:swap_off name="OFF" />
+      </.swap>
+
+  with theme controller
+
+      <.swap >
+        <:controller>
+          <input type="checkbox" class="theme-controller" value="synthwave" />
+        </:controller>
+        <:swap_on name="ON" />
+        <:swap_off name="OFF" />
+      </.swap>
+  """
   attr :class, :any, default: nil
   attr :animation, :string, values: ["flip", "rotate"]
   attr :rest, :global
@@ -27,6 +47,8 @@ defmodule DaisyUIComponents.Swap do
     attr :name, :string, required: true
   end
 
+  slot :controller, doc: "The swap input controller"
+
   def swap(assigns) do
     assigns =
       assigns
@@ -34,7 +56,11 @@ defmodule DaisyUIComponents.Swap do
 
     ~H"""
     <label class={@class} {@rest}>
-      <input type="checkbox" />
+      <%= if render?(@controller) do %>
+        {render_slot(@controller)}
+      <% else %>
+        <input type="checkbox" />
+      <% end %>
       <.swap_mode
         :for={swap_on <- @swap_on}
         type={Map.get(swap_on, :type, "label")}

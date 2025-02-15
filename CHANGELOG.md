@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.4] - 2025-02-15
+
+### Added
+
+- Swap controller `slot`
+- Tooltip storybook
+
 ## [0.7.3] - 2025-02-15
 
 ### Changed
