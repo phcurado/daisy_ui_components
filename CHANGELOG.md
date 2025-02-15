@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.7.0] - 2025-02-13
+## [0.7] - 2025-02-13
 
 ### Added
 
@@ -25,7 +25,7 @@ All notable changes to this project will be documented in this file.
 - Stat with slots
 - Pagination size attr
 
-## [0.6.0] - 2025-02-09
+## [0.6] - 2025-02-09
 
 ### Added
 
