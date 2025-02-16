@@ -25,20 +25,24 @@ defmodule DaisyUIComponents.Badge do
 
   def badge(assigns) do
     assigns =
-      assign(assigns, :class, [
-        "badge",
-        badge_color(assigns[:color]),
-        maybe_add_class(assigns[:ghost], "badge-ghost"),
-        maybe_add_class(assigns[:outline], "badge-outline"),
-        badge_size(assigns[:size]),
-        assigns.class
-      ])
+      assign(assigns, :class, badge_classes(assigns))
 
     ~H"""
     <div class={@class} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """
+  end
+
+  def badge_classes(assigns) do
+    classes([
+      "badge",
+      badge_color(assigns[:color]),
+      maybe_add_class(assigns[:ghost], "badge-ghost"),
+      maybe_add_class(assigns[:outline], "badge-outline"),
+      badge_size(assigns[:size]),
+      assigns.class
+    ])
   end
 
   # Color

@@ -11,6 +11,20 @@ defmodule DaisyUIComponents.IndicatorTest do
     indicator =
       rendered_to_string(~H"""
       <.indicator>
+        <:badge color="primary"></:badge>
+      </.indicator>
+      """)
+
+    assert indicator =~ ~s(<div class="indicator">)
+    assert indicator =~ ~s(<span class="badge badge-primary indicator-item">)
+  end
+
+  test "indicator without badge slot" do
+    assigns = %{}
+
+    indicator =
+      rendered_to_string(~H"""
+      <.indicator>
         <span class="indicator-item status status-success"></span>
       </.indicator>
       """)
@@ -25,10 +39,11 @@ defmodule DaisyUIComponents.IndicatorTest do
       assigns = %{direction: direction, align: align}
 
       assert rendered_to_string(~H"""
-             <.indicator direction={@direction} align={@align}>
-               <span class="indicator-item status status-success"></span>
+             <.indicator>
+               <:badge color="secondary" align={@align} direction={@direction}></:badge>
              </.indicator>
-             """) =~ ~s(<div class="indicator indicator-#{direction} indicator-#{align}">)
+             """) =~
+               ~s(<span class="badge badge-secondary indicator-item indicator-#{align} indicator-#{direction}">)
     end
   end
 end

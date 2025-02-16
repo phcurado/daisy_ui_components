@@ -7,6 +7,8 @@ defmodule DaisyUIComponents.Indicator do
 
   use DaisyUIComponents, :component
 
+  alias DaisyUIComponents.Badge
+
   @aligns ~w(start end center)
   @directions ~w(top bottom middle)
 
@@ -19,29 +21,79 @@ defmodule DaisyUIComponents.Indicator do
   ## Examples
 
       <.indicator>
+        <:badge color="secondary" />
+        <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+      </.indicator>
+
+  without a badge slot:
+
+      <.indicator>
         <.badge color="secondary" class="indicator-item"></.badge>
         <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
       </.indicator>
   """
   attr :class, :string, default: nil
-  attr :align, :string, values: @aligns
-  attr :direction, :string, values: @directions
   attr :rest, :global
+
+  slot :badge do
+    attr :class, :any
+    attr :color, :string, values: colors()
+    attr :align, :string, values: @aligns
+    attr :direction, :string, values: @directions
+  end
+
   slot :inner_block
 
   def indicator(assigns) do
     assigns =
-      assign(assigns, :class, [
-        "indicator",
-        indicator_direction(assigns[:direction]),
-        indicator_align(assigns[:align]),
-        assigns.class
-      ])
+      assigns
+      |> assign(
+        :class,
+        classes([
+          "indicator",
+          assigns.class
+        ])
+      )
 
     ~H"""
     <div class={@class} {@rest}>
+      <.badge
+        :for={badge <- @badge}
+        class={badge[:class]}
+        color={badge[:color]}
+        align={badge[:align]}
+        direction={badge[:direction]}
+      >
+        {render_slot(badge)}
+      </.badge>
       {render_slot(@inner_block)}
     </div>
+    """
+  end
+
+  attr :class, :any, default: nil
+  attr :color, :string
+  attr :align, :string, values: @aligns
+  attr :direction, :string, values: @directions
+  slot :inner_block
+
+  defp badge(assigns) do
+    assigns =
+      assigns
+      |> assign(
+        :class,
+        classes([
+          Badge.badge_classes(assigns),
+          "indicator-item",
+          indicator_align(assigns[:align]),
+          indicator_direction(assigns[:direction])
+        ])
+      )
+
+    ~H"""
+    <span class={@class}>
+      {render_slot(@inner_block)}
+    </span>
     """
   end
 
