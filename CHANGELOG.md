@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Join storybook
+
 ## [0.7.4] - 2025-02-15
 
 ### Added
