@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Join storybook
+- Indicator component
 
 ## [0.7.4] - 2025-02-15
 
