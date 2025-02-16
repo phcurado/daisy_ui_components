@@ -5,7 +5,6 @@ defmodule Storybook.Components.Indicator do
   alias DaisyUIComponents.Button
   alias DaisyUIComponents.Indicator
   alias DaisyUIComponents.Input
-  alias DaisyUIComponents.Utils
 
   def function, do: &Indicator.indicator/1
 
