@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+- Fix Table ID header
+
 ## [0.7.6] - 2025-02-17
 
 ### Added
