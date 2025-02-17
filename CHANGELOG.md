@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.6] - 2025-02-17
+
+### Added
+
+- Hero component
+- Hero storybook
+
 ## [0.7.5] - 2025-02-16
 
 ### Added
@@ -9,8 +16,6 @@ All notable changes to this project will be documented in this file.
 - Join storybook
 - Indicator component
 - Indicator storybook
-- Hero component
-- Hero storybook
 
 ## [0.7.4] - 2025-02-15
 
