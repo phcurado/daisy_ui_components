@@ -26,6 +26,7 @@ defmodule Storybook.Components.Table do
           """
           <.thead>
             <.tr>
+              <.th>Id</.th>
               <.th>Name</.th>
               <.th>Job</.th>
               <.th>Favourite Color</.th>
