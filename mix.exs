@@ -76,6 +76,7 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Dropdown,
           DaisyUIComponents.Form,
           DaisyUIComponents.Header,
+          DaisyUIComponents.Hero,
           DaisyUIComponents.Icon,
           DaisyUIComponents.Indicator,
           DaisyUIComponents.Input,

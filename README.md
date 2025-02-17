@@ -216,7 +216,7 @@ List of available components.
 | [Divider](https://daisyui.com/components/divider)     | ❌     | ❌        |
 | [Drawer](https://daisyui.com/components/drawer)       | ✅     | ✅        |
 | [Footer](https://daisyui.com/components/footer)       | ❌     | ❌        |
-| [Hero](https://daisyui.com/components/hero)           | ❌     | ❌        |
+| [Hero](https://daisyui.com/components/hero)           | ✅     | ✅        |
 | [Indicator](https://daisyui.com/components/indicator) | ✅     | ✅        |
 | [Join](https://daisyui.com/components/join)           | ✅     | ✅        |
 | [Mask](https://daisyui.com/components/mask)           | ❌     | ❌        |

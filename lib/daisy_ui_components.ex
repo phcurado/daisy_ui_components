@@ -54,6 +54,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Dropdown
       import DaisyUIComponents.Form
       import DaisyUIComponents.Header
+      import DaisyUIComponents.Hero
       import DaisyUIComponents.Icon
       import DaisyUIComponents.Indicator
       import DaisyUIComponents.Input
