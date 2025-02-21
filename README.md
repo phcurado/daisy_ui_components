@@ -43,17 +43,17 @@ On `tailwind.config.js` include Live DaisyUI Components under the content list a
 module.exports = {
   content: [
     //...
-    "../deps/daisy_ui_components/**/*.*ex" // <- reference DaisyUIComponents as content path
+    "../deps/daisy_ui_components/**/*.*ex", // <- reference DaisyUIComponents as content path
   ],
   //...
   plugins: [
     //...
     // comment the tailwind form to not conflict with DaisyUI
     // require("@tailwindcss/forms"),
-    require("daisyui")  <- // add daisyUI plugin
+    require("daisyui"), // <- add daisyUI plugin
     //...
-  ]
-}
+  ],
+};
 ```
 
 Add error translation function to your app's config.exs file. This function is used to translate ecto changeset errors
