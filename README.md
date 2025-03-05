@@ -34,7 +34,7 @@ Add through `npm` the daisy UI package inside your phoenix application:
 
 ```bash
 cd assets
-npm i -D daisyui@latest
+npm i -D daisyui@4
 ```
 
 On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
