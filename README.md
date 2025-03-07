@@ -5,6 +5,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/daisy_ui_components)](https://hex.pm/packages/daisy_ui_components)
 [![HexDocs.pm](https://img.shields.io/badge/Docs-HexDocs-blue)](https://hexdocs.pm/daisy_ui_components)
 [![License](https://img.shields.io/hexpm/l/daisy_ui_components.svg)](https://hex.pm/packages/daisy_ui_components)
+[![DaisyUI Version](https://img.shields.io/badge/DaisyUI-5.0.0-FF9903)](https://daisyui.com/docs/changelog/#500)
 
 📚 [Storybook](https://daisy-ui-components-site.fly.dev/storybook/welcome)
 
@@ -25,7 +26,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.7"}
+    {:daisy_ui_components, "~> 0.8"}
   ]
 end
 ```
@@ -34,7 +35,7 @@ Add through `npm` the daisy UI package inside your phoenix application:
 
 ```bash
 cd assets
-npm i -D daisyui@4
+npm i -D daisyui@5
 ```
 
 On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
