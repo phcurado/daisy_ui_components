@@ -50,6 +50,7 @@ defmodule DaisyUIComponents.Loading do
   defp loading_size("sm"), do: "loading-sm"
   defp loading_size("md"), do: "loading-md"
   defp loading_size("lg"), do: "loading-lg"
+  defp loading_size("xl"), do: "loading-xl"
   defp loading_size(_size), do: nil
 
   # Shapes

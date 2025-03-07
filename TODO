@@ -1,0 +1,5 @@
+Remove form-control, label-text, label-text-alt
+https://daisyui.com/docs/changelog/#%EF%B8%8F-remove-form-control-label-text-label-text-alt
+
+Breaking Change: stats background color is now transparent. Use bg-base-100 if you need a background color.
+https://daisyui.com/docs/changelog/#stat
