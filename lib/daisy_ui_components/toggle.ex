@@ -32,6 +32,7 @@ defmodule DaisyUIComponents.Toggle do
   end
 
   # Color
+  defp toggle_color("neutral"), do: "toggle-neutral"
   defp toggle_color("primary"), do: "toggle-primary"
   defp toggle_color("secondary"), do: "toggle-secondary"
   defp toggle_color("accent"), do: "toggle-accent"
@@ -46,5 +47,6 @@ defmodule DaisyUIComponents.Toggle do
   defp toggle_size("sm"), do: "toggle-sm"
   defp toggle_size("md"), do: "toggle-md"
   defp toggle_size("lg"), do: "toggle-lg"
+  defp toggle_size("xl"), do: "toggle-xl"
   defp toggle_size(_size), do: nil
 end
