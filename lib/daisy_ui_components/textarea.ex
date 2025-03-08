@@ -23,8 +23,7 @@ defmodule DaisyUIComponents.Textarea do
         :class,
         classes([
           "textarea",
-          maybe_add_class(assigns[:bordered], "textarea-bordered"),
-          maybe_add_class(assigns[:ghost], "textarea-ghost"),
+          maybe_add_class(assigns[:ghost] || !assigns[:bordered], "textarea-ghost"),
           textarea_color(assigns[:color]),
           textarea_size(assigns[:size]),
           assigns.class

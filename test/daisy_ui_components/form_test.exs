@@ -75,7 +75,7 @@ defmodule DaisyUIComponents.FormTest do
       assert_html "input[type='text']",
         type: "text",
         value: "Jose",
-        class: "input input-bordered",
+        class: "input",
         id: "1",
         name: "user[first_name]"
     end

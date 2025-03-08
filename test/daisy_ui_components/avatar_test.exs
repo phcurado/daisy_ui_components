@@ -32,7 +32,7 @@ defmodule DaisyUIComponents.AvatarTest do
         </.avatar>
         """)
 
-      assert avatar =~ ~s(<div class="avatar online">)
+      assert avatar =~ ~s(<div class="avatar avatar-online">)
 
       avatar =
         rendered_to_string(~H"""
@@ -41,7 +41,7 @@ defmodule DaisyUIComponents.AvatarTest do
         </.avatar>
         """)
 
-      assert avatar =~ ~s(<div class="avatar offline">)
+      assert avatar =~ ~s(<div class="avatar avatar-offline">)
 
       avatar =
         rendered_to_string(~H"""
@@ -50,7 +50,7 @@ defmodule DaisyUIComponents.AvatarTest do
         </.avatar>
         """)
 
-      assert avatar =~ ~s(<div class="avatar online">)
+      assert avatar =~ ~s(<div class="avatar avatar-online">)
     end
   end
 
@@ -64,6 +64,6 @@ defmodule DaisyUIComponents.AvatarTest do
       </.avatar>
       """)
 
-    assert avatar =~ ~s(<div class="avatar placeholder">)
+    assert avatar =~ ~s(<div class="avatar avatar-placeholder">)
   end
 end

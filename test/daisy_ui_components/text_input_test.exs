@@ -51,14 +51,56 @@ defmodule DaisyUIComponents.TextInputTest do
     end
   end
 
-  test "text input boolean assigns" do
-    for boolean_assign <- ~w(ghost bordered)a do
-      assigns = %{boolean_assign => true}
+  test "text input bordered" do
+    assigns = %{bordered: true}
 
-      assert rendered_to_string(~H"""
-             <.text_input {assigns} />
-             """) =~ ~s(<input type="text" class="input input-#{to_string(boolean_assign)}">)
-    end
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
+
+    assigns = %{}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
+
+    assigns = %{bordered: true, ghost: false}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
+
+    assigns = %{bordered: false}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input input-ghost">)
+  end
+
+  test "text input ghost" do
+    assigns = %{ghost: false}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
+
+    assigns = %{}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
+
+    assigns = %{bordered: false, ghost: true}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input input-ghost">)
+
+    assigns = %{bordered: true, ghost: false}
+
+    assert rendered_to_string(~H"""
+           <.text_input {assigns} />
+           """) =~ ~s(<input type="text" class="input">)
   end
 
   test "text input with extra classes" do

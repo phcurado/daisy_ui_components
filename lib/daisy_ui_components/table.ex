@@ -140,7 +140,7 @@ defmodule DaisyUIComponents.Table do
         :class,
         classes([
           maybe_add_class(assigns[:active], "active"),
-          maybe_add_class(assigns[:hover], "hover"),
+          maybe_add_class(assigns[:hover], "hover:bg-base-300"),
           assigns.class
         ])
       )

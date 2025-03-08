@@ -41,7 +41,7 @@ defmodule DaisyUIComponents.Card do
         :class,
         classes([
           "card",
-          maybe_add_class(assigns[:bordered], "card-bordered"),
+          maybe_add_class(assigns[:bordered], "card-border"),
           card_modifier(assigns[:modifier]),
           card_padding(assigns[:padding]),
           assigns.class

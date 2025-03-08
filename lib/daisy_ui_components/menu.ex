@@ -56,5 +56,6 @@ defmodule DaisyUIComponents.Menu do
   defp menu_size("sm"), do: "menu-sm"
   defp menu_size("md"), do: "menu-md"
   defp menu_size("lg"), do: "menu-lg"
+  defp menu_size("xl"), do: "menu-xl"
   defp menu_size(nil), do: nil
 end

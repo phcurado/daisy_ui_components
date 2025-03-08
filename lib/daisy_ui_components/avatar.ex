@@ -22,7 +22,7 @@ defmodule DaisyUIComponents.Avatar do
         classes([
           "avatar",
           add_online_or_offline_class(assigns[:online], assigns[:offline]),
-          maybe_add_class(assigns.placeholder, "placeholder"),
+          maybe_add_class(assigns.placeholder, "avatar-placeholder"),
           assigns.class
         ])
       )
@@ -46,7 +46,7 @@ defmodule DaisyUIComponents.Avatar do
     """
   end
 
-  defp add_online_or_offline_class(true = _online, _offline), do: "online"
-  defp add_online_or_offline_class(_online, true = _offline), do: "offline"
+  defp add_online_or_offline_class(true = _online, _offline), do: "avatar-online"
+  defp add_online_or_offline_class(_online, true = _offline), do: "avatar-offline"
   defp add_online_or_offline_class(_online, _offline), do: nil
 end
