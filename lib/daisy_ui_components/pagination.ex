@@ -50,6 +50,20 @@ defmodule DaisyUIComponents.Pagination do
   end
 
   @max_display_block 7
+  @doc """
+
+  Returns a list of page numbers to be displayed based on the current page, the size of each page, and the total number of entries.
+
+  ## Parameters
+
+  - page - The current page number.
+  - page_size - The number of entries that fit on a single page.
+  - total_entries - The total number of entries available.
+
+  ## Description
+  Calculates the set of page buttons to display for pagination based on the provided parameters.
+
+  """
   def calculate_display_btn(page, page_size, total_entries) do
     {max_blocks, _remain} =
       Float.ceil(total_entries / page_size) |> to_string() |> Integer.parse()

@@ -34,6 +34,17 @@ defmodule DaisyUIComponents.Badge do
     """
   end
 
+  @doc """
+
+  Returns the classes for a badge element based on the provided attributes.
+
+  ## Parameters
+
+  - assigns - a map containing options for badge customization, including color, ghost, outline, size, and additional classes.
+  ## Description
+   Builds a list of CSS classes for styling a badge element.
+
+  """
   def badge_classes(assigns) do
     classes([
       "badge",

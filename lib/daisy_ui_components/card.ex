@@ -11,8 +11,43 @@ defmodule DaisyUIComponents.Card do
   @paddings ~w(normal compact)
   @placements ~w(top bottom)
 
+  @doc """
+
+  Returns the modifiers associated with the given reference.
+
+  ## Parameters
+
+  - reference - a unique identifier to fetch the relevant modifiers.
+  ## Description
+   Retrieves the modifiers linked to the specified reference.
+
+  """
   def modifiers, do: @modifiers
+
+  @doc """
+
+  Returns the padding information based on the specified parameters.
+
+  ## Parameters
+
+  - @paddings - Reference to the padding data structure or collection.
+  ## Description
+  Retrieves padding information for a specified context or usage.
+
+  """
   def paddings, do: @paddings
+
+  @doc """
+
+  Returns the current placements associated with the specified parameters.
+
+  ## Parameters
+
+  - do - a directive indicating the action to be performed on placements.
+  ## Description
+   Retrieves and processes the placements based on the provided directive.
+
+  """
   def placements, do: @placements
 
   attr :class, :any, default: nil

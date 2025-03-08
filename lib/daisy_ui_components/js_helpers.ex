@@ -5,6 +5,19 @@ defmodule DaisyUIComponents.JSHelpers do
 
   alias Phoenix.LiveView.JS
 
+  @doc """
+
+  Returns a JavaScript operation that shows an element with a specified transition effect.
+
+  ## Parameters
+
+  - js - a map that represents the current JavaScript state.
+  - selector - a string that specifies the CSS selector of the element to show.
+  ## Description
+  Utilizes the JS.show function to display an element with a defined transition timing and effects.
+
+  """
+
   # show and hide functions from phoenix CoreComponents
   def show(js \\ %JS{}, selector) do
     JS.show(js,
@@ -17,6 +30,18 @@ defmodule DaisyUIComponents.JSHelpers do
     )
   end
 
+  @doc """
+
+  Returns a JS object that hides a specified element with a transition effect.
+
+  ## Parameters
+
+  - js - an optional JavaScript object used for chaining (default: %JS{}).
+  - selector - a string that specifies the CSS selector of the element to hide.
+  ## Description
+   Applies a transitioning style to the targeted element, making it fade and move when it is hidden.
+
+  """
   def hide(js \\ %JS{}, selector) do
     JS.hide(js,
       to: selector,
