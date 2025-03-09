@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Label component
+
+### Changed
+
 - Fix Table ID header
+- Fix CI cache
 
 ## [0.7.6] - 2025-02-17
 
