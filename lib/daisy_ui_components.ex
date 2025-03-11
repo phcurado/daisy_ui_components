@@ -52,6 +52,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Checkbox
       import DaisyUIComponents.Drawer
       import DaisyUIComponents.Dropdown
+      import DaisyUIComponents.Fieldset
       import DaisyUIComponents.Form
       import DaisyUIComponents.Header
       import DaisyUIComponents.Hero

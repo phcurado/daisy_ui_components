@@ -1,0 +1,6 @@
+{
+  "skip_files": [
+    "lib/daisy_ui_components.ex",
+    "lib/daisy_ui_components/js_helpers.ex"
+  ]
+}
