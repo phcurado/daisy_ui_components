@@ -51,4 +51,12 @@ defmodule DaisyUIComponents.ComponentCase do
     # return the fragment so we can pipe multiple assertions
     fragment
   end
+
+  @doc """
+  Asserts the attribute class in a component
+  """
+  def assert_class(fragment, value) do
+    fragment
+    |> assert_attribute("class", value)
+  end
 end

@@ -10,9 +10,9 @@ defmodule DaisyUIComponents.ProgressTest do
     <.progress min="10" max="100" />
     """
     |> parse_component()
+    |> assert_class("progress")
     |> assert_attribute("min", "10")
     |> assert_attribute("max", "100")
-    |> assert_attribute("class", "progress")
   end
 
   test "progress colors" do
@@ -23,7 +23,7 @@ defmodule DaisyUIComponents.ProgressTest do
       <.progress color={@color} />
       """
       |> parse_component()
-      |> assert_attribute("class", "progress progress-#{color}")
+      |> assert_class("progress progress-#{color}")
     end
   end
 end
