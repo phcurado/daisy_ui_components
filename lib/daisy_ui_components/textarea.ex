@@ -57,5 +57,6 @@ defmodule DaisyUIComponents.Textarea do
   defp textarea_size("sm"), do: "textarea-sm"
   defp textarea_size("md"), do: "textarea-md"
   defp textarea_size("lg"), do: "textarea-lg"
+  defp textarea_size("xl"), do: "textarea-xl"
   defp textarea_size(_size), do: nil
 end

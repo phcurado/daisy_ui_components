@@ -50,5 +50,6 @@ defmodule DaisyUIComponents.Range do
   defp range_size("sm"), do: "range-sm"
   defp range_size("md"), do: "range-md"
   defp range_size("lg"), do: "range-lg"
+  defp range_size("xl"), do: "range-xl"
   defp range_size(_size), do: nil
 end

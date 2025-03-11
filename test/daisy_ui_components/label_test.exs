@@ -75,7 +75,8 @@ defmodule DaisyUIComponents.LabelTest do
              </.label>
              """)
 
-    [{"label", _attr, child}] = Floki.find(label, "label")
+    {:ok, document} = Floki.parse_document(label)
+    [{"label", _attr, child}] = Floki.find(document, "label")
     # assert order of elements
     assert [{"input", _, _}, {"span", _, _}] = child
 

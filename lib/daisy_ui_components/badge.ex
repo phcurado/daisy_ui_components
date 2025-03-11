@@ -61,5 +61,6 @@ defmodule DaisyUIComponents.Badge do
   defp badge_size("sm"), do: "badge-sm"
   defp badge_size("md"), do: "badge-md"
   defp badge_size("lg"), do: "badge-lg"
+  defp badge_size("xl"), do: "badge-xl"
   defp badge_size(_size), do: nil
 end
