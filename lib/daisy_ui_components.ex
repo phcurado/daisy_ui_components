@@ -60,7 +60,6 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Input
       import DaisyUIComponents.Join
       import DaisyUIComponents.JSHelpers
-      # TODO: When label is fully removed from DaisyUIComponents.Form, uncoment the line below
       # import DaisyUIComponents.Label
       import DaisyUIComponents.List
       import DaisyUIComponents.Loading

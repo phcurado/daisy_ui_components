@@ -1,6 +1,6 @@
 defmodule DaisyUIComponents.Label do
   @moduledoc """
-  Dropdown component
+  Label component
 
   https://daisyui.com/components/label/
   """
@@ -10,7 +10,9 @@ defmodule DaisyUIComponents.Label do
   @types ~w(input select floating label)
   @positions ~w(start end)
 
+  @doc false
   def types, do: @types
+  @doc false
   def positions, do: @positions
 
   @doc """
@@ -24,7 +26,7 @@ defmodule DaisyUIComponents.Label do
   """
 
   attr :class, :string, default: nil
-  attr :type, :string, values: @types
+  attr :type, :string, values: @types, default: "label"
   attr :position, :string, values: @positions
   attr :text, :string, default: nil
   attr :rest, :global
@@ -44,18 +46,30 @@ defmodule DaisyUIComponents.Label do
 
     ~H"""
     <label class={@class} {@rest}>
-      <.label_span :if={@text && @position == "start"} text={@text} />
+      <.label_span :if={@text && @position == "start"} type={@type} text={@text} />
       {render_slot(@inner_block)}
-      <.label_span :if={@text && @position == "end"} text={@text} />
+      <.label_span :if={@text && @position == "end"} type={@type} text={@text} />
     </label>
     """
   end
 
+  attr :type, :string, values: @types
+  attr :text, :string
+  attr :class, :any, default: nil
+
   defp label_span(assigns) do
-    assigns = classes(span_class(assigns.type))
+    assigns =
+      assign(
+        assigns,
+        :class,
+        classes([
+          span_class(assigns.type),
+          assigns.class
+        ])
+      )
 
     ~H"""
-    <span class={@class} {@rest}>
+    <span class={@class}>
       {@text}
     </span>
     """
@@ -69,6 +83,6 @@ defmodule DaisyUIComponents.Label do
   defp label_type(nil), do: nil
 
   # Span class
-  defp span_class(type) when type in ["input", "select"], do: "text"
+  defp span_class(type) when type in ["input", "select"], do: "label"
   defp span_class(_type), do: nil
 end
