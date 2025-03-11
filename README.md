@@ -199,7 +199,9 @@ List of available components.
 | Component                                               | Status | Storybook |
 | ------------------------------------------------------- | ------ | --------- |
 | [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ✅        |
+| [Fieldset](https://daisyui.com/components/fieldset)     | ❌     | ❌        |
 | [File input](https://daisyui.com/components/file-input) | ❌     | ❌        |
+| [Label](https://daisyui.com/components/label)           | ✅     | ✅        |
 | [Radio](https://daisyui.com/components/radio)           | ✅     | ✅        |
 | [Range](https://daisyui.com/components/range)           | ✅     | ✅        |
 | [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
