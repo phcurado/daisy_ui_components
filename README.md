@@ -199,7 +199,9 @@ List of available components.
 | Component                                               | Status | Storybook |
 | ------------------------------------------------------- | ------ | --------- |
 | [Checkbox](https://daisyui.com/components/checkbox)     | ✅     | ✅        |
+| [Fieldset](https://daisyui.com/components/fieldset)     | ❌     | ❌        |
 | [File input](https://daisyui.com/components/file-input) | ❌     | ❌        |
+| [Label](https://daisyui.com/components/label)           | ✅     | ✅        |
 | [Radio](https://daisyui.com/components/radio)           | ✅     | ✅        |
 | [Range](https://daisyui.com/components/range)           | ✅     | ✅        |
 | [Rating](https://daisyui.com/components/rating)         | ❌     | ❌        |
@@ -244,6 +246,7 @@ List of available components.
 
 ## 🗺️ Roadmap
 
-- Implement all components
+- Update components for the new [DaisyUI 5](https://daisyui.com/docs/upgrade/)
+- Implement all components from DaisyUI
 - Document all components in Storybook
 - Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace.

@@ -46,5 +46,6 @@ defmodule DaisyUIComponents.Toggle do
   defp toggle_size("sm"), do: "toggle-sm"
   defp toggle_size("md"), do: "toggle-md"
   defp toggle_size("lg"), do: "toggle-lg"
+  defp toggle_size("xl"), do: "toggle-xl"
   defp toggle_size(_size), do: nil
 end

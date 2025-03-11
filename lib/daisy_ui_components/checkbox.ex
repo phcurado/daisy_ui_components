@@ -47,5 +47,6 @@ defmodule DaisyUIComponents.Checkbox do
   defp checkbox_size("sm"), do: "checkbox-sm"
   defp checkbox_size("md"), do: "checkbox-md"
   defp checkbox_size("lg"), do: "checkbox-lg"
+  defp checkbox_size("xl"), do: "checkbox-xl"
   defp checkbox_size(_size), do: nil
 end

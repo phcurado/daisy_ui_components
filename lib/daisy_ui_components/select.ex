@@ -55,5 +55,6 @@ defmodule DaisyUIComponents.Select do
   defp select_size("sm"), do: "select-sm"
   defp select_size("md"), do: "select-md"
   defp select_size("lg"), do: "select-lg"
+  defp select_size("xl"), do: "select-xl"
   defp select_size(_size), do: nil
 end

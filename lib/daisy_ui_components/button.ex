@@ -79,6 +79,7 @@ defmodule DaisyUIComponents.Button do
   defp btn_size("sm"), do: "btn-sm"
   defp btn_size("md"), do: "btn-md"
   defp btn_size("lg"), do: "btn-lg"
+  defp btn_size("xl"), do: "btn-xl"
   defp btn_size(_size), do: nil
 
   # Shape

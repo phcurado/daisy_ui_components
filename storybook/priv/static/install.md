@@ -1,4 +1,4 @@
-## Installation
+## 📦 Installation
 
 Reference this repository on your `mix.exs` file to start using.
 
@@ -12,9 +12,9 @@ end
 
 Add through `npm` the daisy UI package inside your phoenix application:
 
-```
+```bash
 cd assets
-npm i -D daisyui@latest
+npm i -D daisyui@4
 ```
 
 On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
@@ -23,17 +23,17 @@ On `tailwind.config.js` include Live DaisyUI Components under the content list a
 module.exports = {
   content: [
     //...
-    "../deps/daisy_ui_components/**/*.*ex" // <- reference DaisyUIComponents as content path
+    "../deps/daisy_ui_components/**/*.*ex", // <- reference DaisyUIComponents as content path
   ],
   //...
   plugins: [
     //...
     // comment the tailwind form to not conflict with DaisyUI
     // require("@tailwindcss/forms"),
-    require("daisyui")  <- // add daisyUI plugin
+    require("daisyui"), // <- add daisyUI plugin
     //...
-  ]
-}
+  ],
+};
 ```
 
 Add error translation function to your app's config.exs file. This function is used to translate ecto changeset errors
@@ -69,27 +69,50 @@ end
 Finally, in order to not conflict with some of the DaisyUI default styles, remove the `bg-white` class in your `root.html.heex` file.
 
 ```heex
-# Change from this
+## Change from this
 <body class="bg-white">
-# to this
+## to this
 <body>
 ```
 
-## Core Components
+## ⭐ Core Components
 
 This library aims to integrate seamlessly with Phoenix generators. For this reason you don't need the components inside the `CoreComponents` after adding `use DaisyUIComponents` into your web file.
 All the components should be compatible, styled with DaisyUI.
 
 If you encounter any compatibility issues, feel free to open an `issue` or submit a `pull request`, and I'll take a look.
 
-## Liveview 1.0
+## 🤖 Liveview 1.0
 
-This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/main/CHANGELOG.md#backwards-incompatible-changes-for-10).
+This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/v1.0/CHANGELOG.md).
 
-and that's it! You can use the components in your application
+## 📦 NPM setup
 
-```heex
-<.button color="primary">
-  Button with primary color
-</.button>
+Since DaisyUI requires `npm` to install, it's also necessary to configure in your project the asset pipeline to use the npm commands.
+
+In your `mix.exs` file, add the npm command in your assets setup:
+
+```diff
+"assets.setup": [
+  "tailwind.install --if-missing",
+- "esbuild.install --if-missing"
++ "esbuild.install --if-missing",
++ "cmd npm install --prefix assets"
+]
+```
+
+and if you are deploying the application with `Docker`, run the npm scripts there too:
+
+```diff
+# install build dependencies
+-RUN apt-get update -y && apt-get install -y build-essential git \
++RUN apt-get update -y && apt-get install -y build-essential git npm \
+    && apt-get clean && rm -f /var/lib/apt/lists/*_*
+
+# ...
+RUN mix deps.compile
+
+# build assets
++COPY assets/package.json assets/package-lock.json ./assets/
++RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 ```

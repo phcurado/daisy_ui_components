@@ -52,5 +52,6 @@ defmodule DaisyUIComponents.TextInput do
   defp input_size("sm"), do: "input-sm"
   defp input_size("md"), do: "input-md"
   defp input_size("lg"), do: "input-lg"
+  defp input_size("xl"), do: "input-xl"
   defp input_size(_size), do: nil
 end

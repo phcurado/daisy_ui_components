@@ -47,5 +47,6 @@ defmodule DaisyUIComponents.Radio do
   defp radio_size("sm"), do: "radio-sm"
   defp radio_size("md"), do: "radio-md"
   defp radio_size("lg"), do: "radio-lg"
+  defp radio_size("xl"), do: "radio-xl"
   defp radio_size(_size), do: nil
 end
