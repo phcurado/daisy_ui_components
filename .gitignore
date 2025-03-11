@@ -24,3 +24,5 @@ daisy_ui_components-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+.env

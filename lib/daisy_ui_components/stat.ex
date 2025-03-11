@@ -9,6 +9,17 @@ defmodule DaisyUIComponents.Stat do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns the directions based on the provided input.
+
+  ## Parameters
+
+  - @directions - the input parameter containing the direction details.
+  ## Description
+  Retrieves and processes the directions based on the specified input.
+
+  """
   def directions, do: @directions
 
   attr :class, :string, default: nil
