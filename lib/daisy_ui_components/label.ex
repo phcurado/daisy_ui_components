@@ -11,9 +11,9 @@ defmodule DaisyUIComponents.Label do
   @positions ~w(start end)
 
   @doc false
-  def types, do: @types
+  def label_types, do: @types
   @doc false
-  def positions, do: @positions
+  def label_positions, do: @positions
 
   @doc """
   Renders a Label

@@ -68,6 +68,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Modal
       import DaisyUIComponents.Navbar
       import DaisyUIComponents.Pagination
+      import DaisyUIComponents.Progress
       import DaisyUIComponents.Radio
       import DaisyUIComponents.Range
       import DaisyUIComponents.Select

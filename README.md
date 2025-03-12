@@ -171,16 +171,16 @@ List of available components.
 
 ### Navigation
 
-| Component                                                              | Status | Storybook |
-| ---------------------------------------------------------------------- | ------ | --------- |
-| [Breadcrumbs](https://daisyui.com/components/breadcrumbs)              | ✅     | ✅        |
-| [Bottom navigation](https://daisyui.com/components/bottom-navigation/) | ❌     | ❌        |
-| [Link](https://daisyui.com/components/link)                            | ❌     | ❌        |
-| [Menu](https://daisyui.com/components/menu)                            | ✅     | ✅        |
-| [Navbar](https://daisyui.com/components/navbar)                        | ✅     | ✅        |
-| [Pagination](https://daisyui.com/components/pagination)                | ✅     | ✅        |
-| [Steps](https://daisyui.com/components/steps)                          | ❌     | ❌        |
-| [Tabs](https://daisyui.com/components/tab)                             | ❌     | ❌        |
+| Component                                                 | Status | Storybook |
+| --------------------------------------------------------- | ------ | --------- |
+| [Breadcrumbs](https://daisyui.com/components/breadcrumbs) | ✅     | ✅        |
+| [Dock](https://daisyui.com/components/dock/)              | ❌     | ❌        |
+| [Link](https://daisyui.com/components/link)               | ❌     | ❌        |
+| [Menu](https://daisyui.com/components/menu)               | ✅     | ✅        |
+| [Navbar](https://daisyui.com/components/navbar)           | ✅     | ✅        |
+| [Pagination](https://daisyui.com/components/pagination)   | ✅     | ✅        |
+| [Steps](https://daisyui.com/components/steps)             | ❌     | ❌        |
+| [Tabs](https://daisyui.com/components/tab)                | ❌     | ❌        |
 
 ### Feedback
 
@@ -188,7 +188,7 @@ List of available components.
 | ----------------------------------------------------------------- | ------ | --------- |
 | [Alert](https://daisyui.com/components/alert)                     | ✅     | ✅        |
 | [Loading](https://daisyui.com/components/loading/)                | ✅     | ✅        |
-| [Progress](https://daisyui.com/components/progress)               | ❌     | ❌        |
+| [Progress](https://daisyui.com/components/progress)               | ✅     | ✅        |
 | [Radial progress](https://daisyui.com/components/radial-progress) | ❌     | ❌        |
 | [Skeleton](https://daisyui.com/components/skeleton/)              | ❌     | ❌        |
 | [Toast](https://daisyui.com/components/toast)                     | ❌     | ❌        |
@@ -209,6 +209,7 @@ List of available components.
 | [Text Input](https://daisyui.com/components/input)      | ✅     | ✅        |
 | [Textarea](https://daisyui.com/components/textarea)     | ✅     | ✅        |
 | [Toggle](https://daisyui.com/components/toggle)         | ✅     | ✅        |
+| [Validator](https://daisyui.com/components/validator)   | ✅     | ✅        |
 
 ### Layout
 
