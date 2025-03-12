@@ -1,6 +1,6 @@
 defmodule DaisyUIComponents.Progress do
   @moduledoc """
-  Button component
+  Progress component
 
   https://daisyui.com/components/progress/
   """
@@ -13,7 +13,7 @@ defmodule DaisyUIComponents.Progress do
   def progress_colors, do: @colors
 
   @doc """
-  Renders a button.
+  Renders a progress.
 
   ## Examples
 

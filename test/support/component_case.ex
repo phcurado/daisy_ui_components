@@ -26,10 +26,20 @@ defmodule DaisyUIComponents.ComponentCase do
   end
 
   @doc """
+  Assert component html tag
+  """
+  def assert_component(html, tag) do
+    {html_tag, _, _} = Enum.at(html, 0)
+    assert html_tag == tag
+
+    html
+  end
+
+  @doc """
   Get the attribute of a component
   """
-  def attribute(fragment, attribute) do
-    fragment
+  def attribute(html, attribute) do
+    html
     |> Floki.attribute(attribute)
     |> case do
       [value] -> value
@@ -39,24 +49,54 @@ defmodule DaisyUIComponents.ComponentCase do
   end
 
   @doc """
+  Get the text of a component
+  """
+  def text(html) do
+    html
+    |> Floki.text()
+  end
+
+  @doc """
+  Execute a function on a component
+  """
+  def select_element(html, selector, func) do
+    html
+    |> Floki.find(selector)
+    |> func.()
+
+    html
+  end
+
+  @doc """
   Asserts the attribute in a component
   """
-  def assert_attribute(fragment, attribute, value) do
-    fragment
+  def assert_attribute(html, attribute, value) do
+    html
     |> attribute(attribute)
     |> then(fn attr_value ->
       assert attr_value == value
     end)
 
-    # return the fragment so we can pipe multiple assertions
-    fragment
+    html
   end
 
   @doc """
   Asserts the attribute class in a component
   """
-  def assert_class(fragment, value) do
-    fragment
+  def assert_class(html, value) do
+    html
     |> assert_attribute("class", value)
+  end
+
+  @doc """
+  Asserts the text in a component
+  """
+  def assert_text(html, value) do
+    html
+    |> text()
+    |> String.trim()
+    |> then(fn text_value ->
+      assert text_value == value
+    end)
   end
 end
