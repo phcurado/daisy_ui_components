@@ -218,7 +218,7 @@ List of available components.
 | [Artboard](https://daisyui.com/components/artboard)   | ❌     | ❌        |
 | [Divider](https://daisyui.com/components/divider)     | ❌     | ❌        |
 | [Drawer](https://daisyui.com/components/drawer)       | ✅     | ✅        |
-| [Footer](https://daisyui.com/components/footer)       | ❌     | ❌        |
+| [Footer](https://daisyui.com/components/footer)       | ✅     | ✅        |
 | [Hero](https://daisyui.com/components/hero)           | ✅     | ✅        |
 | [Indicator](https://daisyui.com/components/indicator) | ✅     | ✅        |
 | [Join](https://daisyui.com/components/join)           | ✅     | ✅        |
