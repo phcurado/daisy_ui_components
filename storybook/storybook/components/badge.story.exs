@@ -1,11 +1,12 @@
 defmodule Storybook.Components.Badge do
   use PhoenixStorybook.Story, :component
 
+  alias DaisyUIComponents.Badge
   alias DaisyUIComponents.Button
   alias DaisyUIComponents.Icon
   alias DaisyUIComponents.Utils
 
-  def function, do: &DaisyUIComponents.Badge.badge/1
+  def function, do: &Badge.badge/1
 
   def imports, do: [{Button, button: 1}, {Icon, icon: 1}]
 
@@ -24,7 +25,7 @@ defmodule Storybook.Components.Badge do
               slots: ["default"]
             }
           ] ++
-            for color <- ["neutral"] ++ Utils.colors() do
+            for color <- Badge.badge_colors() do
               %Variation{
                 id: String.to_atom(color),
                 attributes: %{

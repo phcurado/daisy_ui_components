@@ -1,8 +1,7 @@
 defmodule DaisyUIComponents.BadgeTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Badge
 
   alias DaisyUIComponents.Utils
@@ -10,22 +9,26 @@ defmodule DaisyUIComponents.BadgeTest do
   test "badge" do
     assigns = %{}
 
-    badge =
-      rendered_to_string(~H"""
-      <.badge>badge slot</.badge>
-      """)
-
-    assert badge =~ ~s(<div class="badge">)
-    assert badge =~ ~s(badge slot)
+    ~H"""
+    <.badge>badge slot</.badge>
+    """
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("badge")
+    |> assert_text("badge slot")
   end
 
   test "badge colors" do
-    for color <- Utils.colors() ++ ["neutral"] do
+    for color <- badge_colors() do
       assigns = %{color: color}
 
-      assert rendered_to_string(~H"""
-             <.badge color={@color}>My badge</.badge>
-             """) =~ ~s(<div class="badge badge-#{color}">)
+      ~H"""
+      <.badge color={@color}>My Badge</.badge>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("badge badge-#{color}")
+      |> assert_text("My Badge")
     end
   end
 
@@ -33,9 +36,13 @@ defmodule DaisyUIComponents.BadgeTest do
     for size <- Utils.sizes() do
       assigns = %{size: size}
 
-      assert rendered_to_string(~H"""
-             <.badge size={@size}>My badge</.badge>
-             """) =~ ~s(<div class="badge badge-#{size}">)
+      ~H"""
+      <.badge size={@size}>My Badge</.badge>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("badge badge-#{size}")
+      |> assert_text("My Badge")
     end
   end
 
@@ -43,9 +50,13 @@ defmodule DaisyUIComponents.BadgeTest do
     for boolean_assign <- ~w(ghost outline)a do
       assigns = %{boolean_assign => true}
 
-      assert rendered_to_string(~H"""
-             <.badge {assigns}>My badge</.badge>
-             """) =~ ~s(<div class="badge badge-#{to_string(boolean_assign)}">)
+      ~H"""
+      <.badge {assigns}>My Badge</.badge>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("badge badge-#{boolean_assign}")
+      |> assert_text("My Badge")
     end
   end
 end

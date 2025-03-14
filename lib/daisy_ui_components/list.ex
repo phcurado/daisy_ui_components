@@ -1,34 +1,79 @@
 defmodule DaisyUIComponents.List do
   @moduledoc """
-  This component was extracted from the original [Phoenix CoreComponents](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
+  List component
+
+  https://daisyui.com/components/list/
   """
 
   use DaisyUIComponents, :component
 
   @doc """
-  Renders a data list.
+  Renders a List
 
   ## Examples
 
       <.list>
-        <:item title="Title"><%= @post.title %></:item>
-        <:item title="Views"><%= @post.views %></:item>
+        <:header>Posts</:header>
+        <:item title="Title">{@post.title}</:item>
+        <:item title="Views">{@post.views}</:item>
       </.list>
   """
-  slot :item, required: true do
-    attr :title, :string, required: true
+  attr :class, :any, default: nil
+  attr :rest, :global
+
+  slot :item do
+    attr :title, :string
   end
 
+  slot :header
+
+  slot :inner_block
+
   def list(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class,
+        classes([
+          "list",
+          assigns.class
+        ])
+      )
+
     ~H"""
-    <div class="mt-14">
-      <dl class="-my-4 divide-y">
-        <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none">{item.title}</dt>
-          <dd>{render_slot(item)}</dd>
-        </div>
-      </dl>
-    </div>
+    <ul class={@class} {@rest}>
+      <li :if={header = render_slot(@header)} class="p-4 pb-2 text-xs opacity-60 tracking-wide">
+        {header}
+      </li>
+      <.list_row :for={item <- @item}>
+        <span :if={item[:title]}>{item[:title]}</span>
+        {render_slot(item)}
+      </.list_row>
+      {render_slot(@inner_block)}
+    </ul>
+    """
+  end
+
+  attr :class, :any, default: nil
+  attr :rest, :global
+
+  slot :inner_block
+
+  def list_row(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class,
+        classes([
+          "list-row",
+          assigns.class
+        ])
+      )
+
+    ~H"""
+    <li class={@class} {@rest}>
+      {render_slot(@inner_block)}
+    </li>
     """
   end
 end

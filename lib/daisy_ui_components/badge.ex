@@ -7,6 +7,11 @@ defmodule DaisyUIComponents.Badge do
 
   use DaisyUIComponents, :component
 
+  @colors ~w(neutral) ++ colors()
+
+  @doc false
+  def badge_colors, do: @colors
+
   @doc """
   Renders a badge.
 
@@ -16,7 +21,7 @@ defmodule DaisyUIComponents.Badge do
       <.badge primary class="gap-2">Primary</.badge>
   """
   attr :class, :string, default: nil
-  attr :color, :string, values: colors() ++ ["neutral"]
+  attr :color, :string, values: @colors
   attr :ghost, :boolean, default: false
   attr :outline, :boolean, default: false
   attr :size, :string, values: sizes()

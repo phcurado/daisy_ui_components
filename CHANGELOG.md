@@ -12,11 +12,15 @@ All notable changes to this project will be documented in this file.
 - Fieldset storybook
 - Progress component
 - Progress storybook
+- Footer component
+- Footer storybook
 
 ### Changed
 
 - Fix Table ID header
 - Fix CI cache
+- List component
+- List storybook
 
 ## [0.7.6] - 2025-02-17
 
