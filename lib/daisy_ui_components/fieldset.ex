@@ -64,6 +64,7 @@ defmodule DaisyUIComponents.Fieldset do
   end
 
   attr :class, :string, default: nil
+  attr :for, :string, default: nil
   attr :rest, :global
   slot :inner_block, required: true
 
@@ -79,7 +80,7 @@ defmodule DaisyUIComponents.Fieldset do
       )
 
     ~H"""
-    <label class={@class} {@rest}>
+    <label class={@class} for={@for} {@rest}>
       {render_slot(@inner_block)}
     </label>
     """

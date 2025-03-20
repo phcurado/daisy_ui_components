@@ -26,11 +26,12 @@ defmodule DaisyUIComponents.Label do
   """
 
   attr :class, :string, default: nil
+  attr :for, :string, default: nil
   attr :type, :string, values: @types, default: "label"
   attr :position, :string, values: @positions
   attr :text, :string, default: nil
   attr :rest, :global
-  slot :inner_block, required: true
+  slot :inner_block
 
   def label(assigns) do
     assigns =
@@ -45,7 +46,7 @@ defmodule DaisyUIComponents.Label do
       |> assign_new(:position, fn -> "start" end)
 
     ~H"""
-    <label class={@class} {@rest}>
+    <label class={@class} for={@for} {@rest}>
       <.label_span :if={@text && @position == "start"} type={@type} text={@text} />
       {render_slot(@inner_block)}
       <.label_span :if={@text && @position == "end"} type={@type} text={@text} />

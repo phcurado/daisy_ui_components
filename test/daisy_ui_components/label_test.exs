@@ -27,14 +27,13 @@ defmodule DaisyUIComponents.LabelTest do
     |> parse_component()
     |> assert_component("label")
     |> assert_class("input w-xs")
-    |> select_element("span", fn element ->
+    |> assert_children("span", fn element ->
       element
-      |> assert_component("span")
       |> assert_text("input label")
     end)
-    |> select_element("input", fn element ->
+    |> assert_children("input", fn element ->
       element
-      |> assert_component("input")
+      |> assert_attribute("type", "text")
     end)
   end
 
@@ -49,15 +48,11 @@ defmodule DaisyUIComponents.LabelTest do
     |> parse_component()
     |> assert_component("label")
     |> assert_class("select w-xs")
-    |> select_element("span", fn element ->
+    |> assert_children("span", fn element ->
       element
-      |> assert_component("span")
       |> assert_text("input label")
     end)
-    |> select_element("select", fn element ->
-      element
-      |> assert_component("select")
-    end)
+    |> assert_children("select")
   end
 
   test "label floating" do
@@ -71,14 +66,13 @@ defmodule DaisyUIComponents.LabelTest do
     |> parse_component()
     |> assert_component("label")
     |> assert_class("floating-label")
-    |> select_element("span", fn element ->
+    |> assert_children("span", fn element ->
       element
-      |> assert_component("span")
       |> assert_text("Your email")
     end)
-    |> select_element("input", fn element ->
+    |> assert_children("input", fn element ->
       element
-      |> assert_component("input")
+      |> assert_attribute("type", "text")
     end)
   end
 
@@ -93,17 +87,17 @@ defmodule DaisyUIComponents.LabelTest do
     |> parse_component()
     |> assert_component("label")
     |> assert_class("input")
-    |> select_element("span", fn element ->
+    |> assert_children("span", fn element ->
       element
-      |> assert_component("span")
       |> assert_text(".com")
     end)
-    |> select_element("input", fn element ->
+    |> assert_children("input", fn element ->
       element
-      |> assert_component("input")
+      |> assert_attribute("type", "text")
+      |> assert_attribute("placeholder", "domain name")
     end)
     |> select_element("label", fn element ->
-      [{"label", _attr, child}] = element
+      {"label", _attr, child} = element
       # assert order of elements
       assert [{"input", _, _}, {"span", _, _}] = child
     end)

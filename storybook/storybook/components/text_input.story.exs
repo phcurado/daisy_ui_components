@@ -21,15 +21,6 @@ defmodule Storybook.Components.TextInput do
         }
       },
       %Variation{
-        id: :text_input_with_border,
-        attributes: %{
-          type: "text",
-          bordered: true,
-          placeholder: "Type here",
-          class: "w-full max-w-xs"
-        }
-      },
-      %Variation{
         id: :text_input_ghost,
         attributes: %{
           type: "text",
@@ -46,7 +37,6 @@ defmodule Storybook.Components.TextInput do
               id: String.to_atom(color),
               attributes: %{
                 type: "text",
-                bordered: true,
                 placeholder: "Type here",
                 class: "w-full max-w-xs",
                 color: color

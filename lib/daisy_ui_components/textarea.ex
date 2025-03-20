@@ -10,7 +10,6 @@ defmodule DaisyUIComponents.Textarea do
   attr :class, :any, default: nil
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
-  attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
   attr :rest, :global, include: ~w(name)
@@ -23,7 +22,6 @@ defmodule DaisyUIComponents.Textarea do
         :class,
         classes([
           "textarea",
-          maybe_add_class(assigns[:bordered], "textarea-bordered"),
           maybe_add_class(assigns[:ghost], "textarea-ghost"),
           textarea_color(assigns[:color]),
           textarea_size(assigns[:size]),

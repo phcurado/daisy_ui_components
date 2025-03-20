@@ -8,7 +8,7 @@ defmodule Storybook.Components.Input do
 
   def template do
     """
-    <div class="flex flex-col gap-5 w-full">
+    <div class="flex flex-col items-center gap-5 w-full">
       <.psb-variation-group />
     </div>
     """
@@ -23,7 +23,6 @@ defmodule Storybook.Components.Input do
             %Variation{
               id: type,
               attributes: %{
-                bordered: true,
                 type: to_string(type),
                 placeholder: String.capitalize("#{type} input")
               }
@@ -33,7 +32,6 @@ defmodule Storybook.Components.Input do
       %Variation{
         id: :select,
         attributes: %{
-          bordered: true,
           label: "Select input",
           type: "select",
           options: ["Option 1", "Option 2", "Option 3"]

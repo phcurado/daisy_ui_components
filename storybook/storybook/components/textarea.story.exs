@@ -18,13 +18,6 @@ defmodule Storybook.Components.Textarea do
         }
       },
       %Variation{
-        id: :textarea_with_border,
-        attributes: %{
-          bordered: true,
-          placeholder: "Bio"
-        }
-      },
-      %Variation{
         id: :textarea_ghost,
         attributes: %{
           ghost: true,
@@ -38,7 +31,6 @@ defmodule Storybook.Components.Textarea do
             %Variation{
               id: String.to_atom(color),
               attributes: %{
-                bordered: true,
                 placeholder: "Bio",
                 color: color
               }
@@ -52,7 +44,6 @@ defmodule Storybook.Components.Textarea do
             %Variation{
               id: String.to_atom(size),
               attributes: %{
-                bordered: true,
                 placeholder: "Bio",
                 size: size
               }

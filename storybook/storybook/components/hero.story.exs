@@ -3,12 +3,14 @@ defmodule Storybook.Components.Hero do
 
   alias DaisyUIComponents.Button
   alias DaisyUIComponents.Card
+  alias DaisyUIComponents.Form
   alias DaisyUIComponents.Hero
   alias DaisyUIComponents.Input
 
   def function, do: &Hero.hero/1
 
-  def imports, do: [{Button, button: 1}, {Card, card: 1}, {Input, input: 1}]
+  def imports,
+    do: [{Button, button: 1}, {Card, card: 1}, {Input, input: 1}, {Form, simple_form: 1}]
 
   def variations do
     [
@@ -94,16 +96,16 @@ defmodule Storybook.Components.Hero do
               </p>
             </div>
             <.card class="bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-              <.form :let={f} for={%{}} as={:form}  class="card-body">
-                <.input field={f[:email]} label="Email" placeholder="email" type="email" required />
-                <.input field={f[:password]} label="Password" placeholder="password" type="password" required />
-                <label class="label">
-                  <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-                </label>
-                <div class="form-control mt-6">
+              <:card_body>
+                <.simple_form :let={f} for={%{}} as={:form}>
+                  <.input field={f[:email]} label="Email" placeholder="email" type="email" required />
+                  <.input field={f[:password]} label="Password" placeholder="password" type="password" required />
+                  <label class="label">
+                    <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                  </label>
                   <.button color="primary">Login</.button>
-                </div>
-              </.form>
+                </.simple_form>
+              </:card_body>
             </.card>
           </:content>
           """

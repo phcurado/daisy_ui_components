@@ -62,7 +62,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Input
       import DaisyUIComponents.Join
       import DaisyUIComponents.JSHelpers
-      # import DaisyUIComponents.Label
+      import DaisyUIComponents.Label
       import DaisyUIComponents.List
       import DaisyUIComponents.Loading
       import DaisyUIComponents.Menu

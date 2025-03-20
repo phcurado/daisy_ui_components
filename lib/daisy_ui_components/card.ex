@@ -8,18 +8,16 @@ defmodule DaisyUIComponents.Card do
   use DaisyUIComponents, :component
 
   @modifiers ~w(side image_full)
-  @paddings ~w(normal compact)
   @placements ~w(top bottom)
 
   def modifiers, do: @modifiers
-  def paddings, do: @paddings
   def placements, do: @placements
 
   attr :class, :any, default: nil
+  attr :size, :string, values: sizes()
   attr :placement, :string, values: @placements
   attr :bordered, :boolean, default: false
   attr :modifier, :string, values: @modifiers
-  attr :padding, :string, values: @paddings
   attr :rest, :global
 
   slot :card_title do
@@ -41,9 +39,9 @@ defmodule DaisyUIComponents.Card do
         :class,
         classes([
           "card",
-          maybe_add_class(assigns[:bordered], "card-bordered"),
+          maybe_add_class(assigns[:bordered], "card-border"),
+          card_size(assigns[:size]),
           card_modifier(assigns[:modifier]),
-          card_padding(assigns[:padding]),
           assigns.class
         ])
       )
@@ -112,13 +110,16 @@ defmodule DaisyUIComponents.Card do
     """
   end
 
-  # Padding
-  defp card_padding("normal"), do: "card-normal"
-  defp card_padding("compact"), do: "card-compact"
-  defp card_padding(nil), do: nil
-
   # Modifier
   defp card_modifier("side"), do: "card-side"
   defp card_modifier("image_full"), do: "image-full"
   defp card_modifier(nil), do: nil
+
+  # Size
+  defp card_size("xs"), do: "card-xs"
+  defp card_size("sm"), do: "card-sm"
+  defp card_size("md"), do: "card-md"
+  defp card_size("lg"), do: "card-lg"
+  defp card_size("xl"), do: "card-xl"
+  defp card_size(_size), do: nil
 end

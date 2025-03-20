@@ -55,9 +55,7 @@ defmodule Storybook.Welcome do
               <:swap_on type="icon" name="hero-sun" />
               <:swap_off type="icon" name="hero-moon" />
             </.swap>
-            <div class="hidden md:block form-control">
-              <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
-            </div>
+            <.input type="text" placeholder="Search" class="w-24 hidden md:inline-block md:w-auto" />
             <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">

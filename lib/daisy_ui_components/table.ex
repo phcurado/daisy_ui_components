@@ -201,5 +201,6 @@ defmodule DaisyUIComponents.Table do
   defp table_size("sm"), do: "table-sm"
   defp table_size("md"), do: "table-md"
   defp table_size("lg"), do: "table-lg"
+  defp table_size("xl"), do: "table-xl"
   defp table_size(_size), do: nil
 end

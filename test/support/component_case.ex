@@ -29,10 +29,21 @@ defmodule DaisyUIComponents.ComponentCase do
   Assert component html tag
   """
   def assert_component(html, tag) do
-    {html_tag, _, _} = Enum.at(html, 0)
-    assert html_tag == tag
+    case html do
+      [{html_tag, _, _} = element] ->
+        assert html_tag == tag
+        element
 
-    html
+      {html_tag, _, _} = element ->
+        assert html_tag == tag
+        element
+
+      [] ->
+        raise "Element not found"
+
+      _ ->
+        raise "Multiple attributes found"
+    end
   end
 
   @doc """
@@ -62,6 +73,39 @@ defmodule DaisyUIComponents.ComponentCase do
   def select_element(html, selector, func) do
     html
     |> Floki.find(selector)
+    |> case do
+      [] ->
+        raise "Element not found"
+
+      [element] ->
+        func.(element)
+
+      element ->
+        func.(element)
+    end
+
+    html
+  end
+
+  @doc """
+  Execute a function on children of a component
+  """
+  def select_children(html, func \\ fn _ -> nil end) do
+    html
+    |> Floki.children()
+    |> func.()
+
+    html
+  end
+
+  @doc """
+  Assert children element and run a function
+  """
+  def assert_children(html, selector, func \\ fn _ -> nil end) do
+    html
+    |> Floki.children()
+    |> Floki.find(selector)
+    |> assert_component(selector)
     |> func.()
 
     html

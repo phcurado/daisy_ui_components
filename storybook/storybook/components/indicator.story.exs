@@ -44,7 +44,7 @@ defmodule Storybook.Components.Indicator do
         slots: [
           """
           <:badge>Required</:badge>
-          <.input bordered placeholder="Your email address" />
+          <.input placeholder="Your email address" />
           """
         ]
       },

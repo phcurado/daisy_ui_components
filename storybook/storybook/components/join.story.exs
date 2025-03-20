@@ -54,10 +54,10 @@ defmodule Storybook.Components.Join do
           <div class="join">
             <div>
               <div>
-                <.input bordered class="join-item" placeholder="Search" />
+                <.input class="join-item" placeholder="Search" />
               </div>
             </div>
-            <.select bordered class="join-item">
+            <.select class="join-item">
               <option disabled selected>Filter</option>
               <option>Sci-fi</option>
               <option>Drama</option>
@@ -75,7 +75,7 @@ defmodule Storybook.Components.Join do
         id: :custom_border_radius,
         slots: [
           """
-          <.input bordered class="join-item" placeholder="Email" />
+          <.input class="join-item" placeholder="Email" />
           <.button class="join-item rounded-r-full">Subscribe</.button>
           """
         ]
