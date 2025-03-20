@@ -17,10 +17,16 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- DaisyUI version to 5.x.x
 - Fix Table ID header
 - Fix CI cache
 - List component
 - List storybook
+- Card `padding` attribute removed, now using card `size` attribute.
+- Avatar online, offline and placeholder classes
+- `form_input` now uses `fieldset` component to wrap the input, label and errors
+- inputs now have borders as the default design. To remove the border, add the boolean attribute `ghost`
+- A new size `xl` added
 
 ## [0.7.6] - 2025-02-17
 
