@@ -1,8 +1,7 @@
 defmodule DaisyUIComponents.CardTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Card
 
   alias DaisyUIComponents.Card
@@ -11,51 +10,53 @@ defmodule DaisyUIComponents.CardTest do
     test "card" do
       assigns = %{}
 
-      card =
-        rendered_to_string(~H"""
-        <.card class="w-full">
-          my card
-        </.card>
-        """)
-
-      assert card =~ ~s(<div class="card w-full">)
-      assert card =~ ~s(my card)
+      ~H"""
+      <.card class="w-full">
+        my card
+      </.card>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("card w-full")
+      |> assert_text("my card")
     end
 
     test "card with all slots" do
       assigns = %{}
 
-      card =
-        rendered_to_string(~H"""
-        <.card>
-          <:card_title class="title">
-            Card Title
-          </:card_title>
-          <:card_body class="body">
-            Card Body
-          </:card_body>
-          <:card_actions class="actions">
-            <button>action</button>
-          </:card_actions>
-        </.card>
-        """)
-
-      assert card =~ ~s(<div class="card">)
-      assert card =~ ~s(Card Title)
-      assert card =~ ~s(<div class="card-body body">)
-      assert card =~ ~s(Card Body)
-      assert card =~ ~s(<div class="card-actions actions">)
-      assert card =~ ~s(button>action</button>)
-    end
-
-    test "card paddings" do
-      for padding <- Card.paddings() do
-        assigns = %{padding: padding}
-
-        assert rendered_to_string(~H"""
-               <.card padding={@padding} />
-               """) =~ ~s(<div class="card card-#{padding}">)
-      end
+      ~H"""
+      <.card>
+        <:card_title class="title">
+          Card Title
+        </:card_title>
+        <:card_body class="body">
+          Card Body
+        </:card_body>
+        <:card_actions class="actions">
+          <button>action</button>
+        </:card_actions>
+      </.card>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("card")
+      |> select_element("div .card-body", fn element ->
+        element
+        |> assert_class("card-body body")
+        |> assert_children("h2", fn element ->
+          element
+          |> assert_class("card-title title")
+          |> assert_text("Card Title")
+        end)
+        |> assert_children("div", fn element ->
+          element
+          |> assert_class("card-actions actions")
+          |> assert_children("button", fn element ->
+            element
+            |> assert_text("action")
+          end)
+        end)
+      end)
     end
 
     test "card modifiers" do
@@ -69,9 +70,12 @@ defmodule DaisyUIComponents.CardTest do
             "card-#{modifier}"
           end
 
-        assert rendered_to_string(~H"""
-               <.card modifier={@modifier} />
-               """) =~ ~s(<div class="card #{modifier_class}">)
+        ~H"""
+        <.card modifier={@modifier} />
+        """
+        |> parse_component()
+        |> assert_component("div")
+        |> assert_class("card #{modifier_class}")
       end
     end
   end
@@ -80,15 +84,15 @@ defmodule DaisyUIComponents.CardTest do
     test "card body" do
       assigns = %{}
 
-      card_body =
-        rendered_to_string(~H"""
-        <.card_body class="w-full">
-          my card body
-        </.card_body>
-        """)
-
-      assert card_body =~ ~s(<div class="card-body w-full">)
-      assert card_body =~ ~s(my card body)
+      ~H"""
+      <.card_body class="w-full">
+        my card body
+      </.card_body>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("card-body w-full")
+      |> assert_text("my card body")
     end
   end
 
@@ -96,23 +100,23 @@ defmodule DaisyUIComponents.CardTest do
     test "card title" do
       assigns = %{}
 
-      card_title =
-        rendered_to_string(~H"""
-        <.card_title>
-          this is a card
-        </.card_title>
-        """)
+      ~H"""
+      <.card_title>
+        this is a card
+      </.card_title>
+      """
+      |> parse_component()
+      |> assert_component("h2")
+      |> assert_class("card-title")
+      |> assert_text("this is a card")
 
-      assert card_title =~ ~s(<h2 class="card-title">)
-      assert card_title =~ ~s(this is a card)
-
-      card_title =
-        rendered_to_string(~H"""
-        <.card_title class="w-full" label="title from label"></.card_title>
-        """)
-
-      assert card_title =~ ~s(<h2 class="card-title w-full">)
-      assert card_title =~ ~s(title from label)
+      ~H"""
+      <.card_title class="w-full" label="title from label"></.card_title>
+      """
+      |> parse_component()
+      |> assert_component("h2")
+      |> assert_class("card-title w-full")
+      |> assert_text("title from label")
     end
   end
 
@@ -120,15 +124,15 @@ defmodule DaisyUIComponents.CardTest do
     test "card actions" do
       assigns = %{}
 
-      card_actions =
-        rendered_to_string(~H"""
-        <.card_actions class="justify-center">
-          my card actions
-        </.card_actions>
-        """)
-
-      assert card_actions =~ ~s(<div class="card-actions justify-center">)
-      assert card_actions =~ ~s(my card actions)
+      ~H"""
+      <.card_actions class="justify-center">
+        my card actions
+      </.card_actions>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("card-actions justify-center")
+      |> assert_text("my card actions")
     end
   end
 end

@@ -5,27 +5,9 @@ defmodule DaisyUIComponents.Form do
 
   use DaisyUIComponents, :component
 
+  import DaisyUIComponents.Fieldset
   import DaisyUIComponents.Icon
   import DaisyUIComponents.Input
-
-  @doc """
-  Renders a label.
-  """
-  attr :class, :any, default: nil
-  attr :for, :string, default: nil
-  attr :type, :string, default: "label", values: ~w(label span)
-  attr :rest, :global
-  attr :label, :string, default: nil
-  slot :inner_block
-
-  def label(assigns) do
-    ~H"""
-    <label class={classes(["label", @class])} for={@for} {@rest}>
-      <span :if={@label} class="label-text">{@label}</span>
-      {render_slot(@inner_block)}
-    </label>
-    """
-  end
 
   @doc """
   Renders a simple form.
@@ -54,11 +36,9 @@ defmodule DaisyUIComponents.Form do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8">
-        {render_slot(@inner_block, f)}
-        <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          {render_slot(action, f)}
-        </div>
+      {render_slot(@inner_block, f)}
+      <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
+        {render_slot(action, f)}
       </div>
     </.form>
     """
@@ -92,7 +72,6 @@ defmodule DaisyUIComponents.Form do
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
   attr :class, :string, default: nil
-  attr :bordered, :boolean, default: true
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
@@ -125,23 +104,23 @@ defmodule DaisyUIComponents.Form do
       end)
 
     ~H"""
-    <div class="form-control">
-      <.label class="cursor-pointer" for={@id}>
-        <input type="hidden" name={@name} value="false" />
-        <span class="label-text mr-2">{@label}</span>
+    <.fieldset class="mt-2">
+      <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
+      <.fieldset_label for={@id}>
         <.input
           id={@id}
           type="checkbox"
-          color={@color}
           name={@name}
           value="true"
           checked={@checked}
           class={@class}
           {@rest}
         />
-        <.error :for={msg <- @errors}>{msg}</.error>
-      </.label>
-    </div>
+
+        {@label}
+      </.fieldset_label>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
     """
   end
 
@@ -153,10 +132,9 @@ defmodule DaisyUIComponents.Form do
       end)
 
     ~H"""
-    <div class="form-control">
-      <.label class="cursor-pointer" for={@id}>
-        <input type="hidden" name={@name} value="false" />
-        <span class="label-text mr-2">{@label}</span>
+    <.fieldset class="mt-2">
+      <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
+      <.fieldset_label for={@id}>
         <.input
           id={@id}
           type="radio"
@@ -167,50 +145,76 @@ defmodule DaisyUIComponents.Form do
           class={@class}
           {@rest}
         />
-        <.error :for={msg <- @errors}>{msg}</.error>
-      </.label>
-    </div>
+
+        {@label}
+      </.fieldset_label>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
     """
   end
 
   def form_input(%{type: "select"} = assigns) do
     ~H"""
-    <div class="form-control w-full">
-      <.label :if={@label} for={@id} label={@label} />
+    <.fieldset class="mt-2">
+      <.fieldset_label for={@id}>
+        {@label}
+      </.fieldset_label>
       <.input
         id={@id}
         type="select"
         name={@name}
         color={@color}
         multiple={@multiple}
-        class={@class}
-        bordered={@bordered}
+        class={[@class, "w-full"]}
         prompt={@prompt}
         options={@options}
         value={@value}
         {@rest}
       />
       <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
+    </.fieldset>
+    """
+  end
+
+  def form_input(%{type: "textarea"} = assigns) do
+    ~H"""
+    <.fieldset class="mt-2">
+      <.fieldset_label for={@id}>
+        {@label}
+      </.fieldset_label>
+      <.input
+        id={@id}
+        type="textarea"
+        name={@name}
+        color={@color}
+        class={[@class, "w-full"]}
+        prompt={@prompt}
+        {@rest}
+      >
+        {Phoenix.HTML.Form.normalize_value(@type, @value)}
+      </.input>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
     """
   end
 
   def form_input(assigns) do
     ~H"""
-    <div class="form-control w-full">
-      <.label :if={@label} for={@id} label={@label} />
+    <.fieldset class="mt-2">
+      <.fieldset_label for={@id}>
+        {@label}
+      </.fieldset_label>
       <.input
         id={@id}
-        class={@class}
+        class={[@class, "w-full"]}
         color={@color}
         type={@type}
         name={@name}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-        bordered={@bordered}
         {@rest}
       />
       <.error :for={msg <- @errors}>{msg}</.error>
-    </div>
+    </.fieldset>
     """
   end
 
@@ -237,7 +241,7 @@ defmodule DaisyUIComponents.Form do
 
   def error(assigns) do
     ~H"""
-    <p class="mt-3 flex gap-3 text-sm leading-6 text-error">
+    <p class="flex gap-2 text-sm leading-6 text-error">
       <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
       {render_slot(@inner_block)}
     </p>

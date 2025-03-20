@@ -11,7 +11,6 @@ defmodule DaisyUIComponents.Select do
 
   attr :class, :any, default: nil
   attr :color, :string, values: colors()
-  attr :bordered, :boolean, default: false
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
   attr :value, :any, default: nil
@@ -25,7 +24,6 @@ defmodule DaisyUIComponents.Select do
         :class,
         classes([
           "select",
-          maybe_add_class(assigns[:bordered], "select-bordered"),
           maybe_add_class(assigns[:ghost], "select-ghost"),
           select_color(assigns[:color]),
           select_size(assigns[:size]),

@@ -1,8 +1,7 @@
 defmodule DaisyUIComponents.SelectTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Select
 
   alias DaisyUIComponents.Utils
@@ -10,29 +9,50 @@ defmodule DaisyUIComponents.SelectTest do
   test "simple select with options" do
     assigns = %{}
 
-    select =
-      rendered_to_string(~H"""
-      <.select>
-        <option value="">select user</option>
-        <option selected value="admin">admin</option>
-        <option value="admin">admin</option>
-        <option value="super_admin">Super Admin</option>
-      </.select>
-      """)
+    ~H"""
+    <.select>
+      <option value="">select user</option>
+      <option selected value="admin">admin</option>
+      <option value="admin">admin</option>
+      <option value="super_admin">Super Admin</option>
+    </.select>
+    """
+    |> parse_component()
+    |> assert_component("select")
+    |> select_element("option", fn [option1, option2, option3, option4] ->
+      option1
+      |> assert_component("option")
+      |> assert_attribute("value", "")
+      |> assert_text("select user")
 
-    assert select =~ ~s(<select class="select">)
-    assert select =~ ~s(<option value="">select user</option>)
-    assert select =~ ~s(<option selected value="admin">admin</option>)
-    assert select =~ ~s(<option value="super_admin">Super Admin</option>)
+      option2
+      |> assert_component("option")
+      |> assert_attribute("value", "admin")
+      |> assert_attribute("selected", "selected")
+      |> assert_text("admin")
+
+      option3
+      |> assert_component("option")
+      |> assert_attribute("value", "admin")
+      |> assert_text("admin")
+
+      option4
+      |> assert_component("option")
+      |> assert_attribute("value", "super_admin")
+      |> assert_text("Super Admin")
+    end)
   end
 
   test "select colors" do
     for color <- Utils.colors() do
       assigns = %{color: color}
 
-      assert rendered_to_string(~H"""
-             <.select color={@color} />
-             """) =~ ~s(<select class="select select-#{color}">)
+      ~H"""
+      <.select color={@color} />
+      """
+      |> parse_component()
+      |> assert_component("select")
+      |> assert_class("select select-#{color}")
     end
   end
 
@@ -40,19 +60,25 @@ defmodule DaisyUIComponents.SelectTest do
     for size <- Utils.sizes() do
       assigns = %{size: size}
 
-      assert rendered_to_string(~H"""
-             <.select size={@size} />
-             """) =~ ~s(<select class="select select-#{size}">)
+      ~H"""
+      <.select size={@size} />
+      """
+      |> parse_component()
+      |> assert_component("select")
+      |> assert_class("select select-#{size}")
     end
   end
 
   test "select boolean assigns" do
-    for boolean_assign <- ~w(ghost bordered)a do
+    for boolean_assign <- ~w(ghost)a do
       assigns = %{boolean_assign => true}
 
-      assert rendered_to_string(~H"""
-             <.select {assigns} />
-             """) =~ ~s(<select class="select select-#{to_string(boolean_assign)}">)
+      ~H"""
+      <.select {assigns} />
+      """
+      |> parse_component()
+      |> assert_component("select")
+      |> assert_class("select select-#{to_string(boolean_assign)}")
     end
   end
 end

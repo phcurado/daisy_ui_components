@@ -115,9 +115,7 @@ defmodule Storybook.Components.Navbar do
             <a class="btn btn-ghost text-xl">daisyUI</a>
           </div>
           <div class="flex-none gap-2">
-            <div class="form-control">
-              <.input type="text" placeholder="Search" bordered class="w-24 md:w-auto" />
-            </div>
+            <.input type="text" placeholder="Search" class="w-24 md:w-auto" />
             <.dropdown align="end">
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">

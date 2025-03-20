@@ -1,83 +1,93 @@
 defmodule DaisyUIComponents.FormTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
   use AssertHTML
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Form
 
-  test "label" do
+  test "simple_form" do
     assigns = %{}
 
-    label =
-      rendered_to_string(~H"""
-      <.label class="text-xs" for="some-input" disabled label="My label" />
-      """)
-
-    assert label =~
-             ~s(<label class="label text-xs" for="some-input" disabled>)
-
-    assert label =~ ~s(My label)
+    ~H"""
+    <.simple_form for={%{}}>
+      Inputs will go here
+    </.simple_form>
+    """
+    |> parse_component()
+    |> assert_component("form")
+    |> assert_text("Inputs will go here")
   end
 
   test "form_input checkbox" do
     assigns = %{}
 
-    form_input =
-      rendered_to_string(~H"""
-      <.form_input
-        id="1"
-        name="input[name]"
-        type="checkbox"
-        class="text-xs"
-        for="some-input"
-        value="false"
-        disabled
-      />
-      """)
+    ~H"""
+    <.form_input
+      id="1"
+      name="input[name]"
+      type="checkbox"
+      class="text-xs"
+      for="some-input"
+      value="false"
+      disabled
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [hidden, label] ->
+      hidden
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("value", "false")
+      |> assert_attribute("name", "input[name]")
 
-    assert_html form_input, "div", class: "form-control" do
-      assert_html "label", class: "label cursor-pointer", for: "1"
-
-      assert_html "input[type='checkbox']",
-        type: "checkbox",
-        value: "true",
-        class: "checkbox text-xs",
-        for: "some-input",
-        id: "1",
-        name: "input[name]",
-        disabled: true
-    end
+      label
+      |> assert_attribute("for", "1")
+      |> assert_children("input", fn input ->
+        input
+        |> assert_component("input")
+        |> assert_class("checkbox text-xs")
+        |> assert_attribute("type", "checkbox")
+        |> assert_attribute("value", "true")
+        |> assert_attribute("checked", nil)
+        |> assert_attribute("name", "input[name]")
+      end)
+    end)
   end
 
   test "form_input text" do
     assigns = %{}
 
-    form_input =
-      rendered_to_string(~H"""
-      <.form_input
-        id="1"
-        field={
-          %Phoenix.HTML.FormField{
-            id: "id",
-            field: "name",
-            name: "user[first_name]",
-            value: "Jose",
-            errors: [],
-            form: Phoenix.Component.to_form(%{})
-          }
+    ~H"""
+    <.form_input
+      id="1"
+      field={
+        %Phoenix.HTML.FormField{
+          id: "id",
+          field: "name",
+          name: "user[first_name]",
+          value: "Jose",
+          errors: [],
+          form: Phoenix.Component.to_form(%{})
         }
-        type="text"
-      />
-      """)
+      }
+      type="text"
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [label, input] ->
+      label
+      |> assert_component("label")
+      |> assert_class("fieldset-label")
+      |> assert_attribute("for", "1")
 
-    assert_html form_input, "div", class: "form-control" do
-      assert_html "input[type='text']",
-        type: "text",
-        value: "Jose",
-        class: "input input-bordered",
-        id: "1",
-        name: "user[first_name]"
-    end
+      input
+      |> assert_component("input")
+      |> assert_class("input w-full")
+      |> assert_attribute("type", "text")
+      |> assert_attribute("value", "Jose")
+      |> assert_attribute("name", "user[first_name]")
+    end)
   end
 end

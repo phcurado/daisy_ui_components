@@ -30,20 +30,6 @@ defmodule Storybook.Components.Select do
         ]
       },
       %Variation{
-        id: :select_with_border,
-        attributes: %{
-          bordered: true,
-          class: "w-full max-w-xs"
-        },
-        slots: [
-          """
-          <option disabled selected>Who shot first?</option>
-          <option>Han Solo</option>
-          <option>Greedo</option>
-          """
-        ]
-      },
-      %Variation{
         id: :select_ghost,
         attributes: %{
           ghost: true,
@@ -64,7 +50,6 @@ defmodule Storybook.Components.Select do
             %Variation{
               id: String.to_atom(color),
               attributes: %{
-                bordered: true,
                 class: "w-full max-w-xs",
                 color: color
               },
@@ -86,7 +71,6 @@ defmodule Storybook.Components.Select do
             %Variation{
               id: String.to_atom(size),
               attributes: %{
-                bordered: true,
                 class: "w-full max-w-xs",
                 size: size
               },

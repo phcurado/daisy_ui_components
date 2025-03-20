@@ -35,8 +35,8 @@ defmodule DaisyUIComponents.Input do
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
-  attr :class, :string, default: nil
-  attr :bordered, :boolean, default: nil
+  attr :class, :any, default: nil
+  attr :ghost, :boolean, default: nil
   attr :errors, :list, default: []
   attr :checked, :boolean, doc: "the checked flag for checkbox inputs"
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
@@ -50,17 +50,6 @@ defmodule DaisyUIComponents.Input do
   slot :inner_block
 
   def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
-    # by default inputs doesn't come bordered but
-    # to match with phoenix defaults, we add border when it's a form field
-    bordered =
-      if assigns[:bordered] == nil do
-        true
-      else
-        assigns[:bordered]
-      end
-
-    assigns = assign(assigns, :bordered, bordered)
-
     # If form field is sent, this components delegates it's implementation to the form_input component
     ~H"""
     <DaisyUIComponents.Form.form_input {assigns} />
@@ -123,7 +112,7 @@ defmodule DaisyUIComponents.Input do
       name={@name}
       class={@class}
       color={@color}
-      bordered={@bordered}
+      ghost={@ghost}
       multiple={@multiple}
       {@rest}
     >
@@ -140,15 +129,9 @@ defmodule DaisyUIComponents.Input do
       |> assign_new(:value, fn -> nil end)
 
     ~H"""
-    <.textarea
-      id={@id}
-      name={@name}
-      class={@class}
-      color={@color}
-      bordered={@bordered}
-      value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-      {@rest}
-    />
+    <.textarea id={@id} name={@name} class={@class} color={@color} ghost={@ghost} {@rest}>
+      {Phoenix.HTML.Form.normalize_value(@type, @value)}
+    </.textarea>
     """
   end
 
@@ -183,7 +166,7 @@ defmodule DaisyUIComponents.Input do
       name={@name}
       class={@class}
       color={@color}
-      bordered={@bordered}
+      ghost={@ghost}
       type={@type}
       value={Phoenix.HTML.Form.normalize_value(@type, @value)}
       {@rest}

@@ -1,4 +1,4 @@
-defmodule Storybook.Components.Form do
+defmodule Storybook.Components.SimpleForm do
   use PhoenixStorybook.Story, :component
 
   alias DaisyUIComponents.Input
@@ -20,12 +20,13 @@ defmodule Storybook.Components.Form do
       %VariationGroup{
         id: :basic_inputs,
         variations:
-          for type <- ~w(text textarea number date color range checkbox)a do
+          for type <- ~w(text textarea number date color range checkbox radio)a do
             %Variation{
               id: type,
               attributes: %{
                 type: to_string(type),
-                label: String.capitalize("#{type} input")
+                label: String.capitalize("#{type} input"),
+                placeholder: String.capitalize("#{type} input")
               }
             }
           end

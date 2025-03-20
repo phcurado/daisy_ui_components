@@ -1,4 +1,4 @@
-defmodule Storybook.Examples.CoreComponents do
+defmodule Storybook.Examples.TableInsert do
   use PhoenixStorybook.Story, :example
 
   use DaisyUIComponents
