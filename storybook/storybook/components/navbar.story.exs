@@ -28,7 +28,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_title,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -39,7 +39,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_title_and_icon,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -57,7 +57,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_icon_at_start_and_end,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -80,7 +80,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_menu_and_submenu,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -93,7 +93,7 @@ defmodule Storybook.Components.Navbar do
               <:item>
                 <details>
                   <summary>parent</summary>
-                  <ul class="bg-base-100 rounded-t-none p-2">
+                  <ul class="bg-base-200 rounded-t-none p-2">
                     <li><a>link 1</a></li>
                     <li><a>link 2</a></li>
                   </ul>
@@ -107,7 +107,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_search_input_and_dropdown,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -124,7 +124,7 @@ defmodule Storybook.Components.Navbar do
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
               </div>
-              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 <:item>
                   <a class="justify-between">
                     Profile
@@ -142,7 +142,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_icon_indicator_and_dropdown,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -157,7 +157,7 @@ defmodule Storybook.Components.Navbar do
                   <.badge size="sm" class="indicator-item">8</.badge>
                 </div>
               </div>
-              <.card padding="compact" class="dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
+              <.card padding="compact" class="dropdown-content bg-base-200 z-[1] mt-3 w-52 shadow">
                 <:card_body>
                   <span class="text-lg font-bold">8 Items</span>
                   <span class="text-info">Subtotal: $999</span>
@@ -175,7 +175,7 @@ defmodule Storybook.Components.Navbar do
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                 </div>
               </div>
-              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 <:item>
                   <a class="justify-between">
                     Profile
@@ -193,7 +193,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_with_dropdown_center_logo_and_icon,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -202,7 +202,7 @@ defmodule Storybook.Components.Navbar do
               <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <.icon name="hero-bars-3-bottom-right" />
               </div>
-              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 <:item><a>Homepage</a></:item>
                 <:item><a>Portfolio</a></:item>
                 <:item><a>About</a></:item>
@@ -229,7 +229,7 @@ defmodule Storybook.Components.Navbar do
       %Variation{
         id: :navbar_responsive,
         attributes: %{
-          class: "bg-base-100 shadow-xl rounded-box"
+          class: "bg-base-200 shadow-xl rounded-box"
         },
         slots: [
           """
@@ -238,7 +238,7 @@ defmodule Storybook.Components.Navbar do
               <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                 <.icon name="hero-bars-3-bottom-right" />
               </div>
-              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <.menu tabindex="0" size="sm" class="dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                 <:item><a>Item 1</a></:item>
                 <:item>
                   <a>Parent</a>
@@ -258,7 +258,7 @@ defmodule Storybook.Components.Navbar do
               <:item>
                 <details>
                   <summary>Parent</summary>
-                  <ul class="p-2 bg-base-100 w-40">
+                  <ul class="p-2 bg-base-200 w-40">
                     <li><a>Submenu 1</a></li>
                     <li><a>Submenu 2</a></li>
                   </ul>

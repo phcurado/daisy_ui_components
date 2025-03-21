@@ -18,6 +18,7 @@ config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
     esbuild:
       {Esbuild, :install_and_run, [:daisy_ui_components_site, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:daisy_ui_components_site, ~w(--watch)]},
+    storybook_esbuild: {Esbuild, :install_and_run, [:storybook, ~w(--sourcemap=inline --watch)]},
     storybook_tailwind: {Tailwind, :install_and_run, [:storybook, ~w(--watch)]}
   ]
 

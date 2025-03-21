@@ -19,7 +19,7 @@ defmodule Storybook.Components.Stat do
       %Variation{
         id: :stat,
         attributes: %{
-          class: "shadow"
+          class: "bg-base-200 shadow"
         },
         slots: [
           """
@@ -34,7 +34,7 @@ defmodule Storybook.Components.Stat do
       %Variation{
         id: :stat_with_icon_and_image,
         attributes: %{
-          class: "shadow"
+          class: "bg-base-200 shadow"
         },
         slots: [
           """
@@ -72,7 +72,7 @@ defmodule Storybook.Components.Stat do
             %Variation{
               id: String.to_atom(direction),
               attributes: %{
-                class: "shadow",
+                class: "bg-base-200 shadow",
                 direction: direction
               },
               slots: [
