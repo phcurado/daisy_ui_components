@@ -25,7 +25,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.7"}
+    {:daisy_ui_components, "~> 0.8"}
   ]
 end
 ```
@@ -34,7 +34,7 @@ Add through `npm` the daisy UI package inside your phoenix application:
 
 ```bash
 cd assets
-npm i -D daisyui@4
+npm i -D daisyui@5
 ```
 
 On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
