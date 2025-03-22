@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Support for the new DaisyUI V5
 - Label component
 - Label storybook
 - Fieldset component

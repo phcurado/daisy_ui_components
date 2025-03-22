@@ -82,6 +82,7 @@ defmodule DaisyUIComponentsSite.MixProject do
         "tailwind daisy_ui_components_site --minify",
         "esbuild daisy_ui_components_site --minify",
         "tailwind storybook --minify",
+        "esbuild storybook --minify",
         "phx.digest"
       ]
     ]
