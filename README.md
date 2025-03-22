@@ -20,49 +20,30 @@ This project brings [DaisyUI](https://daisyui.com/) components into your [Phoeni
 
 <!-- MDOC -->
 
-Reference this repository on your `mix.exs` file to start using.
+Add this package into your `mix.exs` file.
 
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.7"}
+    {:daisy_ui_components, "~> 0.8"}
   ]
 end
 ```
 
-Add through `npm` the daisy UI package inside your phoenix application:
+Reference this project path into your `main.css` file:
 
-```bash
-cd assets
-npm i -D daisyui@4
+```css
+@source "../../lib/my_project_web";
+@source "../../deps/daisy_ui_components";
 ```
 
-On `tailwind.config.js` include Live DaisyUI Components under the content list and reference under plugins
-
-```javascript
-module.exports = {
-  content: [
-    //...
-    "../deps/daisy_ui_components/**/*.*ex", // <- reference DaisyUIComponents as content path
-  ],
-  //...
-  plugins: [
-    //...
-    // comment the tailwind form to not conflict with DaisyUI
-    // require("@tailwindcss/forms"),
-    require("daisyui"), // <- add daisyUI plugin
-    //...
-  ],
-};
-```
-
-Add error translation function to your app's config.exs file. This function is used to translate ecto changeset errors
+Add error translation function to your app's config.exs file. This function is used to translate ecto changeset errors:
 
 ```elixir
 config :daisy_ui_components, translate_function: &MyAppWeb.CoreComponents.translate_error/1
 ```
 
-And now this library is ready. To have the components available under liveview, import the components on the web folder
+Reference the main `DaisyUIComponents` module inside your `html_helpers` to add all the components implemented in this library.
 
 ```elixir
 defp html_helpers do
@@ -79,38 +60,46 @@ defp html_helpers do
     # Comment your own CoreComponents to not conflict with the defaults of this library.
     # import YourProjectWeb.CoreComponents
     # Importing CoreComponents from your project is no longer necessary since
-    # DaisyUIComponents.CoreComponents offers a drop in replacement
-    # If you still want to use your own core components, remember to delete the default components generated from phoenix in this file
+    # `DaisyUIComponents` offers a drop in replacement
+    # If you still want to use your own core components, remember to delete the default conflicting components generated from phoenix in this file
     # ...
   end
 end
 ```
 
-Finally, in order to not conflict with some of the DaisyUI default styles, remove the `bg-white` class in your `root.html.heex` file.
+And that's it! This library is ready for usage 🚀
 
-```heex
-## Change from this
-<body class="bg-white">
-## to this
-<body>
-```
+> [!NOTE]  
+> New Phoenix applications already comes with DaisyUI installed, in case you use an older phoenix version or want to install it manually, follow the steps on [Installing DaisyUI Assets](##installing_daisyui-assets)
 
 ## ⭐ Core Components
 
-This library aims to integrate seamlessly with Phoenix generators. For this reason you don't need the components inside the `CoreComponents` after adding `use DaisyUIComponents` into your web file.
+This library aims to integrate seamlessly with Phoenix generators. For this reason you don't need the components inside the `CoreComponents` file after adding `use DaisyUIComponents` into your web file.
 All the components should be compatible, styled with DaisyUI.
 
 If you encounter any compatibility issues, feel free to open an `issue` or submit a `pull request`, and I'll take a look.
 
-## 🤖 Liveview 1.0
+## 📦 Installing DaisyUI with NPM
 
-This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/v1.0/CHANGELOG.md).
+On new Phoenix installations, the daisyUI assets already comes by default but you can still install it through `npm` if this is a requirement for your project. Adding `npm` into in your pproject requires some changes on the asset pipeline, so follow the steps below:
 
-## 📦 NPM setup
+Add through `npm` the daisy UI package inside your phoenix application:
 
-Since DaisyUI requires `npm` to install, it's also necessary to configure in your project the asset pipeline to use the npm commands.
+```bash
+cd assets
+npm i -D daisyui@5
+```
 
-In your `mix.exs` file, add the npm command in your assets setup:
+For Tailwind v4, add in your `main.css` file the daisyui plugin:
+
+```diff
+-@plugin "../vendor/daisyui" {
+-  themes: all;
+-}
++@plugin "daisyui"
+```
+
+Configure in your project the asset pipeline to use the npm commands. In your `mix.exs` file, add the npm command in your assets setup:
 
 ```diff
 "assets.setup": [
@@ -136,6 +125,35 @@ RUN mix deps.compile
 +COPY assets/package.json assets/package-lock.json ./assets/
 +RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 ```
+
+## Tailwind v3.0 Setup
+
+It's recommended to use the tailwind v4, since this is also an requirement for the DaisyUI v5. If your application is still using an previous tailwind version, check [this](https://github.com/phoenixframework/tailwind?tab=readme-ov-file#updating-from-tailwind-v3-to-v4) upgrade guide from the phoenix tailwind installer.
+
+If you still wish to use a previous tailwind version, follow the steps below.
+
+On the `tailwind.config.js` file include the DaisyUI Components under the content list and reference under plugins
+
+```javascript
+module.exports = {
+  content: [
+    //...
+    "../deps/daisy_ui_components/**/*.*ex", // <- reference DaisyUIComponents as content path
+  ],
+  //...
+  plugins: [
+    //...
+    // comment the tailwind form to not conflict with DaisyUI
+    // require("@tailwindcss/forms"),
+    require("daisyui"), // <- add daisyUI plugin
+    //...
+  ],
+};
+```
+
+## 🤖 Liveview 1.0
+
+This project is fully compatible with the Liveview 1.0 🔥. If you are using a previous Liveview version, check the [migration guide](https://github.com/phoenixframework/phoenix_live_view/blob/v1.0/CHANGELOG.md).
 
 ## ⚡️ Components
 
