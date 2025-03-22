@@ -15,7 +15,7 @@ defmodule Storybook.Components.Card do
       %Variation{
         id: :card,
         attributes: %{
-          class: "bg-base-100 w-96 shadow-xl"
+          class: "bg-base-200 w-96 shadow-xl"
         },
         slots: [
           """
@@ -41,7 +41,7 @@ defmodule Storybook.Components.Card do
             %Variation{
               id: String.to_atom(modifier),
               attributes: %{
-                class: "bg-base-100 w-96 shadow-xl",
+                class: "bg-base-200 w-96 shadow-xl",
                 modifier: modifier
               },
               slots: [
@@ -66,7 +66,7 @@ defmodule Storybook.Components.Card do
       %Variation{
         id: :compact,
         attributes: %{
-          class: "bg-base-100 w-96 shadow-xl",
+          class: "bg-base-200 w-96 shadow-xl",
           padding: "compact"
         },
         slots: [
@@ -89,7 +89,7 @@ defmodule Storybook.Components.Card do
       %Variation{
         id: :card_with_bottom_image,
         attributes: %{
-          class: "bg-base-100 w-96 shadow-xl",
+          class: "bg-base-200 w-96 shadow-xl",
           placement: "bottom"
         },
         slots: [
@@ -112,7 +112,7 @@ defmodule Storybook.Components.Card do
       %Variation{
         id: :card_with_no_image,
         attributes: %{
-          class: "bg-base-100 w-96 shadow-xl"
+          class: "bg-base-200 w-96 shadow-xl"
         },
         slots: [
           """

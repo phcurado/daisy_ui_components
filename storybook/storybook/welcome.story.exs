@@ -92,7 +92,7 @@ defmodule Storybook.Welcome do
             </:item>
           </.breadcrumbs>
           <div class="flex mb-5">
-            <.stats class="w-full shadow">
+            <.stats class="bg-base-100 w-full shadow">
               <.stat>
                 <:figure class="text-primary"><.icon name="hero-heart" /></:figure>
                 <:title>Downloads</:title>

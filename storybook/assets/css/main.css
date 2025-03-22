@@ -4,7 +4,7 @@
 @import "tailwindcss" source(none);
 @source "../css";
 @source "../js";
-@source "../../storybook";
+@source "../../lib/daisy_ui_components_site_web";
 @source "../../deps/daisy_ui_components";
 @source "../../../";
 
@@ -28,9 +28,3 @@
 }
 
 /* This file is for your main application CSS */
-
-@layer utilities {
-  * {
-    font-family: system-ui;
-  }
-}
