@@ -180,7 +180,7 @@ List of available components.
 | [Navbar](https://daisyui.com/components/navbar)           | ✅     | ✅        |
 | [Pagination](https://daisyui.com/components/pagination)   | ✅     | ✅        |
 | [Steps](https://daisyui.com/components/steps)             | ❌     | ❌        |
-| [Tabs](https://daisyui.com/components/tab)                | ❌     | ❌        |
+| [Tabs](https://daisyui.com/components/tab)                | ✅     | ❌        |
 
 ### Feedback
 
