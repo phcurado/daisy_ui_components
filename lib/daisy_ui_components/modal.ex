@@ -140,12 +140,36 @@ defmodule DaisyUIComponents.Modal do
     """
   end
 
+  @doc """
+
+  Returns the JS object with the modal displayed and focused.
+
+  ## Parameters
+
+  - js - the initial JS object to modify.
+  - id - a binary identifier for the modal element to be targeted.
+  ## Description
+   Updates the specified modal's state to open and focuses on its first content element.
+
+  """
   def show_modal(js \\ %JS{}, id) when is_binary(id) do
     js
     |> JS.set_attribute({"open", "true"}, to: "##{id}")
     |> JS.focus_first(to: "##{id}-content")
   end
 
+  @doc """
+
+  Returns the updated JavaScript state with the modal closed.
+
+  ## Parameters
+
+  - js - The current JavaScript state.
+  - id - The id of the modal to be hidden.
+  ## Description
+  Removes the "open" attribute from the specified modal and sets the focus away from it.
+
+  """
   def hide_modal(js \\ %JS{}, id) do
     js
     |> JS.remove_attribute("open", to: "##{id}")

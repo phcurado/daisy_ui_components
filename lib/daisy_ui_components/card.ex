@@ -10,7 +10,30 @@ defmodule DaisyUIComponents.Card do
   @modifiers ~w(side image_full)
   @placements ~w(top bottom)
 
+  @doc """
+
+  Returns the modifiers associated with a given set of rules.
+
+  ## Parameters
+
+  - @modifiers - the set of modifications/configurations applied to a specific context or operation.
+  ## Description
+  Retrieves a list of modifiers based on the provided set.
+
+  """
   def modifiers, do: @modifiers
+
+  @doc """
+
+  Returns the placements associated with the given criteria.
+
+  ## Parameters
+
+  - criteria - a set of conditions to filter placements.
+  ## Description
+  Retrieves placements from the database based on the specified criteria.
+
+  """
   def placements, do: @placements
 
   attr :class, :any, default: nil

@@ -28,3 +28,5 @@ daisy_ui_components-*.tar
 # Dialyxir
 /priv/plts/*.plt
 /priv/plts/*.plt.hash
+
+.env

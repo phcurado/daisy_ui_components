@@ -11,6 +11,17 @@ defmodule DaisyUIComponents.Join do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns the directions specified by the do parameter.
+
+  ## Parameters
+
+  - do - the specific action or command for which directions are needed.
+  ## Description
+  Provides guidance based on the specified action.
+
+  """
   def directions, do: @directions
 
   @doc """

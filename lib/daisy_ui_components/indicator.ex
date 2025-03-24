@@ -12,7 +12,31 @@ defmodule DaisyUIComponents.Indicator do
   @aligns ~w(start end center)
   @directions ~w(top bottom middle)
 
+  @doc """
+
+  Returns the alignment indicators based on specified criteria.
+
+  ## Parameters
+
+  - aligns - a parameter that specifies the criteria for alignment indicators.
+  ## Description
+   Retrieves alignment indicators based on the given criteria.
+
+  """
   def indicator_aligns, do: @aligns
+
+  @doc """
+
+  Returns the directions based on the indicator provided.
+
+  ## Parameters
+
+  - do - the indicator used to determine the direction.
+
+  ## Description
+  Utilizes the provided indicator to retrieve corresponding directional information.
+
+  """
   def indicator_directions, do: @directions
 
   @doc ~S"""

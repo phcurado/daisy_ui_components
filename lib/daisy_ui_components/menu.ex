@@ -9,6 +9,18 @@ defmodule DaisyUIComponents.Menu do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns the directions corresponding to the specified location.
+
+  ## Parameters
+
+  - location - the target location for which directions are requested.
+
+  ## Description
+   Retrieves the necessary directions based on the given location.
+
+  """
   def directions, do: @directions
 
   attr :class, :any, default: nil
