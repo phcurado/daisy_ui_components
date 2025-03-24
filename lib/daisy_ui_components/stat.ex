@@ -9,6 +9,11 @@ defmodule DaisyUIComponents.Stat do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns all the possible directions in the stat component.
+
+  """
   def directions, do: @directions
 
   attr :class, :string, default: nil
