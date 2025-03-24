@@ -11,14 +11,7 @@ defmodule DaisyUIComponents.Menu do
 
   @doc """
 
-  Returns the directions corresponding to the specified location.
-
-  ## Parameters
-
-  - location - the target location for which directions are requested.
-
-  ## Description
-   Retrieves the necessary directions based on the given location.
+  Returns all the possible directions in the menu component.
 
   """
   def directions, do: @directions

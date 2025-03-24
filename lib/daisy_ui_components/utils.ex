@@ -9,37 +9,19 @@ defmodule DaisyUIComponents.Utils do
 
   Returns the list of colors available.
 
-  ## Parameters
-
-  - None
-  ## Description
-   Retrieves the colors from the colors array.
-
   """
   def colors, do: @colors
 
   @doc """
 
-  Returns the directions as specified.
-
-  ## Parameters
-
-  - do - a parameter that specifies the action to perform regarding the directions.
-  ## Description
-  Retrieves the directions based on the provided action.
+  Returns the directions available.
 
   """
   def directions, do: @directions
 
   @doc """
 
-  Returns the sizes available in the database.
-
-  ## Parameters
-
-  - @sizes - an array or collection representing the sizes to be retrieved or processed.
-  ## Description
-  Retrieves and returns the list of available sizes from the database.
+  Returns the sizes available.
 
   """
   def sizes, do: @sizes
@@ -51,7 +33,7 @@ defmodule DaisyUIComponents.Utils do
 
   ## Parameters
 
-  - classes - a list of class names, which can be binaries or other data types.
+  - classes - a list of class names, which can be a string or a list of strings.
 
   ## Description
   Processes the input list of classes by trimming, converting to strings, and joining them into a single space-separated string.
@@ -79,6 +61,7 @@ defmodule DaisyUIComponents.Utils do
   - opts - a list of options to be checked for rendering validity.
   ## Description
   Evaluates whether any item in the list is a valid render option.
+  An option is valid if it is not `nil`, empty string or empty list. 
 
   """
   def render?(opts) when is_list(opts) do
@@ -95,7 +78,7 @@ defmodule DaisyUIComponents.Utils do
 
   ## Parameters
 
-  - true - a boolean value indicating whether to include the specified class.
+  - boolean - a boolean value indicating whether to include the specified class.
   - class - the class to potentially add.
 
   ## Description
@@ -111,8 +94,7 @@ defmodule DaisyUIComponents.Utils do
 
   ## Parameters
 
-  - msg - The message string that needs to be translated.
-  - _opts - Optional parameters for translation (empty by default).
+  - {msg, _opts} = params - The message string that needs to be translated and some opts ignored.
 
   ## Description
   Retrieves the appropriate translation function from the application environment and performs the translation, or returns the original message if none is found.

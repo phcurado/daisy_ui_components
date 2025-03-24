@@ -11,7 +11,7 @@ defmodule DaisyUIComponents.JSHelpers do
 
   ## Parameters
 
-  - js - a map of JavaScript settings to apply.
+  - js - an optional composable JS script which will be executed.
   - selector - the CSS selector of the element to be shown.
   ## Description
   Applies a transition effect to the selected element, altering its opacity and position over a specified duration.
@@ -36,8 +36,8 @@ defmodule DaisyUIComponents.JSHelpers do
 
   ## Parameters
 
-  - js - a map representing JavaScript state (default is an empty map).
-  - selector - a string or selector representing the target element to hide.
+  - js - an optional composable JS script which will be executed.
+  - selector - the CSS selector of the element to be hidden.
   ## Description
    Executes a hide action on the specified element with a transition effect.
 

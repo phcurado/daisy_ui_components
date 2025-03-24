@@ -13,13 +13,7 @@ defmodule DaisyUIComponents.Join do
 
   @doc """
 
-  Returns the directions specified by the do parameter.
-
-  ## Parameters
-
-  - do - the specific action or command for which directions are needed.
-  ## Description
-  Provides guidance based on the specified action.
+  Returns all the possible directions in the join component.
 
   """
   def directions, do: @directions

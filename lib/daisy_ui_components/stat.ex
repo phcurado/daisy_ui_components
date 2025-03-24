@@ -11,14 +11,7 @@ defmodule DaisyUIComponents.Stat do
 
   @doc """
 
-  Returns the directions as specified in the input.
-
-  ## Parameters
-
-  - do - an instruction that guides the functioning of the directions.
-
-  ## Description
-  Provides navigational instructions based on the given input.
+  Returns all the possible directions in the stat component.
 
   """
   def directions, do: @directions

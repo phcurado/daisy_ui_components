@@ -146,8 +146,9 @@ defmodule DaisyUIComponents.Modal do
 
   ## Parameters
 
-  - js - the initial JS object to modify.
-  - id - a binary identifier for the modal element to be targeted.
+  - js - an optional composable JS script to be executed.
+  - id - The id of the modal to be shown.
+
   ## Description
    Updates the specified modal's state to open and focuses on its first content element.
 
@@ -164,8 +165,9 @@ defmodule DaisyUIComponents.Modal do
 
   ## Parameters
 
-  - js - The current JavaScript state.
+  - js - an optional composable JS script to be executed.
   - id - The id of the modal to be hidden.
+
   ## Description
   Removes the "open" attribute from the specified modal and sets the focus away from it.
 

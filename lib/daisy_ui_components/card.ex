@@ -12,26 +12,20 @@ defmodule DaisyUIComponents.Card do
 
   @doc """
 
-  Returns the modifiers associated with a given set of rules.
+  Returns the modifiers of the card component.
 
-  ## Parameters
-
-  - @modifiers - the set of modifications/configurations applied to a specific context or operation.
   ## Description
-  Retrieves a list of modifiers based on the provided set.
+  Retrieves a fixed list of all possible modifiers.
 
   """
   def modifiers, do: @modifiers
 
   @doc """
 
-  Returns the placements associated with the given criteria.
+  Returns the placements of the card component.
 
-  ## Parameters
-
-  - criteria - a set of conditions to filter placements.
   ## Description
-  Retrieves placements from the database based on the specified criteria.
+  Retrieves a fixed list of all possible placements.
 
   """
   def placements, do: @placements
