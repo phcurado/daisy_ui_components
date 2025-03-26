@@ -45,6 +45,8 @@ defmodule DaisyUIComponents.Table do
     doc: "the function for mapping each row before calling the :col and :action slots"
 
   slot :col do
+    attr :class, :any
+    # attr :collapse
     attr :label, :string
   end
 
@@ -89,7 +91,7 @@ defmodule DaisyUIComponents.Table do
             <.td
               :for={col <- @col}
               phx-click={@row_click && @row_click.(row)}
-              class={[@row_click && "hover:cursor-pointer"]}
+              class={[@row_click && "hover:cursor-pointer", @col[:class]]}
             >
               {render_slot(col, @row_item.(row))}
             </.td>
