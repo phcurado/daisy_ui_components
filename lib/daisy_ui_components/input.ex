@@ -51,9 +51,7 @@ defmodule DaisyUIComponents.Input do
 
   def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
     # If form field is sent, this components delegates it's implementation to the form_input component
-    ~H"""
-    <DaisyUIComponents.Form.form_input {assigns} />
-    """
+    DaisyUIComponents.Form.form_input(assigns)
   end
 
   def input(%{type: "checkbox"} = assigns) do

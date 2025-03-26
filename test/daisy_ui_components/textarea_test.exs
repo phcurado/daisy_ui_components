@@ -21,18 +21,6 @@ defmodule DaisyUIComponents.TextareaTest do
     |> assert_text("This is a textarea")
   end
 
-  test "simple textarea with value" do
-    assigns = %{}
-
-    ~H"""
-    <.textarea value="This is a textarea" />
-    """
-    |> parse_component()
-    |> assert_component("textarea")
-    |> assert_class("textarea")
-    |> assert_text("This is a textarea")
-  end
-
   test "textarea colors" do
     for color <- Utils.colors() do
       assigns = %{color: color}

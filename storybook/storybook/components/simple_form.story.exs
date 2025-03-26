@@ -20,7 +20,7 @@ defmodule Storybook.Components.SimpleForm do
       %VariationGroup{
         id: :basic_inputs,
         variations:
-          for type <- ~w(text textarea number date color range checkbox radio)a do
+          for type <- ~w(text textarea number date color range checkbox)a do
             %Variation{
               id: type,
               attributes: %{

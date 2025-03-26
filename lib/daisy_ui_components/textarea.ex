@@ -30,13 +30,7 @@ defmodule DaisyUIComponents.Textarea do
       )
 
     ~H"""
-    <textarea class={@class} {@rest}>
-    <%= if render?(@inner_block) do %>
-      <%= render_slot(@inner_block) %>
-    <% else %>
-        <%= @value %>
-    <% end %>
-    </textarea>
+    <textarea class={@class} {@rest}>{render_slot(@inner_block)}</textarea>
     """
   end
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.8.1 - 2025-03-26
+
+### Changed
+
+- Fix `textarea` render slot on form component
+- Removed `value` attribute from `textarea` component
+
 ## 0.8.0 - 2025-03-22
 
 ### Added
