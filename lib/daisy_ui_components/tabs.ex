@@ -75,11 +75,62 @@ defmodule DaisyUIComponents.Tabs do
 
   ## Renders:
       <div role="tablist" class="tabs">
-        <input type="radio" name="tabs" aria-label="Tab 1" />
-        <input type="radio" name="tabs" aria-label="Tab 2" checked="checked" />
-        <input type="radio" name="tabs" aria-label="Tab 3" disabled />
+        <input type="radio" name="tabs" class="tab" aria-label="Tab 1" />
+        <input type="radio" name="tabs" class="tab" aria-label="Tab 2" checked="checked" />
+        <input type="radio" name="tabs" class="tab tab-disabled" aria-label="Tab 3" />
       </div>
 
+  ## Tabs with label type
+  ## These tabs could have a title attribute or inner block content
+      <.tabs>
+        <.tab type="label" title="Tab 1" name="tabs" />
+        <.tab type="label" title="Tab 2" name="tabs" active />
+        <.tab type="label" title="Tab 3" name="tabs" disabled />
+      </.tabs>
+
+  ## Renders:
+      <div role="tablist" class="tabs">
+        <label class="tab">
+          <input type="radio" name="tabs" />
+          Tab 1
+        </label>
+        <label class="tab">
+          <input type="radio" name="tabs" checked="checked" />
+          Tab 2
+        </label>
+        <label class="tab tab-disabled">
+          <input type="radio" name="tabs" />
+          Tab 3
+        </label>
+      </div>
+
+  ## Tabs with label type and and content
+      <.tabs tabs_style="lift" tabs_position="bottom">
+        <.tab type="label" title="Tab 1" name="my_tabs_with_content" />
+        <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 1</.tab_content>
+        <.tab type="label" title="Tab 2" name="my_tabs_with_content" active />
+        <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 2</.tab_content>
+        <.tab type="label" title="Tab 3" name="my_tabs_with_content" disabled />
+        <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 3</.tab_content>
+      </.tabs>
+
+  ## Renders:
+      <div role="tablist" class="tabs tabs-lift tabs-bottom">
+        <label class="tab">
+          <input type="radio" name="my_tabs_with_content" /> Tab 1
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 1</div>
+
+        <label class="tab tab-active">
+          <input type="radio" name="my_tabs_with_content" checked="checked" /> Tab 2
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+
+        <label class="tab tab-disabled">
+          <input type="radio" name="my_tabs_with_content" /> Tab 3
+        </label>
+        <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+      </div>
   """
 
   use DaisyUIComponents, :component
@@ -112,6 +163,26 @@ defmodule DaisyUIComponents.Tabs do
   attr :rest, :global
 
   slot :inner_block
+
+  def tab(%{type: "label", title: _title} = assigns) do
+    assigns =
+      assign(assigns, :class, tab_classes(assigns))
+
+    ~H"""
+    <.tab_label title={@title} name={@name} class={@class} active={@active} {@rest} />
+    """
+  end
+
+  def tab(%{type: "label"} = assigns) do
+    assigns =
+      assign(assigns, :class, tab_classes(assigns))
+
+    ~H"""
+    <.tab_label name={@name} class={@class} active={@active} {@rest}>
+      {render_slot(@inner_block)}
+    </.tab_label>
+    """
+  end
 
   def tab(%{type: "radio", title: _title} = assigns) do
     assigns =
@@ -164,6 +235,32 @@ defmodule DaisyUIComponents.Tabs do
     <.tab_link class={@class} {@rest}>
       {render_slot(@inner_block)}
     </.tab_link>
+    """
+  end
+
+  attr :title, :string
+  attr :name, :string, required: true
+  attr :class, :any, default: nil
+  attr :active, :boolean, default: false
+  attr :rest, :global
+
+  slot :inner_block
+
+  def tab_label(%{title: _title} = assigns) do
+    ~H"""
+    <label class={@class} {@rest}>
+      <input type="radio" name={@name} checked={@active && "checked"} />
+      {@title}
+    </label>
+    """
+  end
+
+  def tab_label(assigns) do
+    ~H"""
+    <label class={@class} {@rest}>
+      <input type="radio" name={@name} checked={@active && "checked"} />
+      {render_slot(@inner_block)}
+    </label>
     """
   end
 

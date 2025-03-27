@@ -274,8 +274,113 @@ defmodule DaisyUIComponents.TabsTest do
     end
   end
 
+  describe "tabs with labels" do
+    test "basic tabs with labels with title" do
+      assigns = %{}
+
+      component =
+        ~H"""
+        <.tabs>
+          <.tab type="label" title="Tab 1" name="my_label_tabs" />
+          <.tab type="label" title="Tab 2" name="my_label_tabs" active />
+          <.tab type="label" title="Tab 3" name="my_label_tabs" disabled />
+        </.tabs>
+        """
+
+      expected_component =
+        ~H"""
+        <div role="tablist" class="tabs">
+          <label class="tab">
+            <input type="radio" name="my_label_tabs" /> Tab 1
+          </label>
+          <label class="tab tab-active">
+            <input type="radio" name="my_label_tabs" checked="checked" /> Tab 2
+          </label>
+          <label class="tab tab-disabled">
+            <input type="radio" name="my_label_tabs" /> Tab 3
+          </label>
+        </div>
+        """
+
+      assert_components(component, expected_component)
+    end
+
+    test "basic tabs with labels with inner block" do
+      assigns = %{}
+
+      component =
+        ~H"""
+        <.tabs>
+          <.tab type="label" name="my_label_tabs">
+            Tab 1 <span>Extra content</span>
+          </.tab>
+          <.tab type="label" name="my_label_tabs" active>
+            Tab 2
+          </.tab>
+          <.tab type="label" name="my_label_tabs" disabled>
+            Tab 3
+          </.tab>
+        </.tabs>
+        """
+
+      expected_component =
+        ~H"""
+        <div role="tablist" class="tabs">
+          <label class="tab">
+            <input type="radio" name="my_label_tabs" /> Tab 1 <span>Extra content</span>
+          </label>
+          <label class="tab tab-active">
+            <input type="radio" name="my_label_tabs" checked="checked" /> Tab 2
+          </label>
+          <label class="tab tab-disabled">
+            <input type="radio" name="my_label_tabs" /> Tab 3
+          </label>
+        </div>
+        """
+
+      assert_components(component, expected_component)
+    end
+
+    test "tabs with label content" do
+      assigns = %{}
+
+      component =
+        ~H"""
+        <.tabs tabs_style="lift" tabs_position="bottom">
+          <.tab type="label" title="Tab 1" name="my_tabs_with_content" />
+          <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 1</.tab_content>
+          <.tab type="label" title="Tab 2" name="my_tabs_with_content" active />
+          <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 2</.tab_content>
+          <.tab type="label" title="Tab 3" name="my_tabs_with_content" disabled />
+          <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 3</.tab_content>
+        </.tabs>
+        """
+
+      expected_component =
+        ~H"""
+        <div role="tablist" class="tabs tabs-lift tabs-bottom">
+          <label class="tab">
+            <input type="radio" name="my_tabs_with_content" /> Tab 1
+          </label>
+          <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 1</div>
+
+          <label class="tab tab-active">
+            <input type="radio" name="my_tabs_with_content" checked="checked" /> Tab 2
+          </label>
+          <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+
+          <label class="tab tab-disabled">
+            <input type="radio" name="my_tabs_with_content" /> Tab 3
+          </label>
+          <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 3</div>
+        </div>
+        """
+
+      assert_components(component, expected_component)
+    end
+  end
+
   defp assert_components(rendered_component, expected_component) do
-    # IO.puts(rendered_to_string(rendered_component))
     rendered_component_str = rendered_to_string(rendered_component) |> remove_whitespace()
     expected_component_str = rendered_to_string(expected_component) |> remove_whitespace()
     assert rendered_component_str == expected_component_str
