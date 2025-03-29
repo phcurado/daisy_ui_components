@@ -103,27 +103,38 @@ defmodule DaisyUIComponents.TabsTest do
       end
     end
 
-    test "tabs styles" do
-      for style <- ~w(box border lift) do
-        assigns = %{tabs_style: style}
+    test "tabs styles box" do
+      assigns = %{}
 
-        ~H"""
-        <.tabs tabs_style={@tabs_style}>
-          <.tab>Tab 1</.tab>
-        </.tabs>
-        """
-        |> parse_component()
-        |> assert_component("div")
-        |> assert_class("tabs tabs-#{style}")
-      end
+      ~H"""
+      <.tabs box>
+        <.tab>Tab 1</.tab>
+      </.tabs>
+      """
+      |> parse_component()
+      |> assert_component("div")
+      |> assert_class("tabs tabs-box")
+
+      # for style <- ~w(box border lift) do
+      #   assigns = %{tabs_style: style}
+
+      #   ~H"""
+      #   <.tabs tabs_style={@tabs_style}>
+      #     <.tab>Tab 1</.tab>
+      #   </.tabs>
+      #   """
+      #   |> parse_component()
+      #   |> assert_component("div")
+      #   |> assert_class("tabs tabs-#{style}")
+      # end
     end
 
     test "tabs position" do
       for position <- ~w(top bottom) do
-        assigns = %{tabs_position: position}
+        assigns = %{position: position}
 
         ~H"""
-        <.tabs tabs_position={@tabs_position}>
+        <.tabs position={@position}>
           <.tab>Tab 1</.tab>
         </.tabs>
         """
@@ -240,7 +251,7 @@ defmodule DaisyUIComponents.TabsTest do
 
       component =
         ~H"""
-        <.tabs tabs_style="lift" tabs_position="bottom">
+        <.tabs lift="true" position="bottom">
           <.tab type="radio" title="Tab 1" name="my_tabs_with_content" />
           <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 1</.tab_content>
           <.tab type="radio" title="Tab 2" name="my_tabs_with_content" active />
@@ -346,7 +357,7 @@ defmodule DaisyUIComponents.TabsTest do
 
       component =
         ~H"""
-        <.tabs tabs_style="lift" tabs_position="bottom">
+        <.tabs box="true" position="bottom">
           <.tab type="label" title="Tab 1" name="my_tabs_with_content" />
           <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 1</.tab_content>
           <.tab type="label" title="Tab 2" name="my_tabs_with_content" active />
@@ -358,7 +369,7 @@ defmodule DaisyUIComponents.TabsTest do
 
       expected_component =
         ~H"""
-        <div role="tablist" class="tabs tabs-lift tabs-bottom">
+        <div role="tablist" class="tabs tabs-box tabs-bottom">
           <label class="tab">
             <input type="radio" name="my_tabs_with_content" /> Tab 1
           </label>

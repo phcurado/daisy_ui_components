@@ -105,7 +105,7 @@ defmodule DaisyUIComponents.Tabs do
       </div>
 
   ## Tabs with label type and and content
-      <.tabs tabs_style="lift" tabs_position="bottom">
+      <.tabs lift position="bottom">
         <.tab type="label" title="Tab 1" name="my_tabs_with_content" />
         <.tab_content class="bg-base-100 border-base-300 p-6">Tab content 1</.tab_content>
         <.tab type="label" title="Tab 2" name="my_tabs_with_content" active />
@@ -137,8 +137,10 @@ defmodule DaisyUIComponents.Tabs do
 
   attr :class, :any, default: nil
   attr :size, :string, values: sizes()
-  attr :tabs_style, :string, values: ~w(box border lift)
-  attr :tabs_position, :string, values: ~w(top bottom)
+  attr :box, :boolean, default: false
+  attr :border, :boolean, default: false
+  attr :lift, :boolean, default: false
+  attr :position, :string, values: ~w(top bottom)
   attr :rest, :global
 
   slot :inner_block
@@ -348,8 +350,10 @@ defmodule DaisyUIComponents.Tabs do
     classes([
       "tabs",
       tabs_size(assigns[:size]),
-      tabs_style(assigns[:tabs_style]),
-      tabs_position(assigns[:tabs_position]),
+      maybe_add_class(assigns[:border], "tabs-border"),
+      maybe_add_class(assigns[:box], "tabs-box"),
+      maybe_add_class(assigns[:lift], "tabs-lift"),
+      position(assigns[:position]),
       assigns.class
     ])
   end
@@ -386,14 +390,8 @@ defmodule DaisyUIComponents.Tabs do
   defp tabs_size("xl"), do: "tabs-xl"
   defp tabs_size(_size), do: nil
 
-  # Styles
-  defp tabs_style("box"), do: "tabs-box"
-  defp tabs_style("border"), do: "tabs-border"
-  defp tabs_style("lift"), do: "tabs-lift"
-  defp tabs_style(_style), do: nil
-
   # Positions
-  defp tabs_position("top"), do: "tabs-top"
-  defp tabs_position("bottom"), do: "tabs-bottom"
-  defp tabs_position(_position), do: nil
+  defp position("top"), do: "tabs-top"
+  defp position("bottom"), do: "tabs-bottom"
+  defp position(_position), do: nil
 end

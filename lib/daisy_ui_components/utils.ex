@@ -31,6 +31,7 @@ defmodule DaisyUIComponents.Utils do
     !(value in [nil, "", []])
   end
 
+  def maybe_add_class("true", class), do: class
   def maybe_add_class(true, class), do: class
   def maybe_add_class(_false, _class), do: nil
 
