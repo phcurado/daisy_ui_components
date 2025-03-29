@@ -76,6 +76,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Stat
       import DaisyUIComponents.Swap
       import DaisyUIComponents.Table
+      import DaisyUIComponents.Tabs
       import DaisyUIComponents.TextInput
       import DaisyUIComponents.Textarea
       import DaisyUIComponents.Toggle
