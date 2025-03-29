@@ -2,7 +2,7 @@ defmodule DaisyUIComponents.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/phcurado/daisy_ui_components"
-  @version "0.8.0"
+  @version "0.8.1"
 
   def project do
     [
@@ -48,11 +48,11 @@ defmodule DaisyUIComponents.MixProject do
     [
       {:phoenix_live_view, "~> 1.0"},
       {:jason, "~> 1.4", only: [:dev, :test]},
+      {:floki, "~> 0.37.0", [only: :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.18", only: :test},
-      {:assert_html, "~> 0.1", only: [:dev, :test]}
+      {:excoveralls, "~> 0.18", only: :test}
     ]
   end
 

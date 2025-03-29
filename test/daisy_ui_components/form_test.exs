@@ -1,6 +1,5 @@
 defmodule DaisyUIComponents.FormTest do
   use DaisyUIComponents.ComponentCase
-  use AssertHTML
 
   import Phoenix.Component
   import DaisyUIComponents.Form
@@ -88,6 +87,41 @@ defmodule DaisyUIComponents.FormTest do
       |> assert_attribute("type", "text")
       |> assert_attribute("value", "Jose")
       |> assert_attribute("name", "user[first_name]")
+    end)
+  end
+
+  test "form_input textarea" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input
+      id="1"
+      field={
+        %Phoenix.HTML.FormField{
+          id: "id",
+          field: "name",
+          name: "user[first_name]",
+          value: "Jose",
+          errors: [],
+          form: Phoenix.Component.to_form(%{})
+        }
+      }
+      type="textarea"
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [label, input] ->
+      label
+      |> assert_component("label")
+      |> assert_class("fieldset-label")
+      |> assert_attribute("for", "1")
+
+      input
+      |> assert_component("textarea")
+      |> assert_class("textarea w-full")
+      |> assert_attribute("name", "user[first_name]")
+      |> assert_text("Jose")
     end)
   end
 end

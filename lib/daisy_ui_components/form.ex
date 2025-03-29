@@ -189,10 +189,9 @@ defmodule DaisyUIComponents.Form do
         color={@color}
         class={[@class, "w-full"]}
         prompt={@prompt}
+        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         {@rest}
-      >
-        {Phoenix.HTML.Form.normalize_value(@type, @value)}
-      </.input>
+      />
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
     """

@@ -12,7 +12,18 @@ defmodule DaisyUIComponents.Indicator do
   @aligns ~w(start end center)
   @directions ~w(top bottom middle)
 
+  @doc """
+
+  Returns all the possible aligns in the indicator component.
+
+  """
   def indicator_aligns, do: @aligns
+
+  @doc """
+
+  Returns all the possible directions in the indicator component.
+
+  """
   def indicator_directions, do: @directions
 
   @doc ~S"""

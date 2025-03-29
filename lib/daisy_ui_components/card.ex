@@ -10,7 +10,24 @@ defmodule DaisyUIComponents.Card do
   @modifiers ~w(side image_full)
   @placements ~w(top bottom)
 
+  @doc """
+
+  Returns the modifiers of the card component.
+
+  ## Description
+  Retrieves a fixed list of all possible modifiers.
+
+  """
   def modifiers, do: @modifiers
+
+  @doc """
+
+  Returns the placements of the card component.
+
+  ## Description
+  Retrieves a fixed list of all possible placements.
+
+  """
   def placements, do: @placements
 
   attr :class, :any, default: nil

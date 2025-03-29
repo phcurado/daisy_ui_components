@@ -5,6 +5,19 @@ defmodule DaisyUIComponents.JSHelpers do
 
   alias Phoenix.LiveView.JS
 
+  @doc """
+
+  Shows the specified element with a smooth transition effect.
+
+  ## Parameters
+
+  - js - an optional composable JS script which will be executed.
+  - selector - the CSS selector of the element to be shown.
+  ## Description
+  Applies a transition effect to the selected element, altering its opacity and position over a specified duration.
+
+  """
+
   # show and hide functions from phoenix CoreComponents
   def show(js \\ %JS{}, selector) do
     JS.show(js,
@@ -17,6 +30,18 @@ defmodule DaisyUIComponents.JSHelpers do
     )
   end
 
+  @doc """
+
+  Hides an element specified by the selector with a transition effect.
+
+  ## Parameters
+
+  - js - an optional composable JS script which will be executed.
+  - selector - the CSS selector of the element to be hidden.
+  ## Description
+   Executes a hide action on the specified element with a transition effect.
+
+  """
   def hide(js \\ %JS{}, selector) do
     JS.hide(js,
       to: selector,

@@ -9,6 +9,11 @@ defmodule DaisyUIComponents.Menu do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns all the possible directions in the menu component.
+
+  """
   def directions, do: @directions
 
   attr :class, :any, default: nil

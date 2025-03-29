@@ -11,6 +11,11 @@ defmodule DaisyUIComponents.Join do
 
   @directions ~w(horizontal vertical)
 
+  @doc """
+
+  Returns all the possible directions in the join component.
+
+  """
   def directions, do: @directions
 
   @doc """
