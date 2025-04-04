@@ -1,8 +1,7 @@
 defmodule DaisyUIComponents.CheckboxTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Checkbox
 
   alias DaisyUIComponents.Utils
@@ -10,21 +9,26 @@ defmodule DaisyUIComponents.CheckboxTest do
   test "checkbox" do
     assigns = %{}
 
-    checkbox =
-      rendered_to_string(~H"""
-      <.checkbox value="true" />
-      """)
-
-    assert checkbox =~ ~s(<input class="checkbox" type="checkbox" value="true">)
+    ~H"""
+    <.checkbox value="true" />
+    """
+    |> parse_component()
+    |> assert_component("input")
+    |> assert_class("checkbox")
+    |> assert_attribute("type", "checkbox")
+    |> assert_attribute("value", "true")
   end
 
   test "checkbox colors" do
     for color <- Utils.colors() do
       assigns = %{color: color}
 
-      assert rendered_to_string(~H"""
-             <.checkbox color={@color} />
-             """) =~ ~s(<input class="checkbox checkbox-#{color}" type="checkbox">)
+      ~H"""
+      <.checkbox color={@color} />
+      """
+      |> parse_component()
+      |> assert_component("input")
+      |> assert_class("checkbox checkbox-#{color}")
     end
   end
 
@@ -32,9 +36,12 @@ defmodule DaisyUIComponents.CheckboxTest do
     for size <- Utils.sizes() do
       assigns = %{size: size}
 
-      assert rendered_to_string(~H"""
-             <.checkbox size={@size} />
-             """) =~ ~s(<input class="checkbox checkbox-#{size}" type="checkbox">)
+      ~H"""
+      <.checkbox size={@size} />
+      """
+      |> parse_component()
+      |> assert_component("input")
+      |> assert_class("checkbox checkbox-#{size}")
     end
   end
 end

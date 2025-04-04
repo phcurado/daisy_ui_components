@@ -9,9 +9,11 @@ defmodule DaisyUIComponents.Toggle do
   use DaisyUIComponents, :component
 
   attr :class, :any, default: nil
+  attr :checked, :boolean, default: nil, doc: "the checked flag for checkbox inputs"
+  attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(checked)
+  attr :rest, :global, include: ~w(name)
 
   def toggle(assigns) do
     assigns =
@@ -27,7 +29,7 @@ defmodule DaisyUIComponents.Toggle do
       )
 
     ~H"""
-    <input type="checkbox" class={@class} {@rest} />
+    <input class={@class} type="checkbox" checked={@checked} value={@value} {@rest} />
     """
   end
 
