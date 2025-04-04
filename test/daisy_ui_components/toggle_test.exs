@@ -1,8 +1,7 @@
 defmodule DaisyUIComponents.ToggleTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Toggle
 
   alias DaisyUIComponents.Utils
@@ -10,33 +9,26 @@ defmodule DaisyUIComponents.ToggleTest do
   test "toggle" do
     assigns = %{}
 
-    toggle =
-      rendered_to_string(~H"""
-      <.toggle checked="checked" />
-      """)
-
-    assert toggle =~ ~s(<input)
-    assert toggle =~ ~s(class="toggle")
-    assert toggle =~ ~s(type="checkbox")
-    assert toggle =~ ~s(checked="checked")
-
-    toggle =
-      rendered_to_string(~H"""
-      <.toggle />
-      """)
-
-    assert toggle =~ ~s(<input)
-    assert toggle =~ ~s(class="toggle")
-    assert toggle =~ ~s(type="checkbox")
+    ~H"""
+    <.toggle value="true" />
+    """
+    |> parse_component()
+    |> assert_component("input")
+    |> assert_class("toggle")
+    |> assert_attribute("type", "checkbox")
+    |> assert_attribute("value", "true")
   end
 
   test "toggle colors" do
     for color <- Utils.colors() do
       assigns = %{color: color}
 
-      assert rendered_to_string(~H"""
-             <.toggle color={@color} />
-             """) =~ ~s(<input type="checkbox" class="toggle toggle-#{color}">)
+      ~H"""
+      <.toggle color={@color} />
+      """
+      |> parse_component()
+      |> assert_component("input")
+      |> assert_class("toggle toggle-#{color}")
     end
   end
 
@@ -44,9 +36,12 @@ defmodule DaisyUIComponents.ToggleTest do
     for size <- Utils.sizes() do
       assigns = %{size: size}
 
-      assert rendered_to_string(~H"""
-             <.toggle size={@size} />
-             """) =~ ~s(<input type="checkbox" class="toggle toggle-#{size}">)
+      ~H"""
+      <.toggle size={@size} />
+      """
+      |> parse_component()
+      |> assert_component("input")
+      |> assert_class("toggle toggle-#{size}")
     end
   end
 end
