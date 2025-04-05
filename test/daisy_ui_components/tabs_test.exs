@@ -304,7 +304,7 @@ defmodule DaisyUIComponents.TabsTest do
           <label class="tab">
             <input type="radio" name="my_label_tabs" /> Tab 1
           </label>
-          <label class="tab tab-active">
+          <label class="tab">
             <input type="radio" name="my_label_tabs" checked="checked" /> Tab 2
           </label>
           <label class="tab tab-disabled">
@@ -340,7 +340,7 @@ defmodule DaisyUIComponents.TabsTest do
           <label class="tab">
             <input type="radio" name="my_label_tabs" /> Tab 1 <span>Extra content</span>
           </label>
-          <label class="tab tab-active">
+          <label class="tab">
             <input type="radio" name="my_label_tabs" checked="checked" /> Tab 2
           </label>
           <label class="tab tab-disabled">
@@ -375,7 +375,7 @@ defmodule DaisyUIComponents.TabsTest do
           </label>
           <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 1</div>
 
-          <label class="tab tab-active">
+          <label class="tab">
             <input type="radio" name="my_tabs_with_content" checked="checked" /> Tab 2
           </label>
           <div class="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>

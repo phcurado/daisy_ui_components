@@ -168,7 +168,7 @@ defmodule DaisyUIComponents.Tabs do
 
   def tab(%{type: "label", title: _title} = assigns) do
     assigns =
-      assign(assigns, :class, tab_classes(assigns))
+      assign(assigns, :class, radio_tab_classes(assigns))
 
     ~H"""
     <.tab_label title={@title} name={@name} class={@class} active={@active} {@rest} />
@@ -177,7 +177,7 @@ defmodule DaisyUIComponents.Tabs do
 
   def tab(%{type: "label"} = assigns) do
     assigns =
-      assign(assigns, :class, tab_classes(assigns))
+      assign(assigns, :class, radio_tab_classes(assigns))
 
     ~H"""
     <.tab_label name={@name} class={@class} active={@active} {@rest}>
@@ -363,7 +363,8 @@ defmodule DaisyUIComponents.Tabs do
     classes([
       "tab",
       maybe_add_class(assigns[:active], "tab-active"),
-      maybe_add_class(assigns[:disabled], "tab-disabled")
+      maybe_add_class(assigns[:disabled], "tab-disabled"),
+      assigns.class
     ])
   end
 
@@ -371,7 +372,8 @@ defmodule DaisyUIComponents.Tabs do
     # Instead of "tab-active" class, the checked attribute is used for radio tabs
     classes([
       "tab",
-      maybe_add_class(assigns[:disabled], "tab-disabled")
+      maybe_add_class(assigns[:disabled], "tab-disabled"),
+      assigns.class
     ])
   end
 
