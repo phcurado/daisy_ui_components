@@ -12,8 +12,8 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step primary>Register</.step>
-          <.step primary>Choose plan</.step>
+          <.step color="primary">Register</.step>
+          <.step color="primary">Choose plan</.step>
           <.step>Purchase</.step>
           <.step>Receive Product</.step>
         </.steps>
@@ -38,8 +38,8 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps vertical>
-          <.step primary>Register</.step>
-          <.step primary>Choose plan</.step>
+          <.step color="primary">Register</.step>
+          <.step color="primary">Choose plan</.step>
           <.step>Purchase</.step>
           <.step>Receive Product</.step>
         </.steps>
@@ -64,8 +64,8 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps horizontal>
-          <.step primary>Register</.step>
-          <.step primary>Choose plan</.step>
+          <.step color="primary">Register</.step>
+          <.step color="primary">Choose plan</.step>
           <.step>Purchase</.step>
           <.step>Receive Product</.step>
         </.steps>
@@ -90,10 +90,10 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step neutral>
+          <.step color="neutral">
             <span class="step-icon">😕</span>Step 1
           </.step>
-          <.step neutral>
+          <.step color="neutral">
             <span class="step-icon">😃</span>Step 2
           </.step>
           <.step>
@@ -126,13 +126,13 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step content="?" neutral>Step 1</.step>
-          <.step content="!" neutral>Step 2</.step>
-          <.step content="✓" neutral>Step 3</.step>
-          <.step content="✕" neutral="true">Step 4</.step>
-          <.step content="★" neutral="true">Step 5</.step>
-          <.step content="" neutral="true">Step 6</.step>
-          <.step content="●" neutral="true">Step 7</.step>
+          <.step content="?" color="neutral">Step 1</.step>
+          <.step content="!" color="neutral">Step 2</.step>
+          <.step content="✓" color="neutral">Step 3</.step>
+          <.step content="✕" color="neutral">Step 4</.step>
+          <.step content="★" color="neutral">Step 5</.step>
+          <.step content="" color="neutral">Step 6</.step>
+          <.step content="●" color="neutral">Step 7</.step>
         </.steps>
         """
 
@@ -158,10 +158,10 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step info>Fly to moon</.step>
-          <.step info>Shrink the moon</.step>
-          <.step info>Grab the moon</.step>
-          <.step error content="?">Sit</.step>
+          <.step color="info">Fly to moon</.step>
+          <.step color="info">Shrink the moon</.step>
+          <.step color="info">Grab the moon</.step>
+          <.step color="error" content="?">Sit</.step>
         </.steps>
         """
 
@@ -184,13 +184,13 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step neutral>Step 1</.step>
-          <.step primary>Step 2</.step>
-          <.step secondary>Step 3</.step>
-          <.step accent>Step 4</.step>
-          <.step success>Step 5</.step>
-          <.step warning>Step 6</.step>
-          <.step error>Step 7</.step>
+          <.step color="neutral">Step 1</.step>
+          <.step color="primary">Step 2</.step>
+          <.step color="secondary">Step 3</.step>
+          <.step color="accent">Step 4</.step>
+          <.step color="success">Step 5</.step>
+          <.step color="warning">Step 6</.step>
+          <.step color="error">Step 7</.step>
         </.steps>
         """
 

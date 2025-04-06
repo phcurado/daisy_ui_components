@@ -41,14 +41,8 @@ defmodule DaisyUIComponents.Steps do
 
   attr :class, :any, default: nil
   attr :content, :string, default: nil
-  attr :neutral, :boolean, default: false
-  attr :primary, :boolean, default: false
-  attr :secondary, :boolean, default: false
-  attr :accent, :boolean, default: false
-  attr :info, :boolean, default: false
-  attr :success, :boolean, default: false
-  attr :warning, :boolean, default: false
-  attr :error, :boolean, default: false
+  attr :color, :string, values: colors() ++ ["neutral"]
+
   attr :rest, :global
 
   slot :inner_block
@@ -78,15 +72,18 @@ defmodule DaisyUIComponents.Steps do
   defp step_classes(assigns) do
     classes([
       "step",
-      maybe_add_class(assigns[:neutral], "step-neutral"),
-      maybe_add_class(assigns[:primary], "step-primary"),
-      maybe_add_class(assigns[:secondary], "step-secondary"),
-      maybe_add_class(assigns[:accent], "step-accent"),
-      maybe_add_class(assigns[:info], "step-info"),
-      maybe_add_class(assigns[:success], "step-success"),
-      maybe_add_class(assigns[:warning], "step-warning"),
-      maybe_add_class(assigns[:error], "step-error"),
+      step_color(assigns[:color]),
       assigns.class
     ])
   end
+
+  defp step_color("neutral"), do: "step-neutral"
+  defp step_color("primary"), do: "step-primary"
+  defp step_color("secondary"), do: "step-secondary"
+  defp step_color("accent"), do: "step-accent"
+  defp step_color("info"), do: "step-info"
+  defp step_color("success"), do: "step-success"
+  defp step_color("warning"), do: "step-warning"
+  defp step_color("error"), do: "step-error"
+  defp step_color(_), do: nil
 end
