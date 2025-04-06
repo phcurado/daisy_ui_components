@@ -5,6 +5,8 @@ defmodule DaisyUIComponents.StepsTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Steps
 
+  alias DaisyUIComponents.Utils
+
   describe "steps component" do
     test "basic steps" do
       assigns = %{}
@@ -90,14 +92,14 @@ defmodule DaisyUIComponents.StepsTest do
       component =
         ~H"""
         <.steps>
-          <.step color="neutral">
-            <span class="step-icon">😕</span>Step 1
+          <.step color="neutral" icon="😕">
+            Step 1
           </.step>
-          <.step color="neutral">
-            <span class="step-icon">😃</span>Step 2
+          <.step color="neutral" icon="😃">
+            Step 2
           </.step>
-          <.step>
-            <span class="step-icon">😍</span>Step 3
+          <.step icon="😍">
+            Step 3
           </.step>
         </.steps>
         """

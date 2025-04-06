@@ -40,6 +40,7 @@ defmodule DaisyUIComponents.Steps do
   end
 
   attr :class, :any, default: nil
+  attr :icon, :string, default: nil
   attr :content, :string, default: nil
   attr :color, :string, values: colors() ++ ["neutral"]
 
@@ -53,6 +54,7 @@ defmodule DaisyUIComponents.Steps do
 
     ~H"""
     <li data-content={@content} class={@class} {@rest}>
+      <span :if={@icon} class="step-icon">{@icon}</span>
       {render_slot(@inner_block)}
     </li>
     """
