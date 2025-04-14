@@ -43,8 +43,10 @@ defmodule DaisyUIComponents.Card do
 
   slot :card_body do
     attr :class, :any
+  end
 
-    slot :card_actions
+  slot :card_actions do
+    attr :class, :any
   end
 
   slot :inner_block
