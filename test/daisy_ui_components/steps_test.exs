@@ -5,9 +5,21 @@ defmodule DaisyUIComponents.StepsTest do
   import Phoenix.LiveViewTest
   import DaisyUIComponents.Steps
 
-  alias DaisyUIComponents.Utils
-
   describe "steps component" do
+    test "expected classes added" do
+      for step_color <- step_colors() do
+        assigns = %{color: step_color}
+
+        ~H"""
+        <.step color={@color}>My Step</.step>
+        """
+        |> parse_component()
+        |> assert_component("li")
+        |> assert_class("step step-#{step_color}")
+        |> assert_text("My Step")
+      end
+    end
+
     test "basic steps" do
       assigns = %{}
 

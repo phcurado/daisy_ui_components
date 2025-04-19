@@ -21,6 +21,11 @@ defmodule DaisyUIComponents.Steps do
 
   use DaisyUIComponents, :component
 
+  @colors ~w(neutral) ++ colors()
+
+  @doc false
+  def step_colors, do: @colors
+
   attr :class, :any, default: nil
   attr :vertical, :boolean, default: false
   attr :horizontal, :boolean, default: false
