@@ -247,7 +247,7 @@ List of available components.
 
 ## 🗺️ Roadmap
 
-- Update components for the new [DaisyUI 5](https://daisyui.com/docs/upgrade/)
-- Implement all components from DaisyUI
-- Document all components in Storybook
-- Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace.
+- [x] Update components for the new [DaisyUI 5](https://daisyui.com/docs/upgrade/)
+- [ ] Implement all components from DaisyUI with storybook
+- [ ] Update documentation with the new Phoenix release
+- [ ] Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace :planned
