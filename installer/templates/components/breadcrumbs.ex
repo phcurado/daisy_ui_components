@@ -23,14 +23,14 @@ defmodule  <%= @web_namespace %>.DaisyUIComponents.Breadcrumbs do
     ~H"""
     <div class={classes(["breadcrumbs", @class])} {@rest}>
       <ul :if={render?(@item)}>
-        <%= for item <- @item do %>
+        <%%= for item <- @item do %>
           <li>
             <.render_link path={item[:path]}>
               <.render_icon icon={item[:icon]} />
               {render_slot(item)}
             </.render_link>
           </li>
-        <% end %>
+        <%% end %>
       </ul>
 
       {render_slot(@inner_block)}

@@ -56,11 +56,11 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Swap do
 
     ~H"""
     <label class={@class} {@rest}>
-      <%= if render?(@controller) do %>
+      <%%= if render?(@controller) do %>
         {render_slot(@controller)}
-      <% else %>
+      <%% else %>
         <input type="checkbox" />
-      <% end %>
+      <%% end %>
       <.swap_mode
         :for={swap_on <- @swap_on}
         type={Map.get(swap_on, :type, "label")}

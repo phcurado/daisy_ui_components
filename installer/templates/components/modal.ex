@@ -70,7 +70,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Modal do
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
     >
-      <%= if render?(@modal_box) do %>
+      <%%= if render?(@modal_box) do %>
         <.modal_box
           :for={modal_box <- @modal_box}
           class={modal_box[:class]}
@@ -83,11 +83,11 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Modal do
         </.modal_box>
 
         {render_slot(@inner_block)}
-      <% else %>
+      <%% else %>
         <.modal_box closeable={@closeable} close_on_click_away={@close_on_click_away} modal_id={@id}>
           {render_slot(@inner_block)}
         </.modal_box>
-      <% end %>
+      <%% end %>
     </dialog>
     """
   end

@@ -33,7 +33,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Pagination do
 
     ~H"""
     <.join :if={@total_entries > 0} {@rest}>
-      <%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
+      <%%= for block <- calculate_display_btn(@page, @page_size, @total_entries) do %>
         <.button
           class={["join-item", @button_class]}
           size={@size}
@@ -44,7 +44,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Pagination do
         >
           {block}
         </.button>
-      <% end %>
+      <%% end %>
     </.join>
     """
   end

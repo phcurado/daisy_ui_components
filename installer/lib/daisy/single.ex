@@ -4,7 +4,7 @@ defmodule Daisy.New.Single do
   alias Daisy.New.{Project}
 
   template(:new, [
-    {:eex, :web, "daisy_ui_components.ex": "lib/:lib_web_name/daisy_ui_components.ex"},
+    {:eex, :web, "components/js_helpers.ex": "lib/:lib_web_name/daisy_ui_components/js_helpers.ex"},
     {:eex, :web, "components/alert.ex": "lib/:lib_web_name/daisy_ui_components/alert.ex"},
     {:eex, :web, "components/avatar.ex": "lib/:lib_web_name/daisy_ui_components/avatar.ex"},
     {:eex, :web, "components/back.ex": "lib/:lib_web_name/daisy_ui_components/back.ex"},
@@ -24,7 +24,6 @@ defmodule Daisy.New.Single do
     {:eex, :web, "components/indicator.ex": "lib/:lib_web_name/daisy_ui_components/indicator.ex"},
     {:eex, :web, "components/input.ex": "lib/:lib_web_name/daisy_ui_components/input.ex"},
     {:eex, :web, "components/join.ex": "lib/:lib_web_name/daisy_ui_components/join.ex"},
-    {:eex, :web, "components/js_helpers.ex": "lib/:lib_web_name/daisy_ui_components/js_helpers.ex"},
     {:eex, :web, "components/label.ex": "lib/:lib_web_name/daisy_ui_components/label.ex"},
     {:eex, :web, "components/list.ex": "lib/:lib_web_name/daisy_ui_components/list.ex"},
     {:eex, :web, "components/loading.ex": "lib/:lib_web_name/daisy_ui_components/loading.ex"},
@@ -44,6 +43,7 @@ defmodule Daisy.New.Single do
     {:eex, :web, "components/toggle.ex": "lib/:lib_web_name/daisy_ui_components/toggle.ex"},
     {:eex, :web, "components/tooltip.ex": "lib/:lib_web_name/daisy_ui_components/tooltip.ex"},
     {:eex, :web, "components/utils.ex": "lib/:lib_web_name/daisy_ui_components/utils.ex"},
+    {:eex, :web, "daisy_ui_components.ex": "lib/:lib_web_name/daisy_ui_components.ex"},
   ])
 
   def prepare_project(%Project{app: app, base_path: base_path} = project) when not is_nil(app) do

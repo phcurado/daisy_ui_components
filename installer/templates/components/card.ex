@@ -66,9 +66,9 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Card do
 
     ~H"""
     <div class={@class} {@rest}>
-      <%= if @placement in [nil, "top"] do %>
+      <%%= if @placement in [nil, "top"] do %>
         {render_slot(@inner_block)}
-      <% end %>
+      <%% end %>
       <.card_body :for={card_body <- @card_body} class={Map.get(card_body, :class)}>
         <.card_title :for={card_title <- @card_title} class={Map.get(card_title, :class)}>
           {render_slot(card_title)}
@@ -79,9 +79,9 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Card do
         </.card_actions>
       </.card_body>
 
-      <%= if @placement == "bottom" do %>
+      <%%= if @placement == "bottom" do %>
         {render_slot(@inner_block)}
-      <% end %>
+      <%% end %>
     </div>
     """
   end
@@ -106,11 +106,11 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Card do
   def card_title(assigns) do
     ~H"""
     <h2 class={classes(["card-title", @class])} {@rest}>
-      <%= if render?(@label) do %>
+      <%%= if render?(@label) do %>
         {@label}
-      <% else %>
+      <%% else %>
         {render_slot(@inner_block)}
-      <% end %>
+     <%% end %>
     </h2>
     """
   end

@@ -31,11 +31,11 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Textarea do
 
     ~H"""
     <textarea class={@class} {@rest}>
-    <%= if render?(@inner_block) do %>
-      <%= render_slot(@inner_block) %>
-    <% else %>
-        <%= @value %>
-    <% end %>
+    <%%= if render?(@inner_block) do %>
+      {render_slot(@inner_block)}
+    <%% else %>
+        {@value}
+    <%% end %>
     </textarea>
     """
   end
