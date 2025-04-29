@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Modal do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Modal do
   @moduledoc """
   Modal component
 
   https://daisyui.com/components/modal/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a dialog modal.

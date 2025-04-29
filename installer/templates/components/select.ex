@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Select do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Select do
   @moduledoc """
   Select component
 
@@ -7,7 +7,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Select do
 
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :color, :string, values: colors()

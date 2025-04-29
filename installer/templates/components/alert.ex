@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Alert do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert do
   @moduledoc """
   Alert component
 
@@ -7,10 +7,10 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Alert do
 
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.JSHelpers
-  import <%= @web_namespace %>.DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.JSHelpers
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
 
   @doc """
   Shows the flash group with standard titles and content.

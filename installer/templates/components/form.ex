@@ -1,13 +1,13 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Form do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form do
   @moduledoc """
   Form component helpers
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.Fieldset
-  import <%= @web_namespace %>.DaisyUIComponents.Icon
-  import <%= @web_namespace %>.DaisyUIComponents.Input
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Fieldset
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
 
   @doc """
   Renders a simple form.

@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Button do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Button do
   @moduledoc """
   Button component
 
   https://daisyui.com/components/button/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a button.

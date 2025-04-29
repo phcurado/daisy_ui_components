@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Textarea do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Textarea do
   @moduledoc """
   Textarea component
 
   https://daisyui.com/components/textarea
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :value, :any, default: nil
@@ -30,13 +30,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Textarea do
       )
 
     ~H"""
-    <textarea class={@class} {@rest}>
-    <%%= if render?(@inner_block) do %>
-      {render_slot(@inner_block)}
-    <%% else %>
-        {@value}
-    <%% end %>
-    </textarea>
+    <textarea class={@class} {@rest}>{render_slot(@inner_block)}</textarea>
     """
   end
 

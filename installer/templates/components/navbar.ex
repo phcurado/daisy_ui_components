@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Navbar do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Navbar do
   @moduledoc """
   Navbar component
 
   https://daisyui.com/components/navbar/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :rest, :global

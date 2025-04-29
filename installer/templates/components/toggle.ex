@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Toggle do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Toggle do
   @moduledoc """
   Stat component
 
@@ -6,7 +6,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Toggle do
 
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :color, :string, values: colors()

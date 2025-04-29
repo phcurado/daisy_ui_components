@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Dropdown do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Dropdown do
   @moduledoc """
   Dropdown component
 
   https://daisyui.com/components/dropdown/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a  dropdown

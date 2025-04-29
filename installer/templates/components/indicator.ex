@@ -1,13 +1,13 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Indicator do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Indicator do
   @moduledoc """
   Indicator component
 
   https://daisyui.com/components/indicator/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  alias <%= @web_namespace %>.DaisyUIComponents.Badge
+  alias <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Badge
 
   @aligns ~w(start end center)
   @directions ~w(top bottom middle)

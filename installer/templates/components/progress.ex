@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Progress do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Progress do
   @moduledoc """
   Progress component
 
   https://daisyui.com/components/progress/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @colors ~w(neutral) ++ colors()
 

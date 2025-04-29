@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Join do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Join do
   @moduledoc """
   Button Group component
 
@@ -7,7 +7,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Join do
 
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

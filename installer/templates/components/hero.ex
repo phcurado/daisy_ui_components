@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Hero do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Hero do
   @moduledoc """
   Hero component
 
   https://daisyui.com/components/hero/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a hero component.

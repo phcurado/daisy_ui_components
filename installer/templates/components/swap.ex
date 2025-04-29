@@ -1,13 +1,13 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Swap do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Swap do
   @moduledoc """
   Select component
 
   https://daisyui.com/components/swap
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
 
   @doc ~S"""
   Render a Swap component

@@ -1,9 +1,9 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Header do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Header do
   @moduledoc """
   This component was extracted from the original [Phoenix CoreComponents](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a header with title.

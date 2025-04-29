@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Back do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Back do
   @moduledoc """
   This component was extracted from the original [Phoenix CoreComponents](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
 
   @doc """
   Renders a back navigation link.

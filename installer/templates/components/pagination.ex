@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Pagination do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Pagination do
   @moduledoc """
   Button Group component
 
@@ -7,10 +7,10 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Pagination do
 
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.Button
-  import <%= @web_namespace %>.DaisyUIComponents.Join
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Button
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Join
 
   @doc """
   Renders a button group.

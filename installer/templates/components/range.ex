@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Range do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Range do
   @moduledoc """
   Select component
 
   https://daisyui.com/components/range
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :value, :any, default: nil

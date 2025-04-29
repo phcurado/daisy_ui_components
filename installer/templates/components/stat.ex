@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Stat do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Stat do
   @moduledoc """
   Stat component
 
   https://daisyui.com/components/stat
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

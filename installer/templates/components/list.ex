@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.List do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.List do
   @moduledoc """
   List component
 
   https://daisyui.com/components/list/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a List

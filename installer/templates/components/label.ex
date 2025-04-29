@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Label do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Label do
   @moduledoc """
   Label component
 
   https://daisyui.com/components/label/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @types ~w(input select floating label)
   @positions ~w(start end)

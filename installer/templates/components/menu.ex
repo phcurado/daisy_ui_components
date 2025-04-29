@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Menu do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Menu do
   @moduledoc """
   Menu component
 
   https://daisyui.com/components/menu
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
 

@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Drawer do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Drawer do
   @moduledoc """
   Drawer component
 
   https://daisyui.com/components/drawer
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
   attr :class, :any, default: nil

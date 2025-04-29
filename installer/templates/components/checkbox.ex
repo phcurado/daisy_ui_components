@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Checkbox do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Checkbox do
   @moduledoc """
   Checkbox component
 
   https://daisyui.com/components/checkbox
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :checked, :boolean, default: nil, doc: "the checked flag for checkbox inputs"

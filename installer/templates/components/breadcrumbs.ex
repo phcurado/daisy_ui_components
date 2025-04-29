@@ -1,13 +1,13 @@
-defmodule  <%= @web_namespace %>.DaisyUIComponents.Breadcrumbs do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Breadcrumbs do
   @moduledoc """
   Stat component
 
   https://daisyui.com/components/stat
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
 
   attr :class, :any, default: nil
   attr :rest, :global

@@ -13,8 +13,8 @@ defmodule DaisyUIComponents.Table do
   ## Examples
 
       <.table id="users" rows={@users}>
-        <:col :let={user} label="id"><%= user.id %></:col>
-        <:col :let={user} label="username"><%= user.username %></:col>
+        <:col :let={user} label="id">{user.id}</:col>
+        <:col :let={user} label="username">{user.username}</:col>
       </.table>
 
   or declaring the table components
@@ -28,8 +28,8 @@ defmodule DaisyUIComponents.Table do
       </.thead>
       <.tbody>
         <.tr :for={user <- @users}>
-          <.td><%= user.id %></.td>
-          <.td><%= user.username %></.td>
+          <.td>{user.id}</.td>
+          <.td>{user.username}</.td>
         </.tr>
       </.tbody>
     </.table>

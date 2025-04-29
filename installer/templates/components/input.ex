@@ -1,16 +1,16 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Input do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input do
   @moduledoc """
   Generic Input component
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import <%= @web_namespace %>.DaisyUIComponents.Checkbox
-  import <%= @web_namespace %>.DaisyUIComponents.Radio
-  import <%= @web_namespace %>.DaisyUIComponents.Range
-  import <%= @web_namespace %>.DaisyUIComponents.Select
-  import <%= @web_namespace %>.DaisyUIComponents.Textarea
-  import <%= @web_namespace %>.DaisyUIComponents.TextInput
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Checkbox
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Radio
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Range
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Select
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Textarea
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.TextInput
 
   @doc """
   Renders a generic input based on type.
@@ -52,7 +52,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Input do
   def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
     # If form field is sent, this components delegates it's implementation to the form_input component
     ~H"""
-    <DaisyUIComponents.Form.form_input {assigns} />
+    <<%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form.form_input {assigns} />
     """
   end
 

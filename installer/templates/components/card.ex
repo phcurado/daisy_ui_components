@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Card do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Card do
   @moduledoc """
   Card component
 
   https://daisyui.com/components/card/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @modifiers ~w(side image_full)
   @placements ~w(top bottom)
@@ -110,7 +110,7 @@ defmodule <%= @web_namespace %>.DaisyUIComponents.Card do
         {@label}
       <%% else %>
         {render_slot(@inner_block)}
-     <%% end %>
+      <%% end %>
     </h2>
     """
   end

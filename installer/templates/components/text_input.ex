@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.TextInput do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.TextInput do
   @moduledoc """
   TextInput component
 
   https://daisyui.com/components/input
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :type, :string, default: "text"
   attr :class, :string, default: nil

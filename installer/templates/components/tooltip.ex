@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Tooltip do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Tooltip do
   @moduledoc """
   Tooltip component
 
   https://daisyui.com/components/tooltip
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :string, default: nil
   attr :text, :string, required: true

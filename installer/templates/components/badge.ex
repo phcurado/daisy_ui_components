@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Badge do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Badge do
   @moduledoc """
   Badge component
 
   https://daisyui.com/components/badge/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @colors ~w(neutral) ++ colors()
 

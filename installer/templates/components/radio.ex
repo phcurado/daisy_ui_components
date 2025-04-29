@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Radio do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Radio do
   @moduledoc """
   Checkbox component
 
   https://daisyui.com/components/radio
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :checked, :boolean, default: nil, doc: "the checked flag for radio inputs"

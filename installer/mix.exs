@@ -1,4 +1,3 @@
-
 for path <- :code.get_path(),
     Regex.match?(~r/daisy-[\w\.\-]+\/ebin$/, List.to_string(path)) do
   Code.delete_path(path)
@@ -9,7 +8,6 @@ defmodule Installer.MixProject do
 
   @version "0.1.0"
 
- 
   def project do
     [
       app: :daisy,
@@ -28,7 +26,6 @@ defmodule Installer.MixProject do
     ]
   end
 
-  
   def cli do
     [preferred_envs: [docs: :docs]]
   end
@@ -36,8 +33,7 @@ defmodule Installer.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-     {:ex_doc, "~> 0.37", only: :docs}
-     ]
+      {:ex_doc, "~> 0.37", only: :docs}
+    ]
   end
-
-  end
+end

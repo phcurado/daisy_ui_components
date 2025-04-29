@@ -1,4 +1,3 @@
-
 defmodule Daisy.New.Generator do
   @moduledoc false
   import Mix.Generator
@@ -66,9 +65,6 @@ defmodule Daisy.New.Generator do
     for {format, project_location, files} <- mapping,
         {source, target_path} <- files,
         source = to_string(source) do
-      project |> dbg()
-      project_location |> dbg()
-      target_path |> dbg()
       target = Project.join_path(project, project_location, target_path)
 
       case format do
@@ -163,7 +159,6 @@ defmodule Daisy.New.Generator do
   end
 
   def put_binding(%Project{opts: opts} = project) do
-
     dev = Keyword.get(opts, :dev, false)
     from_elixir_install = Keyword.get(opts, :from_elixir_install, false)
 
@@ -180,7 +175,7 @@ defmodule Daisy.New.Generator do
       dev: dev,
       from_elixir_install: from_elixir_install,
       elixir_install_otp_bin_path: from_elixir_install && elixir_install_otp_bin_path(),
-      elixir_install_bin_path: from_elixir_install && elixir_install_bin_path(),
+      elixir_install_bin_path: from_elixir_install && elixir_install_bin_path()
     ]
 
     %{project | binding: binding}

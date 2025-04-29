@@ -1,10 +1,10 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Icon do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon do
   @moduledoc """
   Renders hero icons
   Code extracted from [Phoenix Core Components](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a [Hero Icon](https://heroicons.com).

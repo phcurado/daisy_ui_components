@@ -1,10 +1,10 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Loading do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Loading do
   @moduledoc """
   Loading component
 
   https://daisyui.com/components/loading/
   """
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a loading.

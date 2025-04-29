@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.JSHelpers do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.JSHelpers do
   @moduledoc """
   Common JS functions from [Phoenix Core Components](https://github.com/phoenixframework/phoenix/blob/main/installer/templates/phx_web/components/core_components.ex).
   """

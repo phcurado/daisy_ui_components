@@ -3,10 +3,9 @@ defmodule Daisy.New.Umbrella do
   use Daisy.New.Generator
   alias Daisy.New.{Project}
 
-
   template(:new, [
     {:eex, :project, "components/alert.ex": "lib/:web_app/alert.ex"}
-  ])  
+  ])
 
   def prepare_project(%Project{app: app} = project) when not is_nil(app) do
     project

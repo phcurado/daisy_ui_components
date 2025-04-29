@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Fieldset do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Fieldset do
   @moduledoc """
   Label component
 
   https://daisyui.com/components/fieldset/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc """
   Renders a Fieldset

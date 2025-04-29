@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Avatar do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Avatar do
   @moduledoc """
   Avatar component
 
   https://daisyui.com/components/avatar
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :class, :any, default: nil
   attr :placeholder, :boolean, default: false

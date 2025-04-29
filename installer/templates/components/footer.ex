@@ -1,11 +1,11 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Footer do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Footer do
   @moduledoc """
   Footer component
 
   https://daisyui.com/components/footer/
   """
 
-  use <%= @web_namespace %>.DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @directions ~w(horizontal vertical)
   @placements ~w(center)

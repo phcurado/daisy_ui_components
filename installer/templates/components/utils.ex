@@ -1,4 +1,4 @@
-defmodule <%= @web_namespace %>.DaisyUIComponents.Utils do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Utils do
   @moduledoc false
 
   @colors ~w(primary secondary accent info success warning error)

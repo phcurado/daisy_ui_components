@@ -1,4 +1,3 @@
-
 defmodule Daisy.New.Project do
   @moduledoc false
   alias Daisy.New.Project
@@ -21,9 +20,9 @@ defmodule Daisy.New.Project do
             generators: [timestamp_type: :utc_datetime]
 
   def new(opts) do
-    config = Mix.Project.config() |> dbg()
+    config = Mix.Project.config()
     app = config[:app] |> Atom.to_string()
-    project_path =  Path.expand(".")
+    project_path = Path.expand(".")
     app_mod = Module.concat([opts[:module] || Macro.camelize(app)])
 
     %Project{
@@ -36,10 +35,14 @@ defmodule Daisy.New.Project do
     }
   end
 
-
   def replace?(%Project{opts: opts}) do
     Keyword.get(opts, :replace, false)
   end
+
+  def dev?(%Project{opts: opts}) do
+    Keyword.get(opts, :dev, false)
+  end
+  
 
   def join_path(%Project{} = project, location, path)
       when location in [:project, :app, :web] do
