@@ -43,8 +43,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Card 
 
   slot :card_body do
     attr :class, :any
+  end
 
-    slot :card_actions
+  slot :card_actions do
+    attr :class, :any
   end
 
   slot :inner_block

@@ -189,10 +189,9 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
         color={@color}
         class={[@class, "w-full"]}
         prompt={@prompt}
+        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         {@rest}
-      >
-        {Phoenix.HTML.Form.normalize_value(@type, @value)}
-      </.input>
+      />
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
     """

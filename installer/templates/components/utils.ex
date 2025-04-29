@@ -78,13 +78,14 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Utils
 
   ## Parameters
 
-  - boolean - a boolean value indicating whether to include the specified class.
+  - boolean or string "true" - a value indicating whether to include the specified class.
   - class - the class to potentially add.
 
   ## Description
   Evaluates the condition and decides whether to return the class or nil.
 
   """
+  def maybe_add_class("true", class), do: class
   def maybe_add_class(true, class), do: class
   def maybe_add_class(_false, _class), do: nil
 
