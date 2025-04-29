@@ -76,6 +76,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents do<%=
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Stat
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Swap
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
+      import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Tabs
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.TextInput
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Textarea
       import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Toggle

@@ -51,9 +51,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
 
   def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
     # If form field is sent, this components delegates it's implementation to the form_input component
-    ~H"""
-    <<%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form.form_input {assigns} />
-    """
+    <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form.form_input(assigns)
   end
 
   def input(%{type: "checkbox"} = assigns) do
