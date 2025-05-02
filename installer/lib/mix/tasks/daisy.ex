@@ -34,7 +34,8 @@ defmodule Mix.Tasks.Daisy do
         {[help: true], _argv} ->
           Mix.Tasks.Help.run(["daisy"])
 
-        {opts, []} ->
+        {opts, argv} ->
+          opts = [{:components, argv} | opts]
           generate(Single, opts)
       end
 

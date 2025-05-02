@@ -188,6 +188,10 @@ defmodule Daisy.New.Single do
     {:eex, :web, "components/table.ex": "lib/:lib_web_name/daisy_ui_components/table.ex"}
   ])
 
+  template(:tabs, [
+    {:eex, :web, "components/tabs.ex": "lib/:lib_web_name/daisy_ui_components/tabs.ex"}
+  ])
+
   template(:text_input, [
     {:eex, :web,
      "components/text_input.ex": "lib/:lib_web_name/daisy_ui_components/text_input.ex"}
@@ -243,33 +247,45 @@ defmodule Daisy.New.Single do
   end
 
   def generate(%Project{} = project) do
+    all_components = all_components()
+
     if Project.dev?(project) do
-      component_bindings = Enum.map(@all_components, fn {_, value} ->
-        String.split(value, "/") |> Enum.at(-1) |> String.replace(".ex", "")
-      end)
-      |> Enum.filter(fn x -> x not in ["daisy_ui_components", "utils", "js_helpers"]  end)
-      |> then(fn list -> ["jS_helpers" | list]  end)
-      |> Enum.sort()
+      component_bindings =
+        all_components
+        |> then(fn list -> ["jS_helpers" | list] end)
+        |> Enum.sort()
 
       project = %{project | binding: [{:components, component_bindings} | project.binding]}
       copy_from(project, __MODULE__, :dev)
     else
-      requested_components = [:form]
+      components = Keyword.get(project.opts, :components)
+
+      components =
+        if components == [] do
+          all_components
+        else
+          Enum.filter(components, fn comp ->
+            ## Check if all are valid components
+            comp in all_components
+          end)
+        end
 
       requested_components_with_deps =
-        Enum.reduce(requested_components, MapSet.new([:core]), fn comp, acc ->
+        Enum.reduce(components, MapSet.new(["core"]), fn comp, acc ->
           MapSet.put(acc, comp)
           |> add_deps(comp)
         end)
 
       component_bindings =
         Enum.reduce(requested_components_with_deps, [], fn x, acc ->
-          if x == :core, do: ["jS_helpers" | acc], else: [x | acc]
+          if x == "core", do: ["jS_helpers" | acc], else: [x | acc]
         end)
-        |> Enum.map(fn x -> Atom.to_string(x)  end)
         |> Enum.sort()
 
       project = %{project | binding: [{:components, component_bindings} | project.binding]}
+
+      requested_components_with_deps =
+        Enum.map(requested_components_with_deps, fn comp -> String.to_atom(comp) end)
 
       Enum.each(requested_components_with_deps, fn component ->
         copy_from(project, __MODULE__, component)
@@ -279,40 +295,47 @@ defmodule Daisy.New.Single do
     project
   end
 
-  defp add_deps(set, :alert), do: add_dep_component(set, :icon)
+  defp add_deps(set, "alert"), do: add_dep_component(set, "icon")
 
-  defp add_deps(set, :back), do: add_dep_component(set, :icon)
+  defp add_deps(set, "back"), do: add_dep_component(set, "icon")
 
-  defp add_deps(set, :breadcrumps), do: add_dep_component(set, :icon)
+  defp add_deps(set, "breadcrumps"), do: add_dep_component(set, "icon")
 
-  defp add_deps(set, :indicator), do: add_dep_component(set, :badge)
+  defp add_deps(set, "indicator"), do: add_dep_component(set, "badge")
 
-  defp add_deps(set, :form) do
-    add_dep_component(set, :fieldset)
-    |> add_dep_component(:icon)
-    |> add_dep_component(:input)
+  defp add_deps(set, "form") do
+    add_dep_component(set, "fieldset")
+    |> add_dep_component("icon")
+    |> add_dep_component("input")
   end
 
-  defp add_deps(set, :input) do
-    add_dep_component(set, :checkbox)
-    |> add_dep_component(:radio)
-    |> add_dep_component(:range)
-    |> add_dep_component(:select)
-    |> add_dep_component(:textarea)
-    |> add_dep_component(:text_input)
+  defp add_deps(set, "input") do
+    add_dep_component(set, "checkbox")
+    |> add_dep_component("radio")
+    |> add_dep_component("range")
+    |> add_dep_component("select")
+    |> add_dep_component("textarea")
+    |> add_dep_component("text_input")
   end
 
-  defp add_deps(set, :pagination) do
-    add_dep_component(set, :button)
-    |> add_dep_component(:join)
+  defp add_deps(set, "pagination") do
+    add_dep_component(set, "button")
+    |> add_dep_component("join")
   end
 
-  defp add_deps(set, :swap), do: add_dep_component(set, :icon)
+  defp add_deps(set, "swap"), do: add_dep_component(set, "icon")
 
   defp add_deps(set, _), do: set
 
   defp add_dep_component(set, component) do
     MapSet.put(set, component)
     |> add_deps(component)
+  end
+
+  defp all_components() do
+    Enum.map(@all_components, fn {_, value} ->
+      String.split(value, "/") |> Enum.at(-1) |> String.replace(".ex", "")
+    end)
+    |> Enum.filter(fn x -> x not in ["daisy_ui_components", "utils", "js_helpers"] end)
   end
 end

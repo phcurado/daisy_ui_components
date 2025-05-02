@@ -15,6 +15,7 @@ defmodule Daisy.New.Project do
             web_path: nil,
             opts: :unset,
             in_umbrella?: false,
+            components: [],
             binding: [],
             cached_build_path: nil,
             generators: [timestamp_type: :utc_datetime]
@@ -24,6 +25,7 @@ defmodule Daisy.New.Project do
     app = config[:app] |> Atom.to_string()
     project_path = Path.expand(".")
     app_mod = Module.concat([opts[:module] || Macro.camelize(app)])
+    components = opts[:components] || []
 
     %Project{
       base_path: project_path,
@@ -31,6 +33,7 @@ defmodule Daisy.New.Project do
       app_mod: app_mod,
       root_app: app,
       root_mod: app_mod,
+      components: components,
       opts: opts
     }
   end
@@ -42,7 +45,6 @@ defmodule Daisy.New.Project do
   def dev?(%Project{opts: opts}) do
     Keyword.get(opts, :dev, false)
   end
-  
 
   def join_path(%Project{} = project, location, path)
       when location in [:project, :app, :web] do
