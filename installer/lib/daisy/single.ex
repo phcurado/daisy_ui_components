@@ -1,7 +1,7 @@
 defmodule Daisy.New.Single do
   @moduledoc false
   use Daisy.New.Generator
-  alias Daisy.New.{Project}
+  alias Daisy.New.Project
 
   @all_components [
     "components/js_helpers.ex": "lib/daisy_ui_components/js_helpers.ex",
@@ -264,10 +264,7 @@ defmodule Daisy.New.Single do
         if components == [] do
           all_components
         else
-          Enum.filter(components, fn comp ->
-            ## Check if all are valid components
-            comp in all_components
-          end)
+          check_components(components, all_components)
         end
 
       requested_components_with_deps =
@@ -278,7 +275,7 @@ defmodule Daisy.New.Single do
 
       component_bindings =
         Enum.reduce(requested_components_with_deps, [], fn x, acc ->
-          if x == "core", do: ["jS_helpers" | acc], else: [x | acc]
+          substitute_core(x, acc)
         end)
         |> Enum.sort()
 
@@ -293,6 +290,17 @@ defmodule Daisy.New.Single do
     end
 
     project
+  end
+
+  defp substitute_core(x, acc) do
+    if x == "core", do: ["jS_helpers" | acc], else: [x | acc]
+  end
+
+  defp check_components(components, all_components) do
+    Enum.filter(components, fn comp ->
+      ## Check if all are valid components
+      comp in all_components
+    end)
   end
 
   defp add_deps(set, "alert"), do: add_dep_component(set, "icon")

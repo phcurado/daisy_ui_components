@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Daisy do
   Exports the Daisy UI components to your Phoenix project
   """
   use Mix.Task
-  alias Daisy.New.{Project, Generator, Single}
+  alias Daisy.New.{Generator, Project, Single}
 
   @version Mix.Project.config()[:version]
   @shortdoc "Exports the Daisy UI Components v#{@version} into your application"
@@ -69,9 +69,8 @@ defmodule Mix.Tasks.Daisy do
   end
 
   defp check_app_name!(name, from_app_flag) do
-    with :ok <- validate_not_reserved(name),
-         :ok <- validate_app_name_format(name, from_app_flag) do
-      :ok
+    with :ok <- validate_not_reserved(name) do
+      validate_app_name_format(name, from_app_flag)
     end
   end
 
@@ -86,11 +85,11 @@ defmodule Mix.Tasks.Daisy do
       :ok
     else
       extra =
-        if !from_app_flag do
+        if from_app_flag do
+          ""
+        else
           ". The application name is inferred from the path, if you'd like to " <>
             "explicitly name the application then use the `--app APP` option."
-        else
-          ""
         end
 
       Mix.raise(

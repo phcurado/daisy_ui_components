@@ -20,6 +20,26 @@ This project brings [DaisyUI](https://daisyui.com/) components into your [Phoeni
 
 <!-- MDOC -->
 
+### Installing it with mix archive installer
+
+```bash
+mix archive.install hex daisy_ui_installer  
+```
+In the Phoenix project folder
+
+```bash
+mix daisy
+```
+
+Alternative, you can just install a single component
+
+```bash
+mix daisy badge input
+```
+
+**_NOTE:_** This will install as well component dependencies which can be another components.
+
+### Installing it as a dep
 Reference this repository on your `mix.exs` file to start using.
 
 ```elixir

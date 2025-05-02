@@ -1,7 +1,7 @@
 defmodule Daisy.New.Umbrella do
   @moduledoc false
   use Daisy.New.Generator
-  alias Daisy.New.{Project}
+  alias Daisy.New.Project
 
   template(:new, [
     {:eex, :project, "components/alert.ex": "lib/:web_app/alert.ex"}

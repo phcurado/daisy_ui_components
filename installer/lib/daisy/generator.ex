@@ -1,7 +1,7 @@
 defmodule Daisy.New.Generator do
   @moduledoc false
   import Mix.Generator
-  alias Daisy.New.{Project}
+  alias Daisy.New.Project
 
   @callback prepare_project(Project.t()) :: Project.t()
   @callback generate(Project.t()) :: Project.t()
