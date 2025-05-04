@@ -68,94 +68,11 @@ defmodule Daisy.New.Generator do
       target = Project.join_path(project, project_location, target_path)
 
       case format do
-        :keep ->
-          File.mkdir_p!(target)
-
-        :text ->
-          create_file(target, mod.render(name, source, project.binding))
-
-        :config ->
-          contents = mod.render(name, source, project.binding)
-          config_inject(Path.dirname(target), Path.basename(target), contents)
-
-        :prod_config ->
-          contents = mod.render(name, source, project.binding)
-          prod_only_config_inject(Path.dirname(target), Path.basename(target), contents)
-
         :eex ->
           contents = mod.render(name, source, project.binding)
           create_file(target, contents)
       end
     end
-  end
-
-  def config_inject(path, file, to_inject) do
-    file = Path.join(path, file)
-
-    contents =
-      case File.read(file) do
-        {:ok, bin} -> bin
-        {:error, _} -> "import Config\n"
-      end
-
-    case :binary.split(contents, "import Config") do
-      [left, right] ->
-        write_formatted!(file, [left, to_inject, right])
-
-      [_] ->
-        Mix.raise(~s[Could not find "import Config" in #{inspect(file)}])
-    end
-  end
-
-  def prod_only_config_inject(path, file, to_inject) do
-    file = Path.join(path, file)
-
-    contents =
-      case File.read(file) do
-        {:ok, bin} ->
-          bin
-
-        {:error, _} ->
-          """
-          import Config
-
-          if config_env() == :prod do
-          end
-          """
-      end
-
-    case :binary.split(contents, "if config_env() == :prod do") do
-      [left, right] ->
-        write_formatted!(file, [left, "if config_env() == :prod do\n", to_inject, right])
-
-      [_] ->
-        Mix.raise(~s[Could not find "if config_env() == :prod do" in #{inspect(file)}])
-    end
-  end
-
-  defp write_formatted!(file, contents) do
-    formatted = contents |> IO.iodata_to_binary() |> Code.format_string!()
-    File.mkdir_p!(Path.dirname(file))
-    File.write!(file, [formatted, ?\n])
-  end
-
-  def inject_umbrella_config_defaults(project) do
-    unless File.exists?(Project.join_path(project, :project, "config/dev.exs")) do
-      path = Project.join_path(project, :project, "config/config.exs")
-
-      extra =
-        Daisy.New.Umbrella.render(:new, "phx_umbrella/config/extra_config.exs", project.binding)
-
-      File.write(path, [File.read!(path), extra])
-    end
-  end
-
-  def in_umbrella?(app_path) do
-    umbrella = Path.expand(Path.join([app_path, "..", ".."]))
-    mix_path = Path.join(umbrella, "mix.exs")
-    apps_path = Path.join(umbrella, "apps")
-
-    File.exists?(mix_path) && File.exists?(apps_path)
   end
 
   def put_binding(%Project{opts: opts} = project) do

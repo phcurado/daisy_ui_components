@@ -214,11 +214,7 @@ defmodule Daisy.New.Single do
   ])
 
   def prepare_project(%Project{app: app, base_path: base_path} = project) when not is_nil(app) do
-    if in_umbrella?(base_path) do
-      %{project | in_umbrella?: true, project_path: Path.dirname(Path.dirname(base_path))}
-    else
-      %{project | in_umbrella?: false, project_path: base_path}
-    end
+    %{project | in_umbrella?: false, project_path: base_path}
     |> put_app()
     |> put_root_app()
     |> put_web_app()

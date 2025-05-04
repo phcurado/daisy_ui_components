@@ -3,6 +3,8 @@ defmodule Daisy.New.Umbrella do
   use Daisy.New.Generator
   alias Daisy.New.Project
 
+  ## TO_DO: Complete this Generator in order to generate an umbrella project
+
   template(:new, [
     {:eex, :project, "components/alert.ex": "lib/:web_app/alert.ex"}
   ])
@@ -44,10 +46,6 @@ defmodule Daisy.New.Umbrella do
   end
 
   def generate(%Project{} = project) do
-    if in_umbrella?(project.project_path) do
-      Mix.raise("Unable to nest umbrella project within apps")
-    end
-
     copy_from(project, __MODULE__, :new)
 
     project

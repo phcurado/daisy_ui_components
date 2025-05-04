@@ -47,7 +47,7 @@ defmodule Installer.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.37", only: :docs},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 end
