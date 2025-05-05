@@ -23,8 +23,9 @@ This project brings [DaisyUI](https://daisyui.com/) components into your [Phoeni
 ### Installing it with mix archive installer
 
 ```bash
-mix archive.install hex daisy_ui_installer  
+mix archive.install hex daisy_ui_installer
 ```
+
 In the Phoenix project folder
 
 ```bash
@@ -39,7 +40,8 @@ mix daisy badge input
 
 **_NOTE:_** This will install as well component dependencies which can be another components.
 
-### Installing it as a dep
+### Installing as a dependency
+
 Reference this repository on your `mix.exs` file to start using.
 
 ```elixir
@@ -49,6 +51,8 @@ def deps do
   ]
 end
 ```
+
+### DaisyUI Assets
 
 Add through `npm` the daisy UI package inside your phoenix application:
 
@@ -270,4 +274,4 @@ List of available components.
 - [x] Update components for the new [DaisyUI 5](https://daisyui.com/docs/upgrade/)
 - [ ] Implement all components from DaisyUI with storybook
 - [ ] Update documentation with the new Phoenix release
-- [ ] Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace :planned
+- [x] Create `mix` script to enable users to import the components of this library into their projects, sharing the same project namespace
