@@ -1,11 +1,11 @@
-defmodule DaisyUIComponents.Table do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table do
   @moduledoc """
   Table component
 
   https://daisyui.com/components/table/
   """
 
-  use DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   @doc ~S"""
   Renders a table with generic styling.

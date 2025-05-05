@@ -60,8 +60,8 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Icon
       import DaisyUIComponents.Indicator
       import DaisyUIComponents.Input
-      import DaisyUIComponents.Join
       import DaisyUIComponents.JSHelpers
+      import DaisyUIComponents.Join
       import DaisyUIComponents.Label
       import DaisyUIComponents.List
       import DaisyUIComponents.Loading
