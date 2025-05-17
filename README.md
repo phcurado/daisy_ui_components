@@ -179,7 +179,7 @@ List of available components.
 | [Menu](https://daisyui.com/components/menu)               | ✅     | ✅        |
 | [Navbar](https://daisyui.com/components/navbar)           | ✅     | ✅        |
 | [Pagination](https://daisyui.com/components/pagination)   | ✅     | ✅        |
-| [Steps](https://daisyui.com/components/steps)             | ❌     | ❌        |
+| [Steps](https://daisyui.com/components/steps)             | ✅     | ❌        |
 | [Tabs](https://daisyui.com/components/tab)                | ✅     | ❌        |
 
 ### Feedback
