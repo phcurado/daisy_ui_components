@@ -21,7 +21,7 @@ defmodule DaisyUIComponents.Progress do
   """
   attr :class, :any, default: nil
   attr :color, :string, values: @colors
-  attr :rest, :global
+  attr :rest, :global, include: ~w(value max)
   slot :inner_block
 
   def progress(assigns) do
