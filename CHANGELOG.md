@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.8.4 - 2025-05-22
+
+### Changed
+
+- Progress component with `value` and `max` attributes
+
 ## 0.8.3 - 2025-04-22
+
+### Added
 
 - Tabs component
 - Tabs storybook
