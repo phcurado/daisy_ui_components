@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.8.5 - 2025-05-23
+
+### Added
+
+- Add button `soft` and `dash` variants
+
+### Changed
+
+- Fix texarea line spaces being added on heex formatter
+
 ## 0.8.4 - 2025-05-22
 
 ### Changed
