@@ -13,10 +13,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Dropd
   ## Examples
 
       <.dropdown>
-        <summary class="btn m-1">open or close</summary>
+        <div tabindex="0" class="btn m-1">open or close</div>
         <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
+          <li><a>item 1</a></li>
+          <li><a>item 2</a></li>
         </ul>
       </.dropdown>
   """
