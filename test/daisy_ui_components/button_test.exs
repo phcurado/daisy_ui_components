@@ -50,7 +50,7 @@ defmodule DaisyUIComponents.ButtonTest do
   end
 
   test "button boolean assigns" do
-    for boolean_assign <- ~w(ghost link outline active disabled glass wide block)a do
+    for boolean_assign <- ~w(ghost link soft dash outline active disabled glass wide block)a do
       assigns = %{boolean_assign => true}
 
       assert rendered_to_string(~H"""
