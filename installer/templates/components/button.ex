@@ -18,6 +18,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Butto
   attr :class, :any, default: nil
   attr :color, :string, values: colors() ++ ["neutral"]
   attr :ghost, :boolean, default: false
+  attr :soft, :boolean, default: false
+  attr :dash, :boolean, default: false
   attr :link, :boolean, default: false
   attr :outline, :boolean, default: false
   attr :active, :boolean, default: false
@@ -41,6 +43,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Butto
           "btn",
           btn_color(assigns[:color]),
           maybe_add_class(assigns[:ghost], "btn-ghost"),
+          maybe_add_class(assigns[:soft], "btn-soft"),
+          maybe_add_class(assigns[:dash], "btn-dash"),
           maybe_add_class(assigns[:link], "btn-link"),
           maybe_add_class(assigns[:outline], "btn-outline"),
           maybe_add_class(assigns[:active], "btn-active"),
