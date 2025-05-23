@@ -179,7 +179,7 @@ List of available components.
 
 | Component                                             | Status | Storybook |
 | ----------------------------------------------------- | ------ | --------- |
-| [Accordion](https://daisyui.com/components/accordion) | ❌     | ❌        |
+| [Accordion](https://daisyui.com/components/accordion) | ✅     | ❌        |
 | [Avatar](https://daisyui.com/components/avatar)       | ✅     | ✅        |
 | [Badge](https://daisyui.com/components/badge)         | ✅     | ✅        |
 | [Card](https://daisyui.com/components/card)           | ✅     | ✅        |
