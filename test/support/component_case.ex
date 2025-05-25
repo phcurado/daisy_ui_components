@@ -26,24 +26,24 @@ defmodule DaisyUIComponents.ComponentCase do
   end
 
   @doc """
-  Assert component html tag
+  Assert component matches selector
   """
-  def assert_component(html, tag) do
-    case html do
-      [{html_tag, _, _} = element] ->
-        assert html_tag == tag
-        element
+  def assert_component(html, selector) do
+    element =
+      case html do
+        [{_html_tag, _, _} = element] -> element
+        {_html_tag, _, _} = element -> element
+        [] -> raise "Element not found"
+        _ -> raise "Multiple elements found"
+      end
 
-      {html_tag, _, _} = element ->
-        assert html_tag == tag
-        element
+    # Use Floki.find to check if element matches selector
+    matches = [element] |> Floki.find(selector)
 
-      [] ->
-        raise "Element not found"
+    assert matches != [],
+           "Expected element to match selector '#{selector}' but it doesn't"
 
-      _ ->
-        raise "Multiple attributes found"
-    end
+    element
   end
 
   @doc """
