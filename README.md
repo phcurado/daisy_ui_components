@@ -38,7 +38,7 @@ Alternative, you can just install a single component
 mix daisy badge input
 ```
 
-**_NOTE:_** This will install as well component dependencies which can be another components.
+**_NOTE:_** This will install the components and it's dependencies.
 
 ### Installing as a dependency
 

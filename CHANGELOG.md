@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Accordion component
 - Collapse component
+- Custom installer to add a copy of this library components into your project
 
 ### Changed
 
