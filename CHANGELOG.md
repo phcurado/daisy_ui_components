@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Add `rows` and `cols` on text area attributes
+
 ## 0.8.5 - 2025-05-23
 
 ### Added
