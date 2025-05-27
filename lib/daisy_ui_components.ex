@@ -42,6 +42,7 @@ defmodule DaisyUIComponents do
 
   defmacro __using__(_) do
     quote do
+      import DaisyUIComponents.Accordion
       import DaisyUIComponents.Alert
       import DaisyUIComponents.Avatar
       import DaisyUIComponents.Back

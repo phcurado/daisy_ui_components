@@ -7,6 +7,7 @@ defmodule Daisy.New.Single do
     "components/js_helpers.ex": "lib/daisy_ui_components/js_helpers.ex",
     "components/utils.ex": "lib/daisy_ui_components/utils.ex",
     "daisy_ui_components.ex": "lib/daisy_ui_components.ex",
+    "components/accordion.ex": "lib/daisy_ui_components/accordion.ex",
     "components/alert.ex": "lib/daisy_ui_components/alert.ex",
     "components/avatar.ex": "lib/daisy_ui_components/avatar.ex",
     "components/back.ex": "lib/daisy_ui_components/back.ex",
@@ -53,6 +54,10 @@ defmodule Daisy.New.Single do
      "daisy_ui_components.ex": "lib/:lib_web_name/daisy_ui_components.ex",
      "components/utils.ex": "lib/:lib_web_name/daisy_ui_components/utils.ex",
      "components/js_helpers.ex": "lib/:lib_web_name/daisy_ui_components/js_helpers.ex"}
+  ])
+
+  template(:accordion, [
+    {:eex, :web, "components/accordion.ex": "lib/:lib_web_name/daisy_ui_components/accordion.ex"}
   ])
 
   template(:alert, [
