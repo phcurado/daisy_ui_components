@@ -15,6 +15,7 @@ defmodule Daisy.New.Single do
     "components/button.ex": "lib/daisy_ui_components/button.ex",
     "components/card.ex": "lib/daisy_ui_components/card.ex",
     "components/checkbox.ex": "lib/daisy_ui_components/checkbox.ex",
+    "components/collapse.ex": "lib/daisy_ui_components/collapse.ex",
     "components/drawer.ex": "lib/daisy_ui_components/drawer.ex",
     "components/dropdown.ex": "lib/daisy_ui_components/dropdown.ex",
     "components/fieldset.ex": "lib/daisy_ui_components/fieldset.ex",
@@ -85,6 +86,10 @@ defmodule Daisy.New.Single do
 
   template(:checkbox, [
     {:eex, :web, "components/checkbox.ex": "lib/:lib_web_name/daisy_ui_components/checkbox.ex"}
+  ])
+
+  template(:collapse, [
+    {:eex, :web, "components/collapse.ex": "lib/:lib_web_name/daisy_ui_components/collapse.ex"}
   ])
 
   template(:drawer, [

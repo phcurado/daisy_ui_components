@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Collapse component
+
 ### Changed
 
 - Add `rows` and `cols` on attributes textarea component
@@ -11,12 +15,9 @@ All notable changes to this project will be documented in this file.
 
 ## 0.8.5 - 2025-05-23
 
-### Added
-
-- Add button `soft` and `dash` variants
-
 ### Changed
 
+- Add button `soft` and `dash` variants
 - Fix texarea line spaces being added on heex formatter
 
 ## 0.8.4 - 2025-05-22

@@ -50,6 +50,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Button
       import DaisyUIComponents.Card
       import DaisyUIComponents.Checkbox
+      import DaisyUIComponents.Collapse
       import DaisyUIComponents.Drawer
       import DaisyUIComponents.Dropdown
       import DaisyUIComponents.Fieldset
