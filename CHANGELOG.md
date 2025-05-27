@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Add `rows` and `cols` on text area attributes
+- Add `rows` and `cols` on attributes textarea component
+- Add `soft`, `dash` and `direction` attributes on alert component
 
 ## 0.8.5 - 2025-05-23
 

@@ -127,6 +127,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert
   attr :id, :string, default: nil, doc: "the optional id of alert container"
   attr :class, :any, default: nil
   attr :color, :string, values: ~w(info success warning error)
+  attr :soft, :boolean, default: false
+  attr :outline, :boolean, default: false
+  attr :dash, :boolean, default: false
+  attr :direction, :string, values: ~w(vertical horizontal)
   attr :rest, :global
   slot :inner_block
 
@@ -138,6 +142,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert
         classes([
           "alert",
           alert_color(assigns[:color]),
+          maybe_add_class(assigns[:soft], "alert-soft"),
+          maybe_add_class(assigns[:outline], "alert-outline"),
+          maybe_add_class(assigns[:dash], "alert-dash"),
+          alert_direction(assigns[:direction]),
           assigns.class
         ])
       )
@@ -148,6 +156,11 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert
     </div>
     """
   end
+
+  # Direction
+  defp alert_direction("vertical"), do: "alert-vertical"
+  defp alert_direction("horizontal"), do: "alert-horizontal"
+  defp alert_direction(nil), do: nil
 
   # Icon
   defp get_icon("warning"), do: "hero-exclamation-triangle"
