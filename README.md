@@ -185,7 +185,7 @@ List of available components.
 | [Card](https://daisyui.com/components/card)           | ✅     | ✅        |
 | [Carousel](https://daisyui.com/components/carousel)   | ❌     | ❌        |
 | [Chat bubble](https://daisyui.com/components/chat)    | ❌     | ❌        |
-| [Collapse](https://daisyui.com/components/collapse)   | ❌     | ❌        |
+| [Collapse](https://daisyui.com/components/collapse)   | ✅     | ❌        |
 | [Countdown](https://daisyui.com/components/countdown) | ❌     | ❌        |
 | [Diff](https://daisyui.com/components/diff/)          | ❌     | ❌        |
 | [Kbd](https://daisyui.com/components/kbd)             | ❌     | ❌        |
