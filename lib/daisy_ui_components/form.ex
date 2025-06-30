@@ -129,7 +129,7 @@ defmodule DaisyUIComponents.Form do
       assigns
       |> assign(:multiple, true)
       |> assign(:name, assigns.name <> "[]")
-      |> assign_new(:value, fn -> assigns.value || [] end)
+      |> assign(:value, assigns.value || [])
 
     ~H"""
     <.fieldset class="mt-2">

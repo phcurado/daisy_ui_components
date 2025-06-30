@@ -129,7 +129,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
       assigns
       |> assign(:multiple, true)
       |> assign(:name, assigns.name <> "[]")
-      |> assign_new(:value, fn -> assigns.value || [] end)
+      |> assign(:value, assigns.value || [])
 
     ~H"""
     <.fieldset class="mt-2">
