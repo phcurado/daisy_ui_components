@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 - Accordion component
 - Collapse component
 - Custom installer to add a copy of this library components into your project
+- Checkbox Group component
+- Checkbox Group storybook
+- Radio Group component
+- Radio Group storybook
 
 ### Changed
 
