@@ -25,7 +25,7 @@ defmodule DaisyUIComponents.Pagination do
   attr :button_class, :string, default: nil
   attr :size, :string, values: sizes()
   attr :target, :string, default: nil
-  attr :page_click_event, :string, default: "page_click"
+  attr :page_click_event, :any, default: "page_click"
   attr :rest, :global
 
   def pagination(assigns) do
@@ -37,7 +37,8 @@ defmodule DaisyUIComponents.Pagination do
         <.button
           class={["join-item", @button_class]}
           size={@size}
-          phx-click={JS.push(@page_click_event, value: %{page: block})}
+          phx-click={@page_click_event}
+          phx-value-page={block}
           phx-target={@target}
           active={block == @page}
           disabled={block == "..."}

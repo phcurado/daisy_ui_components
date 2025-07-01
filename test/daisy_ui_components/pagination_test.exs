@@ -24,6 +24,19 @@ defmodule DaisyUIComponents.PaginationTest do
     defmodule PageLive do
       use Phoenix.LiveView
       import DaisyUIComponents.Pagination
+      alias Phoenix.LiveView.JS
+
+      def render(%{case: "with_custom_event"} = assigns) do
+        ~H"""
+        <p id="page">Current page: {@page}</p>
+        <.pagination
+          page={@page}
+          page_size={10}
+          total_entries={100}
+          page_click_event={JS.push("page_click", loading: "#page")}
+        />
+        """
+      end
 
       def render(assigns) do
         ~H"""
@@ -32,12 +45,12 @@ defmodule DaisyUIComponents.PaginationTest do
         """
       end
 
-      def mount(_params, _session, socket) do
-        {:ok, assign(socket, :page, 1)}
+      def mount(_params, session, socket) do
+        {:ok, assign(socket, page: 1, case: session["case"])}
       end
 
       def handle_event("page_click", %{"page" => page}, socket) do
-        {:noreply, assign(socket, :page, page)}
+        {:noreply, assign(socket, :page, String.to_integer(page))}
       end
     end
 
@@ -45,6 +58,11 @@ defmodule DaisyUIComponents.PaginationTest do
 
     html =~ "Current page: 1"
     assert render_click(element(view, "button", "2")) =~ "Current page: 2"
+
+    {:ok, view, html} = live_isolated(conn, PageLive, session: %{"case" => "with_custom_event"})
+
+    html =~ "Current page: 1"
+    assert render_click(element(view, "button", "3")) =~ "Current page: 3"
   end
 
   test "calculate_display_btn" do
