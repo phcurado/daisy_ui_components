@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.8.6 - 2025-06-01
+
 ### Added
 
 - Accordion component
