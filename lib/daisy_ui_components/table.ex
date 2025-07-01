@@ -46,7 +46,7 @@ defmodule DaisyUIComponents.Table do
 
   slot :col do
     attr :class, :any
-    # attr :collapse
+    attr :collapse_breakpoint, :string
     attr :label, :string
   end
 
@@ -80,7 +80,9 @@ defmodule DaisyUIComponents.Table do
       <table class={@class} {@rest}>
         <.thead>
           <.tr>
-            <.th :for={col <- @col}>{col[:label]}</.th>
+            <.th :for={col <- @col} collapse_breakpoint={col[:collapse_breakpoint]}>
+              {col[:label]}
+            </.th>
             <.th :if={@action != []}>
               <span class="sr-only"><span class="sr-only">{translate("Actions")}</span></span>
             </.th>
@@ -92,6 +94,7 @@ defmodule DaisyUIComponents.Table do
               :for={col <- @col}
               phx-click={@row_click && @row_click.(row)}
               class={[@row_click && "hover:cursor-pointer", @col[:class]]}
+              collapse_breakpoint={col[:collapse_breakpoint]}
             >
               {render_slot(col, @row_item.(row))}
             </.td>
@@ -154,45 +157,71 @@ defmodule DaisyUIComponents.Table do
     """
   end
 
+  attr :class, :any, default: nil
+  attr :collapse_breakpoint, :string, values: sizes()
   attr :rest, :global
   slot :inner_block
 
   def td(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class,
+        classes([
+          collapse_breakpoint(assigns[:collapse_breakpoint]),
+          assigns.class
+        ])
+      )
+
     ~H"""
-    <td {@rest}>
+    <td class={@class} {@rest}>
       {render_slot(@inner_block)}
     </td>
     """
   end
 
+  attr :class, :any, default: nil
+  attr :collapse_breakpoint, :string, values: sizes()
   attr :rest, :global
   slot :inner_block
 
   def th(assigns) do
+    assigns =
+      assign(
+        assigns,
+        :class,
+        classes([
+          collapse_breakpoint(assigns[:collapse_breakpoint]),
+          assigns.class
+        ])
+      )
+
     ~H"""
-    <th {@rest}>
+    <th class={@class} {@rest}>
       {render_slot(@inner_block)}
     </th>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def thead(assigns) do
     ~H"""
-    <thead {@rest}>
+    <thead class={@class} {@rest}>
       {render_slot(@inner_block)}
     </thead>
     """
   end
 
+  attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
 
   def tbody(assigns) do
     ~H"""
-    <tbody {@rest}>
+    <tbody class={@class} {@rest}>
       {render_slot(@inner_block)}
     </tbody>
     """
@@ -205,4 +234,11 @@ defmodule DaisyUIComponents.Table do
   defp table_size("lg"), do: "table-lg"
   defp table_size("xl"), do: "table-xl"
   defp table_size(_size), do: nil
+
+  defp collapse_breakpoint("xs"), do: "hidden xs:table-cell"
+  defp collapse_breakpoint("sm"), do: "hidden sm:table-cell"
+  defp collapse_breakpoint("md"), do: "hidden md:table-cell"
+  defp collapse_breakpoint("lg"), do: "hidden lg:table-cell"
+  defp collapse_breakpoint("xl"), do: "hidden xl:table-cell"
+  defp collapse_breakpoint(_breakpoint), do: nil
 end

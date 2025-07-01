@@ -125,6 +125,28 @@ defmodule Storybook.Components.Table do
           </:col>
           """
         ]
+      },
+      %Variation{
+        id: :table_collapse,
+        attributes: %{
+          rows: get_users()
+        },
+        slots: [
+          """
+          <:col :let={user} label="Id">
+            <%= user.id %>
+          </:col>
+          <:col :let={user} label="name" collapse_breakpoint="md">
+            <%= user.name %>
+          </:col>
+          <:col :let={user} label="Job" collapse_breakpoint="sm">
+            <%= user.job %>
+          </:col>
+          <:col :let={user} label="Favourite Color">
+            <%= user.favourite_color %>
+          </:col>
+          """
+        ]
       }
     ]
   end
