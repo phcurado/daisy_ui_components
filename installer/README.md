@@ -20,3 +20,9 @@ To install locally, run:
 cd installer
 MIX_ENV=prod mix do archive.build, archive.install
 ```
+
+and run in the root of this project:
+
+```bash
+mix daisy --dev
+```

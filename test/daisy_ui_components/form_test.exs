@@ -54,6 +54,151 @@ defmodule DaisyUIComponents.FormTest do
     end)
   end
 
+  test "form_input checkbox_group" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input
+      id="option-selection"
+      name="input[name]"
+      type="checkbox_group"
+      class="text-xs"
+      for="some-input"
+      value={["1"]}
+      options={[{"Option 1", "1"}, {"Option 2", "2"}]}
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [hidden, div_input_1, div_input_2] ->
+      hidden
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("value", "")
+      |> assert_attribute("name", "input[name][]")
+
+      div_input_1
+      |> assert_component("div")
+      |> assert_children("label", fn label ->
+        label
+        |> assert_attribute("for", "option-selection-0")
+        |> assert_children("input", fn input ->
+          input
+          |> assert_component("input")
+          |> assert_class("checkbox text-xs")
+          |> assert_attribute("type", "checkbox")
+          |> assert_attribute("value", "1")
+          |> assert_attribute("checked", "checked")
+          |> assert_attribute("name", "input[name][]")
+        end)
+      end)
+
+      div_input_2
+      |> assert_component("div")
+      |> assert_children("label", fn label ->
+        label
+        |> assert_attribute("for", "option-selection-1")
+        |> assert_children("input", fn input ->
+          input
+          |> assert_component("input")
+          |> assert_class("checkbox text-xs")
+          |> assert_attribute("type", "checkbox")
+          |> assert_attribute("value", "2")
+          |> assert_attribute("name", "input[name][]")
+          |> assert_attribute("checked", nil)
+        end)
+      end)
+    end)
+  end
+
+  test "form_input radio" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input id="1" name="input[name]" type="radio" class="text-xs" for="some-input" value="true" />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [hidden, label] ->
+      hidden
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("value", "false")
+      |> assert_attribute("name", "input[name]")
+      |> assert_attribute("disabled", nil)
+
+      label
+      |> assert_component("label")
+      |> assert_attribute("for", "1")
+      |> assert_children("input", fn input ->
+        input
+        |> assert_component("input")
+        |> assert_class("radio text-xs")
+        |> assert_attribute("type", "radio")
+        |> assert_attribute("value", "true")
+        |> assert_attribute("name", "input[name]")
+        |> assert_attribute("checked", "true")
+      end)
+    end)
+  end
+
+  test "form_input radio_group" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input
+      id="option-selection"
+      name="input[name]"
+      type="radio_group"
+      class="text-xs"
+      for="some-input"
+      value="1"
+      options={[{"Option 1", "1"}, {"Option 2", "2"}]}
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [hidden, div_input_1, div_input_2] ->
+      hidden
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("value", "")
+      |> assert_attribute("name", "input[name][]")
+
+      div_input_1
+      |> assert_component("div")
+      |> assert_children("label", fn label ->
+        label
+        |> assert_attribute("for", "option-selection-0")
+        |> assert_children("input", fn input ->
+          input
+          |> assert_component("input")
+          |> assert_class("radio text-xs")
+          |> assert_attribute("type", "radio")
+          |> assert_attribute("value", "1")
+          |> assert_attribute("name", "input[name][]")
+          |> assert_attribute("checked", "checked")
+        end)
+      end)
+
+      div_input_2
+      |> assert_component("div")
+      |> assert_children("label", fn label ->
+        label
+        |> assert_attribute("for", "option-selection-1")
+        |> assert_children("input", fn input ->
+          input
+          |> assert_component("input")
+          |> assert_class("radio text-xs")
+          |> assert_attribute("type", "radio")
+          |> assert_attribute("value", "2")
+          |> assert_attribute("name", "input[name][]")
+          |> assert_attribute("checked", nil)
+        end)
+      end)
+    end)
+  end
+
   test "form_input text" do
     assigns = %{}
 

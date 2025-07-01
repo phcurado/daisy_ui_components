@@ -66,7 +66,7 @@ defmodule DaisyUIComponents.Form do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week)
+               range radio search select tel text textarea time url week checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -124,6 +124,36 @@ defmodule DaisyUIComponents.Form do
     """
   end
 
+  def form_input(%{type: "checkbox_group"} = assigns) do
+    assigns =
+      assigns
+      |> assign(:multiple, true)
+      |> assign(:name, assigns.name <> "[]")
+      |> assign(:value, assigns.value || [])
+
+    ~H"""
+    <.fieldset class="mt-2">
+      <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
+      <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
+        <.fieldset_label for={"#{@id}-#{index}"}>
+          <.input
+            id={"#{@id}-#{index}"}
+            type="checkbox"
+            name={@name}
+            value={value}
+            checked={value in @value}
+            class={@class}
+            {@rest}
+          />
+
+          {label}
+        </.fieldset_label>
+      </div>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
+    """
+  end
+
   def form_input(%{type: "radio"} = assigns) do
     assigns =
       assigns
@@ -148,6 +178,36 @@ defmodule DaisyUIComponents.Form do
 
         {@label}
       </.fieldset_label>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
+    """
+  end
+
+  def form_input(%{type: "radio_group"} = assigns) do
+    assigns =
+      assigns
+      |> assign(:multiple, true)
+      |> assign(:name, assigns.name <> "[]")
+      |> assign(:value, assigns.value || [])
+
+    ~H"""
+    <.fieldset class="mt-2">
+      <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
+      <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
+        <.fieldset_label for={"#{@id}-#{index}"}>
+          <.input
+            id={"#{@id}-#{index}"}
+            type="radio"
+            name={@name}
+            value={value}
+            checked={to_string(value) == @value}
+            class={@class}
+            {@rest}
+          />
+
+          {label}
+        </.fieldset_label>
+      </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
     """
