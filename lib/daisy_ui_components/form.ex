@@ -8,6 +8,7 @@ defmodule DaisyUIComponents.Form do
   import DaisyUIComponents.Fieldset
   import DaisyUIComponents.Icon
   import DaisyUIComponents.Input
+  import DaisyUIComponents.Label
 
   @doc """
   Renders a simple form.
@@ -133,9 +134,10 @@ defmodule DaisyUIComponents.Form do
 
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label>{@label}</.fieldset_label>
       <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
-        <.fieldset_label for={"#{@id}-#{index}"}>
+        <.label for={"#{@id}-#{index}"}>
           <.input
             id={"#{@id}-#{index}"}
             type="checkbox"
@@ -147,7 +149,7 @@ defmodule DaisyUIComponents.Form do
           />
 
           {label}
-        </.fieldset_label>
+        </.label>
       </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
@@ -186,8 +188,9 @@ defmodule DaisyUIComponents.Form do
   def form_input(%{type: "radio_group"} = assigns) do
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label>{@label}</.fieldset_label>
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
-        <.fieldset_label for={"#{@id}-#{index}"}>
+        <.label for={"#{@id}-#{index}"}>
           <.input
             id={"#{@id}-#{index}"}
             type="radio"
@@ -199,7 +202,7 @@ defmodule DaisyUIComponents.Form do
           />
 
           {label}
-        </.fieldset_label>
+        </.label>
       </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>

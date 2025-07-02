@@ -63,15 +63,19 @@ defmodule DaisyUIComponents.FormTest do
       name="input[name]"
       type="checkbox_group"
       class="text-xs"
-      for="some-input"
+      label="Checkbox group input"
       value={["1"]}
       options={[{"Option 1", "1"}, {"Option 2", "2"}]}
     />
     """
     |> parse_component()
     |> assert_component("fieldset")
-    |> select_children(fn [hidden, div_input_1, div_input_2] ->
-      hidden
+    |> select_children(fn [label, hidden_input, div_input_1, div_input_2] ->
+      label
+      |> assert_component("label")
+      |> assert_text("Checkbox group input")
+
+      hidden_input
       |> assert_component("input")
       |> assert_attribute("type", "hidden")
       |> assert_attribute("value", "")
@@ -151,14 +155,18 @@ defmodule DaisyUIComponents.FormTest do
       name="input[name]"
       type="radio_group"
       class="text-xs"
-      for="some-input"
+      label="Radio group input"
       value="1"
       options={[{"Option 1", "1"}, {"Option 2", "2"}]}
     />
     """
     |> parse_component()
     |> assert_component("fieldset")
-    |> select_children(fn [div_input_1, div_input_2] ->
+    |> select_children(fn [label, div_input_1, div_input_2] ->
+      label
+      |> assert_component("label")
+      |> assert_text("Radio group input")
+
       div_input_1
       |> assert_component("div")
       |> assert_children("label", fn label ->

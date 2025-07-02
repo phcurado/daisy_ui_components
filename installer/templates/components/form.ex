@@ -8,6 +8,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Fieldset
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Label
 
   @doc """
   Renders a simple form.
@@ -133,9 +134,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
 
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label>{@label}</.fieldset_label>
       <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
-        <.fieldset_label for={"#{@id}-#{index}"}>
+        <.label for={"#{@id}-#{index}"}>
           <.input
             id={"#{@id}-#{index}"}
             type="checkbox"
@@ -147,7 +149,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
           />
 
           {label}
-        </.fieldset_label>
+        </.label>
       </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
@@ -186,8 +188,9 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
   def form_input(%{type: "radio_group"} = assigns) do
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label>{@label}</.fieldset_label>
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
-        <.fieldset_label for={"#{@id}-#{index}"}>
+        <.label for={"#{@id}-#{index}"}>
           <.input
             id={"#{@id}-#{index}"}
             type="radio"
@@ -199,7 +202,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
           />
 
           {label}
-        </.fieldset_label>
+        </.label>
       </div>
       <.error :for={msg <- @errors}>{msg}</.error>
     </.fieldset>
