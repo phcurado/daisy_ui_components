@@ -184,15 +184,8 @@ defmodule DaisyUIComponents.Form do
   end
 
   def form_input(%{type: "radio_group"} = assigns) do
-    assigns =
-      assigns
-      |> assign(:multiple, true)
-      |> assign(:name, assigns.name <> "[]")
-      |> assign(:value, assigns.value || [])
-
     ~H"""
     <.fieldset class="mt-2">
-      <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
         <.fieldset_label for={"#{@id}-#{index}"}>
           <.input

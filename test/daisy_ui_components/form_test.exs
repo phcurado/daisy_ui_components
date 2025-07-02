@@ -158,13 +158,7 @@ defmodule DaisyUIComponents.FormTest do
     """
     |> parse_component()
     |> assert_component("fieldset")
-    |> select_children(fn [hidden, div_input_1, div_input_2] ->
-      hidden
-      |> assert_component("input")
-      |> assert_attribute("type", "hidden")
-      |> assert_attribute("value", "")
-      |> assert_attribute("name", "input[name][]")
-
+    |> select_children(fn [div_input_1, div_input_2] ->
       div_input_1
       |> assert_component("div")
       |> assert_children("label", fn label ->
@@ -176,7 +170,7 @@ defmodule DaisyUIComponents.FormTest do
           |> assert_class("radio text-xs")
           |> assert_attribute("type", "radio")
           |> assert_attribute("value", "1")
-          |> assert_attribute("name", "input[name][]")
+          |> assert_attribute("name", "input[name]")
           |> assert_attribute("checked", "checked")
         end)
       end)
@@ -192,7 +186,7 @@ defmodule DaisyUIComponents.FormTest do
           |> assert_class("radio text-xs")
           |> assert_attribute("type", "radio")
           |> assert_attribute("value", "2")
-          |> assert_attribute("name", "input[name][]")
+          |> assert_attribute("name", "input[name]")
           |> assert_attribute("checked", nil)
         end)
       end)
