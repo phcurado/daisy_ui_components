@@ -133,6 +133,7 @@ defmodule DaisyUIComponents.Form do
 
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label :if={@label}>{@label}</.fieldset_label>
       <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
         <.fieldset_label for={"#{@id}-#{index}"}>
@@ -192,6 +193,7 @@ defmodule DaisyUIComponents.Form do
 
     ~H"""
     <.fieldset class="mt-2">
+      <.fieldset_label :if={@label}>{@label}</.fieldset_label>
       <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
         <.fieldset_label for={"#{@id}-#{index}"}>
@@ -200,7 +202,7 @@ defmodule DaisyUIComponents.Form do
             type="radio"
             name={@name}
             value={value}
-            checked={to_string(value) == @value}
+            checked={to_string(value) == to_string(@value)}
             class={@class}
             {@rest}
           />
