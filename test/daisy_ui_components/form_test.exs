@@ -156,7 +156,7 @@ defmodule DaisyUIComponents.FormTest do
       type="radio_group"
       class="text-xs"
       label="Radio group input"
-      value="1"
+      value={1}
       options={[{"Option 1", "1"}, {"Option 2", "2"}]}
     />
     """

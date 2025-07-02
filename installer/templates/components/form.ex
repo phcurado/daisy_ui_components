@@ -196,7 +196,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
             type="radio"
             name={@name}
             value={value}
-            checked={to_string(value) == @value}
+            checked={to_string(value) == to_string(@value)}
             class={@class}
             {@rest}
           />

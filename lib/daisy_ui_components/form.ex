@@ -196,7 +196,7 @@ defmodule DaisyUIComponents.Form do
             type="radio"
             name={@name}
             value={value}
-            checked={to_string(value) == @value}
+            checked={to_string(value) == to_string(@value)}
             class={@class}
             {@rest}
           />
