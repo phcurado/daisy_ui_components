@@ -23,7 +23,8 @@ defmodule Storybook.Examples.TableInsert do
            first_name: "Chris",
            last_name: "McCord"
          }
-       ]
+       ],
+       sorted_columns: []
      )}
   end
 
@@ -37,8 +38,8 @@ defmodule Storybook.Examples.TableInsert do
         <.button phx-click={show_modal("new-user-modal")}>Create user</.button>
       </:actions>
     </.header>
-    <.table id="user-table" rows={@users}>
-      <:col :let={user} label="Id">
+    <.table id="user-table" rows={@users} sorted_columns={@sorted_columns}>
+      <:col :let={user} sort_key={:id} sort_direction="asc" label="Id">
         {user.id}
       </:col>
       <:col :let={user} label="First name">
@@ -48,6 +49,7 @@ defmodule Storybook.Examples.TableInsert do
         {user.last_name}
       </:col>
     </.table>
+    <.pagination size="xs" page={2} total_entries={4} page_size={1} />
     <.modal id="new-user-modal">
       <:modal_box>
         <.header>
@@ -83,5 +85,44 @@ defmodule Storybook.Examples.TableInsert do
      socket
      |> update(:users, &(&1 ++ [user]))
      |> update(:current_id, &(&1 + 1))}
+  end
+
+  def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
+    direction =
+      case sort_direction do
+        "asc" -> :asc
+        "desc" -> :desc
+        _ -> :asc
+      end
+
+    {key, sorted_users} =
+      case sort_key do
+        "id" -> {:id, sort_by_id(socket.assigns.users, direction)}
+        _ -> {nil, socket.assigns.users}
+      end
+
+    {:noreply,
+     socket
+     |> assign(:users, sorted_users)
+     |> assign(
+       :sorted_columns,
+       map_sorted_columns(socket.assigns.sorted_columns, {key, direction})
+     )}
+    |> IO.inspect()
+  end
+
+  defp sort_by_id(users, direction) do
+    Enum.sort_by(users, & &1.id, direction)
+  end
+
+  defp map_sorted_columns(sorted_columns, {key, direction}) do
+    if Enum.find(sorted_columns, fn {k, _} -> k == key end) do
+      Enum.map(sorted_columns, fn
+        {^key, _} -> {key, direction}
+        other -> other
+      end)
+    else
+      [{key, direction} | sorted_columns]
+    end
   end
 end

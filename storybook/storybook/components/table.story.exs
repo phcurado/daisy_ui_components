@@ -10,14 +10,6 @@ defmodule Storybook.Components.Table do
 
   def function, do: &Table.table/1
 
-  def template do
-    """
-    <div class="overflow-x-auto">
-      <.psb-variation/>
-    </div>
-    """
-  end
-
   def variations do
     [
       %Variation{

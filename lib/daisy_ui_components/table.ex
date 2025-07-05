@@ -7,6 +7,9 @@ defmodule DaisyUIComponents.Table do
 
   use DaisyUIComponents, :component
 
+  import DaisyUIComponents.Button
+  import DaisyUIComponents.Icon
+
   @doc ~S"""
   Renders a table with generic styling.
 
@@ -36,6 +39,17 @@ defmodule DaisyUIComponents.Table do
   """
   attr :id, :string, default: nil
   attr :class, :any, default: nil
+
+  attr :container_element, :boolean,
+    default: true,
+    doc: "whether to wrap the table in a div with overflow-x-auto class"
+
+  attr :sorted_columns, :list,
+    default: [],
+    doc: """
+    list of columns sorted by, each column is a tuple with the column key and direction, e.g. [{:id, :asc}, {:name, :desc}]
+    """
+
   attr :rows, :list
   attr :row_id, :any, default: nil, doc: "the function for generating the row id"
   attr :row_click, :any, default: nil, doc: "the function for handling phx-click on each row"
@@ -46,9 +60,18 @@ defmodule DaisyUIComponents.Table do
 
   slot :col do
     attr :class, :any
-    attr :collapse_breakpoint, :string
+    attr :sort_key, :any, doc: "the key for sorting the column when phx-click is triggered"
+    attr :collapse_breakpoint, :string, doc: "the breakpoint for collapsing the column"
     attr :label, :string
   end
+
+  attr :target, :string,
+    default: nil,
+    doc: "the target for phx-click on header columns for sorting"
+
+  attr :event, :string,
+    default: "sort",
+    doc: "the event name for phx-click on header columns for sorting"
 
   slot :action, doc: "the slot for showing user actions in the last table column"
 
@@ -76,37 +99,13 @@ defmodule DaisyUIComponents.Table do
       end
 
     ~H"""
-    <div class="overflow-x-auto">
-      <table class={@class} {@rest}>
-        <.thead>
-          <.tr>
-            <.th :for={col <- @col} collapse_breakpoint={col[:collapse_breakpoint]}>
-              {col[:label]}
-            </.th>
-            <.th :if={@action != []}>
-              <span class="sr-only"><span class="sr-only">{translate("Actions")}</span></span>
-            </.th>
-          </.tr>
-        </.thead>
-        <.tbody id={@id} phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}>
-          <.tr :for={row <- @rows} id={@row_id && @row_id.(row)}>
-            <.td
-              :for={col <- @col}
-              phx-click={@row_click && @row_click.(row)}
-              class={[@row_click && "hover:cursor-pointer", @col[:class]]}
-              collapse_breakpoint={col[:collapse_breakpoint]}
-            >
-              {render_slot(col, @row_item.(row))}
-            </.td>
-            <.td :if={@action != []}>
-              <span :for={action <- @action}>
-                {render_slot(action, @row_item.(row))}
-              </span>
-            </.td>
-          </.tr>
-        </.tbody>
-      </table>
-    </div>
+    <%= if @container_element do %>
+      <div class="overflow-x-auto">
+        <.table_rows {assigns} />
+      </div>
+    <% else %>
+      <.table_rows {assigns} />
+    <% end %>
     """
   end
 
@@ -124,11 +123,73 @@ defmodule DaisyUIComponents.Table do
       )
 
     ~H"""
-    <div class="overflow-x-auto">
+    <%= if @container_element do %>
+      <div class="overflow-x-auto">
+        <table class={@class} {@rest}>
+          {render_slot(@inner_block)}
+        </table>
+      </div>
+    <% else %>
       <table class={@class} {@rest}>
         {render_slot(@inner_block)}
       </table>
-    </div>
+    <% end %>
+    """
+  end
+
+  defp table_rows(assigns) do
+    ~H"""
+    <table class={@class} {@rest}>
+      <.thead>
+        <.tr>
+          <.th :for={col <- @col} collapse_breakpoint={col[:collapse_breakpoint]}>
+            <%= if col[:sort_key] do %>
+              <.button
+                ghost
+                size="xs"
+                phx-click={
+                  JS.push(@event,
+                    value: %{
+                      sort_key: col[:sort_key],
+                      sort_direction: switch_sort_direction(@sorted_columns, col[:sort_key])
+                    }
+                  )
+                }
+                phx-target={@target}
+              >
+                <.icon
+                  name={sorted_column_icon(@sorted_columns, col[:sort_key])}
+                  class="w-3 h-3 mr-1 hover:cursor-pointer"
+                />
+              </.button>
+              {col[:label]}
+            <% else %>
+              {col[:label]}
+            <% end %>
+          </.th>
+          <.th :if={@action != []}>
+            <span class="sr-only"><span class="sr-only">{translate("Actions")}</span></span>
+          </.th>
+        </.tr>
+      </.thead>
+      <.tbody id={@id} phx-update={match?(%Phoenix.LiveView.LiveStream{}, @rows) && "stream"}>
+        <.tr :for={row <- @rows} id={@row_id && @row_id.(row)}>
+          <.td
+            :for={col <- @col}
+            phx-click={@row_click && @row_click.(row)}
+            class={[@row_click && "hover:cursor-pointer", @col[:class]]}
+            collapse_breakpoint={col[:collapse_breakpoint]}
+          >
+            {render_slot(col, @row_item.(row))}
+          </.td>
+          <.td :if={@action != []}>
+            <span :for={action <- @action}>
+              {render_slot(action, @row_item.(row))}
+            </span>
+          </.td>
+        </.tr>
+      </.tbody>
+    </table>
     """
   end
 
@@ -235,10 +296,33 @@ defmodule DaisyUIComponents.Table do
   defp table_size("xl"), do: "table-xl"
   defp table_size(_size), do: nil
 
+  # Collapse Breakpoint
   defp collapse_breakpoint("xs"), do: "hidden xs:table-cell"
   defp collapse_breakpoint("sm"), do: "hidden sm:table-cell"
   defp collapse_breakpoint("md"), do: "hidden md:table-cell"
   defp collapse_breakpoint("lg"), do: "hidden lg:table-cell"
   defp collapse_breakpoint("xl"), do: "hidden xl:table-cell"
   defp collapse_breakpoint(_breakpoint), do: nil
+
+  defp switch_sort_direction(sorted_columns, sort_key) do
+    case Enum.find(sorted_columns, fn {key, _} -> key == sort_key end) do
+      {_sort_key, :asc} -> :desc
+      {_sort_key, :desc} -> :asc
+      _ -> :asc
+    end
+  end
+
+  defp sorted_column_icon(sorted_columns, sort_key) do
+    case Enum.find(sorted_columns, fn {key, _} -> key == sort_key end) do
+      {_sort_key, direction} ->
+        sort_icon(direction)
+
+      _ ->
+        "hero-arrow-up"
+    end
+  end
+
+  defp sort_icon(:asc), do: "hero-arrow-up"
+  defp sort_icon(:desc), do: "hero-arrow-down"
+  defp sort_icon(_), do: "hero-arrow-up"
 end

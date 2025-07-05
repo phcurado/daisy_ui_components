@@ -1,96 +1,141 @@
 defmodule DaisyUIComponents.TableTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
-  import Phoenix.LiveViewTest
   import DaisyUIComponents.Table
 
   test "table" do
     assigns = %{}
 
-    table =
-      rendered_to_string(~H"""
-      <.table class="test-table" />
-      """)
-
-    assert table =~ ~s(<table class="table test-table">)
-
-    table =
-      rendered_to_string(~H"""
-      <.table zebra class="test-table" />
-      """)
-
-    assert table =~ ~s(<table class="table table-zebra test-table">)
+    ~H"""
+    <.table class="test-table" container_element={false} />
+    """
+    |> parse_component()
+    |> assert_component("table")
+    |> assert_class("table test-table")
   end
 
-  test "table with declared rows" do
+  test "table with zebra stripes" do
     assigns = %{}
 
-    table =
-      rendered_to_string(~H"""
-      <.table id="user" rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}>
-        <:col :let={user} label="id">{user.id}</:col>
-        <:col :let={user} label="username">{user.username}</:col>
-      </.table>
-      """)
-
-    assert table =~ ~s(<table class="table">)
-    assert table =~ ~s(<tbody id="user">)
-    assert table =~ ~s(<tr)
-    assert table =~ ~s(<td)
-    assert table =~ ~s(12345)
-    assert table =~ ~s(12346)
-    assert table =~ ~s(John)
-    assert table =~ ~s(Doe)
+    ~H"""
+    <.table zebra class="test-table" container_element={false} />
+    """
+    |> parse_component()
+    |> assert_component("table")
+    |> assert_class("table table-zebra test-table")
   end
 
-  test "tr" do
+  test "table wrapped in a div" do
     assigns = %{}
 
-    tr =
-      rendered_to_string(~H"""
-      <.tr active class="test-tr" />
-      """)
-
-    assert tr =~ ~s(<tr class="active test-tr">)
-
-    tr =
-      rendered_to_string(~H"""
-      <.tr active hover class="test-tr" />
-      """)
-
-    assert tr =~ ~s(<tr class="active hover test-tr">)
+    ~H"""
+    <.table class="test-table" container_element={true} />
+    """
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("overflow-x-auto")
+    |> assert_children("table", fn table ->
+      table
+      |> assert_component("table")
+      |> assert_class("table test-table")
+    end)
   end
 
-  test "td th thead tbody" do
+  test "table with declared columns" do
     assigns = %{}
 
-    td =
-      rendered_to_string(~H"""
-      <.td class="test-td" />
-      """)
+    ~H"""
+    <.table
+      id="user"
+      rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}
+      container_element={false}
+    >
+      <:col :let={user} label="id">{user.id}</:col>
+      <:col :let={user} label="username">{user.username}</:col>
+    </.table>
+    """
+    |> parse_component()
+    |> assert_component("table")
+    |> assert_class("table")
+    |> assert_children("tbody#user", fn tbody ->
+      tbody
+      |> assert_component("tbody")
+      |> select_children(fn [tr_1, tr_2] ->
+        tr_1
+        |> assert_component("tr")
+        |> select_children(fn [td_1, td_2] ->
+          td_1
+          |> assert_component("td")
+          |> assert_text("12345")
 
-    assert td =~ ~s(<td class="test-td">)
+          td_2
+          |> assert_component("td")
+          |> assert_text("John")
+        end)
 
-    th =
-      rendered_to_string(~H"""
-      <.th class="test-th" />
-      """)
+        tr_2
+        |> assert_component("tr")
+        |> select_children(fn [td_1, td_2] ->
+          td_1
+          |> assert_component("td")
+          |> assert_text("12346")
 
-    assert th =~ ~s(<th class="test-th">)
+          td_2
+          |> assert_component("td")
+          |> assert_text("Doe")
+        end)
+      end)
+    end)
+  end
 
-    thead =
-      rendered_to_string(~H"""
-      <.thead class="test-thead" />
-      """)
+  test "tr with active and hover classes" do
+    assigns = %{}
 
-    assert thead =~ ~s(<thead class="test-thead">)
+    ~H"""
+    <.tr active class="test-tr" />
+    """
+    |> parse_component()
+    |> assert_component("tr")
+    |> assert_class("active test-tr")
 
-    tbody =
-      rendered_to_string(~H"""
-      <.tbody class="test-tbody" />
-      """)
+    ~H"""
+    <.tr active hover class="test-tr" />
+    """
+    |> parse_component()
+    |> assert_component("tr")
+    |> assert_class("active hover test-tr")
+  end
 
-    assert tbody =~ ~s(<tbody class="test-tbody">)
+  test "td th thead and tbody" do
+    assigns = %{}
+
+    ~H"""
+    <.td class="test-td" />
+    """
+    |> parse_component()
+    |> assert_component("td")
+    |> assert_class("test-td")
+
+    ~H"""
+    <.th class="test-th" />
+    """
+    |> parse_component()
+    |> assert_component("th")
+    |> assert_class("test-th")
+
+    ~H"""
+    <.thead class="test-thead" />
+    """
+    |> parse_component()
+    |> assert_component("thead")
+    |> assert_class("test-thead")
+
+    ~H"""
+    <.tbody class="test-tbody" />
+    """
+    |> parse_component()
+    |> assert_component("tbody")
+    |> assert_class("test-tbody")
   end
 end
