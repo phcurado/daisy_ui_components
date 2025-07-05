@@ -168,7 +168,7 @@ defmodule DaisyUIComponents.Table do
             :for={col <- @col}
             class={col[:class]}
             sort_key={col[:sort_key]}
-            sort_direction={switch_sort_direction(@sorted_columns, col[:sort_key])}
+            sort_direction={map_sort_direction(@sorted_columns, col[:sort_key])}
             target={@target}
             event={@event}
             collapse_breakpoint={col[:collapse_breakpoint]}
@@ -292,7 +292,7 @@ defmodule DaisyUIComponents.Table do
           JS.push(@event,
             value: %{
               sort_key: @sort_key,
-              sort_direction: @sort_direction
+              sort_direction: next_sort_direction(@sort_direction)
             }
           )
       }
@@ -350,14 +350,18 @@ defmodule DaisyUIComponents.Table do
   defp collapse_breakpoint("xl"), do: "hidden xl:table-cell"
   defp collapse_breakpoint(_breakpoint), do: nil
 
-  defp switch_sort_direction(sorted_columns, sort_key) do
+  defp map_sort_direction(sorted_columns, sort_key) do
     case Enum.find(sorted_columns, fn {key, _} -> to_string(key) == to_string(sort_key) end) do
       nil -> nil
-      {_sort_key, "asc"} -> "desc"
-      {_sort_key, "desc"} -> nil
-      _ -> "asc"
+      {_sort_key, "asc"} -> "asc"
+      {_sort_key, "desc"} -> "desc"
+      _ ->  nil
     end
   end
+
+  defp next_sort_direction(nil), do: "asc"
+  defp next_sort_direction("asc"), do: "desc"
+  defp next_sort_direction("desc"), do: nil
 
   defp sort_icon("desc"), do: "hero-arrow-down"
   defp sort_icon(_), do: "hero-arrow-up"
