@@ -98,13 +98,20 @@ defmodule Storybook.Examples.TableInsert do
 
   defp sort_users(users, sorted_columns) do
     Enum.reduce(sorted_columns, users, fn {key, direction}, acc ->
-      direction = if direction == "asc", do: :asc, else: :desc
+      direction = case direction do
+        "asc" -> :asc
+        "desc" -> :desc
+        _ -> nil
+      end
 
-      case key do
-        "id" ->
+      case {key, direction} do
+        {_key, nil} ->
+          acc
+
+        {"id", direction} ->
           Enum.sort_by(acc, & &1.id, direction)
 
-        "first_name" ->
+        {"first_name", direction} ->
           Enum.sort_by(acc, & &1.first_name, direction)
 
         _ ->
