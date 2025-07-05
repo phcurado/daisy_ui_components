@@ -3,6 +3,7 @@ defmodule Storybook.Examples.TableInsert do
 
   use DaisyUIComponents
 
+  alias DaisyUIComponents.Table
   alias Phoenix.LiveView.JS
 
   def doc do
@@ -39,17 +40,16 @@ defmodule Storybook.Examples.TableInsert do
       </:actions>
     </.header>
     <.table id="user-table" rows={@users} sorted_columns={@sorted_columns}>
-      <:col :let={user} sort_key={:id} sort_direction="asc" label="Id">
+      <:col :let={user} sort_key={:id} label="Id">
         {user.id}
       </:col>
-      <:col :let={user} label="First name">
+      <:col :let={user} sort_key={:first_name} label="First name">
         {user.first_name}
       </:col>
       <:col :let={user} label="Last name">
         {user.last_name}
       </:col>
     </.table>
-    <.pagination size="xs" page={2} total_entries={4} page_size={1} />
     <.modal id="new-user-modal">
       <:modal_box>
         <.header>
@@ -88,41 +88,28 @@ defmodule Storybook.Examples.TableInsert do
   end
 
   def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
-    direction =
-      case sort_direction do
-        "asc" -> :asc
-        "desc" -> :desc
-        _ -> :asc
-      end
-
-    {key, sorted_users} =
-      case sort_key do
-        "id" -> {:id, sort_by_id(socket.assigns.users, direction)}
-        _ -> {nil, socket.assigns.users}
-      end
+    sorted_columns = Table.update_sort(socket.assigns.sorted_columns, sort_key, sort_direction)
 
     {:noreply,
      socket
-     |> assign(:users, sorted_users)
-     |> assign(
-       :sorted_columns,
-       map_sorted_columns(socket.assigns.sorted_columns, {key, direction})
-     )}
-    |> IO.inspect()
+     |> assign(:users, sort_users(socket.assigns.users, sorted_columns))
+     |> assign(:sorted_columns, sorted_columns)}
   end
 
-  defp sort_by_id(users, direction) do
-    Enum.sort_by(users, & &1.id, direction)
-  end
+  defp sort_users(users, sorted_columns) do
+    Enum.reduce(sorted_columns, users, fn {key, direction}, acc ->
+      direction = if direction == "asc", do: :asc, else: :desc
 
-  defp map_sorted_columns(sorted_columns, {key, direction}) do
-    if Enum.find(sorted_columns, fn {k, _} -> k == key end) do
-      Enum.map(sorted_columns, fn
-        {^key, _} -> {key, direction}
-        other -> other
-      end)
-    else
-      [{key, direction} | sorted_columns]
-    end
+      case key do
+        "id" ->
+          Enum.sort_by(acc, & &1.id, direction)
+
+        "first_name" ->
+          Enum.sort_by(acc, & &1.first_name, direction)
+
+        _ ->
+          acc
+      end
+    end)
   end
 end
