@@ -21,43 +21,43 @@ defmodule DaisyUIComponents.Table do
 
   or declaring the table components
 
-    <.table id="users">
-      <.thead>
-        <.tr>
-          <.th>id</.th>
-          <.th>username</.th>
-        </.tr>
-      </.thead>
-      <.tbody>
-        <.tr :for={user <- @users}>
-          <.td>{user.id}</.td>
-          <.td>{user.username}</.td>
-        </.tr>
-      </.tbody>
-    </.table>
+      <.table id="users">
+        <.thead>
+          <.tr>
+            <.th>id</.th>
+            <.th>username</.th>
+          </.tr>
+        </.thead>
+        <.tbody>
+          <.tr :for={user <- @users}>
+            <.td>{user.id}</.td>
+            <.td>{user.username}</.td>
+          </.tr>
+        </.tbody>
+      </.table>
 
   sorting can be achieved by defining the `:sort_key` attribute in the `:col` slot. 
   The `:sorted_columns` attribute should be a list of tuples with the column key and direction, e.g. `[{id, :asc}, {name, :desc}]`.
 
-    <.table id="users" rows={@users} sorted_columns={@sorted_columns}>
-      <:col :let={user} sort_key={:id} label="Id">
-        {user.id}
-      </:col>
-      <:col :let={user} label="Username">
-        {user.username}
-      </:col>
-      <:col :let={user} label="Email">
-        {user.email}
-      </:col>
-    </.table>
+      <.table id="users" rows={@users} sorted_columns={@sorted_columns}>
+        <:col :let={user} sort_key={:id} label="Id">
+          {user.id}
+        </:col>
+        <:col :let={user} label="Username">
+          {user.username}
+        </:col>
+        <:col :let={user} label="Email">
+          {user.email}
+        </:col>
+      </.table>
 
-     # When clicked on the header, the `:sort_key` will trigger an event with the `:event` attribute.
-     def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
-        sorted_columns = update_sort(socket.assigns.sorted_columns, sort_key, sort_direction)
-        # Sort the users based on your sorting logic
-        users = Users.order_by(sorted_columns)
-       {:noreply, assign(socket, users: users, sorted_columns: sorted_columns)}
-     end
+       # When clicked on the header, the `:sort_key` will trigger an event with the `:event` attribute.
+       def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
+          sorted_columns = update_sort(socket.assigns.sorted_columns, sort_key, sort_direction)
+          # Sort the users based on your sorting logic
+          users = Users.order_by(sorted_columns)
+         {:noreply, assign(socket, users: users, sorted_columns: sorted_columns)}
+       end
   """
   attr :id, :string, default: nil
   attr :class, :any, default: nil
