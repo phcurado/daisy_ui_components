@@ -6,7 +6,7 @@
 @source "../js";
 @source "../../lib/daisy_ui_components_site_web";
 @source "../../deps/daisy_ui_components";
-/* @source "../../../lib/"; */
+@source "../../../lib/";
 
 @plugin "../vendor/heroicons";
 @plugin "../vendor/daisyui" {
