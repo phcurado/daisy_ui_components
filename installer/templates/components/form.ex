@@ -66,7 +66,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+    values:
+      ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
@@ -134,7 +135,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
 
     ~H"""
     <.fieldset class="mt-2">
-      <.fieldset_label>{@label}</.fieldset_label>
+      <.fieldset_label :if={@label}>{@label}</.fieldset_label>
       <input type="hidden" name={@name} value="" disabled={@rest[:disabled]} />
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
         <.label for={"#{@id}-#{index}"}>
@@ -188,7 +189,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
   def form_input(%{type: "radio_group"} = assigns) do
     ~H"""
     <.fieldset class="mt-2">
-      <.fieldset_label>{@label}</.fieldset_label>
+      <.fieldset_label :if={@label}>{@label}</.fieldset_label>
       <div :for={{{label, value}, index} <- Enum.with_index(@options)}>
         <.label for={"#{@id}-#{index}"}>
           <.input

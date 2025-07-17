@@ -3,6 +3,7 @@ defmodule Storybook.Examples.TableInsert do
 
   use DaisyUIComponents
 
+  alias DaisyUIComponents.Table
   alias Phoenix.LiveView.JS
 
   def doc do
@@ -23,7 +24,8 @@ defmodule Storybook.Examples.TableInsert do
            first_name: "Chris",
            last_name: "McCord"
          }
-       ]
+       ],
+       sorted_columns: [{"id", "asc"}]
      )}
   end
 
@@ -37,11 +39,11 @@ defmodule Storybook.Examples.TableInsert do
         <.button phx-click={show_modal("new-user-modal")}>Create user</.button>
       </:actions>
     </.header>
-    <.table id="user-table" rows={@users}>
-      <:col :let={user} label="Id">
+    <.table id="user-table" rows={@users} sorted_columns={@sorted_columns}>
+      <:col :let={user} sort_key={:id} label="Id">
         {user.id}
       </:col>
-      <:col :let={user} label="First name">
+      <:col :let={user} sort_key={:first_name} label="First name">
         {user.first_name}
       </:col>
       <:col :let={user} label="Last name">
@@ -83,5 +85,39 @@ defmodule Storybook.Examples.TableInsert do
      socket
      |> update(:users, &(&1 ++ [user]))
      |> update(:current_id, &(&1 + 1))}
+  end
+
+  def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
+    sorted_columns = Table.update_sort(socket.assigns.sorted_columns, sort_key, sort_direction)
+
+    {:noreply,
+     socket
+     |> assign(:users, sort_users(socket.assigns.users, sorted_columns))
+     |> assign(:sorted_columns, sorted_columns)}
+  end
+
+  defp sort_users(users, sorted_columns) do
+    Enum.reduce(sorted_columns, users, fn {key, direction}, acc ->
+      direction =
+        case direction do
+          "asc" -> :asc
+          "desc" -> :desc
+          _ -> nil
+        end
+
+      case {key, direction} do
+        {_key, nil} ->
+          acc
+
+        {"id", direction} ->
+          Enum.sort_by(acc, & &1.id, direction)
+
+        {"first_name", direction} ->
+          Enum.sort_by(acc, & &1.first_name, direction)
+
+        _ ->
+          acc
+      end
+    end)
   end
 end

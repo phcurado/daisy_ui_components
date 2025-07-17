@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Add collapsible option on table component
+- Add fieldset label on checkbox group and radio group components
+
+### Changed
+
+- Fix radio group value matching
+
 ## 0.8.6 - 2025-06-01
 
 ### Added

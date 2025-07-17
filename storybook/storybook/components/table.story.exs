@@ -10,14 +10,6 @@ defmodule Storybook.Components.Table do
 
   def function, do: &Table.table/1
 
-  def template do
-    """
-    <div class="overflow-x-auto">
-      <.psb-variation/>
-    </div>
-    """
-  end
-
   def variations do
     [
       %Variation{
@@ -118,6 +110,28 @@ defmodule Storybook.Components.Table do
             <%= user.name %>
           </:col>
           <:col :let={user} label="Job">
+            <%= user.job %>
+          </:col>
+          <:col :let={user} label="Favourite Color">
+            <%= user.favourite_color %>
+          </:col>
+          """
+        ]
+      },
+      %Variation{
+        id: :table_collapse,
+        attributes: %{
+          rows: get_users()
+        },
+        slots: [
+          """
+          <:col :let={user} label="Id">
+            <%= user.id %>
+          </:col>
+          <:col :let={user} label="name" collapse_breakpoint="md">
+            <%= user.name %>
+          </:col>
+          <:col :let={user} label="Job" collapse_breakpoint="sm">
             <%= user.job %>
           </:col>
           <:col :let={user} label="Favourite Color">
