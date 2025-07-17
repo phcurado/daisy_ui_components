@@ -49,9 +49,17 @@ defmodule DaisyUIComponents.Input do
 
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{}} = assigns) do
+  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     # If form field is sent, this components delegates it's implementation to the form_input component
-    DaisyUIComponents.Form.form_input(assigns)
+    errors = if Phoenix.Component.used_input?(field), do: field.errors, else: []
+
+    assigns
+    |> assign(field: nil, id: assigns.id || field.id)
+    |> assign(:errors, Enum.map(errors, &translate(&1)))
+    |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
+    |> assign_new(:value, fn -> field.value end)
+    |> assign_new(:color, fn -> assigns.errors != [] && "error" end)
+    |> DaisyUIComponents.Form.form_input()
   end
 
   def input(%{type: "checkbox"} = assigns) do

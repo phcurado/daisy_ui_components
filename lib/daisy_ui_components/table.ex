@@ -37,7 +37,7 @@ defmodule DaisyUIComponents.Table do
       </.table>
 
   sorting can be achieved by defining the `:sort_key` attribute in the `:col` slot. 
-  The `:sorted_columns` attribute should be a list of tuples with the column key and direction, e.g. `[{id, :asc}, {name, :desc}]`.
+  The `:sorted_columns` attribute should be a list of tuples with the column key and direction, e.g. `[{"id", "asc"}, {"name", "desc"}]`.
 
       <.table id="users" rows={@users} sorted_columns={@sorted_columns}>
         <:col :let={user} sort_key={:id} label="Id">
@@ -370,8 +370,7 @@ defmodule DaisyUIComponents.Table do
 
   @spec update_sort(list(), atom(), binary()) :: list()
   def update_sort(sorted_columns, sort_key, sort_direction) do
-    # Remove the existing sort key if it exists so it's replaced to the end of the list,
-    # so it can be the last sorted column
+    # Remove the existing sort key if it exists so it's replaced to the end of the list, so it can be the last sorted column
     sorted_columns = Enum.reject(sorted_columns, fn {k, _} -> k == sort_key end)
     List.insert_at(sorted_columns, -1, {sort_key, sort_direction})
   end
