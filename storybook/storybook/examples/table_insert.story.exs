@@ -25,7 +25,7 @@ defmodule Storybook.Examples.TableInsert do
            last_name: "McCord"
          }
        ],
-       sorted_columns: []
+       sorted_columns: [{"id", "asc"}]
      )}
   end
 
@@ -98,11 +98,12 @@ defmodule Storybook.Examples.TableInsert do
 
   defp sort_users(users, sorted_columns) do
     Enum.reduce(sorted_columns, users, fn {key, direction}, acc ->
-      direction = case direction do
-        "asc" -> :asc
-        "desc" -> :desc
-        _ -> nil
-      end
+      direction =
+        case direction do
+          "asc" -> :asc
+          "desc" -> :desc
+          _ -> nil
+        end
 
       case {key, direction} do
         {_key, nil} ->

@@ -339,6 +339,11 @@ defmodule Daisy.New.Single do
 
   defp add_deps(set, "swap"), do: add_dep_component(set, "icon")
 
+  defp add_deps(set, "table") do
+    set
+    |> add_dep_component("table")
+  end
+
   defp add_deps(set, _), do: set
 
   defp add_dep_component(set, component) do

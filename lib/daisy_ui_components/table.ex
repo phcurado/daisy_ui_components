@@ -299,12 +299,11 @@ defmodule DaisyUIComponents.Table do
       phx-target={@target}
       {@rest}
     >
-      <%= if sortable?(@sort_key) do %>
-        <.icon
-          name={sort_icon(@sort_direction)}
-          class={classes(["w-3 h-3", !@sort_direction && "invisible group-hover/th:visible"])}
-        />
-      <% end %>
+      <.icon
+        :if={sortable?(@sort_key)}
+        name={sort_icon(@sort_direction)}
+        class={classes(["w-3 h-3", !@sort_direction && "invisible group-hover/th:visible"])}
+      />
       {render_slot(@inner_block)}
     </th>
     """
@@ -350,6 +349,9 @@ defmodule DaisyUIComponents.Table do
   defp collapse_breakpoint("xl"), do: "hidden xl:table-cell"
   defp collapse_breakpoint(_breakpoint), do: nil
 
+  defp sortable?(nil), do: false
+  defp sortable?(_), do: true
+
   defp map_sort_direction(sorted_columns, sort_key) do
     case Enum.find(sorted_columns, fn {key, _} -> to_string(key) == to_string(sort_key) end) do
       nil -> nil
@@ -366,8 +368,6 @@ defmodule DaisyUIComponents.Table do
   defp sort_icon("desc"), do: "hero-arrow-down"
   defp sort_icon(_), do: "hero-arrow-up"
 
-  defp sortable?(nil), do: false
-  defp sortable?(_), do: true
 
   @spec update_sort(list(), atom(), binary()) :: list()
   def update_sort(sorted_columns, sort_key, sort_direction) do

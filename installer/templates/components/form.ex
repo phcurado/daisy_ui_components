@@ -66,7 +66,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+    values:
+      ~w(checkbox color date datetime-local email file hidden month number password
                range radio search select tel text textarea time url week checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
