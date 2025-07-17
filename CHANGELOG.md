@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Add collapsible option on table component
+- Add sortable columns on table component
 - Add fieldset label on checkbox group and radio group components
 
 ### Changed
