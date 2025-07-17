@@ -357,7 +357,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
       nil -> nil
       {_sort_key, "asc"} -> "asc"
       {_sort_key, "desc"} -> "desc"
-      _ ->  nil
+      _ -> nil
     end
   end
 
@@ -367,7 +367,6 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
 
   defp sort_icon("desc"), do: "hero-arrow-down"
   defp sort_icon(_), do: "hero-arrow-up"
-
 
   @spec update_sort(list(), atom(), binary()) :: list()
   def update_sort(sorted_columns, sort_key, sort_direction) do
