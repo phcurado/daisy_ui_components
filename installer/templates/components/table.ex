@@ -370,7 +370,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
 
   @spec update_sort(list(), atom(), binary()) :: list()
   def update_sort(sorted_columns, sort_key, sort_direction) do
-    # Remove the existing sort key if it exists so it's replaced to the end of the list, so it can be the last sorted column
+    # Remove the existing sort key if it exists so it's replaced to the end of the list,
+    # so it can be the last sorted column
     sorted_columns = Enum.reject(sorted_columns, fn {k, _} -> k == sort_key end)
     List.insert_at(sorted_columns, -1, {sort_key, sort_direction})
   end
