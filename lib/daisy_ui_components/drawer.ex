@@ -19,6 +19,7 @@ defmodule DaisyUIComponents.Drawer do
 
   slot :drawer_side do
     attr :class, :any
+    attr :show_overlay, :boolean
   end
 
   slot :inner_block
@@ -49,6 +50,7 @@ defmodule DaisyUIComponents.Drawer do
       <.drawer_side
         :for={drawer_side <- @drawer_side}
         class={Map.get(drawer_side, :class)}
+        show_overlay={Map.get(drawer_side, :show_overlay, true)}
         selector_id={@selector_id}
       >
         {render_slot(drawer_side)}
@@ -70,6 +72,7 @@ defmodule DaisyUIComponents.Drawer do
   end
 
   attr :class, :any, default: nil
+  attr :show_overlay, :boolean, default: true, doc: "Show overlay behind the drawer"
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
   attr :rest, :global
   slot :inner_block
@@ -77,7 +80,8 @@ defmodule DaisyUIComponents.Drawer do
   def drawer_side(assigns) do
     ~H"""
     <div class={classes(["drawer-side", @class])} {@rest}>
-      <label for={@selector_id} aria-label="close sidebar" class="drawer-overlay"></label>
+      <label :if={@show_overlay} for={@selector_id} aria-label="close sidebar" class="drawer-overlay">
+      </label>
       {render_slot(@inner_block)}
     </div>
     """
