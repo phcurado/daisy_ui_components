@@ -1,22 +1,28 @@
 defmodule DaisyUIComponents.PaginationTest do
-  use ExUnit.Case
+  use DaisyUIComponents.ComponentCase
   import Phoenix.Component
-  import Phoenix.LiveViewTest
 
   import DaisyUIComponents.Pagination
 
   test "pagination" do
-    assigns = %{page: 1, page_size: 10, total_entries: 100}
+    assigns = %{}
 
-    pagination =
-      rendered_to_string(~H"""
-      <.pagination />
-      """)
+    ~H[<.pagination page={1} page_size={10} total_entries={20} page_click_event="page_click" />]
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("join")
+    |> select_children(fn [button1, button2] = buttons ->
+      for {button, page} <- Enum.with_index(buttons, 1) do
+        button
+        |> assert_component("button")
+        |> assert_attribute("phx-click", "page_click")
+        |> assert_attribute("phx-value-page", to_string(page))
+        |> assert_text(to_string(page))
+      end
 
-    assert pagination =~ ~s(<div class="join">)
-    assert pagination =~ ~s(<button class="btn join-item")
-    assert pagination =~ ~s(<button class="btn btn-active join-item")
-    assert pagination =~ ~s(<button class="btn btn-disabled join-item")
+      assert_class(button1, "btn btn-active join-item")
+      assert_class(button2, "btn join-item")
+    end)
   end
 
   test "calculate_display_btn" do
