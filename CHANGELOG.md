@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Add collapsible option on table component
 - Add sortable columns on table component
 - Add fieldset label on checkbox group and radio group components
+- Add toggle on form and input components
+- Add custom events on pagination click
 
 ### Changed
 

@@ -96,6 +96,22 @@ defmodule DaisyUIComponents.InputTest do
     end
   end
 
+  describe "toggle" do
+    test "toggle input" do
+      assigns = %{}
+
+      ~H"""
+      <.input type="toggle" size="xs" value="false" />
+      """
+      |> parse_component()
+      |> assert_component("input")
+      |> assert_attribute("type", "checkbox")
+      |> assert_attribute("value", "false")
+      |> assert_attribute("checked", nil)
+      |> assert_class("toggle toggle-xs")
+    end
+  end
+
   describe "radio" do
     test "radio input" do
       assigns = %{}

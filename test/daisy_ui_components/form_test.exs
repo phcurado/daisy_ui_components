@@ -54,6 +54,43 @@ defmodule DaisyUIComponents.FormTest do
     end)
   end
 
+  test "form_input toggle" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input
+      id="1"
+      name="input[name]"
+      type="toggle"
+      class="text-xs"
+      for="some-input"
+      value="false"
+      disabled
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [hidden, label] ->
+      hidden
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("value", "false")
+      |> assert_attribute("name", "input[name]")
+
+      label
+      |> assert_attribute("for", "1")
+      |> assert_children("input", fn input ->
+        input
+        |> assert_component("input")
+        |> assert_class("toggle text-xs")
+        |> assert_attribute("type", "checkbox")
+        |> assert_attribute("value", "true")
+        |> assert_attribute("checked", nil)
+        |> assert_attribute("name", "input[name]")
+      end)
+    end)
+  end
+
   test "form_input checkbox_group" do
     assigns = %{}
 

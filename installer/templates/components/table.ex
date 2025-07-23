@@ -51,7 +51,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
         </:col>
       </.table>
 
-       # When clicked on the header, the `:sort_key` will trigger an event with the `:event` attribute.
+       # When clicked on the header, the `:sort_key` will trigger an event with the `on_click_header` attribute.
        def handle_event("sort", %{"sort_key" => sort_key, "sort_direction" => sort_direction}, socket) do
           sorted_columns = update_sort(socket.assigns.sorted_columns, sort_key, sort_direction)
           # Sort the users based on your sorting logic
@@ -65,12 +65,6 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
   attr :container_element, :boolean,
     default: true,
     doc: "whether to wrap the table in a div with overflow-x-auto class"
-
-  attr :sorted_columns, :list,
-    default: [],
-    doc: """
-    list of columns sorted by, each column is a tuple with the column key and direction, e.g. [{:id, :asc}, {:name, :desc}]
-    """
 
   attr :rows, :list
   attr :row_id, :any, default: nil, doc: "the function for generating the row id"
@@ -87,11 +81,13 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
     attr :label, :string
   end
 
-  attr :target, :string,
-    default: nil,
-    doc: "the target for phx-click on header columns for sorting"
+  attr :sorted_columns, :list,
+    default: [],
+    doc: """
+    list of columns sorted by, each column is a tuple with the column key and direction, e.g. [{:id, :asc}, {:name, :desc}]
+    """
 
-  attr :event, :string,
+  attr :on_click_header, :any,
     default: "sort",
     doc: "the event name for phx-click on header columns for sorting"
 
@@ -169,8 +165,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
             class={col[:class]}
             sort_key={col[:sort_key]}
             sort_direction={map_sort_direction(@sorted_columns, col[:sort_key])}
-            target={@target}
-            event={@event}
+            on_click={@on_click_header}
             collapse_breakpoint={col[:collapse_breakpoint]}
           >
             {col[:label]}
@@ -261,11 +256,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
     values: ["asc", "desc", nil],
     doc: "the direction for sorting the column when phx-click is triggered"
 
-  attr :target, :string,
-    default: nil,
-    doc: "the target for phx-click on header columns for sorting"
-
-  attr :event, :string,
+  attr :on_click, :any,
     default: "sort",
     doc: "the event name for phx-click on header columns for sorting"
 
@@ -289,14 +280,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
       class={@class}
       phx-click={
         sortable?(@sort_key) &&
-          JS.push(@event,
-            value: %{
-              sort_key: @sort_key,
-              sort_direction: next_sort_direction(@sort_direction)
-            }
-          )
+          @on_click
       }
-      phx-target={@target}
+      phx-value-sort_key={@sort_key}
+      phx-value-sort_direction={next_sort_direction(@sort_direction)}
       {@rest}
     >
       <.icon
@@ -363,7 +350,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
 
   defp next_sort_direction(nil), do: "asc"
   defp next_sort_direction("asc"), do: "desc"
-  defp next_sort_direction("desc"), do: nil
+  defp next_sort_direction("desc"), do: "default"
 
   defp sort_icon("desc"), do: "hero-arrow-down"
   defp sort_icon(_), do: "hero-arrow-up"

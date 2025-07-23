@@ -26,10 +26,16 @@ defmodule DaisyUIComponents.Pagination do
   attr :size, :string, values: sizes()
   attr :target, :string, default: nil
   attr :page_click_event, :string, default: "page_click"
+
+  attr :on_page_click, Phoenix.LiveView.JS,
+    default: nil,
+    doc: "JS event to trigger when a page button is clicked, if not using `page_click_event`"
+
   attr :rest, :global
 
   def pagination(assigns) do
-    assigns = assign_new(assigns, :size, fn -> nil end)
+    assigns =
+      assign_new(assigns, :size, fn -> nil end)
 
     ~H"""
     <.join :if={@total_entries > 0} {@rest}>
@@ -37,7 +43,8 @@ defmodule DaisyUIComponents.Pagination do
         <.button
           class={["join-item", @button_class]}
           size={@size}
-          phx-click={JS.push(@page_click_event, value: %{page: block})}
+          phx-click={(@on_page_click && @on_page_click) || JS.push(@page_click_event)}
+          phx-value-page={block}
           phx-target={@target}
           active={block == @page}
           disabled={block == "..."}

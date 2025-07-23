@@ -11,6 +11,7 @@ defmodule DaisyUIComponents.Input do
   import DaisyUIComponents.Select
   import DaisyUIComponents.Textarea
   import DaisyUIComponents.TextInput
+  import DaisyUIComponents.Toggle
 
   @doc """
   Renders a generic input based on type.
@@ -28,7 +29,7 @@ defmodule DaisyUIComponents.Input do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week)
+               range radio search select tel text textarea time url week toggle)
 
   attr :color, :string, values: [nil] ++ colors(), default: nil
 
@@ -73,6 +74,28 @@ defmodule DaisyUIComponents.Input do
 
     ~H"""
     <.checkbox
+      id={@id}
+      name={@name}
+      class={@class}
+      color={@color}
+      checked={@checked}
+      value={@value}
+      {@rest}
+    />
+    """
+  end
+
+  def input(%{type: "toggle"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:value, fn -> nil end)
+      |> assign_new(:name, fn -> nil end)
+      |> assign_new(:checked, fn ->
+        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
+      end)
+
+    ~H"""
+    <.toggle
       id={@id}
       name={@name}
       class={@class}

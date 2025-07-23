@@ -1,22 +1,66 @@
 defmodule DaisyUIComponents.PaginationTest do
-  use ExUnit.Case
-  import Phoenix.Component
-  import Phoenix.LiveViewTest
+  use DaisyUIComponents.ComponentCase
 
   import DaisyUIComponents.Pagination
 
   test "pagination" do
-    assigns = %{page: 1, page_size: 10, total_entries: 100}
+    assigns = %{}
 
-    pagination =
-      rendered_to_string(~H"""
-      <.pagination />
-      """)
+    ~H"""
+    <.pagination page={1} page_size={10} total_entries={100} />
+    """
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("join")
+    |> select_children(fn btns ->
+      {[btn_active], btns} = Enum.split(btns, 1)
+      {btns_left, btns} = Enum.split(btns, 4)
+      {[btn_dots], [btn_right]} = Enum.split(btns, 1)
 
-    assert pagination =~ ~s(<div class="join">)
-    assert pagination =~ ~s(<button class="btn join-item")
-    assert pagination =~ ~s(<button class="btn btn-active join-item")
-    assert pagination =~ ~s(<button class="btn btn-disabled join-item")
+      btn_active
+      |> assert_component("button")
+      |> assert_class("btn btn-active join-item")
+      |> assert_text("1")
+
+      btns_left
+      |> Enum.with_index()
+      |> Enum.each(fn {btn, index} ->
+        page = index + 2
+
+        btn
+        |> assert_component("button")
+        |> assert_class("btn join-item")
+        |> assert_text(to_string(page))
+      end)
+
+      btn_dots
+      |> assert_component("button")
+      |> assert_class("btn btn-disabled join-item")
+      |> assert_text("...")
+
+      btn_right
+      |> assert_component("button")
+      |> assert_class("btn join-item")
+      |> assert_text("10")
+    end)
+  end
+
+  test "page_click_event and on_page_click" do
+    assigns = %{}
+
+    ~H"""
+    <.pagination page={1} page_size={10} total_entries={100} on_page_click="hello" />
+    """
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("join")
+    |> select_children(fn btns ->
+      [first_btn] = Enum.take(btns, 1)
+
+      first_btn
+      |> assert_component("button")
+      |> assert_attribute("phx-click", "hello")
+    end)
   end
 
   test "calculate_display_btn" do
