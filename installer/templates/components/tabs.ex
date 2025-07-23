@@ -162,7 +162,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Tabs 
   attr :name, :string, default: nil
   attr :active, :boolean, default: false
   attr :disabled, :boolean, default: false
-  attr :rest, :global
+  attr :rest, :global, include: ~w(href)
 
   slot :inner_block
 
@@ -309,7 +309,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Tabs 
 
   attr :title, :string
   attr :class, :any, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: ~w(href)
 
   slot :inner_block
 
