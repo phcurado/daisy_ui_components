@@ -3,7 +3,6 @@ defmodule DaisyUIComponents.Toggle do
   Stat component
 
   https://daisyui.com/components/toggle
-
   """
 
   use DaisyUIComponents, :component

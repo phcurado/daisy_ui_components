@@ -68,7 +68,7 @@ defmodule DaisyUIComponents.Form do
     default: "text",
     values:
       ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week checkbox_group radio_group)
+               range radio search select tel text textarea time url week toggle checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -112,6 +112,34 @@ defmodule DaisyUIComponents.Form do
         <.input
           id={@id}
           type="checkbox"
+          name={@name}
+          value="true"
+          checked={@checked}
+          class={@class}
+          {@rest}
+        />
+
+        {@label}
+      </.fieldset_label>
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
+    """
+  end
+
+  def form_input(%{type: "toggle"} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:checked, fn ->
+        Phoenix.HTML.Form.normalize_value("checkbox", assigns[:value])
+      end)
+
+    ~H"""
+    <.fieldset class="mt-2">
+      <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
+      <.fieldset_label for={@id}>
+        <.input
+          id={@id}
+          type="toggle"
           name={@name}
           value="true"
           checked={@checked}

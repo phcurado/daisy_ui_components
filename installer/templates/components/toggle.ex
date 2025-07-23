@@ -3,7 +3,6 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Toggl
   Stat component
 
   https://daisyui.com/components/toggle
-
   """
 
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
