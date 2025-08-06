@@ -48,7 +48,7 @@ defmodule DaisyUIComponents.MixProject do
     [
       {:phoenix_live_view, "~> 1.0"},
       {:jason, "~> 1.4", only: [:dev, :test]},
-      {:floki, "~> 0.37.0", [only: :test]},
+      {:floki, "~> 0.38.0", [only: :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
