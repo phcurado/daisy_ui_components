@@ -17,6 +17,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Butto
   """
   attr :class, :any, default: nil
   attr :color, :string, values: colors() ++ ["neutral"]
+  attr :variant, :string, values: colors() ++ ["neutral"]
   attr :ghost, :boolean, default: false
   attr :soft, :boolean, default: false
   attr :dash, :boolean, default: false
@@ -31,13 +32,14 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Butto
   attr :wide, :boolean, default: false
   attr :block, :boolean, default: false
   attr :shape, :string, values: ~w(circle square)
-  attr :rest, :global, include: ~w(form name value)
+  attr :rest, :global, include: ~w(form href navigate patch method download name value disabled)
   slot :inner_block, required: true
 
-  def button(assigns) do
+  def button(%{rest: rest} = assigns) do
     assigns =
-      assign(
-        assigns,
+      assigns
+      |> assign_new(:color, fn -> assigns[:variant] || assigns[:color] end)
+      |> assign(
         :class,
         classes([
           "btn",
@@ -60,11 +62,19 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Butto
         ])
       )
 
-    ~H"""
-    <button class={@class} {@rest}>
-      {render_slot(@inner_block)}
-    </button>
-    """
+    if rest[:href] || rest[:navigate] || rest[:patch] do
+      ~H"""
+      <.link class={@class} {@rest}>
+        {render_slot(@inner_block)}
+      </.link>
+      """
+    else
+      ~H"""
+      <button class={@class} {@rest}>
+        {render_slot(@inner_block)}
+      </button>
+      """
+    end
   end
 
   # Color
