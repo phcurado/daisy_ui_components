@@ -1,11 +1,11 @@
 defmodule Storybook.Components.Flash do
   use PhoenixStorybook.Story, :component
 
-  alias DaisyUIComponents.Alert
+  alias DaisyUIComponents.Flash
   alias DaisyUIComponents.Button
   alias DaisyUIComponents.JSHelpers
 
-  def function, do: &Alert.flash/1
+  def function, do: &Flash.flash/1
   def imports, do: [{Button, [button: 1]}, {JSHelpers, [show: 1]}]
 
   def template do

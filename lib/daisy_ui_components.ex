@@ -40,15 +40,28 @@ defmodule DaisyUIComponents do
     apply(__MODULE__, which, [])
   end
 
-  defmacro __using__(_) do
+  defmacro __using__(opts) do
+    core_components = Keyword.get(opts, :core_components, true)
+
     quote do
+      if unquote(core_components) do
+        import DaisyUIComponents.Button
+        import DaisyUIComponents.Flash
+        import DaisyUIComponents.Form
+        import DaisyUIComponents.Icon
+        import DaisyUIComponents.Header
+        import DaisyUIComponents.Input
+        import DaisyUIComponents.JSHelpers
+        import DaisyUIComponents.List
+        import DaisyUIComponents.Table
+      end
+
       import DaisyUIComponents.Accordion
       import DaisyUIComponents.Alert
       import DaisyUIComponents.Avatar
       import DaisyUIComponents.Back
       import DaisyUIComponents.Badge
       import DaisyUIComponents.Breadcrumbs
-      import DaisyUIComponents.Button
       import DaisyUIComponents.Card
       import DaisyUIComponents.Checkbox
       import DaisyUIComponents.Collapse
@@ -56,16 +69,10 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Dropdown
       import DaisyUIComponents.Fieldset
       import DaisyUIComponents.Footer
-      import DaisyUIComponents.Form
-      import DaisyUIComponents.Header
       import DaisyUIComponents.Hero
-      import DaisyUIComponents.Icon
       import DaisyUIComponents.Indicator
-      import DaisyUIComponents.Input
-      import DaisyUIComponents.JSHelpers
       import DaisyUIComponents.Join
       import DaisyUIComponents.Label
-      import DaisyUIComponents.List
       import DaisyUIComponents.Loading
       import DaisyUIComponents.Menu
       import DaisyUIComponents.Modal
@@ -77,7 +84,6 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Select
       import DaisyUIComponents.Stat
       import DaisyUIComponents.Swap
-      import DaisyUIComponents.Table
       import DaisyUIComponents.Tabs
       import DaisyUIComponents.TextInput
       import DaisyUIComponents.Textarea

@@ -20,6 +20,7 @@ defmodule Daisy.New.Single do
     "components/drawer.ex": "lib/daisy_ui_components/drawer.ex",
     "components/dropdown.ex": "lib/daisy_ui_components/dropdown.ex",
     "components/fieldset.ex": "lib/daisy_ui_components/fieldset.ex",
+    "components/flash.ex": "lib/daisy_ui_components/flash.ex",
     "components/footer.ex": "lib/daisy_ui_components/footer.ex",
     "components/form.ex": "lib/daisy_ui_components/form.ex",
     "components/header.ex": "lib/daisy_ui_components/header.ex",
@@ -107,6 +108,10 @@ defmodule Daisy.New.Single do
 
   template(:fieldset, [
     {:eex, :web, "components/fieldset.ex": "lib/:lib_web_name/daisy_ui_components/fieldset.ex"}
+  ])
+
+  template(:flash, [
+    {:eex, :web, "components/flash.ex": "lib/:lib_web_name/daisy_ui_components/flash.ex"}
   ])
 
   template(:footer, [
@@ -316,6 +321,11 @@ defmodule Daisy.New.Single do
   defp add_deps(set, "breadcrumps"), do: add_dep_component(set, "icon")
 
   defp add_deps(set, "indicator"), do: add_dep_component(set, "badge")
+
+  defp add_deps(set, "flash") do
+    add_dep_component(set, "alert")
+    |> add_dep_component("icon")
+  end
 
   defp add_deps(set, "form") do
     add_dep_component(set, "fieldset")
