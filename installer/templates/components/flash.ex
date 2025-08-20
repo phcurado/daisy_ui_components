@@ -1,6 +1,6 @@
-defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.FlashGroup do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Flash do
   @moduledoc """
-  Flash Group component from Phoenix
+  Flash component from Phoenix
   """
 
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component

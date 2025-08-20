@@ -1,6 +1,6 @@
-defmodule DaisyUIComponents.FlashGroup do
+defmodule DaisyUIComponents.Flash do
   @moduledoc """
-  Flash Group component from Phoenix
+  Flash component from Phoenix
   """
 
   use DaisyUIComponents, :component

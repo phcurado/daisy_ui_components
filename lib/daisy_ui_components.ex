@@ -44,17 +44,19 @@ defmodule DaisyUIComponents do
     core_components = Keyword.get(opts, :core_components, true)
 
     quote do
-      if unquote(core_components) do
-        import DaisyUIComponents.Button
-        import DaisyUIComponents.Flash
-        import DaisyUIComponents.Form
-        import DaisyUIComponents.Icon
-        import DaisyUIComponents.Header
-        import DaisyUIComponents.Input
-        import DaisyUIComponents.JSHelpers
-        import DaisyUIComponents.List
-        import DaisyUIComponents.Table
-      end
+      unquote(if core_components do
+        quote do
+          import DaisyUIComponents.Button
+          import DaisyUIComponents.Flash
+          import DaisyUIComponents.Form
+          import DaisyUIComponents.Icon
+          import DaisyUIComponents.Header
+          import DaisyUIComponents.Input
+          import DaisyUIComponents.JSHelpers
+          import DaisyUIComponents.List
+          import DaisyUIComponents.Table
+        end
+      end)
 
       import DaisyUIComponents.Accordion
       import DaisyUIComponents.Alert

@@ -54,7 +54,7 @@ end
 
 ### DaisyUI Assets
 
-Phoenix 1.8+ uses `tailwind` and `daisyui`, configured out of the box. If your project is using an older version of Phoenix, you can install the `daisyui` package manually.
+Phoenix 1.8+ uses `tailwind` and `daisyui` configured out of the box. If your project is using an older version of Phoenix, you can install the `daisyui` package manually.
 Follow the official [DaisyUI installation guide](https://daisyui.com/docs/install/) to install the package.
 
 ### Configuration
@@ -92,7 +92,25 @@ end
 ```
 
 This will make all the components available in your templates with the exception of the phoenix `core_components.ex` and `layouts.ex` components.
-If you want to use all DaisyUIComponents, set `core_components: true` and remove the import for the phoenix CoreComponents. You may also find component conflicts on the `layout.ex` file, you will need to comment the `flash_group/1` component there too.
+If you want to use all DaisyUIComponents, set `core_components: true` and remove the import for the phoenix CoreComponents.
+
+```diff
+defp html_helpers do
+  quote do
+    # Translation
+    use Gettext, backend: MyAppWeb.Gettext
+
+    # HTML escaping functionality
+    import Phoenix.HTML
+
++   # Import DaisyUI components into your project
++   use DaisyUIComponents, core_components: true
+-   import YourProjectWeb.CoreComponents
+  end
+end
+```
+
+You may also find component conflicts on the `layout.ex` file, you will need to comment the `flash_group/1` component there too.
 
 ## ⭐ Core Components
 
@@ -212,3 +230,9 @@ List of available components.
 | Simple Form | ✅     | ✅        |
 | Input       | ✅     | ✅        |
 | Table       | ✅     | ✅        |
+
+## 🤩 Contributors
+
+<a href="https://github.com/phcurado/daisy_ui_components/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=phcurado/daisy_ui_components" />
+</a>

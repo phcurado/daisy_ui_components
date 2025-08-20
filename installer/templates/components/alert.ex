@@ -7,6 +7,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert
 
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
+  attr :id, :string, default: nil, doc: "the optional id of alert container"
+  attr :class, :any, default: nil
+  attr :color, :string, values: ~w(info success warning error)
+  attr :soft, :boolean, default: false
   attr :outline, :boolean, default: false
   attr :dash, :boolean, default: false
   attr :direction, :string, values: ~w(vertical horizontal)

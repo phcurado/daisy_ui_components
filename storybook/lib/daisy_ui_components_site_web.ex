@@ -90,7 +90,7 @@ defmodule DaisyUIComponentsSiteWeb do
       import Phoenix.HTML
       # Core UI components and translation
 
-      use DaisyUIComponents
+      use DaisyUIComponents, core_components: true
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

@@ -44,17 +44,19 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents do<%=
     core_components = Keyword.get(opts, :core_components, true)
 
     quote do
-      if unquote(core_components) do
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Button" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Flash" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Form" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Icon" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Header" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Input" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.JSHelpers" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.List" %>
-        <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Table" %>
-      end
+      unquote(if core_components do
+        quote do
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Button" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Flash" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Form" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Icon" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Header" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Input" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.JSHelpers" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.List" %>
+          <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Table" %>
+        end
+      end)
 
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Accordion" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Alert" %>
