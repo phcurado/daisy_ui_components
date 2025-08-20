@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.0 - 2025-08-20
+
+### Added
+
+- Compatibility with phoenix 1.8
+- Added optional keyword to import the core components into your project: `use DaisyUIComponents, core_components: true`
+
 ## 0.8.7 - 2025-06-15
 
 ### Added

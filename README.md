@@ -47,7 +47,7 @@ Reference this repository on your `mix.exs` file to start using.
 ```elixir
 def deps do
   [
-    {:daisy_ui_components, "~> 0.8"}
+    {:daisy_ui_components, "~> 0.9"}
   ]
 end
 ```
