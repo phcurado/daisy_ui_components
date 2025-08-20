@@ -23,7 +23,7 @@ config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.25.4",
   daisy_ui_components_site: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -39,7 +39,7 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "4.0.15",
+  version: "4.1.7",
   daisy_ui_components_site: [
     args: ~w(
       --input=assets/css/main.css

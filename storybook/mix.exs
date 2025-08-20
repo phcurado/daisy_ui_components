@@ -38,7 +38,7 @@ defmodule DaisyUIComponentsSite.MixProject do
       {:phoenix_live_view, "~> 1.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
@@ -53,8 +53,8 @@ defmodule DaisyUIComponentsSite.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
-      {:phoenix_storybook, "~> 0.8"},
-      {:daisy_ui_components, "~> 0.8.7-rc.0"}
+      {:phoenix_storybook, "~> 0.9"},
+      {:daisy_ui_components, "~> 0.9"}
       # {:daisy_ui_components, path: "../"}
     ]
   end
