@@ -12,7 +12,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Texta
   attr :color, :string, values: colors()
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(name rows cols)
+  attr :rest, :global, include: ~w(form name rows cols)
   slot :inner_block
 
   def textarea(assigns) do

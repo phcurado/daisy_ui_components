@@ -12,7 +12,7 @@ defmodule DaisyUIComponents.TextInput do
   attr :color, :string, values: colors()
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(name value)
+  attr :rest, :global, include: ~w(form name value)
 
   def text_input(assigns) do
     assigns =

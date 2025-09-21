@@ -12,7 +12,7 @@ defmodule DaisyUIComponents.Radio do
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(name)
+  attr :rest, :global, include: ~w(form name)
 
   def radio(assigns) do
     assigns =
