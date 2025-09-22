@@ -14,7 +14,7 @@ defmodule DaisyUIComponents.Select do
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
   attr :value, :any, default: nil
-  attr :rest, :global, include: ~w(name value multiple)
+  attr :rest, :global, include: ~w(form name value multiple)
   slot :inner_block
 
   def select(assigns) do

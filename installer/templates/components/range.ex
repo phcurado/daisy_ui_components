@@ -14,7 +14,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Range
   attr :min, :integer, default: nil
   attr :max, :integer, default: nil
   attr :step, :integer, default: nil
-  attr :rest, :global, include: ~w(name)
+  attr :rest, :global, include: ~w(form name)
 
   def range(assigns) do
     assigns =

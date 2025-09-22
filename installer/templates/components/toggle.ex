@@ -12,7 +12,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Toggl
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(name)
+  attr :rest, :global, include: ~w(form name)
 
   def toggle(assigns) do
     assigns =
