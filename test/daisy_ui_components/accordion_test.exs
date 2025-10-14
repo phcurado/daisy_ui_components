@@ -30,7 +30,7 @@ defmodule DaisyUIComponents.AccordionTest do
       ~H"""
       <.accordion name="accordion" {assigns}>
         <:title>accordion title</:title>
-      <:content>accordion</:content>
+        <:content>accordion</:content>
       </.accordion>
       """
       |> parse_component()

@@ -33,6 +33,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Accor
   slot :title, required: true do
     attr :class, :any
   end
+
   slot :content, required: true do
     attr :class, :any
   end
@@ -56,11 +57,11 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Accor
     <div class={@class} {@rest}>
       <input type="radio" name={@name} />
 
-      <.accordion_title class={Map.get(@title, :class, nil)}>
-        {render_slot(@title)}
+      <.accordion_title :for={title <- @title} class={Map.get(title, :class, nil)}>
+        {render_slot(title)}
       </.accordion_title>
-      <.accordion_content class={Map.get(@content, :class, nil)}>
-        {render_slot(@content)}
+      <.accordion_content :for={content <- @content} class={Map.get(content, :class, nil)}>
+        {render_slot(content)}
       </.accordion_content>
     </div>
     """
@@ -69,6 +70,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Accor
   attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
+
   def accordion_title(assigns) do
     ~H"""
     <div class={classes(["collapse-title", @class])}>
@@ -80,6 +82,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Accor
   attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
+
   def accordion_content(assigns) do
     ~H"""
     <div class={classes(["collapse-content", @class])}>

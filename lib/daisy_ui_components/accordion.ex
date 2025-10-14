@@ -33,6 +33,7 @@ defmodule DaisyUIComponents.Accordion do
   slot :title, required: true do
     attr :class, :any
   end
+
   slot :content, required: true do
     attr :class, :any
   end
@@ -69,6 +70,7 @@ defmodule DaisyUIComponents.Accordion do
   attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
+
   def accordion_title(assigns) do
     ~H"""
     <div class={classes(["collapse-title", @class])}>
@@ -80,6 +82,7 @@ defmodule DaisyUIComponents.Accordion do
   attr :class, :any, default: nil
   attr :rest, :global
   slot :inner_block
+
   def accordion_content(assigns) do
     ~H"""
     <div class={classes(["collapse-content", @class])}>

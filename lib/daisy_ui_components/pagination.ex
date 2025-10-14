@@ -25,7 +25,10 @@ defmodule DaisyUIComponents.Pagination do
   attr :button_class, :string, default: nil, doc: "additional class for the pagination button"
   attr :size, :string, values: sizes()
   attr :target, :string, default: nil, doc: "the phx-target to send the event to"
-  attr :page_click_event, :string, default: "page_click", doc: "Event name to trigger when a page button is clicked"
+
+  attr :page_click_event, :string,
+    default: "page_click",
+    doc: "Event name to trigger when a page button is clicked"
 
   attr :on_page_click, Phoenix.LiveView.JS,
     default: nil,
