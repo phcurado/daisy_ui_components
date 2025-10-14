@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.1 - Unreleased
+
+### Changed
+
+- Accordion component now supports `content` slot
+- Accordion storybook
+
 ## 0.9.0 - 2025-08-20
 
 ### Added

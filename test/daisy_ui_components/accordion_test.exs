@@ -10,7 +10,7 @@ defmodule DaisyUIComponents.AccordionTest do
     ~H"""
     <.accordion name="radio_group">
       <:title>title</:title>
-      content
+      <:content>content</:content>
     </.accordion>
     """
     |> parse_component()
@@ -28,9 +28,9 @@ defmodule DaisyUIComponents.AccordionTest do
       assigns = %{boolean_assign => true}
 
       ~H"""
-      <.accordion {assigns}>
+      <.accordion name="accordion" {assigns}>
         <:title>accordion title</:title>
-        accordion
+        <:content>accordion</:content>
       </.accordion>
       """
       |> parse_component()

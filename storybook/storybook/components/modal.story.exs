@@ -32,7 +32,7 @@ defmodule Storybook.Components.Modal do
           <.modal_action>
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->
-              <.button>Close</.button>
+              <.button phx-click={JS.exec("data-cancel", to: "#modal-single-default")}>Close</.button>
             </form>
           </.modal_action>
           """
@@ -40,17 +40,15 @@ defmodule Storybook.Components.Modal do
       },
       %Variation{
         id: :closes_when_click_outside,
+        attributes: %{
+          close_on_click_away: true
+        },
         slots: [
           """
           <:modal_box>
             <h3 class="text-lg font-bold">Hello!</h3>
             <p class="py-4">Press ESC key or click the button below to close</p>
           </:modal_box>
-          """,
-          """
-          <form method="dialog" class="modal-backdrop">
-            <button>close</button>
-          </form>
           """
         ]
       },
@@ -65,8 +63,8 @@ defmodule Storybook.Components.Modal do
           <p class="py-4">Press ESC key or click outside to close</p>
           <.modal_action>
             <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
-              <.button>Close</.button>
+              <!-- if there is a button in form, it will close the modal -->
+              <.button phx-click={JS.exec("data-cancel", to: "#modal-single-dialog-modal-without-a-close-button-at-corner")}>Close</.button>
             </form>
           </.modal_action>
           """
@@ -82,7 +80,7 @@ defmodule Storybook.Components.Modal do
             <.modal_action>
               <form method="dialog">
                 <!-- if there is a button, it will close the modal -->
-                <.button>Close</.button>
+                <.button phx-click={JS.exec("data-cancel", to: "#modal-single-dialog-modal-with-custom-width")}>Close</.button>
               </form>
             </.modal_action>
           </:modal_box>
@@ -96,13 +94,13 @@ defmodule Storybook.Components.Modal do
         },
         slots: [
           """
-          <:modal_box class="w-11/12 max-w-5xl">
+          <:modal_box>
             <h3 class="text-lg font-bold">Hello!</h3>
             <p class="py-4">Press ESC key or click the button below to close</p>
             <.modal_action>
               <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
-                <button class="btn">Close</button>
+                <.button phx-click={JS.exec("data-cancel", to: "#modal-single-responsive")}>Close</.button>
               </form>
             </.modal_action>
           </:modal_box>
