@@ -28,7 +28,7 @@ defmodule DaisyUIComponents.Sidebar do
     />
     """
   end
-  
+
   slot :inner_block
 
   def sidebar_menu_title(assigns) do
@@ -41,7 +41,7 @@ defmodule DaisyUIComponents.Sidebar do
 
   def sidebar_divider(assigns) do
     ~H"""
-      <li></li>
+    <li></li>
     """
   end
 
