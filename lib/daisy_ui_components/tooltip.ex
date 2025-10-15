@@ -7,7 +7,7 @@ defmodule DaisyUIComponents.Tooltip do
 
   use DaisyUIComponents, :component
 
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :text, :string, required: true
   attr :color, :string, values: colors()
   attr :direction, :string, values: directions()

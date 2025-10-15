@@ -1,7 +1,5 @@
 defmodule DaisyUIComponents.Sidebar do
-  # TODO: Testing a sidebar impl
-  # TODO: Try using hooks or global assigning for sidebar expanded
-  use Phoenix.LiveComponent
+  use DaisyUIComponents, :live_component
 
   import DaisyUIComponents.Button
   import DaisyUIComponents.Drawer
@@ -14,7 +12,8 @@ defmodule DaisyUIComponents.Sidebar do
   attr :expanded, :boolean, default: true
   attr :class, :any, default: nil
   slot :page_content, required: true
-  slot :item, required: true
+
+  slot :inner_block
 
   def sidebar(assigns) do
     ~H"""
@@ -25,45 +24,79 @@ defmodule DaisyUIComponents.Sidebar do
       expanded={@expanded}
       class={@class}
       page_content={@page_content}
-      item={@item}
+      inner_block={@inner_block}
     />
+    """
+  end
+  
+  slot :inner_block
+
+  def sidebar_menu_title(assigns) do
+    ~H"""
+    <li class="menu-title sb-collapsed:p-0">
+      <span class="sb-collapsed:text-xs sb-collapsed:text-center">{render_slot(@inner_block)}</span>
+    </li>
+    """
+  end
+
+  def sidebar_divider(assigns) do
+    ~H"""
+      <li></li>
+    """
+  end
+
+  slot :inner_block
+
+  def sidebar_items(assigns) do
+    ~H"""
+    <.menu class="py-0 w-full px-2 sb-expanded:gap-2 sb-collapsed:gap-1">
+      {render_slot(@inner_block)}
+    </.menu>
     """
   end
 
   attr :path, :string, required: true
+  attr :method, :string, default: nil
   attr :icon, :string, default: nil
   attr :active, :boolean, default: false
-  attr :expanded, :boolean, default: false
   attr :text, :string, required: true
 
   def sidebar_item(assigns) do
     ~H"""
-    <li>
-        <.link :if={@expanded}
+    <li class="sb-collapsed:items-center">
+      <.tooltip
+        class="flex sb-collapsed:inline-block sb-expanded:hidden p-0 rounded-full w-10 h-10"
+        text={@text}
+        direction="right"
+      >
+        <.link
           navigate={@path}
           class={[
-            "flex items-center w-full transition-all duration-200",
-            @expanded && "flex-row gap-2 px-4 py-2",
-            @active && "menu-active active"
+            "sb-item p-1 w-10 h-10 rounded-full",
+            @active && "menu-active active",
+            "flex items-center w-full",
+            "flex-col justify-center",
+            "sb-collapsed:flex sb-collapsed:flex-col sb-collapsed:items-center sb-collapsed:justify-center",
+            "sb-collapsed:w-full",
+            "sb-expanded:flex sb-expanded:flex-row sb-expanded:items-center sb-expanded:gap-2"
           ]}
         >
           <.icon :if={@icon} name={@icon} class="h-5 w-5" />
-          <span class="whitespace-nowrap">
-            {@text}
-          </span>
         </.link>
-        <.tooltip :if={!@expanded} text={@text} direction="bottom">
-          <.link
-            navigate={@path}
-            class={[
-              "flex items-center w-full transition-all duration-200",
-              "flex-col justify-center p-2",
-              @active && "menu-active active"
-            ]}
-          >
-            <.icon :if={@icon} name={@icon} class="h-5 w-5" />
-          </.link>
-        </.tooltip>
+      </.tooltip>
+
+      <.link
+        navigate={@path}
+        class={[
+          "sb-item",
+          @active && "menu-active active",
+          "sb-expanded:flex sb-expanded:flex-row sb-expanded:items-center sb-expanded:gap-2 sb-expanded:px-4 sb-expanded:py-2",
+          "sb-collapsed:hidden"
+        ]}
+      >
+        <.icon :if={@icon} name={@icon} class="h-5 w-5" />
+        <span class="sb-label whitespace-nowrap">{@text}</span>
+      </.link>
     </li>
     """
   end
@@ -71,7 +104,7 @@ defmodule DaisyUIComponents.Sidebar do
   def render(assigns) do
     assigns =
       assigns
-      |> assign_new(:width, fn -> if assigns.expanded, do: "w-72", else: "w-20" end)
+      |> assign_new(:width, fn -> if assigns.expanded, do: "w-72", else: "w-16" end)
       |> assign(
         :class,
         classes([
@@ -88,34 +121,28 @@ defmodule DaisyUIComponents.Sidebar do
         </:drawer_content>
 
         <:drawer_side>
-          <aside class={[
-            "transition-all duration-300 ease-in-out",
-            "min-h-full bg-base-100 py-4 shadow-xl",
-            @width
-          ]}>
-            <div class="flex justify-end px-4 mb-4">
-              <.button size="sm" phx-click="toggle_expand" phx-target={@myself}>
+          <aside
+            id={@id}
+            data-expanded={to_string(@expanded)}
+            class={[
+              "sb transition-all duration-300 ease-in-out min-h-full bg-base-100 py-4 shadow-xl",
+              @width
+            ]}
+          >
+            <header class="flex items-center gap-2 px-3 mb-3">
+              <.button
+                size="xs"
+                class="p-2 absolute -right-4 z-10"
+                phx-click="toggle_expand"
+                phx-target={@myself}
+              >
                 <.icon
                   name={if @expanded, do: "hero-chevron-left", else: "hero-chevron-right"}
-                  class="h-5 w-5"
+                  class="h-3 w-3"
                 />
               </.button>
-            </div>
-
-            <div class="mt-4 flex-1">
-              <.menu class="py-0 w-full">
-                <.sidebar_item
-                  :for={item <- @item}
-                  expanded={@expanded}
-                  path={item[:path]}
-                  icon={item[:icon]}
-                  active={item[:active]}
-                  text={item[:text]}
-                >
-                </.sidebar_item>
-
-              </.menu>
-            </div>
+            </header>
+            {render_slot(@inner_block)}
           </aside>
         </:drawer_side>
       </.drawer>
@@ -126,16 +153,4 @@ defmodule DaisyUIComponents.Sidebar do
   def handle_event("toggle_expand", _, socket) do
     {:noreply, assign(socket, :expanded, !socket.assigns.expanded)}
   end
-
-  defp classes(classes) when is_list(classes) do
-    classes
-    |> Enum.flat_map(&List.wrap/1)
-    |> Enum.reject(&is_nil/1)
-    |> Enum.join(" ")
-  end
-
-  defp classes(val), do: val || ""
-
-  defp maybe_add_class(true, class), do: class
-  defp maybe_add_class(_, _), do: nil
 end
