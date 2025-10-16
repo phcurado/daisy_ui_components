@@ -8,6 +8,7 @@ defmodule DaisyUIComponents.Drawer do
   use DaisyUIComponents, :component
 
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
+  attr :checked, :boolean, default: false, doc: "Whether the drawer is open or closed"
   attr :class, :any, default: nil
   attr :open, :boolean, default: nil, doc: "Forces the drawer to be open"
   attr :end, :boolean, default: nil, doc: "Puts drawer to the right"
@@ -38,7 +39,7 @@ defmodule DaisyUIComponents.Drawer do
 
     ~H"""
     <div class={@class} {@rest}>
-      <input id={@selector_id} type="checkbox" class="drawer-toggle" />
+      <input id={@selector_id} type="checkbox" class="drawer-toggle" checked={@open} />
       {render_slot(@inner_block)}
       <.drawer_content
         :for={drawer_content <- @drawer_content}
@@ -46,6 +47,7 @@ defmodule DaisyUIComponents.Drawer do
       >
         {render_slot(drawer_content)}
       </.drawer_content>
+
       <.drawer_side
         :for={drawer_side <- @drawer_side}
         class={Map.get(drawer_side, :class)}
