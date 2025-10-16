@@ -40,6 +40,7 @@ defmodule Daisy.New.Single do
     "components/radio.ex": "lib/daisy_ui_components/radio.ex",
     "components/range.ex": "lib/daisy_ui_components/range.ex",
     "components/select.ex": "lib/daisy_ui_components/select.ex",
+    "components/sidebar.ex": "lib/daisy_ui_components/sidebar.ex",
     "components/stat.ex": "lib/daisy_ui_components/stat.ex",
     "components/swap.ex": "lib/daisy_ui_components/swap.ex",
     "components/table.ex": "lib/daisy_ui_components/table.ex",
@@ -189,6 +190,10 @@ defmodule Daisy.New.Single do
 
   template(:select, [
     {:eex, :web, "components/select.ex": "lib/:lib_web_name/daisy_ui_components/select.ex"}
+  ])
+
+  template(:sidebar, [
+    {:eex, :web, "components/sidebar.ex": "lib/:lib_web_name/daisy_ui_components/sidebar.ex"}
   ])
 
   template(:stat, [
@@ -348,6 +353,12 @@ defmodule Daisy.New.Single do
   end
 
   defp add_deps(set, "swap"), do: add_dep_component(set, "icon")
+
+  defp add_deps(set, "sidebar") do
+    add_dep_component(set, "drawer")
+    |> add_dep_component("icon")
+    |> add_dep_component("menu")
+  end
 
   defp add_deps(set, _), do: set
 

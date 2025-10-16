@@ -86,6 +86,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Radio
       import DaisyUIComponents.Range
       import DaisyUIComponents.Select
+      import DaisyUIComponents.Sidebar
       import DaisyUIComponents.Stat
       import DaisyUIComponents.Swap
       import DaisyUIComponents.Tabs

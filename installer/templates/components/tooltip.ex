@@ -7,7 +7,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Toolt
 
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :text, :string, required: true
   attr :color, :string, values: colors()
   attr :direction, :string, values: directions()
