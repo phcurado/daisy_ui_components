@@ -23,21 +23,21 @@ defmodule DaisyUIComponents.SidebarTest do
     """
     |> parse_component()
     |> assert_component("div")
-    |> assert_class("drawer drawer-open lg:drawer-open custom-class")
+    |> assert_class("drawer lg:drawer-open custom-class")
     |> assert_children("div.drawer-content", fn child ->
       assert_text(child, "page content")
     end)
     |> assert_children("input.drawer-toggle", fn child ->
       child
-      |> assert_attribute("id", "sidebar_toggle")
+      |> assert_attribute("id", "sidebar")
       |> assert_attribute("type", "checkbox")
-      |> assert_attribute("checked", "checked")
+      |> assert_attribute("checked", nil)
     end)
     |> assert_children("div.drawer-side", fn child ->
       child
       |> assert_children("label.drawer-overlay", fn label ->
         label
-        |> assert_attribute("for", "sidebar_toggle")
+        |> assert_attribute("for", "sidebar")
         |> assert_attribute("aria-label", "close sidebar")
       end)
     end)

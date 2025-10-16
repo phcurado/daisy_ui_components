@@ -5,7 +5,7 @@ defmodule DaisyUIComponents.Sidebar do
   It includes slots for page content and sidebar items, as well as a toggle button.
   ## Examples
 
-      <.sidebar id="my_sidebar" open={true}>
+      <.sidebar id="my_sidebar">
         <:page_content>
           <div class="p-4">
             <h1 class="text-2xl font-bold">Main Content</h1>
@@ -32,7 +32,7 @@ defmodule DaisyUIComponents.Sidebar do
   import DaisyUIComponents.Menu
 
   attr :id, :string, default: "sidebar"
-  attr :open, :boolean, default: true
+  attr :always_open, :boolean, default: false
   attr :class, :any, default: nil
   slot :page_content, required: true
 
@@ -44,27 +44,23 @@ defmodule DaisyUIComponents.Sidebar do
       |> assign(
         :class,
         classes([
-          maybe_add_class(assigns.open, "lg:drawer-open"),
+          "lg:drawer-open",
           assigns.class
         ])
       )
-      |> assign_new(:selector_id, fn -> assigns.id <> "_toggle" end)
 
     ~H"""
-    <.drawer class={@class} selector_id={@selector_id} open={@open}>
+    <.drawer class={@class} selector_id={@id} open={@always_open} checked={false}>
       <:drawer_content>
         {render_slot(@page_content)}
       </:drawer_content>
 
       <:drawer_side class="is-drawer-close:overflow-visible">
-        <aside
-          id={@id}
-          class="is-drawer-close:w-16 is-drawer-open:w-72 min-h-full flex flex-col bg-base-100 shadow-xl"
-        >
+        <aside class="is-drawer-close:w-16 is-drawer-open:w-72 min-h-full flex flex-col bg-base-100 shadow-xl">
           {render_slot(@inner_block)}
           <div class="m-2 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Open">
             <label
-              for={@selector_id}
+              for={@id}
               class="btn btn-ghost btn-circle drawer-button is-drawer-open:rotate-y-180"
             >
               <svg
@@ -135,7 +131,7 @@ defmodule DaisyUIComponents.Sidebar do
         data-tip={@text}
         class={[
           @active && "menu-active active",
-          "is-drawer-close:tooltip is-drawer-close:tooltip-right is-drawer-close:rounded-full is-drawer-close:w-10 is-drawer-close:h-10 is-drawer-close:p-0 is-drawer-close:flex is-drawer-close:items-center is-drawer-close:justify-center"
+          "is-drawer-close:tooltip is-drawer-close:tooltip-right"
         ]}
       >
         <.icon :if={@icon} name={@icon} class="h-5 w-5" />

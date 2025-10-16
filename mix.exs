@@ -46,12 +46,12 @@ defmodule DaisyUIComponents.MixProject do
 
   defp deps do
     [
-      {:phoenix_live_view, "~> 1.0"},
+      {:phoenix_live_view, "~> 1.1"},
       {:jason, "~> 1.4", only: [:dev, :test]},
       {:floki, "~> 0.38.0", [only: :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.38", only: :dev, runtime: false},
       {:excoveralls, "~> 0.18", only: :test}
     ]
   end
@@ -99,6 +99,7 @@ defmodule DaisyUIComponents.MixProject do
           DaisyUIComponents.Radio,
           DaisyUIComponents.Range,
           DaisyUIComponents.Select,
+          DaisyUIComponents.Sidebar,
           DaisyUIComponents.Stat,
           DaisyUIComponents.Swap,
           DaisyUIComponents.Table,

@@ -8,7 +8,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Drawe
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   attr :selector_id, :string, required: true, doc: "identifier to toggle the modal"
-  attr :checked, :boolean, default: false, doc: "Whether the drawer is open or closed"
+  attr :checked, :boolean, default: nil, doc: "Whether the drawer is open or closed"
   attr :class, :any, default: nil
   attr :open, :boolean, default: nil, doc: "Forces the drawer to be open"
   attr :end, :boolean, default: nil, doc: "Puts drawer to the right"
@@ -39,7 +39,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Drawe
 
     ~H"""
     <div class={@class} {@rest}>
-      <input id={@selector_id} type="checkbox" class="drawer-toggle" checked={@open} />
+      <input id={@selector_id} type="checkbox" class="drawer-toggle" checked={@checked} />
       {render_slot(@inner_block)}
       <.drawer_content
         :for={drawer_content <- @drawer_content}
