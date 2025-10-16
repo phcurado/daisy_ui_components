@@ -298,4 +298,69 @@ defmodule DaisyUIComponents.InputTest do
     |> assert_attribute("type", "password")
     |> assert_attribute("value", "my password")
   end
+
+  test "autocomplete input" do
+    assigns = %{}
+
+    ~H"""
+    <.input
+      type="autocomplete"
+      id="autocomplete-test"
+      name="autocomplete-test"
+      options={[{"Option 1", "1"}, {"Option 2", "2"}, {"Option 3", "3"}]}
+      value="2"
+      on_query="filter"
+    />
+    """
+    |> parse_component()
+    |> assert_component("div")
+    |> assert_class("dropdown")
+    |> select_children(fn [text_input, hidden_input, menu] ->
+      text_input
+      |> assert_component("input")
+      |> assert_attribute("type", "text")
+      |> assert_attribute("id", "autocomplete-test_label")
+      |> assert_attribute("name", "autocomplete-test_label")
+      |> assert_attribute("value", "Option 2")
+      |> assert_attribute("autocomplete", "off")
+
+      hidden_input
+      |> assert_component("input")
+      |> assert_attribute("type", "hidden")
+      |> assert_attribute("id", "autocomplete-test")
+      |> assert_attribute("name", "autocomplete-test")
+      |> assert_attribute("value", "2")
+
+      menu
+      |> assert_component("ul")
+      |> assert_class(
+        "menu dropdown-content bg-base-100 rounded-box z-1 max-h-80 p-2 w-full shadow flex-nowrap overflow-auto"
+      )
+      |> select_element("li", fn [li1, li2, li3] ->
+        assert_children(li1, "button", fn button ->
+          button
+          |> assert_component("button")
+          |> assert_attribute("type", "button")
+          |> assert_class("")
+          |> assert_text("Option 1")
+        end)
+
+        assert_children(li2, "button", fn button ->
+          button
+          |> assert_component("button")
+          |> assert_attribute("type", "button")
+          |> assert_class("menu-active")
+          |> assert_text("Option 2")
+        end)
+
+        assert_children(li3, "button", fn button ->
+          button
+          |> assert_component("button")
+          |> assert_attribute("type", "button")
+          |> assert_class("")
+          |> assert_text("Option 3")
+        end)
+      end)
+    end)
+  end
 end

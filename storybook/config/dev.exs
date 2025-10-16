@@ -14,6 +14,7 @@ config :daisy_ui_components_site, DaisyUIComponentsSiteWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "/b5nkXlv1KkFuDIrJ8slHJqZbEa42KhNeMe+Qu14ulSWdhBphOYMFypsEAZMx0LY",
+  reloadable_apps: [:daisy_ui_components],
   watchers: [
     esbuild:
       {Esbuild, :install_and_run, [:daisy_ui_components_site, ~w(--sourcemap=inline --watch)]},

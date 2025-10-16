@@ -308,4 +308,70 @@ defmodule DaisyUIComponents.FormTest do
       |> assert_text("Jose")
     end)
   end
+
+  test "form_input autocomplete" do
+    assigns = %{}
+
+    ~H"""
+    <.form_input
+      id="car-model"
+      name="car[model_id]"
+      type="autocomplete"
+      label="Car Model"
+      value="2"
+      options={[{"Honda Civic", "1"}, {"Toyota Camry", "2"}, {"Ford Mustang", "3"}]}
+      on_query="filter-models"
+    />
+    """
+    |> parse_component()
+    |> assert_component("fieldset")
+    |> select_children(fn [label, dropdown] ->
+      label
+      |> assert_component("label")
+      |> assert_class("fieldset-label")
+      |> assert_attribute("for", "car-model_label")
+      |> assert_text("Car Model")
+
+      dropdown
+      |> assert_component("div")
+      |> assert_class("dropdown")
+      |> select_children(fn [text_input, hidden_input, menu] ->
+        text_input
+        |> assert_component("input")
+        |> assert_attribute("type", "text")
+        |> assert_attribute("id", "car-model_label")
+        |> assert_attribute("name", "car-model_label")
+        |> assert_attribute("value", "Toyota Camry")
+
+        hidden_input
+        |> assert_component("input")
+        |> assert_attribute("type", "hidden")
+        |> assert_attribute("id", "car-model")
+        |> assert_attribute("name", "car[model_id]")
+        |> assert_attribute("value", "2")
+
+        menu
+        |> assert_component("ul")
+        |> select_element("li", fn [li1, li2, li3] ->
+          assert_children(li1, "button", fn button ->
+            button
+            |> assert_class("")
+            |> assert_text("Honda Civic")
+          end)
+
+          assert_children(li2, "button", fn button ->
+            button
+            |> assert_class("menu-active")
+            |> assert_text("Toyota Camry")
+          end)
+
+          assert_children(li3, "button", fn button ->
+            button
+            |> assert_class("")
+            |> assert_text("Ford Mustang")
+          end)
+        end)
+      end)
+    end)
+  end
 end
