@@ -1,4 +1,4 @@
-defmodule DaisyUIComponents.Sidebar do
+defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sidebar do
   @moduledoc """
   Provides a responsive sidebar component with toggle functionality.
   The sidebar can be opened or closed, and it adjusts its width accordingly.
@@ -25,11 +25,11 @@ defmodule DaisyUIComponents.Sidebar do
       </.sidebar>
   """
 
-  use DaisyUIComponents, :component
+  use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
-  import DaisyUIComponents.Drawer
-  import DaisyUIComponents.Icon
-  import DaisyUIComponents.Menu
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Drawer
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Icon
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Menu
 
   attr :id, :string, default: "sidebar"
   attr :open, :boolean, default: true
