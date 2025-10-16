@@ -48,9 +48,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
           assigns.class
         ])
       )
+      |> assign_new(:selector_id, fn -> assigns.id <> "_toggle" end)
 
     ~H"""
-    <.drawer class={@class} selector_id={@id <> "_toggle"} open={@open}>
+    <.drawer class={@class} selector_id={@selector_id} open={@open}>
       <:drawer_content>
         {render_slot(@page_content)}
       </:drawer_content>
@@ -63,7 +64,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
           {render_slot(@inner_block)}
           <div class="m-2 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Open">
             <label
-              for="sidebar_toggle"
+              for={@selector_id}
               class="btn btn-ghost btn-circle drawer-button is-drawer-open:rotate-y-180"
             >
               <svg
