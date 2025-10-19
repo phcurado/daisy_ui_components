@@ -179,7 +179,7 @@ defmodule Storybook.Welcome do
           </:modal_box>
         </.modal>
       </:drawer_content>
-      <:drawer_side class="h-full absolute border-r">
+      <:drawer_side class="h-full border-r">
         <.menu class="bg-base-100 text-base-content min-h-full w-80 p-4">
           <:item>
             <h2 class="menu-title">Welcome</h2>

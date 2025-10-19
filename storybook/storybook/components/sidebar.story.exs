@@ -13,22 +13,27 @@ defmodule Storybook.Components.Sidebar do
       {Sidebar, sidebar_divider: 1}
     ]
 
-  def layout, do: :one_column
+  # def layout, do: :one_column
 
   def variations do
     [
       %Variation{
         id: :simple_sidebar,
         attributes: %{
-          id: "my-sidebar",
-          open: true
+          id: "my-sidebar"
         },
         slots: [
           """
           <:page_content>
             <div class="p-4">
-              <h1 class="text-2xl font-bold">Main Content</h1>
-              <p>This is the main content area.</p>
+              <h1 class="text-2xl font-bold">This is a Simple sidebar</h1>
+              <p>It uses tooltip links when collapsed</p>
+              <p>When extended, the sidebar is a menu item with links</p>
+              <p>On mobile, click on the button below to see the sidebar</p>
+              <label for="sidebar-single-simple-sidebar" class="btn btn-primary mt-4">
+                Open Sidebar
+              </label>
+
             </div>
           </:page_content>
           """,

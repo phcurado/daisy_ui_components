@@ -32,7 +32,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Menu
 
   attr :id, :string, default: "sidebar"
-  attr :always_open, :boolean, default: false
+  attr :always_open, :boolean,
+    default: false,
+    doc:
+      "Whether the sidebar is always open, even on smaller screens, defaults to false, hidding the sidebar on smaller screens."
   attr :class, :any, default: nil
   slot :page_content, required: true
 
