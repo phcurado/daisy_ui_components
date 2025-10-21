@@ -34,8 +34,9 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
   attr :id, :string, default: "sidebar"
   attr :always_open, :boolean, default: false
   attr :class, :any, default: nil
-  slot :page_content, required: true
+  attr :rest, :global
 
+  slot :page_content, required: true
   slot :inner_block
 
   def sidebar(assigns) do
@@ -50,7 +51,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
       )
 
     ~H"""
-    <.drawer class={@class} selector_id={@id} open={@always_open} checked={false}>
+    <.drawer class={@class} selector_id={@id} open={@always_open} checked={false} {@rest}>
       <:drawer_content>
         {render_slot(@page_content)}
       </:drawer_content>
@@ -120,6 +121,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
   attr :active, :boolean, default: false
   attr :text, :string, required: true
 
+  attr :rest, :global
+
   def sidebar_item(assigns) do
     ~H"""
     <li class="is-drawer-close:items-center">
@@ -133,6 +136,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
           @active && "menu-active active",
           "is-drawer-close:tooltip is-drawer-close:tooltip-right"
         ]}
+        {@rest}
       >
         <.icon :if={@icon} name={@icon} class="h-5 w-5" />
         <span class="is-drawer-close:hidden whitespace-nowrap">{@text}</span>
