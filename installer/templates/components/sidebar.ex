@@ -92,9 +92,11 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
     """
   end
 
+  attr :class, :any, default: nil
+
   def sidebar_divider(assigns) do
     ~H"""
-    <li></li>
+    <li class={@class}></li>
     """
   end
 
@@ -108,16 +110,18 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
     """
   end
 
+  attr :class, :any, default: nil
   slot :inner_block
 
   def sidebar_items(assigns) do
     ~H"""
-    <.menu class="w-full grow is-drawer-open:gap-2 is-drawer-close:gap-1">
+    <.menu class={classes(["w-full grow is-drawer-open:gap-3 is-drawer-close:gap-2", @class])}>
       {render_slot(@inner_block)}
     </.menu>
     """
   end
 
+  attr :class, :any, default: nil
   attr :href, :string, default: nil
   attr :navigate, :string, default: nil
   attr :method, :string, default: nil
@@ -137,13 +141,16 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Sideb
         patch={@patch}
         navigate={@navigate}
         data-tip={@text}
-        class={[
-          @active && "menu-active active",
-          "is-drawer-close:tooltip is-drawer-close:tooltip-right"
-        ]}
+        class={
+          classes([
+            @active && "menu-active active",
+            "is-drawer-close:tooltip is-drawer-close:tooltip-right",
+            @class
+          ])
+        }
         {@rest}
       >
-        <.icon :if={@icon} name={@icon} class="h-5 w-5" />
+        <.icon :if={@icon} name={@icon} class="h-6 w-6" />
         <span class="is-drawer-close:hidden whitespace-nowrap">{@text}</span>
       </.link>
     </li>
