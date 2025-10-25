@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.9.1 - Unreleased
+## 0.9.2 - 2025-10-25
+
+### Added
+
+- Sidebar component, a higher level component based on the drawer component
+
+## 0.9.1 - 2025-09-22
 
 ### Changed
 
