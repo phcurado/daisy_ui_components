@@ -52,12 +52,13 @@ defmodule DaisyUIComponents.MixProject do
   defp deps do
     [
       {:phoenix_live_view, "~> 1.1"},
-      {:jason, "~> 1.4", only: [:dev, :test]},
+      {:jason, "~> 1.4"},
       {:floki, "~> 0.38.0", [only: :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.38", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.18", only: :test}
+      {:excoveralls, "~> 0.18", only: :test},
+      {:igniter, "~> 0.6", optional: true}
     ]
   end
 
