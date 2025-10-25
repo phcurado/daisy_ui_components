@@ -199,17 +199,18 @@ List of available components.
 
 ### Layout
 
-| Component                                             | Status | Storybook |
-| ----------------------------------------------------- | ------ | --------- |
-| [Artboard](https://daisyui.com/components/artboard)   | ❌     | ❌        |
-| [Divider](https://daisyui.com/components/divider)     | ❌     | ❌        |
-| [Drawer](https://daisyui.com/components/drawer)       | ✅     | ✅        |
-| [Footer](https://daisyui.com/components/footer)       | ✅     | ✅        |
-| [Hero](https://daisyui.com/components/hero)           | ✅     | ✅        |
-| [Indicator](https://daisyui.com/components/indicator) | ✅     | ✅        |
-| [Join](https://daisyui.com/components/join)           | ✅     | ✅        |
-| [Mask](https://daisyui.com/components/mask)           | ❌     | ❌        |
-| [Stack](https://daisyui.com/components/stack)         | ❌     | ❌        |
+| Component                                                                                  | Status | Storybook |
+| ------------------------------------------------------------------------------------------ | ------ | --------- |
+| [Artboard](https://daisyui.com/components/artboard)                                        | ❌     | ❌        |
+| [Divider](https://daisyui.com/components/divider)                                          | ❌     | ❌        |
+| [Drawer](https://daisyui.com/components/drawer)                                            | ✅     | ✅        |
+| [Sidebar](https://daisy-ui-components-site.fly.dev/storybook/components/sidebar)(Internal) | ✅     | ✅        |
+| [Footer](https://daisyui.com/components/footer)                                            | ✅     | ✅        |
+| [Hero](https://daisyui.com/components/hero)                                                | ✅     | ✅        |
+| [Indicator](https://daisyui.com/components/indicator)                                      | ✅     | ✅        |
+| [Join](https://daisyui.com/components/join)                                                | ✅     | ✅        |
+| [Mask](https://daisyui.com/components/mask)                                                | ❌     | ❌        |
+| [Stack](https://daisyui.com/components/stack)                                              | ❌     | ❌        |
 
 ### Mockup
 
