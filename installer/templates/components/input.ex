@@ -6,6 +6,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
   use <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents, :component
 
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Checkbox
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Dropdown
+  import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Menu
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Radio
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Range
   import <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Select
@@ -29,7 +31,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week toggle)
+               range radio search select autocomplete tel text textarea time url week toggle)
 
   attr :color, :string, values: [nil] ++ colors(), default: nil
 
@@ -43,6 +45,9 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
   attr :options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
+
+  attr :on_query, :any,
+    doc: "the JS event to trigger when a value is searched in autocomplete inputs"
 
   attr :rest, :global,
     include: ~w(autocomplete cols disabled form list max maxlength min minlength
@@ -148,6 +153,60 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Input
       <option :if={@prompt} value="">{@prompt}</option>
       {Phoenix.HTML.Form.options_for_select(@options, @value)}
     </.select>
+    """
+  end
+
+  def input(%{type: "autocomplete"} = assigns) do
+    selected_label =
+      Enum.find_value(assigns.options, fn {label, value} ->
+        if to_string(value) == to_string(assigns.value), do: label
+      end)
+
+    assigns =
+      assigns
+      |> assign(:selected, selected_label)
+      |> update(:on_query, fn
+        %JS{} = js -> js
+        event when is_binary(event) -> JS.push(event)
+      end)
+
+    ~H"""
+    <.dropdown>
+      <.input
+        type="text"
+        id={@id <> "_label"}
+        name={@id <> "_label"}
+        class={@class}
+        color={@color}
+        phx-change={@on_query}
+        phx-debounce={300}
+        value={@selected}
+        autocomplete="off"
+        placeholder={@rest[:placeholder]}
+        tabindex="0"
+        {@rest}
+      />
+      <input type="hidden" id={@id} name={@name} value={@value} />
+      <.menu
+        tabindex="1"
+        class="dropdown-content bg-base-100 rounded-box z-1 max-h-80 p-2 w-full shadow flex-nowrap overflow-auto"
+      >
+        <li :for={{label, value} <- @options}>
+          <button
+            type="button"
+            class={if to_string(value) == to_string(@value), do: "menu-active"}
+            onclick="document.activeElement.blur()"
+            phx-click={
+              %JS{}
+              |> JS.set_attribute({"value", value}, to: "##{@id}")
+              |> JS.dispatch("change", to: "##{@id}")
+            }
+          >
+            {label}
+          </button>
+        </li>
+      </.menu>
+    </.dropdown>
     """
   end
 

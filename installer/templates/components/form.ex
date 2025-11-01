@@ -67,8 +67,8 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
   attr :type, :string,
     default: "text",
     values:
-      ~w(checkbox color date datetime-local email file hidden month number password
-               range radio search select tel text textarea time url week toggle checkbox_group radio_group)
+      ~w(checkbox color date datetime-local email file hidden month number password range radio
+      search select autocomplete tel text textarea time url week toggle checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -79,6 +79,9 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
   attr :prompt, :string, default: nil, doc: "the prompt for select inputs"
   attr :options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
+
+  attr :on_query, :any,
+    doc: "the JS event to trigger when a value is searched in autocomplete inputs"
 
   attr :rest, :global,
     include: ~w(autocomplete cols disabled form list max maxlength min minlength
@@ -254,6 +257,26 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Form 
         prompt={@prompt}
         options={@options}
         value={@value}
+        {@rest}
+      />
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
+    """
+  end
+
+  def form_input(%{type: "autocomplete"} = assigns) do
+    ~H"""
+    <.fieldset class="mt-2">
+      <.fieldset_label for={@id <> "_label"}>{@label}</.fieldset_label>
+      <.input
+        id={@id}
+        type="autocomplete"
+        name={@name}
+        color={@color}
+        class={[@class, "w-full"]}
+        options={@options}
+        value={@value}
+        on_query={@on_query}
         {@rest}
       />
       <.error :for={msg <- @errors}>{msg}</.error>
