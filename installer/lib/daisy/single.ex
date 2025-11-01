@@ -340,11 +340,14 @@ defmodule Daisy.New.Single do
 
   defp add_deps(set, "input") do
     add_dep_component(set, "checkbox")
+    |> add_dep_component("dropdown")
+    |> add_dep_component("menu")
     |> add_dep_component("radio")
     |> add_dep_component("range")
     |> add_dep_component("select")
     |> add_dep_component("textarea")
     |> add_dep_component("text_input")
+    |> add_dep_component("toggle")
   end
 
   defp add_deps(set, "pagination") do
