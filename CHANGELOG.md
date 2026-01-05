@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Added
+
+- Toast component for displaying notifications positioned at page corners
+- Toast storybook
+- Steps component added to installer templates
+- Steps storybook
+- Collapse storybook
+- Icon storybook
+- Back storybook
+
+### Changed
+
+- Modal close button now has `aria-label="Close modal"` for accessibility
+- Alert component now has `role="alert"` for accessibility
+- Fixed test module typo: `CollapsleTest` → `CollapseTest`
+
 ## 0.9.3 - 2025-11-01
 
 ### Added

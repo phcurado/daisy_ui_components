@@ -34,7 +34,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Alert
       )
 
     ~H"""
-    <div id={@id} class={@class} {@rest}>
+    <div id={@id} role="alert" class={@class} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

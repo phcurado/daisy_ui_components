@@ -34,7 +34,7 @@ defmodule DaisyUIComponents.Alert do
       )
 
     ~H"""
-    <div id={@id} class={@class} {@rest}>
+    <div id={@id} role="alert" class={@class} {@rest}>
       {render_slot(@inner_block)}
     </div>
     """

@@ -48,7 +48,9 @@ defmodule Daisy.New.Single do
     "components/text_input.ex": "lib/daisy_ui_components/text_input.ex",
     "components/textarea.ex": "lib/daisy_ui_components/textarea.ex",
     "components/toggle.ex": "lib/daisy_ui_components/toggle.ex",
-    "components/tooltip.ex": "lib/daisy_ui_components/tooltip.ex"
+    "components/tooltip.ex": "lib/daisy_ui_components/tooltip.ex",
+    "components/steps.ex": "lib/daisy_ui_components/steps.ex",
+    "components/toast.ex": "lib/daisy_ui_components/toast.ex"
   ]
 
   template(:core, [
@@ -229,6 +231,14 @@ defmodule Daisy.New.Single do
     {:eex, :web, "components/tooltip.ex": "lib/:lib_web_name/daisy_ui_components/tooltip.ex"}
   ])
 
+  template(:steps, [
+    {:eex, :web, "components/steps.ex": "lib/:lib_web_name/daisy_ui_components/steps.ex"}
+  ])
+
+  template(:toast, [
+    {:eex, :web, "components/toast.ex": "lib/:lib_web_name/daisy_ui_components/toast.ex"}
+  ])
+
   template(:dev, [
     {:eex, :web, @all_components}
   ])
@@ -356,6 +366,8 @@ defmodule Daisy.New.Single do
   end
 
   defp add_deps(set, "swap"), do: add_dep_component(set, "icon")
+
+  defp add_deps(set, "toast"), do: add_dep_component(set, "alert")
 
   defp add_deps(set, "sidebar") do
     add_dep_component(set, "drawer")

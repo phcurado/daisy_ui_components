@@ -1,4 +1,4 @@
-defmodule DaisyUIComponents.CollapsleTest do
+defmodule DaisyUIComponents.CollapseTest do
   use DaisyUIComponents.ComponentCase
 
   import Phoenix.Component
