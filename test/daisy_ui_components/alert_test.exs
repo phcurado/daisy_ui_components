@@ -24,7 +24,7 @@ defmodule DaisyUIComponents.AlertTest do
 
       assert rendered_to_string(~H"""
              <.alert color={@color}>My alert</.alert>
-             """) =~ ~s(<div class="alert alert-#{color}">)
+             """) =~ ~s(<div role="alert" class="alert alert-#{color}">)
     end
   end
 
@@ -48,7 +48,7 @@ defmodule DaisyUIComponents.AlertTest do
 
       assert rendered_to_string(~H"""
              <.alert direction={@direction}>My Alert</.alert>
-             """) =~ ~s(<div class="alert alert-#{direction}">)
+             """) =~ ~s(<div role="alert" class="alert alert-#{direction}">)
     end
   end
 end

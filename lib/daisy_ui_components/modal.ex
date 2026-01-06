@@ -112,10 +112,12 @@ defmodule DaisyUIComponents.Modal do
     >
       <form :if={@closeable} method="dialog">
         <button
+          type="button"
+          aria-label="Close modal"
           phx-click={JS.exec("data-cancel", to: "##{@modal_id}")}
           class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         >
-          ✕
+          <span aria-hidden="true">✕</span>
         </button>
       </form>
       <div id={"#{@modal_id}-content"} class={@content_class}>
