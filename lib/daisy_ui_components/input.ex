@@ -245,7 +245,7 @@ defmodule DaisyUIComponents.Input do
           if (!input) throw new Error("duration-input requires an <input> child");
 
           this.#input = input;
-          this.#input.pattern = String.raw`^(?!.*(a|mo|wk|d|h|min|s).*\1)(\d+(a|mo|wk|d|h|min|s)\s*)+$`;
+          this.#input.pattern = String.raw`^(?!.*(a|mo|wk|d|h|min|s).*\1)((\d+(a|mo|wk|d|h|min)|\d+(\.\d+)?s)\s*)+$`;
           this.#input.title = "Format: 1a 2mo 3wk 4d 5h 6min 7.89s";
           this.#input.value = this.#toDisplay(this.#input.value);
 
@@ -299,8 +299,15 @@ defmodule DaisyUIComponents.Input do
             if (num) values.set(unit, num);
           }
 
-          const date = DATE_UNITS.map(({ iso, display }) => values.get(display) + iso || "").join("");
-          const time = TIME_UNITS.map(({ iso, display }) => values.get(display) + iso || "").join("");
+          const date = DATE_UNITS
+            .map(({ iso, display }) => values.get(display) && values.get(display) + iso)
+            .filter(Boolean)
+            .join("");
+
+          const time = TIME_UNITS
+            .map(({ iso, display }) => values.get(display) && values.get(display) + iso)
+            .filter(Boolean)
+            .join("");
 
           return "P" + date + (time ? "T" + time : "");
         }

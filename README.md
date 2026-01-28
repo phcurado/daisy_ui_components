@@ -71,6 +71,12 @@ And to finalize, add under the `app.css` file the following line to import this 
 @source "../../deps/daisy_ui_components";
 ```
 
+Some components require JavaScript to work properly. Add the following import to your `assets/js/app.js` file:
+
+```js
+import "phoenix-colocated/daisy_ui_components";
+```
+
 ## 🧩 Usage
 
 To use the components in your project, you need to import the `DaisyUIComponents` module in your web file, typically `lib/my_app_web.ex`.
