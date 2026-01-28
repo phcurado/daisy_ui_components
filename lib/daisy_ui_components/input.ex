@@ -213,17 +213,31 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "duration"} = assigns) do
     ~H"""
     <script :type={Phoenix.LiveView.ColocatedJS} name="DurationInput">
+      const DATE_UNITS = [
+        { iso: "Y", display: "a" },
+        { iso: "M", display: "mo" },
+        { iso: "W", display: "wk" },
+        { iso: "D", display: "d" },
+      ];
+
+      const TIME_UNITS = [
+        { iso: "H", display: "h" },
+        { iso: "M", display: "min" },
+        { iso: "S", display: "s" },
+      ];
+
+      const ALL_UNITS = [...DATE_UNITS, ...TIME_UNITS];
+
       export default class DurationInput extends HTMLElement {
         static formAssociated = true;
 
         #internals;
         #input;
-        #handleInput;
+        #handleInput = () => this.#syncFormValue();
 
         constructor() {
           super();
           this.#internals = this.attachInternals();
-          this.#handleInput = () => this.#syncFormValue();
         }
 
         connectedCallback() {
@@ -257,73 +271,38 @@ defmodule DaisyUIComponents.Input do
           this.#input.disabled = disabled;
         }
 
-        /** Sets the form value: ISO string if valid, raw value otherwise. */
         #syncFormValue() {
           const value = this.#input.value.trim();
           const formValue = value && this.#input.validity.valid ? this.#toISO(value) : value;
           this.#internals.setFormValue(formValue);
         }
 
-        /** Converts ISO duration (PT1H30M) to display format (1h 30min). */
         #toDisplay(iso) {
-          const regex =
-            /^P(?:(\d+(?:\.\d+)?)Y)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)W)?(?:(\d+(?:\.\d+)?)D)?(?:T(?:(\d+(?:\.\d+)?)H)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)S)?)?$/;
+          const match = iso.match(
+            /^P(?:(\d+(?:\.\d+)?)Y)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)W)?(?:(\d+(?:\.\d+)?)D)?(?:T(?:(\d+(?:\.\d+)?)H)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)S)?)?$/
+          );
+          if (!match) return iso;
 
-          const match = iso.match(regex);
+          const [, ...values] = match;
 
-          if (match) {
-            const [, years, months, weeks, days, hours, minutes, seconds] = match;
-
-            const parts = [];
-
-            if (years) parts.push(`${years}a`);
-            if (months) parts.push(`${months}mo`);
-            if (weeks) parts.push(`${weeks}wk`);
-            if (days) parts.push(`${days}d`);
-            if (hours) parts.push(`${hours}h`);
-            if (minutes) parts.push(`${minutes}min`);
-            if (seconds) parts.push(`${seconds}s`);
-
-            return parts.join(" ");
-          } else return iso;
+          return ALL_UNITS
+            .map(({ display }, i) => values[i] && `${values[i]}${display}`)
+            .filter(Boolean)
+            .join(" ");
         }
 
-        /** Converts display format (1h 30min) to ISO duration (PT1H30M). */
         #toISO(display) {
-          const units = {
-            a: "Y",
-            mo: "M",
-            wk: "W",
-            d: "D",
-            h: "H",
-            min: "M",
-            s: "S",
-          };
+          const values = new Map();
 
-          const dateParts = [];
-          const timeParts = [];
-
-          const tokens = display.trim().split(/\s+/);
-
-          for (const token of tokens) {
-            const match = token.match(/^(\d+(?:\.\d+)?)(a|mo|wk|d|h|min|s)$/);
-            if (!match) continue;
-
-            const [, value, unit] = match;
-            const isoUnit = units[unit];
-
-            if (["H", "M", "S"].includes(isoUnit) && unit !== "mo") {
-              timeParts.push(value + isoUnit);
-            } else {
-              dateParts.push(value + isoUnit);
-            }
+          for (const token of display.trim().split(/\s+/)) {
+            const [, num, unit] = token.match(/^(\d+(?:\.\d+)?)(a|mo|wk|d|h|min|s)$/) || [];
+            if (num) values.set(unit, num);
           }
 
-          if (timeParts.length === 0) {
-            return "P" + dateParts.join("");
-          }
+          const date = DATE_UNITS.map(({ iso, display }) => values.get(display) + iso || "").join("");
+          const time = TIME_UNITS.map(({ iso, display }) => values.get(display) + iso || "").join("");
 
-          return "P" + dateParts.join("") + "T" + timeParts.join("");
+          return "P" + date + (time ? "T" + time : "");
         }
       }
 
