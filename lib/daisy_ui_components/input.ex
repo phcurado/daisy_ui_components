@@ -30,7 +30,7 @@ defmodule DaisyUIComponents.Input do
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+    values: ~w(checkbox color date datetime-local duration email file hidden month number password
                range radio search select autocomplete tel text textarea time url week toggle)
 
   attr :color, :string, values: [nil] ++ colors(), default: nil
@@ -207,6 +207,118 @@ defmodule DaisyUIComponents.Input do
         </li>
       </.menu>
     </.dropdown>
+    """
+  end
+
+  def input(%{type: "duration"} = assigns) do
+    ~H"""
+    <script :type={Phoenix.LiveView.ColocatedJS} name="DurationInput">
+      const UNITS = {
+        y: "years",
+        M: "months",
+        w: "weeks",
+        d: "days",
+        h: "hours",
+        m: "minutes",
+        s: "seconds",
+      };
+
+      const PATTERN = String.raw`^(?!.*(y|M|w|d|h|m|s).*\1)(\d+(y|M|w|d|h|m|s)\s*)+$`;
+      const UNIT_REGEX = /(?<value>\d+)(?<unit>y|M|w|d|h|m|s)/g;
+
+      export default class DurationInput extends HTMLElement {
+        static formAssociated = true;
+
+        #internals;
+        #input;
+        #handleInput;
+
+        constructor() {
+          super();
+          this.#internals = this.attachInternals();
+          this.#handleInput = () => this.#syncFormValue();
+        }
+
+        connectedCallback() {
+          const input = this.querySelector("input");
+          if (!input) throw new Error("duration-input requires an <input> child");
+
+          this.#input = input;
+          this.#input.pattern = PATTERN;
+          this.#input.title = "Format: 1y 2M 3w 4d 5h 6m 7s";
+          this.#input.value = this.#toDisplay(this.#input.value);
+
+          this.#syncFormValue();
+          this.#input.addEventListener("input", this.#handleInput);
+        }
+
+        disconnectedCallback() {
+          this.#input.removeEventListener("input", this.#handleInput);
+        }
+
+        formResetCallback() {
+          this.#input.value = this.#toDisplay(this.#input.defaultValue);
+          this.#syncFormValue();
+        }
+
+        formStateRestoreCallback(state) {
+          this.#input.value = this.#toDisplay(state);
+          this.#syncFormValue();
+        }
+
+        formDisabledCallback(disabled) {
+          this.#input.disabled = disabled;
+        }
+
+        /** Sets the form value: ISO string if valid, raw value otherwise. */
+        #syncFormValue() {
+          const value = this.#input.value.trim();
+          const formValue = value && this.#input.validity.valid ? this.#toISO(value) : value;
+          this.#internals.setFormValue(formValue);
+        }
+
+        /** Converts ISO duration (PT1H30M) to display format (1h 30m). */
+        #toDisplay(iso) {
+          if (!iso) return "";
+
+          try {
+            const duration = Temporal.Duration.from(iso);
+
+            return (
+              Object.entries(UNITS)
+                .filter(([_abbr, key]) => duration[key])
+                .map(([abbr, key]) => `${duration[key]}${abbr}`)
+                .join(" ") || "0s"
+            );
+          } catch {
+            return iso;
+          }
+        }
+
+        /** Converts display format (1h 30m) to ISO duration (PT1H30M). */
+        #toISO(display) {
+          const duration = {};
+
+          for (const match of display.matchAll(UNIT_REGEX)) {
+            const { value, unit } = match.groups;
+            duration[UNITS[unit]] = Number(value);
+          }
+
+          return Temporal.Duration.from(duration).toString();
+        }
+      }
+    </script>
+
+    <duration-input name={@name} phx-update="ignore" id={"duration-input-" <> @id}>
+      <.text_input
+        id={@id}
+        class={@class}
+        color={@color}
+        ghost={@ghost}
+        value={@value}
+        {@rest}
+      />
+    </duration-input>
     """
   end
 

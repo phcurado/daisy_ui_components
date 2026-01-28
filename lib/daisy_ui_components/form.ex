@@ -67,8 +67,8 @@ defmodule DaisyUIComponents.Form do
   attr :type, :string,
     default: "text",
     values:
-      ~w(checkbox color date datetime-local email file hidden month number password range radio
-      search select autocomplete tel text textarea time url week toggle checkbox_group radio_group)
+      ~w(checkbox color date datetime-local duration email file hidden month number password range
+      radio search select autocomplete tel text textarea time url week toggle checkbox_group radio_group)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -277,6 +277,24 @@ defmodule DaisyUIComponents.Form do
         options={@options}
         value={@value}
         on_query={@on_query}
+        {@rest}
+      />
+      <.error :for={msg <- @errors}>{msg}</.error>
+    </.fieldset>
+    """
+  end
+
+  def form_input(%{type: "duration"} = assigns) do
+    ~H"""
+    <.fieldset class="mt-2">
+      <.fieldset_label for={@id}>{@label}</.fieldset_label>
+      <.input
+        id={@id}
+        type="duration"
+        name={@name}
+        color={@color}
+        class={[@class, "w-full"]}
+        value={@value}
         {@rest}
       />
       <.error :for={msg <- @errors}>{msg}</.error>
