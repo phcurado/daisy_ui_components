@@ -213,19 +213,6 @@ defmodule DaisyUIComponents.Input do
   def input(%{type: "duration"} = assigns) do
     ~H"""
     <script :type={Phoenix.LiveView.ColocatedJS} name="DurationInput">
-      const UNITS = {
-        y: "years",
-        M: "months",
-        w: "weeks",
-        d: "days",
-        h: "hours",
-        m: "minutes",
-        s: "seconds",
-      };
-
-      const PATTERN = String.raw`^(?!.*(y|M|w|d|h|m|s).*\1)(\d+(y|M|w|d|h|m|s)\s*)+$`;
-      const UNIT_REGEX = /(?<value>\d+)(?<unit>y|M|w|d|h|m|s)/g;
-
       export default class DurationInput extends HTMLElement {
         static formAssociated = true;
 
@@ -244,8 +231,8 @@ defmodule DaisyUIComponents.Input do
           if (!input) throw new Error("duration-input requires an <input> child");
 
           this.#input = input;
-          this.#input.pattern = PATTERN;
-          this.#input.title = "Format: 1y 2M 3w 4d 5h 6m 7s";
+          this.#input.pattern = String.raw`^(?!.*(a|mo|wk|d|h|min|s).*\1)(\d+(a|mo|wk|d|h|min|s)\s*)+$`;
+          this.#input.title = "Format: 1a 2mo 3wk 4d 5h 6min 7.89s";
           this.#input.value = this.#toDisplay(this.#input.value);
 
           this.#syncFormValue();
@@ -277,36 +264,70 @@ defmodule DaisyUIComponents.Input do
           this.#internals.setFormValue(formValue);
         }
 
-        /** Converts ISO duration (PT1H30M) to display format (1h 30m). */
+        /** Converts ISO duration (PT1H30M) to display format (1h 30min). */
         #toDisplay(iso) {
-          if (!iso) return "";
+          const regex =
+            /^P(?:(\d+(?:\.\d+)?)Y)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)W)?(?:(\d+(?:\.\d+)?)D)?(?:T(?:(\d+(?:\.\d+)?)H)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)S)?)?$/;
 
-          try {
-            const duration = Temporal.Duration.from(iso);
+          const match = iso.match(regex);
 
-            return (
-              Object.entries(UNITS)
-                .filter(([_abbr, key]) => duration[key])
-                .map(([abbr, key]) => `${duration[key]}${abbr}`)
-                .join(" ") || "0s"
-            );
-          } catch {
-            return iso;
-          }
+          if (match) {
+            const [, years, months, weeks, days, hours, minutes, seconds] = match;
+
+            const parts = [];
+
+            if (years) parts.push(`${years}a`);
+            if (months) parts.push(`${months}mo`);
+            if (weeks) parts.push(`${weeks}wk`);
+            if (days) parts.push(`${days}d`);
+            if (hours) parts.push(`${hours}h`);
+            if (minutes) parts.push(`${minutes}min`);
+            if (seconds) parts.push(`${seconds}s`);
+
+            return parts.join(" ");
+          } else return iso;
         }
 
-        /** Converts display format (1h 30m) to ISO duration (PT1H30M). */
+        /** Converts display format (1h 30min) to ISO duration (PT1H30M). */
         #toISO(display) {
-          const duration = {};
+          const units = {
+            a: "Y",
+            mo: "M",
+            wk: "W",
+            d: "D",
+            h: "H",
+            min: "M",
+            s: "S",
+          };
 
-          for (const match of display.matchAll(UNIT_REGEX)) {
-            const { value, unit } = match.groups;
-            duration[UNITS[unit]] = Number(value);
+          const dateParts = [];
+          const timeParts = [];
+
+          const tokens = display.trim().split(/\s+/);
+
+          for (const token of tokens) {
+            const match = token.match(/^(\d+(?:\.\d+)?)(a|mo|wk|d|h|min|s)$/);
+            if (!match) continue;
+
+            const [, value, unit] = match;
+            const isoUnit = units[unit];
+
+            if (["H", "M", "S"].includes(isoUnit) && unit !== "mo") {
+              timeParts.push(value + isoUnit);
+            } else {
+              dateParts.push(value + isoUnit);
+            }
           }
 
-          return Temporal.Duration.from(duration).toString();
+          if (timeParts.length === 0) {
+            return "P" + dateParts.join("");
+          }
+
+          return "P" + dateParts.join("") + "T" + timeParts.join("");
         }
       }
+
+      customElements.define("duration-input", DurationInput);
     </script>
 
     <duration-input name={@name} phx-update="ignore" id={"duration-input-" <> @id}>
