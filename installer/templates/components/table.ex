@@ -180,7 +180,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
           <.td
             :for={col <- @col}
             phx-click={@row_click && @row_click.(row)}
-            class={[@row_click && "hover:cursor-pointer", @col[:class]]}
+            class={[@row_click && "hover:cursor-pointer", col[:class]]}
             collapse_breakpoint={col[:collapse_breakpoint]}
           >
             {render_slot(col, @row_item.(row))}

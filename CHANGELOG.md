@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.9.4 - 2026-04-05
 
 ### Added
 
@@ -19,6 +19,11 @@ All notable changes to this project will be documented in this file.
 - Modal close button now has `aria-label="Close modal"` for accessibility
 - Alert component now has `role="alert"` for accessibility
 - Fixed test module typo: `CollapsleTest` → `CollapseTest`
+
+### Fixed
+
+- Use loop variable `col[:class]` instead of assign `@col[:class]` in table component
+- Apply same `col[:class]` fix to installer table template
 
 ## 0.9.3 - 2025-11-01
 
