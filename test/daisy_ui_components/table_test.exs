@@ -51,7 +51,7 @@ defmodule DaisyUIComponents.TableTest do
       rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}
       container_element={false}
     >
-      <:col :let={user} label="id">{user.id}</:col>
+      <:col :let={user} label="id" class="col-id">{user.id}</:col>
       <:col :let={user} label="username">{user.username}</:col>
     </.table>
     """
@@ -67,6 +67,7 @@ defmodule DaisyUIComponents.TableTest do
         |> select_children(fn [td_1, td_2] ->
           td_1
           |> assert_component("td")
+          |> assert_class("col-id")
           |> assert_text("12345")
 
           td_2
@@ -79,6 +80,7 @@ defmodule DaisyUIComponents.TableTest do
         |> select_children(fn [td_1, td_2] ->
           td_1
           |> assert_component("td")
+          |> assert_class("col-id")
           |> assert_text("12346")
 
           td_2
