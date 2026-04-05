@@ -95,7 +95,7 @@ defmodule DaisyUIComponents.Table do
 
   attr :zebra, :boolean, default: false
   attr :size, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(align bgcolor border cellpadding cellspacing frame rules summary width)
   slot :inner_block
 
   def table(%{rows: _rows} = assigns) do
@@ -199,7 +199,7 @@ defmodule DaisyUIComponents.Table do
   attr :class, :any, default: nil
   attr :active, :boolean, default: false
   attr :hover, :boolean, default: false
-  attr :rest, :global
+  attr :rest, :global, include: ~w(align bgcolor char charoff valign)
   slot :inner_block
 
   def tr(assigns) do
@@ -223,7 +223,7 @@ defmodule DaisyUIComponents.Table do
 
   attr :class, :any, default: nil
   attr :collapse_breakpoint, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(align bgcolor char charoff colspan headers height rowspan valign width)
   slot :inner_block
 
   def td(assigns) do
@@ -260,7 +260,8 @@ defmodule DaisyUIComponents.Table do
     default: "sort",
     doc: "the event name for phx-click on header columns for sorting"
 
-  attr :rest, :global
+  attr :rest, :global,
+    include: ~w(abbr align bgcolor char charoff colspan headers height rowspan scope valign width)
   slot :inner_block
 
   def th(assigns) do
@@ -297,7 +298,7 @@ defmodule DaisyUIComponents.Table do
   end
 
   attr :class, :any, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: ~w(align char charoff valign)
   slot :inner_block
 
   def thead(assigns) do
@@ -309,7 +310,7 @@ defmodule DaisyUIComponents.Table do
   end
 
   attr :class, :any, default: nil
-  attr :rest, :global
+  attr :rest, :global, include: ~w(align char charoff valign)
   slot :inner_block
 
   def tbody(assigns) do
