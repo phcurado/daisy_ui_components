@@ -113,88 +113,41 @@ defmodule DaisyUIComponents.TableTest do
     assigns = %{}
 
     ~H"""
-    <.td class="test-td" />
+    <.td class="test-td" colspan="2" headers="hdr" rowspan="1" />
     """
     |> parse_component()
     |> assert_component("td")
     |> assert_class("test-td")
+    |> assert_attribute("colspan", "2")
+    |> assert_attribute("headers", "hdr")
+    |> assert_attribute("rowspan", "1")
 
     ~H"""
-    <.th class="test-th" />
+    <.th class="test-th" abbr="id" colspan="2" headers="hdr" rowspan="1" scope="col" />
     """
     |> parse_component()
     |> assert_component("th")
     |> assert_class("test-th")
+    |> assert_attribute("abbr", "id")
+    |> assert_attribute("colspan", "2")
+    |> assert_attribute("headers", "hdr")
+    |> assert_attribute("rowspan", "1")
+    |> assert_attribute("scope", "col")
 
     ~H"""
-    <.thead class="test-thead" />
+    <.thead class="test-thead" data-header="true" />
     """
     |> parse_component()
     |> assert_component("thead")
     |> assert_class("test-thead")
+    |> assert_attribute("data-header", "true")
 
     ~H"""
-    <.tbody class="test-tbody" />
+    <.tbody class="test-tbody" data-body="true" />
     """
     |> parse_component()
     |> assert_component("tbody")
     |> assert_class("test-tbody")
-  end
-
-  test "forwards allowed native table attributes via :rest" do
-    assigns = %{}
-
-    ~H"""
-    <.table container_element={false}>
-      <.thead data-header="true">
-        <.tr data-row="head">
-          <.th abbr="id" colspan="2" headers="hdr" rowspan="1" scope="col">
-            ID
-          </.th>
-        </.tr>
-      </.thead>
-      <.tbody data-body="true">
-        <.tr data-row="body">
-          <.td colspan="2" headers="hdr" rowspan="1">
-            123
-          </.td>
-        </.tr>
-      </.tbody>
-    </.table>
-    """
-    |> parse_component()
-    |> assert_component("table")
-    |> assert_children("thead", fn thead ->
-      thead
-      |> assert_attribute("data-header", "true")
-      |> assert_children("tr", fn tr ->
-        tr
-        |> assert_attribute("data-row", "head")
-        |> assert_children("th", fn th ->
-          th
-          |> assert_attribute("abbr", "id")
-          |> assert_attribute("colspan", "2")
-          |> assert_attribute("headers", "hdr")
-          |> assert_attribute("rowspan", "1")
-          |> assert_attribute("scope", "col")
-          |> assert_text("ID")
-        end)
-      end)
-    end)
-    |> assert_children("tbody", fn tbody ->
-      tbody
-      |> assert_attribute("data-body", "true")
-      |> assert_children("tr", fn tr ->
-        tr
-        |> assert_attribute("data-row", "body")
-        |> assert_children("td", fn td ->
-          td
-          |> assert_attribute("colspan", "2")
-          |> assert_attribute("headers", "hdr")
-          |> assert_attribute("rowspan", "1")
-          |> assert_text("123")
-        end)
-      end)
-    end)
+    |> assert_attribute("data-body", "true")
   end
 end
