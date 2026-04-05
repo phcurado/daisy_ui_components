@@ -145,7 +145,7 @@ defmodule DaisyUIComponents.TableTest do
     assigns = %{}
 
     ~H"""
-    <.table data-role="main" container_element={false}>
+    <.table container_element={false}>
       <.thead data-header="true">
         <.tr data-row="head">
           <.th abbr="id" colspan="2" headers="hdr" rowspan="1" scope="col">
@@ -164,7 +164,6 @@ defmodule DaisyUIComponents.TableTest do
     """
     |> parse_component()
     |> assert_component("table")
-    |> assert_attribute("data-role", "main")
     |> assert_children("thead", fn thead ->
       thead
       |> assert_attribute("data-header", "true")
