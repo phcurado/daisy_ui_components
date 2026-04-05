@@ -42,40 +42,6 @@ defmodule DaisyUIComponents.TableTest do
     end)
   end
 
-  test "table with declared columns and column class" do
-    assigns = %{}
-
-    ~H"""
-    <.table
-      id="user"
-      rows={[%{id: 12345, username: "John"}]}
-      container_element={false}
-    >
-      <:col :let={user} label="id" class="col-id">{user.id}</:col>
-      <:col :let={user} label="username">{user.username}</:col>
-    </.table>
-    """
-    |> parse_component()
-    |> assert_children("tbody#user", fn tbody ->
-      tbody
-      |> assert_component("tbody")
-      |> select_children(fn [tr] ->
-        tr
-        |> assert_component("tr")
-        |> select_children(fn [td_1, td_2] ->
-          td_1
-          |> assert_component("td")
-          |> assert_class("col-id")
-          |> assert_text("12345")
-
-          td_2
-          |> assert_component("td")
-          |> assert_text("John")
-        end)
-      end)
-    end)
-  end
-
   test "table with declared columns" do
     assigns = %{}
 
@@ -85,7 +51,7 @@ defmodule DaisyUIComponents.TableTest do
       rows={[%{id: 12345, username: "John"}, %{id: 12346, username: "Doe"}]}
       container_element={false}
     >
-      <:col :let={user} label="id">{user.id}</:col>
+      <:col :let={user} label="id" class="col-id">{user.id}</:col>
       <:col :let={user} label="username">{user.username}</:col>
     </.table>
     """
@@ -101,6 +67,7 @@ defmodule DaisyUIComponents.TableTest do
         |> select_children(fn [td_1, td_2] ->
           td_1
           |> assert_component("td")
+          |> assert_class("col-id")
           |> assert_text("12345")
 
           td_2
@@ -113,6 +80,7 @@ defmodule DaisyUIComponents.TableTest do
         |> select_children(fn [td_1, td_2] ->
           td_1
           |> assert_component("td")
+          |> assert_class("col-id")
           |> assert_text("12346")
 
           td_2
