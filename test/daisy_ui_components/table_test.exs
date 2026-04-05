@@ -141,40 +141,21 @@ defmodule DaisyUIComponents.TableTest do
     |> assert_class("test-tbody")
   end
 
-  test "forwards native table attributes via :rest" do
+  test "forwards allowed native table attributes via :rest" do
     assigns = %{}
 
     ~H"""
-    <.table
-      align="center"
-      border="1"
-      cellpadding="2"
-      cellspacing="3"
-      frame="box"
-      rules="all"
-      summary="Example summary"
-      width="100%"
-      container_element={false}
-    >
-      <.thead align="left" char="-" charoff="1" valign="middle">
-        <.tr align="right" bgcolor="#eee" char="." charoff="2" valign="top">
-          <.th
-            abbr="id"
-            colspan="2"
-            headers="hdr"
-            height="10"
-            rowspan="1"
-            scope="col"
-            valign="bottom"
-            width="50"
-          >
+    <.table data-role="main" container_element={false}>
+      <.thead data-header="true">
+        <.tr data-row="head">
+          <.th abbr="id" colspan="2" headers="hdr" rowspan="1" scope="col">
             ID
           </.th>
         </.tr>
       </.thead>
-      <.tbody align="left" char="-" charoff="3" valign="middle">
-        <.tr align="left" bgcolor="#fafafa" char="/" charoff="4" valign="bottom">
-          <.td colspan="2" headers="hdr" height="20" rowspan="1" valign="middle" width="60">
+      <.tbody data-body="true">
+        <.tr data-row="body">
+          <.td colspan="2" headers="hdr" rowspan="1">
             123
           </.td>
         </.tr>
@@ -183,62 +164,35 @@ defmodule DaisyUIComponents.TableTest do
     """
     |> parse_component()
     |> assert_component("table")
-    |> assert_attribute("align", "center")
-    |> assert_attribute("border", "1")
-    |> assert_attribute("cellpadding", "2")
-    |> assert_attribute("cellspacing", "3")
-    |> assert_attribute("frame", "box")
-    |> assert_attribute("rules", "all")
-    |> assert_attribute("summary", "Example summary")
-    |> assert_attribute("width", "100%")
+    |> assert_attribute("data-role", "main")
     |> assert_children("thead", fn thead ->
       thead
-      |> assert_attribute("align", "left")
-      |> assert_attribute("char", "-")
-      |> assert_attribute("charoff", "1")
-      |> assert_attribute("valign", "middle")
+      |> assert_attribute("data-header", "true")
       |> assert_children("tr", fn tr ->
         tr
-        |> assert_attribute("align", "right")
-        |> assert_attribute("bgcolor", "#eee")
-        |> assert_attribute("char", ".")
-        |> assert_attribute("charoff", "2")
-        |> assert_attribute("valign", "top")
+        |> assert_attribute("data-row", "head")
         |> assert_children("th", fn th ->
           th
           |> assert_attribute("abbr", "id")
           |> assert_attribute("colspan", "2")
           |> assert_attribute("headers", "hdr")
-          |> assert_attribute("height", "10")
           |> assert_attribute("rowspan", "1")
           |> assert_attribute("scope", "col")
-          |> assert_attribute("valign", "bottom")
-          |> assert_attribute("width", "50")
           |> assert_text("ID")
         end)
       end)
     end)
     |> assert_children("tbody", fn tbody ->
       tbody
-      |> assert_attribute("align", "left")
-      |> assert_attribute("char", "-")
-      |> assert_attribute("charoff", "3")
-      |> assert_attribute("valign", "middle")
+      |> assert_attribute("data-body", "true")
       |> assert_children("tr", fn tr ->
         tr
-        |> assert_attribute("align", "left")
-        |> assert_attribute("bgcolor", "#fafafa")
-        |> assert_attribute("char", "/")
-        |> assert_attribute("charoff", "4")
-        |> assert_attribute("valign", "bottom")
+        |> assert_attribute("data-row", "body")
         |> assert_children("td", fn td ->
           td
           |> assert_attribute("colspan", "2")
           |> assert_attribute("headers", "hdr")
-          |> assert_attribute("height", "20")
           |> assert_attribute("rowspan", "1")
-          |> assert_attribute("valign", "middle")
-          |> assert_attribute("width", "60")
           |> assert_text("123")
         end)
       end)
