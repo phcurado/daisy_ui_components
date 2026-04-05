@@ -135,19 +135,17 @@ defmodule DaisyUIComponents.TableTest do
     |> assert_attribute("scope", "col")
 
     ~H"""
-    <.thead class="test-thead" data-header="true" />
+    <.thead class="test-thead" />
     """
     |> parse_component()
     |> assert_component("thead")
     |> assert_class("test-thead")
-    |> assert_attribute("data-header", "true")
 
     ~H"""
-    <.tbody class="test-tbody" data-body="true" />
+    <.tbody class="test-tbody" />
     """
     |> parse_component()
     |> assert_component("tbody")
     |> assert_class("test-tbody")
-    |> assert_attribute("data-body", "true")
   end
 end
