@@ -81,4 +81,22 @@ defmodule DaisyUIComponents.SelectTest do
       |> assert_class("select select-#{to_string(boolean_assign)}")
     end
   end
+
+  test "select forwards native attributes" do
+    assigns = %{}
+
+    ~H"""
+    <.select form="user-form" name="role" required disabled autofocus multiple>
+      <option value="admin">Admin</option>
+    </.select>
+    """
+    |> parse_component()
+    |> assert_component("select")
+    |> assert_attribute("form", "user-form")
+    |> assert_attribute("name", "role")
+    |> assert_attribute("required", "required")
+    |> assert_attribute("disabled", "disabled")
+    |> assert_attribute("autofocus", "autofocus")
+    |> assert_attribute("multiple", "multiple")
+  end
 end
