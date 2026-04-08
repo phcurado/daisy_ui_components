@@ -260,8 +260,8 @@ defmodule DaisyUIComponents.Table do
     default: "sort",
     doc: "the event name for phx-click on header columns for sorting"
 
-  attr :rest, :global,
-    include: ~w(abbr colspan headers rowspan scope)
+  attr :rest, :global, include: ~w(abbr colspan headers rowspan scope)
+
   slot :inner_block
 
   def th(assigns) do

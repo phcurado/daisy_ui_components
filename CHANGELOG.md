@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.5 - 2026-04-08
+
+### Changed
+
+- Add native attribute includes (`colspan`, `headers`, `rowspan`) to table `td` component
+- Add native attribute includes (`abbr`, `colspan`, `headers`, `rowspan`, `scope`) to table `th` component
+- Update select component native attributes to include `autofocus`, `disabled`, and `required`
+
 ## 0.9.4 - 2026-04-05
 
 ### Added

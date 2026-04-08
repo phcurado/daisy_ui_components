@@ -261,6 +261,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Table
     doc: "the event name for phx-click on header columns for sorting"
 
   attr :rest, :global, include: ~w(abbr colspan headers rowspan scope)
+
   slot :inner_block
 
   def th(assigns) do
