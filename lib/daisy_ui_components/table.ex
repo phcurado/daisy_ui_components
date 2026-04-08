@@ -223,7 +223,7 @@ defmodule DaisyUIComponents.Table do
 
   attr :class, :any, default: nil
   attr :collapse_breakpoint, :string, values: sizes()
-  attr :rest, :global
+  attr :rest, :global, include: ~w(colspan headers rowspan)
   slot :inner_block
 
   def td(assigns) do
@@ -260,7 +260,8 @@ defmodule DaisyUIComponents.Table do
     default: "sort",
     doc: "the event name for phx-click on header columns for sorting"
 
-  attr :rest, :global
+  attr :rest, :global,
+    include: ~w(abbr colspan headers rowspan scope)
   slot :inner_block
 
   def th(assigns) do

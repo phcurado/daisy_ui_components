@@ -113,18 +113,26 @@ defmodule DaisyUIComponents.TableTest do
     assigns = %{}
 
     ~H"""
-    <.td class="test-td" />
+    <.td class="test-td" colspan="2" headers="hdr" rowspan="1" />
     """
     |> parse_component()
     |> assert_component("td")
     |> assert_class("test-td")
+    |> assert_attribute("colspan", "2")
+    |> assert_attribute("headers", "hdr")
+    |> assert_attribute("rowspan", "1")
 
     ~H"""
-    <.th class="test-th" />
+    <.th class="test-th" abbr="id" colspan="2" headers="hdr" rowspan="1" scope="col" />
     """
     |> parse_component()
     |> assert_component("th")
     |> assert_class("test-th")
+    |> assert_attribute("abbr", "id")
+    |> assert_attribute("colspan", "2")
+    |> assert_attribute("headers", "hdr")
+    |> assert_attribute("rowspan", "1")
+    |> assert_attribute("scope", "col")
 
     ~H"""
     <.thead class="test-thead" />
