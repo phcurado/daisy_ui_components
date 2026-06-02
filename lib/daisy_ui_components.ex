@@ -88,6 +88,7 @@ defmodule DaisyUIComponents do
       import DaisyUIComponents.Select
       import DaisyUIComponents.Sidebar
       import DaisyUIComponents.Stat
+      import DaisyUIComponents.Steps
       import DaisyUIComponents.Swap
       import DaisyUIComponents.Tabs
       import DaisyUIComponents.TextInput
