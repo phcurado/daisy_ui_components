@@ -88,6 +88,7 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents do<%=
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Select" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Sidebar" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Stat" %>
+      <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Steps" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Swap" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.Tabs" %>
       <%= "import " <> (if not @dev, do: @web_namespace <> ".", else: "") <> "DaisyUIComponents.TextInput" %>

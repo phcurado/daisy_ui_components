@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.6 - 2026-06-02
+
+### Changed
+
+- Add `Steps` component to main `DaisyUIComponents` import
+
 ## 0.9.5 - 2026-04-08
 
 ### Changed
