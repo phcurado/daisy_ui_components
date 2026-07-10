@@ -6,7 +6,7 @@ end
 defmodule Installer.MixProject do
   use Mix.Project
 
-  @version "0.2.7"
+  @version "0.9.7"
   @source_url "https://github.com/phcurado/daisy_ui_components/tree/main/installer"
 
   def project do
