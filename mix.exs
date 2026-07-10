@@ -8,7 +8,7 @@ defmodule DaisyUIComponents.MixProject do
     [
       app: :daisy_ui_components,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
