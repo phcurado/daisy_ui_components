@@ -8,7 +8,7 @@ defmodule DaisyUIComponents.MixProject do
     [
       app: :daisy_ui_components,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
@@ -51,7 +51,7 @@ defmodule DaisyUIComponents.MixProject do
 
   defp deps do
     [
-      {:phoenix_live_view, "~> 1.1"},
+      {:phoenix_live_view, "~> 1.2"},
       {:jason, "~> 1.4", only: [:dev, :test]},
       {:floki, "~> 0.38.0", [only: :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
