@@ -65,7 +65,10 @@ defmodule <%= if not @dev do @web_namespace <> "." end %>DaisyUIComponents.Modal
     <dialog
       id={@id}
       class={["modal", @class]}
-      phx-mounted={@open && show_modal(@id)}
+      phx-mounted={
+        js = JS.ignore_attributes("open")
+        if @open, do: show_modal(js, @id), else: js
+      }
       phx-remove={hide_modal(@id)}
       data-cancel={JS.exec(@on_cancel, "phx-remove")}
       {@rest}
