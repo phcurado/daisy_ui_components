@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.8 - 2026-08-19
+
+### Fixed
+
+- Prevent LiveView DOM patches from resetting the client-controlled `open` state on modal dialogs
+
 ## 0.9.6 - 2026-06-02
 
 ### Changed
