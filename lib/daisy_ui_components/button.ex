@@ -34,7 +34,7 @@ defmodule DaisyUIComponents.Button do
   attr :shape, :string, values: ~w(circle square)
 
   attr :rest, :global,
-    include: ~w(type form href navigate patch method download name value disabled)
+    include: ~w(type form href navigate patch method download name value disabled rel target)
 
   slot :inner_block, required: true
 

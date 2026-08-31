@@ -12,7 +12,7 @@ defmodule DaisyUIComponents.Checkbox do
   attr :value, :any, default: nil
   attr :color, :string, values: colors()
   attr :size, :string, values: sizes()
-  attr :rest, :global, include: ~w(form name)
+  attr :rest, :global, include: ~w(autofocus disabled form name required)
 
   def checkbox(assigns) do
     assigns =

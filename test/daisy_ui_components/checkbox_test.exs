@@ -44,4 +44,19 @@ defmodule DaisyUIComponents.CheckboxTest do
       |> assert_class("checkbox checkbox-#{size}")
     end
   end
+
+  test "checkbox forwards native attributes" do
+    assigns = %{}
+
+    ~H"""
+    <.checkbox form="user-form" name="terms" required disabled autofocus />
+    """
+    |> parse_component()
+    |> assert_component("input")
+    |> assert_attribute("form", "user-form")
+    |> assert_attribute("name", "terms")
+    |> assert_attribute("required", "required")
+    |> assert_attribute("disabled", "disabled")
+    |> assert_attribute("autofocus", "autofocus")
+  end
 end

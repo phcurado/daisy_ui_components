@@ -50,4 +50,18 @@ defmodule DaisyUIComponents.RangeTest do
              """) =~ ~s(<input type="range" class="range range-#{size}">)
     end
   end
+
+  test "range forwards native attributes" do
+    assigns = %{}
+
+    range =
+      rendered_to_string(~H"""
+      <.range form="user-form" name="volume" disabled autofocus />
+      """)
+
+    assert range =~ ~s(form="user-form")
+    assert range =~ ~s(name="volume")
+    assert range =~ ~s(disabled)
+    assert range =~ ~s(autofocus)
+  end
 end
