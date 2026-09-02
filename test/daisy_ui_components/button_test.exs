@@ -70,4 +70,19 @@ defmodule DaisyUIComponents.ButtonTest do
            <.button {assigns}>My button</.button>
            """) =~ ~s(<button class="btn no-animation">)
   end
+
+  test "button forwards anchor attributes when rendered as a link" do
+    assigns = %{}
+
+    button =
+      rendered_to_string(~H"""
+      <.button href="/report.pdf" target="_blank" rel="noopener" download>Download</.button>
+      """)
+
+    assert button =~ ~s(<a)
+    assert button =~ ~s(href="/report.pdf")
+    assert button =~ ~s(target="_blank")
+    assert button =~ ~s(rel="noopener")
+    assert button =~ ~s(download)
+  end
 end

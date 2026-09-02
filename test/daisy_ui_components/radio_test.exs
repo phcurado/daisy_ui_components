@@ -37,4 +37,19 @@ defmodule DaisyUIComponents.RadioTest do
              """) =~ ~s(<input class="radio radio-#{size}" type="radio">)
     end
   end
+
+  test "radio forwards native attributes" do
+    assigns = %{}
+
+    radio =
+      rendered_to_string(~H"""
+      <.radio form="user-form" name="plan" required disabled autofocus />
+      """)
+
+    assert radio =~ ~s(form="user-form")
+    assert radio =~ ~s(name="plan")
+    assert radio =~ ~s(required)
+    assert radio =~ ~s(disabled)
+    assert radio =~ ~s(autofocus)
+  end
 end
