@@ -59,4 +59,39 @@ defmodule DaisyUIComponents.TextareaTest do
       |> assert_class("textarea textarea-#{to_string(boolean_assign)}")
     end
   end
+
+  test "textarea forwards native attributes" do
+    assigns = %{}
+
+    ~H"""
+    <.textarea
+      autocomplete="off"
+      cols="40"
+      dirname="description.dir"
+      form="profile-form"
+      maxlength="500"
+      name="description"
+      rows="8"
+      wrap="hard"
+      required
+      disabled
+      readonly
+      autofocus
+    />
+    """
+    |> parse_component()
+    |> assert_component("textarea")
+    |> assert_attribute("autocomplete", "off")
+    |> assert_attribute("cols", "40")
+    |> assert_attribute("dirname", "description.dir")
+    |> assert_attribute("form", "profile-form")
+    |> assert_attribute("maxlength", "500")
+    |> assert_attribute("name", "description")
+    |> assert_attribute("rows", "8")
+    |> assert_attribute("wrap", "hard")
+    |> assert_attribute("required", "required")
+    |> assert_attribute("disabled", "disabled")
+    |> assert_attribute("readonly", "readonly")
+    |> assert_attribute("autofocus", "autofocus")
+  end
 end

@@ -57,4 +57,35 @@ defmodule DaisyUIComponents.TextInputTest do
       |> assert_class("input input-#{to_string(boolean_assign)}")
     end
   end
+
+  test "text input forwards native attributes" do
+    assigns = %{}
+
+    ~H"""
+    <.text_input
+      autocomplete="off"
+      dirname="query.dir"
+      form="search-form"
+      list="suggestions"
+      maxlength="50"
+      name="query"
+      required
+      disabled
+      readonly
+      autofocus
+    />
+    """
+    |> parse_component()
+    |> assert_component("input")
+    |> assert_attribute("autocomplete", "off")
+    |> assert_attribute("dirname", "query.dir")
+    |> assert_attribute("form", "search-form")
+    |> assert_attribute("list", "suggestions")
+    |> assert_attribute("maxlength", "50")
+    |> assert_attribute("name", "query")
+    |> assert_attribute("required", "required")
+    |> assert_attribute("disabled", "disabled")
+    |> assert_attribute("readonly", "readonly")
+    |> assert_attribute("autofocus", "autofocus")
+  end
 end
