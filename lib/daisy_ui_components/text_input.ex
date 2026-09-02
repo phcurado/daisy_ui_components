@@ -12,6 +12,7 @@ defmodule DaisyUIComponents.TextInput do
   attr :color, :string, values: colors()
   attr :ghost, :boolean, default: false
   attr :size, :string, values: sizes()
+
   attr :rest, :global,
     include: ~w(autocomplete dirname disabled form list max maxlength min minlength name pattern
                 placeholder readonly required step value)
