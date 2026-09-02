@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.9 - 2026-09-02
+
+### Fixed
+
+- Forward native attributes through checkbox, radio, range, toggle, text input, and textarea components
+- Forward `rel` and `target` through buttons rendered as links
+
 ## 0.9.8 - 2026-08-19
 
 ### Fixed
