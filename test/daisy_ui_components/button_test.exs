@@ -50,7 +50,7 @@ defmodule DaisyUIComponents.ButtonTest do
   end
 
   test "button boolean assigns" do
-    for boolean_assign <- ~w(ghost link soft dash outline active disabled glass wide block)a do
+    for boolean_assign <- ~w(ghost link soft dash outline active glass wide block)a do
       assigns = %{boolean_assign => true}
 
       assert rendered_to_string(~H"""
@@ -69,6 +69,21 @@ defmodule DaisyUIComponents.ButtonTest do
     assert rendered_to_string(~H"""
            <.button {assigns}>My button</.button>
            """) =~ ~s(<button class="btn no-animation">)
+  end
+
+  test "button disabled renders both the class and the attribute" do
+    assigns = %{}
+
+    button =
+      rendered_to_string(~H"""
+      <.button disabled>My button</.button>
+      """)
+
+    assert button =~ ~s(<button class="btn btn-disabled" disabled>)
+
+    refute rendered_to_string(~H"""
+           <.button>My button</.button>
+           """) =~ "disabled"
   end
 
   test "button forwards anchor attributes when rendered as a link" do
