@@ -34,7 +34,7 @@ defmodule DaisyUIComponents.Button do
   attr :shape, :string, values: ~w(circle square)
 
   attr :rest, :global,
-    include: ~w(type form href navigate patch method download name value disabled rel target)
+    include: ~w(type form href navigate patch method download name value rel target)
 
   slot :inner_block, required: true
 
@@ -73,7 +73,7 @@ defmodule DaisyUIComponents.Button do
       """
     else
       ~H"""
-      <button class={@class} {@rest}>
+      <button class={@class} disabled={@disabled} {@rest}>
         {render_slot(@inner_block)}
       </button>
       """
