@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.10 - 2026-09-07
+
+### Fixed
+
+- Render the native `disabled` attribute on buttons in both the library and installer template
+
 ## 0.9.9 - 2026-09-02
 
 ### Fixed
