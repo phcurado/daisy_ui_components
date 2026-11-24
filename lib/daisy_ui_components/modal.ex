@@ -109,7 +109,7 @@ defmodule DaisyUIComponents.Modal do
     <.focus_wrap
       id={"#{@modal_id}-container"}
       class={["modal-box", @class]}
-      phx-window-keydown={JS.exec("data-cancel", to: "##{@modal_id}")}
+      phx-window-keydown={JS.exec("data-cancel", to: "##{@modal_id}[open]")}
       phx-key="escape"
       phx-click-away={@close_on_click_away && JS.exec("data-cancel", to: "##{@modal_id}")}
     >
