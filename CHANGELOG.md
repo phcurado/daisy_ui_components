@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.9.11 - 2026-11-25
+
+### Fixed
+
+- Prevent Escape from triggering the cancel action on closed modals
+
 ## 0.9.10 - 2026-09-07
 
 ### Fixed
